@@ -41,6 +41,11 @@ endif; ?>
         Mật khẩu</label>    
     <input id="modlgn_passwd" type="password" name="passwd" class="input" alt="password" />
     <input type="image" src="templates/thuocdocduoc/images/news&amp;event_113.png">
+    <p class="color3 bold"><br>
+                            	<a class="color3 bold" href="<?php echo JRoute::_( 'index.php?option=com_user&view=register' ); ?>">Đăng ký</a> 
+                            	|
+                            	<a class="color3 bold" href="<?php echo JRoute::_( 'index.php?option=com_user&view=reset' ); ?>">Quyên mật khẩu?</a>
+                            </p>
     	<?php echo $params->get('posttext'); ?>
 	<?php echo $params->get('posttext'); ?>
 	<input type="hidden" name="option" value="com_user" />

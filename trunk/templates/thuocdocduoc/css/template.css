@@ -13,7 +13,7 @@ div.module-a div div div,div.module-b div div div,div.module-c div div div  { pa
 div.module-a div div div div,div.module-b div div div div ,div.module-c div div div div { background:transparent none repeat scroll 0 0; float:none; margin:0; padding:0;}
 div.module-b .img {padding:10px 0; text-align:center;}
 div.module-b .img img{float:none; width:170px; border:1px solid #96aab5; padding:2px; margin-bottom:10px;}
-.module-c .form,.module-a .form {padding:24px 0;}
+.module-c .form,.module-a .form {padding: 10px 0px 24px 0;}
 .module-1 {background:#FFFFFF; float:left; width:197px; border-left:1px solid #b3b3b3; border-right:1px solid #b3b3b3; margin-bottom:12px;}
 .module-1 .img-rounded{margin-left:-1px;}
 .module-1 .fl-right{margin-right:-1px;}
@@ -35,6 +35,7 @@ div.module-b .img img{float:none; width:170px; border:1px solid #96aab5; padding
 
 
 /*Menus*/
+.menu ul li ul.right_side li {float:right; border:0;}
 .menu1 {clear:both; display:block; width:100%; height:100%;}
 .menu1 li{background:url(../images/news&event_48.png) no-repeat 0 7px; padding:4px 0 4px 20px; margin:5px 0;}
 .menu1 a{color:#00517a;  width:100%; display:inline-block; height:100%;}
