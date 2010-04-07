@@ -1,5 +1,4 @@
 <?php
-
 // no direct access
 defined('_JEXEC') or die('Restricted access');
 
@@ -8,8 +7,10 @@ if ( ! defined('modMainMenuXMLCallbackDefined') )
 {
 	function modMainMenuXMLCallback(&$node, $args)
 	{
+		global $params;
 		$user	= &JFactory::getUser();
 		$menu	= &JSite::getMenu();
+		//print_r($menu);
 		$active	= $menu->getActive();
 		$path	= isset($active) ? array_reverse($active->tree) : null;
 		
@@ -83,17 +84,41 @@ if ( ! defined('modMainMenuXMLCallbackDefined') )
 }
 
 modMainMenuHelper::render($params, 'modMainMenuXMLCallback');
+// time info and slogan below Home page menu
+global $mainframe;
+$now = JFactory::getDate();
+$now->setOffset($mainframe->getCfg('offset',0));
+
+$thu =$now->toFormat("%w");
+$thu++;
+if($thu<2)
+	$thu="Chu nhat";
+else
+	$thu="Thu ".$thu;
+$timeStr = $thu.": ".$now->toFormat("%d/%m/%Y");
+
+$html="<p>".htmlentities($timeStr)."</p>";
+$html.="<marquee behavior='scroll' scrollamount='1' direction='left' onmouseover='this.stop()' onmouseout='this.start()'>Chào Mừng Quý Khách đến với website thuốc Đông Dược</marquee>";
 echo "<script>
-jQuery('document').ready(function(){
-jQuery('div.menu ul li:last-child a').addClass('reset-bg');
-jQuery('div.menu ul li ul li:last-child').addClass('reset-bg');
-//alert(jQuery('div.menu ul.menu >li').size());
-jQuery('div.menu ul.menu >li').mouseover(function(){
-	if(!jQuery(this).hasClass('active'))	
+		jQuery('document').ready(function(){
+		jQuery('div.menu ul li:last-child a').addClass('reset-bg');
+		jQuery('div.menu ul li ul li:last-child').addClass('reset-bg');
+		//alert(jQuery('div.menu ul.menu >li').size());
+		jQuery('div.menu ul.menu >li').mouseover(function(){
+		if(!jQuery(this).hasClass('active'))	
 		jQuery('div.menu ul li.active ul').hide();
-});
-jQuery('div.menu ul.menu >li').mouseout(function(){	
-	jQuery('div.menu ul li.active ul').attr('style','');
-});
+		});
+		jQuery('div.menu ul.menu >li').mouseout(function(){	
+		jQuery('div.menu ul li.active ul').attr('style','');
+		});
+		//float right menu
+		jQuery('div.menu ul.menu >li:gt(3) >ul').addClass('right_side');
+		//alert(jQuery('div.menu ul.menu >li:gt(3) >ul >li:first').size());
+		jQuery('div.menu ul.menu >li:gt(3) ul li').removeClass('reset-bg');
+		jQuery('div.menu ul.menu >li:gt(3) ul').each(function(){
+		jQuery(this).find('li:first').addClass('reset-bg');
+		});
+		// datetime and slogen
+		jQuery('div.menu >ul.menu >li:first > ul > li').html(\"".$html."\");
 });
 </script>";
