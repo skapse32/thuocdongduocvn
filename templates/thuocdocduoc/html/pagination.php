@@ -85,6 +85,7 @@ function pagination_list_render($list)
             
                 <a href="#">Pre</a> <a href="#">1</a> <a href="#" class="active">2</a> <a href="#">3</a>
                 <a href="#">Next</a></p>*/
+                
     $view = strtolower(JRequest::getVar('view'));
 	$layout = strtolower(JRequest::getVar('layout'));
 	switch($view.'-'.$layout)
@@ -92,6 +93,7 @@ function pagination_list_render($list)
 		case "category-blog":
 		case "section-caythuoc_vithuoc":
 		case "section-thuvien":
+		case "search-":
 		$html = "<p class='paggin'><span>Phan trang:</span>";
 		break;
 		default:
