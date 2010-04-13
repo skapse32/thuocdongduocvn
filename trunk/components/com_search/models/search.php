@@ -81,6 +81,7 @@ class SearchModelSearch extends JModel
 		//Set the search areas
 		$areas = JRequest::getVar('areas');
 		$this->setAreas($areas);
+		
 	}
 
 	/**

@@ -1,5 +1,9 @@
-﻿<?php // no direct access
+<?php // no direct access
 defined('_JEXEC') or die('Restricted access'); ?>
+<div>
+<div>
+<div>
+<h3>Đăng nhập</h3>
 <?php if($type == 'logout') : ?>
 <form action="index.php" method="post" name="login" id="form-login">
 <?php if ($params->get('greeting')) : ?>
@@ -55,3 +59,4 @@ endif; ?>
 </form>
 </div>
 <?php endif; ?>
+</div></div></div>

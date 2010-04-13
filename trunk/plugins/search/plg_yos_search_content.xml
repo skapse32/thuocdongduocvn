@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<install version="1.5" type="plugin" group="search">
+<name>Search - Content ( By: YOpenSource.com )</name>
+<creationDate>01-03-2009</creationDate>
+<author>YOS Team</author>
+<authorEmail>yopensource@gmail.com</authorEmail>
+<authorUrl>http://YOpenSource.com</authorUrl>
+<copyright>(C) 2009 YOpenSource All rights reserved.</copyright>
+<license>http://www.gnu.org/copyleft/gpl.html - GNU/GPL</license>
+<version>1.1</version>
+<description>Joomla 1.5 Native Plugin --- To Improve Original Search Component Of Joomla!.
+			<br /> If you like the plugin please vote for the plugin at  ---  http://extensions.joomla.org --- 
+			<br /> You are invited to visit our website at --- YOpenSource.com --- 
+			<br /> We just started so we need as much help from the users and the community as possible.
+			<br /> THANK YOU! for using the plugin. We hope you like it! Your feedback would be greatly appreciated. 
+</description>
+	<files>
+		<filename plugin="plg_yos_search_content">plg_yos_search_content.php</filename>
+	</files>
+	<params>
+		<param name="search_limit" type="text" size="5" default="50" label="Search Limit" description="Number of Search items to return"/>
+		<param name="@spacer" type="spacer" default="" label="" description="" />
+		<param name="search_content" type="radio" default="1" label="Content Items" description="Search Content Items?">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="search_uncategorised" type="radio" default="1" label="Uncategorised Content" description="Search Uncategorised Content?">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="search_archived" type="radio" default="1" label="Archived Content" description="Search Archived Content?">
+			<option value="0">No</option>
+			<option value="1">Yes</option>
+		</param>
+		<param name="point_occurrence_in_title" type="text" size="5" default="10" label="Point added if keyword found in title" description="This article 'll be added 10 point to score to decide the ordering if a keyword found in the article."/>
+		<param name="point_occurrence_in_fulltext" type="text" size="5" default="1" label="Point added if keyword found in fulltext" description="This article 'll be added 1 point to score to decide the ordering if a keyword found in the article."/>
+	</params>
+</install>

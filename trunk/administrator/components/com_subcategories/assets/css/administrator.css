@@ -1,0 +1,85 @@
+/**
+* @author       	http://www.jseblod.com
+* @license 			GNU/GPL License.
+* @package			SubCategories for Joomla 1.5
+**/
+
+.copyright {
+	color: #999;
+	text-align: center;
+	font-size: 90%;
+}
+
+.state-blue {
+font-weight:bold;
+text-indent:30px;
+list-style-image:none;
+list-style-position:outside;
+list-style-type:none;
+padding:10px;
+margin:6px;
+background:#C3D2E5;
+border-bottom:3px solid #84A7DB;
+border-top:3px solid #84A7DB;
+color:#0055BB;
+}
+
+.state-yellow {
+font-weight:bold;
+text-indent:30px;
+list-style-image:none;
+list-style-position:outside;
+list-style-type:none;
+padding:10px;
+margin:6px;
+background:#EFE7B8;
+border-bottom:3px solid #F0DC7E;
+border-top:3px solid #F0DC7E;
+color:#CC0000;
+}
+
+.state-red {
+font-weight:bold;
+text-indent:30px;
+list-style-image:none;
+list-style-position:outside;
+list-style-type:none;
+padding:10px;
+margin:6px;
+background:#E6C0C0;
+border-bottom:3px solid #DE7A7B;
+border-top:3px solid #DE7A7B;
+color:#CC0000;
+}
+
+#cpanel div.icon {
+	text-align: center;
+	float: left;
+	margin-top:15px;
+}
+
+#cpanel div.icon a {
+	display: block;
+	float: left;
+	border: 1px solid #f0f0f0;
+	height: 49px;
+	width: 108px;
+	color: #666;
+	vertical-align: middle;
+	text-decoration: none;
+}
+
+#cpanel div.icon a:hover {
+	border-left: 1px solid #eee;
+	border-top: 1px solid #eee;
+	border-right: 1px solid #ccc;
+	border-bottom: 1px solid #ccc;
+	background: #f9f9f9;
+	color: #0B55C4;
+}
+
+div.width-25 { width: 25%; }
+
+.icon-48-subcategories	{ 
+	background-image: url(../../assets/images/icon-48-subcategories.png); 
+}
