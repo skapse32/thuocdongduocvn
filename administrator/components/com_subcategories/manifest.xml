@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<install type="component" version="1.5.0" method="upgrade">
+
+	<name>SubCategories</name>
+	<author>jSeblod (Content Friendly !)</author>
+	<authorEmail>contact@jseblod.com</authorEmail>
+	<authorUrl>http://www.jseblod.com</authorUrl>
+	<creationDate>August 2009</creationDate>
+	<license>GNU/GPL License</license>
+	<version>1.5.15.1</version>
+	<description>jSeblod SubCategories for Joomla 1.5</description>
+	
+	<files folder="site">
+		<filename>index.html</filename>
+		<folder>views</folder>
+	</files>
+	
+	<administration>
+	<menu img="js/ThemeOffice/component.png">SubCategories</menu>
+		
+	<languages folder="admin/languages">
+			<language tag="en-GB">en-GB.com_subcategories.ini</language>
+			<language tag="fr-FR">fr-FR.com_subcategories.ini</language>
+	</languages>
+	
+	<files folder="admin">
+		<filename>_CHANGELOG.php</filename>
+		<filename>_CREDITS.php</filename>
+		<filename>_VERSION.php</filename>
+		<filename>index.html</filename>
+		<filename>admin.subcategories.php</filename>
+		<filename>controller.php</filename>
+		<filename>helper.php</filename>
+				
+		<folder>assets</folder>
+		<folder>install</folder>
+		<folder>models</folder>
+		<folder>views</folder>
+	</files>
+	</administration>
+
+	<installfile>install/install.subcategories.php</installfile>
+	
+	<uninstallfile>install/uninstall.subcategories.php</uninstallfile>
+	
+</install>

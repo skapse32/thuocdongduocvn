@@ -2,8 +2,8 @@
 .module-static {clear:both; display:block; width:100%; padding-top:87px; height:110px; background:url(../images/news&event_86.png) no-repeat;}
 .module-static li{line-height:43px;  color:#FFFFFF; font-weight:bold; text-align:center; font-size:14px;}
 .cols2 .module-cnt {margin-left:2px;}
-div.module-a,div.module-b,div.module-c {background:url(../images/news&event_111.png) repeat-y; float:left; width:100%; margin:0 0 12px; padding:0; clear:both;}
-div.module-a h3,div.module-b h3,div.module-c h3 { font-size:100%; margin:-8px -5px 0 23px;  line-height:29px; vertical-align:middle; text-transform:uppercase; color:#85193c; padding-left:5px;}
+div.module-a,div.module-b,div.module-c  {background:url(../images/news&event_111.png) repeat-y; float:left; width:100%; margin:0 0 12px; padding:0; clear:both;}
+div.module-a h3,div.module-b h3,div.module-c h3  { font-size:100%; margin:-8px -5px 0 23px;  line-height:29px; vertical-align:middle; text-transform:uppercase; color:#85193c; padding-left:5px;}
 div.module-a div,div.module-c div,div.module-b div {background:url(../images/news&event_66.png) no-repeat left bottom;}
 div.module-a div div,div.module-b div div,div.module-c div div{background:url(../images/news&event_35.png) no-repeat right top;}
 div.module-a div div div { background:url(../images/news&event_31.png) no-repeat left top;}
@@ -64,3 +64,15 @@ div.module-b .img img{float:none; width:170px; border:1px solid #96aab5; padding
 /*Content template*/
 .list-box1 span.datepub{color:#7d7d7d; font-style:italic;}
 .list-box1 span{color:inherit!important; font-style:inherit!important;}
+.module-d h3 { font-size:100%; margin:-8px -5px 0 23px;  line-height:29px; vertical-align:middle; text-transform:uppercase; color:#85193c; padding-left:5px;}
+.module-d {background:url(../images/news&event_117.png) repeat-x #e8e8e8 0 22px; width:100%; padding:0; clear:both; margin:0 0 12px;}
+.module-d h3 {font-size:100%; line-height:29px; vertical-align:middle; text-transform:uppercase; color:#85193c; padding-left:5px;}
+.module-d div{border:1px solid #b8bab8;}
+.module-d div div{background:url(../images/news&event_31.png) no-repeat left top; border:none; margin:-1px -1px -1px -1px;}
+.module-d div div div{background:url(../images/news&event_35.png) no-repeat right top; margin:0;}
+.module-d div div div div{background:url(../images/news&event_119.png) no-repeat right bottom;}
+.module-d div div div div div{background:url(../images/news&event_120.png) no-repeat left bottom;}
+.module-d div div div div div div{padding: 8px 10px 10px 10px;}
+.module-d div div div div div div div{ background:transparent none repeat scroll 0 0; float:none; margin:0; padding:0;}
+.module-d .form {padding:21px 0;}
+.invalid{color:#85193D!important;}

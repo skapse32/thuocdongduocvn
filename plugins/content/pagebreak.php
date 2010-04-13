@@ -15,7 +15,6 @@
 defined( '_JEXEC' ) or die( 'Restricted access' );
 
 $mainframe->registerEvent( 'onPrepareContent', 'plgContentPagebreak' );
-
 /**
 * Page break plugin
 *

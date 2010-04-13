@@ -1,9 +1,13 @@
-﻿<?php // no direct access
+<?php // no direct access
 defined('_JEXEC') or die('Restricted access'); 
 $types = array('all'=>'Tất cả','any'=>'Bất kỳ từ khóa nào','exact'=>'Chính xác cụm từ khóa');
 ?>
-<form action="index.php" method="post">
+<div>
+<div>
+<div>
+	<h3 >Tìm kiếm</h3>
 <div class="form">
+<form action="index.php" method="post">
     <label>
         Từ khóa</label>
     <input type="text" class="input" name="searchword" value="<?php echo JRequest::getVar('searchword');?>">
@@ -15,10 +19,14 @@ $types = array('all'=>'Tất cả','any'=>'Bất kỳ từ khóa nào','exact'=>
         <?php endforeach;?>
     </select>
     <input type="image" src="templates/thuocdocduoc/images/news&amp;event_52.png">
-</div>
-	<input type="hidden" name="task"   value="search" />
+    	<input type="hidden" name="task"   value="search" />
 	<input type="hidden" name="areas[]"   value="content" />
 	<input type="hidden" name="option" value="com_search" />
 	<input type="hidden" name="limit" value="20" />
 <!--	<input type="hidden" name="Itemid" value=<?php echo $mitemid; ?> />-->
 </form>
+</div>
+
+</div>
+</div>
+</div>

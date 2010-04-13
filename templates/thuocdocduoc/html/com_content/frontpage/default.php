@@ -1,4 +1,4 @@
-﻿<?php // no direct access
+<?php // no direct access
 defined('_JEXEC') or die('Restricted access'); 
 $dispatcher	=& JDispatcher::getInstance();
 $sectionIds ="1,2,3,4,5";

@@ -85,15 +85,17 @@ function pagination_list_render($list)
             
                 <a href="#">Pre</a> <a href="#">1</a> <a href="#" class="active">2</a> <a href="#">3</a>
                 <a href="#">Next</a></p>*/
-                
+	$option = strtolower(JRequest::getVar('option'));
     $view = strtolower(JRequest::getVar('view'));
 	$layout = strtolower(JRequest::getVar('layout'));
-	switch($view.'-'.$layout)
+	switch($option.'-'.$view.'-'.$layout)
 	{
-		case "category-blog":
-		case "section-caythuoc_vithuoc":
-		case "section-thuvien":
-		case "search-":
+		case "com_content-comcategory-blog":
+		case "com_content-section-caythuoc_vithuoc":
+		case "com_content-section-thuvien":
+		case "com_search-search-":
+		case "com_comment-question-":
+		case "com_comment-answer-":
 		$html = "<p class='paggin'><span>Phan trang:</span>";
 		break;
 		default:

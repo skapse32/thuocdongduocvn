@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE install SYSTEM "http://dev.joomla.org/xml/1.5/component-install.dtd">
+<install type="component" version="1.5.0">
+	<name>Comment</name>
+	<!-- The following elements are optional and free of formatting conttraints -->
+	<creationDate>04/2010</creationDate>
+	<author>Le Huy</author>
+	<authorEmail>lehuy0305@gmail.com</authorEmail>
+	<authorUrl></authorUrl>
+	<copyright></copyright>
+	<license></license>
+	<!--  The version string is recorded in the components table -->
+	<version>0.01</version>
+	<!-- The description is optional and defaults to the name -->
+	<description>Description of the comment...</description>
+
+	<!-- Site Main File Copy Section -->
+	<files folder="site">
+		<filename>comment.php</filename>
+		<filename>controller.php</filename>
+		<filename>index.html</filename>
+		<filename>controllers/comment.php</filename>
+		<filename>controllers/answer.php</filename>
+		<filename>controllers/question.php</filename>
+		<filename>controllers/index.html</filename>
+		<filename>models/answer.php</filename>
+		<filename>models/comment.php</filename>
+		<filename>models/question.php</filename>
+		<filename>models/index.html</filename>
+		<filename>views/index.html</filename>
+		<filename>views/answer/index.html</filename>
+		<filename>views/answer/view.html.php</filename>
+		<filename>views/answer/tmpl/index.html</filename>
+		<filename>views/answer/tmpl/default.php</filename>
+		<filename>views/comment/index.html</filename>
+		<filename>views/comment/view.html.php</filename>
+		<filename>views/comment/tmpl/index.html</filename>
+		<filename>views/comment/tmpl/default.php</filename>
+		<filename>views/question/index.html</filename>
+		<filename>views/question/view.html.php</filename>
+		<filename>views/question/tmpl/index.html</filename>
+		<filename>views/question/tmpl/default.php</filename>
+	</files>
+	<install>
+		<sql>
+			<file charset="utf8" driver="mysql">install.sql</file>
+		</sql>
+	</install>
+	<uninstall>
+		<sql>
+			<file charset="utf8" driver="mysql">uninstall.sql</file>
+		</sql>
+	</uninstall>	
+	<administration>
+		<!-- Administration Menu Section -->
+		<menu>Comment</menu>
+		
+		<!-- Administration Main File Copy Section -->
+		<!-- Note the folder attribute: This attribute describes the folder
+			to copy FROM in the package to install therefore files copied
+			in this section are copied from /admin/ in the package -->
+		<files folder="admin">
+	<!-- Site Main File Copy Section -->	
+			<filename>install.sql</filename>
+			<filename>uninstall.sql</filename>
+			<filename>admin.comment.php</filename>
+			<filename>controller.php</filename>
+			<filename>index.html</filename>
+			<filename>controllers/index.html</filename>
+			<filename>controllers/comment.php</filename>
+			<filename>models/index.html</filename>
+			<filename>models/comment.php</filename>
+			<filename>models/comments.php</filename>
+			<filename>tables/comment.php</filename>
+			<filename>tables/index.html</filename>
+			<filename>views/index.html</filename>
+			<filename>views/comment/index.html</filename>
+			<filename>views/comment/view.html.php</filename>
+			<filename>views/comment/tmpl/index.html</filename>
+			<filename>views/comment/tmpl/form.php</filename>
+			<filename>views/comments/index.html</filename>
+			<filename>views/comments/view.html.php</filename>
+			<filename>views/comments/tmpl/index.html</filename>
+			<filename>views/comments/tmpl/default.php</filename>
+		</files>		
+	</administration>
+</install>
