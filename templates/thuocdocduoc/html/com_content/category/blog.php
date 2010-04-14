@@ -53,10 +53,10 @@ $pagination = new JPagination($total,$limitstart,$limit);
 			?>
 			<div class="list-box2">
 				<a href="<?php echo JRoute::_(ContentHelperRoute::getArticleRoute($item->slug, $item->catslug, $item->sectionid));?>">
-					<?php if(!empty($item->imgLink)):?>
+					<?php if(!empty($item->imgLink)&&@GetImageSize($item->imgLink)):?>
 					<img src="<?php echo $item->imgLink;?>" alt="Loading" class="img2" />
 					<?php endif;?>
-					</a> <a href="#<?php echo JRoute::_(ContentHelperRoute::getArticleRoute($item->slug, $item->catslug, $item->sectionid));?>" class="link_title">
+					</a> <a href="<?php echo JRoute::_(ContentHelperRoute::getArticleRoute($item->slug, $item->catslug, $item->sectionid));?>" class="link_title">
 						<?php echo $item->title;?></a>
 				<p>
 					<?php echo $item->introtext;?></p>

@@ -372,8 +372,10 @@ function plg_images_resize2($text, $i_width=100,$i_height=100,$quality, $fp_frco
 	imagefill($result , 0,0 , $this->set_img_color($result,$fp_frcolor));
 	//draw outer border
 	imagerectangle($result, 0, 0, $widthm-1, $heightm-1, $this->set_img_color($result,$fp_bocolor));
-
-	$sample = imagecopyresampled($result, $image, -($width/2) + ($widthm/2)+2, -($height/2) + ($heightm/2)+2, 0, 0, $width-4, $height-4, $width_orig, $height_orig);
+	// modifily
+	$sample = imagecopyresampled($result, $image, 0, 0, 0, 0, $widthm, $heightm, $width_orig, $height_orig);
+	// original resize code below
+	//$sample = imagecopyresampled($result, $image, -($width/2) + ($widthm/2)+2, -($height/2) + ($heightm/2)+2, 0, 0, $width-4, $height-4, $width_orig, $height_orig);
 	//$sample = true;
 	if ($sample == false) return $text; 
 	$save = @imagejpeg($result, $full_path_filename, $quality);

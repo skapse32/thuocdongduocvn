@@ -13,7 +13,13 @@
 		<filename plugin="selectkeywords">selectkeywords.php</filename>
 	</files>
     <params>
-        <param name="sections"
-         type="textarea" cols="50" rows="10" size="50" default="" label="Sections List" description="List of section  filter" />
+        <param name="section_ctvt"
+         type="text" cols="50" rows="10" size="50" default="" label="Cây thuốc - Vị thuốc ID" description="ID của  Section Cây thuốc - Vị Thuốc" />
+        <param name="section_bt"
+    type="text" cols="50" rows="10" size="50" default="" label="Bài thuốc ID" description="ID của Section Bài thuốc" />
+        <param name="section_tdd"
+        type="text" cols="50" rows="10" size="50" default="" label="Thuốc đông dược ID" description="ID của Section Thuốc đông dược" />
+        <param name="category_tdd_t"
+        type="text" cols="50" rows="10" size="50" default="" label="Thuốc ID" description="ID của Category thuốc" />
     </params>
 </install>
