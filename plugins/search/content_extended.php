@@ -105,7 +105,9 @@ function plgSearchContent( $text, $phrase='', $ordering='', $areas=null )
 			$where = '(' . implode( ($phrase == 'all' ? ') AND (' : ') OR ('), $wheres ) . ')';
 			break;
 	}
-	
+	$sectionids = JRequest::getVar('sectionid');
+	if(!empty($sectionids))
+		$where.=" AND a.sectionid IN(".$sectionids.")";
 	$morder = '';
 	switch ($ordering) {
 		case 'oldest':
@@ -150,7 +152,7 @@ function plgSearchContent( $text, $phrase='', $ordering='', $areas=null )
 			. ' INNER JOIN #__sections AS u ON u.id = a.sectionid'
 			. ' WHERE ( '.$where.' )'
 			. ' AND a.state = 1'
-			. ' AND u.published = 1'
+			. ' AND u.published = 1'			
 			. ' AND b.published = 1'
 			. ' AND a.access <= '.(int) $user->get( 'aid' )
 			. ' AND b.access <= '.(int) $user->get( 'aid' )

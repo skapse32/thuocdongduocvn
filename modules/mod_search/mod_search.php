@@ -32,3 +32,4 @@ if ($imagebutton) {
 }
 $mitemid = $set_Itemid > 0 ? $set_Itemid : JRequest::getInt('Itemid');
 require(JModuleHelper::getLayoutPath('mod_search'));
+

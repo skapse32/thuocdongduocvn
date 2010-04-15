@@ -27,5 +27,7 @@
 			<option value="0">No</option>
 			<option value="1">Yes</option>
 		</param>
+        <param name="search_sections" type="text" default="" label="Include Sections" description="Search within the sections. ex: 1,3,4">            
+        </param>        
 	</params>
 </install>
