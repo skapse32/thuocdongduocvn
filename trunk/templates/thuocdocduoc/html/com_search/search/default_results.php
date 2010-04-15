@@ -18,7 +18,8 @@ JPluginHelper::importPlugin('content');
             <p class="paggin size12 bold">
                 &nbsp;&nbsp;&nbsp;Có <span style="padding: 0;"><?php echo $this->total;?> kết quả</span> được tìm thấy!</p>
         </center>
-        <!--list box-->        
+        <!--list box-->     
+        <?php if(count($this->results)):?>
         <?php foreach( $this->results as $result ) : ?>
 		<?php 
 		$result->introtext =$result->text;
@@ -65,6 +66,7 @@ JPluginHelper::importPlugin('content');
                         <?php echo $result->introtext; ?></p>
         </div>
         <?php endforeach;?>
+        <?php endif;?>
         <!--end list box-->        
         <center>
             <p>
@@ -72,7 +74,7 @@ JPluginHelper::importPlugin('content');
                 <br />
                 &nbsp;<br />
                 &nbsp;</p>
-            <?php echo $this->pagination->getPagesLinks( ); ?>
+            <?php echo is_object($this->pagination)? $this->pagination->getPagesLinks():''; ?>
         </center>
     </div>
     <img src="<?php echo $templateUrl;?>/images/news&event_73.png" class="img-rounded" />

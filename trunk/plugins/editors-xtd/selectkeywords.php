@@ -75,7 +75,7 @@ class plgButtonSelectKeywords extends JPlugin
 		if($currrentSection==$params->get('section_bt'))
 			$showbt=true;
 		$filters = JPluginSelectKeywordsHelper::getFilters(array($section_ctvt,$section_bt,$section_tdd));
-		$cats = JPluginSelectKeywordsHelper::getCategoriesHasFilter();
+		//$cats = JPluginSelectKeywordsHelper::getCategoriesHasFilter();
 		$selectBoxs=array();
 		foreach($filters as $key=>$val)
 		{

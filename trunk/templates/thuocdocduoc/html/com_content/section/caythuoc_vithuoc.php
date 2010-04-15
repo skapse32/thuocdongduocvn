@@ -1,20 +1,69 @@
 ﻿<?php
 defined('_JEXEC') or die('Restricted access');
+/**
+ * get filters
+ *
+ * @param mixed $option section
+ * @return mixed This is the return value description
+ *
+ */
+function getFilter($option)
+{
+	$db = &JFactory::getDBO();
+	$db->setQuery("SELECT title,alias FROM #__categories WHERE section='$option' ORDER BY title");
+	$results = $db->loadObjectList();
+	return $results;
+}
+
 $cparams =& JComponentHelper::getParams('com_media');
 $dispatcher	=& JDispatcher::getInstance();
 JPluginHelper::importPlugin('content');
-include_once JPATH_COMPONENT.DS.'models'.DS.'section.php';
+
 global $mainframe;
+
 $templateUrl = JURI::root()."templates/".$mainframe->getTemplate();
 $section=$this->section;
 $categories =$this->categories;
-$mSection = new ContentModelSection();
+$filter = JRequest::getVar('filter','');
+$dcomFilter ='com_filter_alpha';
+switch(strtolower($filter))
+{
+	case "tkh":	//ten khoa hoc	
+	case "thv"://ten han viet
+	case "htvvn":// ho thuc vat viet nam
+	case "htvkh":// ho thuc vat khoa hoc
+	case "kvlt":// khoang vat lam thuoc
+		$dcomFilter ='com_filter_alpha';
+	break;
+	case "dvlt":// dong vat lam thuoc
+		$dcomFilter="com_filter_ctvt_dongvatlamthuoc";
+	break;
+	case "bpd":// bo phan dung
+		$dcomFilter="com_filter_ctvt_bophandung";
+		break;
+	case "tphh":// thanh phan hoa hoc
+		$dcomFilter="com_filter_ctvt_thanhphanhoahoc";
+		break;
+	case "pltb"://phan loai theo benh
+		$dcomFilter="com_filter_ctvt_phanloaitheobenh";
+		break;
+	case "tcdy"://phan loai theo tinh chat dong y	
+		$dcomFilter="com_filter_ctvt_phanloaitheotinhchatdongy";
+	break;
+	case "":
+		$filter='';		
+	default:
+	break;
+}
+include_once dirname(__FILE__).DS.'helper'.DS.'section.php';
+$mSection = new ContentModelSectionHelper();
 JRequest::setVar('limit',10);
 $limit=JRequest::getVar("limit",0);
 $limitstart=JRequest::getVar("limitstart",0);
 $items =$mSection->getData();
 $total = $mSection->getTotal();
 $pagination = new JPagination($total,$limitstart,$limit);
+$xemTheo = getFilter($dcomFilter);
 foreach($items as $item)
 {	
 	$item->created_formated = new JDate($item->created);
@@ -50,15 +99,12 @@ foreach($items as $item)
     <div class="title">
 		<div class="fl-right">
             <label>Xem theo:</label>
-            <select name="">
-                <option>Bệnh</option>
-            </select>
-			&nbsp;&nbsp;&nbsp;
-            <select name="">
-                <option>Loại</option>
-                <option>1. An thai</option>
-                <option>...</option>                    
-            </select>
+            <select name="viewby">
+				<option value="">Tất cả</option>
+                <?php foreach($xemTheo as $xt):?>
+					<option value="<?php echo strtolower($xt->title);?>"><?php echo ucfirst($xt->title);?></option>
+                <?php endforeach;?>
+            </select>			
         </div>
         <h2>
             <?php echo $section->title;?></h2>

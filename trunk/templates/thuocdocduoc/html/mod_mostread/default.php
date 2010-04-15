@@ -5,8 +5,14 @@ JPluginHelper::importPlugin('content');
 include_once dirname(__FILE__).DS.'helper.php';
 include_once JPATH_ROOT.DS.'components'.DS.'com_content'.DS.'helpers'.DS.'route.php';
 $list = modMostReadHelperExtended::getList($params);
+// scroll down to up
+$scrollable=false;
+if($params->get('secid')==4)
+	$scrollable=true;
 ?>
-
+<?php if($scrollable):?>
+<marquee onmouseout="this.start()" onmouseover="this.stop()" direction="up" scrollamount="1" behavior="scroll">
+<?php endif;?>
 <ul class="list3">
 <?php foreach ($list as $item) : ?>
 <?php
@@ -40,4 +46,7 @@ $list = modMostReadHelperExtended::getList($params);
 	</li>
 <?php endforeach; ?>
 </ul>
+<?php if($scrollable):?>
+</marquee>
+<?php endif;?>
 <a class="view-all-1" href="<?php echo ContentHelperRoute::getSectionRoute(trim($params->get('secid'))); ?>">Xem tất cả</a>
