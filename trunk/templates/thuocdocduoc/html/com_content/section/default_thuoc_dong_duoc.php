@@ -1,11 +1,13 @@
 ﻿<?php // no direct access
 defined('_JEXEC') or die('Restricted access');
 global $mainframe;
+//print_r($this->xemtheo);
 $section = &$this->section;
 $categories =&$this->categories;
 $templateUrl = JURI::root().'templates/'.$mainframe->getTemplate();
 $dispatcher	=& JDispatcher::getInstance();
 JPluginHelper::importPlugin('content');
+$viewby=JRequest::getVar('viewby',array(),'default','array');
 ?>
 <script language="javascript">
 	jQuery('document').ready(function(){
@@ -26,11 +28,19 @@ JPluginHelper::importPlugin('content');
 	});
 	
 </script>
-<form id="frm-sort" action ="<?php echo JRequest::getURI();?>" method='post'>
+<form id="frm-sort" action ="<?php echo JRequest::getURI();?>" method='GET'>
+<?php if(JRequest::getVar('limitstart')>0):?>
 <input type="hidden" name="limitstart" value="<?php echo JRequest::getVar('limitstart');?>"/>
-<input type="hidden" name="sortfor" value="<?php echo JRequest::getVar('sortfor');?>"/>
+<?php endif;?>
+<?php if(JRequest::getVar('sortfor')!=''):?>
+<input type="hidden" name="sortfor" value="<?php echo JRequest::getVar('');?>"/>
+<?php endif;?>
+<?php if(JRequest::getVar('sortfor')!=''):?>
 <input type="hidden" name="limitfor" value="<?php echo JRequest::getVar('limitfor');?>"/>
+<?php endif;?>
+<?php if(JRequest::getVar('sortfor')!=''):?>
 <input type="hidden" name="filter_order_Dir" value="desc"/>
+<?php endif;?>
 <!--mdl-3-->
 <?php $i=0;?>
 <?php foreach ($categories as &$cat):?>
@@ -39,31 +49,44 @@ JPluginHelper::importPlugin('content');
 <div class="mdl-cnt">
     <div class="title">
 		 <?php if($i==1):?>
-        <div class="fl-right">
+        <div class="fl-right">       
             <label>
                 Xem theo:</label>
-            <select name="">
-                <option>Anpha be</option>
+            <select name="viewby[alpha]" onchange='this.form.submit()' style="width:70px">
+				<option value="">Alpha Be</option>
+                <?php foreach($this->xemtheo['com_filter_alpha'] as &$xt):?>
+					<option value="<?php echo base64_encode($xt->title);?>" <?php echo @$viewby[alpha]==base64_encode($xt->title)? "selected":"";?>><?php echo ucfirst($xt->title);?></option>
+                <?php endforeach;?>
             </select>
             &nbsp;&nbsp;&nbsp;
-            <select name="">
-                <option>Dạng bào chế</option>
-                <option>1. An thai</option>
-                <option>...</option>
+            <select name="viewby[t_dbc]" onchange='this.form.submit()' style="width:90px">
+				<option value="">Dạng bào chế</option>
+                <?php foreach($this->xemtheo['com_filter_t_dangbaoche'] as &$xt):?>
+					<option value="<?php echo base64_encode($xt->title);?>" <?php echo @$viewby[t_dbc]==base64_encode($xt->title)? "selected":"";?>><?php echo ucfirst($xt->title);?></option>
+                <?php endforeach;?>
             </select>
             &nbsp;&nbsp;&nbsp;
-            <select name="">
-                <option>Nhóm điều trị</option>
-                <option>1. An thai</option>
-                <option>...</option>
+            <select name="viewby[t_ndt]" onchange='this.form.submit()' style="width:90px">
+				<option value="">Nhóm điều trị</option>
+                <?php foreach($this->xemtheo['com_filter_t_nhomdieutri'] as &$xt):?>
+					<option value="<?php echo base64_encode($xt->title);?>" <?php echo @$viewby[t_ndt]==base64_encode($xt->title)? "selected":"";?>><?php echo ucfirst($xt->title);?></option>
+                <?php endforeach;?>
             </select>
+        <input type="hidden" name="option" value="<?php echo JRequest::getVar('option','');?>"/>
+        <input type="hidden" name="view" value="<?php echo JRequest::getVar('view','');?>"/>
+        <?php if(JRequest::getVar('layout','')!=''):?>
+        <input type="hidden" name="layout" value="<?php echo JRequest::getVar('layout','');?>"/>
+        <?php endif;?>
+        <input type="hidden" name="filter" value="<?php echo JRequest::getVar('filter','');?>"/>
+        <input type="hidden" name="Itemid" value="<?php echo JRequest::getVar('Itemid','');?>"/>
+        <input type="hidden" name="id" value="<?php echo JRequest::getVar('id','');?>"/>        
         </div>
         <?php else:?>
         <div class="fl-right">
             <a href="<?php echo JRoute::_(ContentHelperRoute::getCategoryRoute($cat->slug, $cat->section).'&layout=blog');?>" class="view-all-2">Xem tất cả</a>
         </div>
         <?php endif;?>
-        <h2 style='min-width:50px'>
+        <h2 style='min-width:60px'>
             <?php echo $cat->title;?></h2>
         <img src="<?php echo $templateUrl;?>/images/news&event_107.png" />
     </div>

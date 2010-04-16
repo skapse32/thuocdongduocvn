@@ -20,12 +20,13 @@ $pagination = new JPagination($total,$limitstart,$limit);
 <!--mdl-3-->
 <div class="mdl-cnt">
     <div class="title">
-        <h2>
+        <h2 style='min-width:50px'>
             <?php echo $cat->title;?></h2>
         <img src="<?php echo $templateUrl;?>/images/news&event_107.png" />
     </div>
     <div class="cnt">
 		<!--list box-->
+		<?php if(count($items)):?>
 		<?php foreach ($items as &$item) : ?>
 			
 			
@@ -62,6 +63,9 @@ $pagination = new JPagination($total,$limitstart,$limit);
 					<?php echo $item->introtext;?></p>
 			</div>
 		<?php endforeach;?>        
+		<?php else:?>
+			<center><p>Chưa có bài viết nào</p></center>
+		<?php endif;?>
         <!--end list box-->
         <center>
             <p>
