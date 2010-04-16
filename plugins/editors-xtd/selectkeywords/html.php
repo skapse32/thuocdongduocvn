@@ -166,7 +166,7 @@ class LPluginContentView extends JObject
 				</label>
 			</td>
 			<td>
-				<input type="text" value="<?php echo $this->articleParams->get('t_dbc',''); ?>" maxlength="255" size="60" id="bt_tkh" name="params[bt_tkh]" class="inputbox">
+		<input type="text" value="<?php echo $this->articleParams->get('t_dbc',''); ?>" maxlength="255" size="60" id="t_dbc" name="params[t_dbc]" class="inputbox">
 				<?php echo $this->selectBoxs["com_filter_t_dangbaoche"];?>
 			</td>						
 		</tr>	
@@ -177,7 +177,7 @@ class LPluginContentView extends JObject
 				</label>
 			</td>
 			<td>
-				<input type="text" value="<?php echo $this->articleParams->get('t_ndt',''); ?>" maxlength="255" size="60" id="t_ndt" name="params[t_ndt]" class="inputbox">
+		<input type="text" value="<?php echo $this->articleParams->get('t_ndt',''); ?>" maxlength="255" size="60" id="t_ndt" name="params[t_ndt]" class="inputbox">
 				<?php echo $this->selectBoxs["com_filter_t_nhomdieutri"];?>
 			</td>						
 		</tr>	

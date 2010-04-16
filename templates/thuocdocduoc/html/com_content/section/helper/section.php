@@ -340,6 +340,9 @@ class ContentModelSectionHelper extends JModel
 
 			$query = $this->_buildQuery();
 			$Arows = $this->_getList($query, $limitstart, $limit);
+			// debug sql
+			//print_r($this->_db->_sql);
+			
 			// special handling required as Uncategorized content does not have a section / category id linkage
 			$i = $limitstart;
 			$rows = array();
@@ -415,7 +418,7 @@ class ContentModelSectionHelper extends JModel
 			$filter.="=";		
 			$oo='SUBSTRING(a.attribs,LOCATE('.$this->_db->Quote($filter).', a.attribs )+CHAR_LENGTH('.$this->_db->Quote($filter).'),
 					LOCATE('.$this->_db->Quote("\n").', a.attribs,LOCATE('.$this->_db->Quote($filter).', a.attribs ) )- 
-					LOCATE('.$this->_db->Quote($filter).', a.attribs )) as oo';
+					LOCATE('.$this->_db->Quote($filter).', a.attribs )-CHAR_LENGTH('.$this->_db->Quote($filter).')) as oo';
 		}
 		else
 			$oo ="a.title as oo";
@@ -438,7 +441,7 @@ class ContentModelSectionHelper extends JModel
 
 	function _buildContentOrderBy($state = 1)
 	{
-		$filter_order		= JRequest::getCmd('filter_order');
+	/*	$filter_order		= JRequest::getCmd('filter_order');
 		$filter_order_Dir	= JRequest::getWord('filter_order_Dir');
 
 		$orderby = ' ORDER BY ';
@@ -471,8 +474,8 @@ class ContentModelSectionHelper extends JModel
 		$orderby .= "$primary $secondary";
 		if(!empty($orderby))
 			$orderby = str_replace('ORDER BY',"ORDER BY oo,",$orderby);
-		else
-			$orderby="ORDER BY oo";
+		else*/
+			$orderby="ORDER BY oo,a.title";
 		return $orderby;
 	}
 
@@ -505,7 +508,27 @@ class ContentModelSectionHelper extends JModel
 		$where .= ' AND cc.access <= '.(int) $aid;
 		$where .= ' AND s.published = 1';
 		$where .= ' AND cc.published = 1';
-
+		// Phân loại
+		$filter = strtolower(JRequest::getVar('filter',''));
+		if(!empty($filter)&&$filter!='tvn')
+		{
+			$filter.="=";					
+			$oo='SUBSTRING(a.attribs,LOCATE('.$this->_db->Quote($filter).', a.attribs )+CHAR_LENGTH('.$this->_db->Quote($filter).'),
+					LOCATE('.$this->_db->Quote("\n").', a.attribs,LOCATE('.$this->_db->Quote($filter).', a.attribs ) )- 
+					LOCATE('.$this->_db->Quote($filter).', a.attribs )-CHAR_LENGTH('.$this->_db->Quote($filter).'))';
+			$where .= ' AND '.$oo.' <>'.$this->_db->Quote('').' ';			
+		}
+		//VIEW BY		
+		$viewby = base64_decode(JRequest::getString('viewby',''));							
+		if(!empty($viewby))
+		{
+			if($filter=='tvn')
+				$where .= ' AND a.title LIKE '.$this->_db->Quote("$viewby%").' ';
+			elseif(strlen($viewby)==1)
+				$where .= ' AND '.$oo.' LIKE '.$this->_db->Quote("$viewby%").' ';
+			else
+				$where .= ' AND '.$oo.' LIKE '.$this->_db->Quote("%$viewby%").' ';
+		}
 		// Regular Published Content
 		switch ($state)
 		{

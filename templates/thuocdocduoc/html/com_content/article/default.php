@@ -8,7 +8,7 @@ $menu  = $menus->getActive();
 <!--mdl-3-->
 <div class="mdl-cnt">
     <div class="title">
-        <h2>
+        <h2 style='min-width:50px;'>
 			<?php if ($this->params->get('link_category')) : ?>
 				<?php echo '<a style="color:#85193C" href="'.JRoute::_(ContentHelperRoute::getCategoryRoute($this->article->catslug, $this->article->sectionid)).'">'; ?>
 			<?php endif; ?>
@@ -23,7 +23,7 @@ $menu  = $menus->getActive();
         <!--list box-->
         <div class="detail">
 <!--            <img src="<?php echo $templateUrl;?>/images/news&amp;event_116.png" class="img4" />-->
-            <h1>
+            <h1 >
                <?php echo $this->escape($this->article->title); ?></h1>
 				<?php  if (!$this->params->get('show_intro')) :
 					echo $this->article->event->afterDisplayTitle;

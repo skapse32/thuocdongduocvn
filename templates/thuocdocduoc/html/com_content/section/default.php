@@ -1,6 +1,14 @@
 ﻿<?php // no direct access
+function getFilter($option)
+{
+	$db = &JFactory::getDBO();
+	$db->setQuery("SELECT title,alias FROM #__categories WHERE section='$option' ORDER BY title");
+	$results = $db->loadObjectList();
+	return $results;
+}
 defined('_JEXEC') or die('Restricted access');
-include_once JPATH_COMPONENT.DS."models".DS."category.php";
+include_once dirname(__FILE__).DS.'helper'.DS."category.php";
+include_once JPATH_BASE.DS.'components'.DS.'com_content'.DS.'models'.DS.'category.php';
 $section = &$this->section;
 $categories =&$this->categories;
 $sectionParams = new JParameter($section->params);
@@ -8,7 +16,7 @@ $template=$sectionParams->get("tpl");
 switch($template)
 {
 	case "thuoc_dong_duoc":
-		$mCategory = new ContentModelCategory();
+		$mCategory = new ContentModelCategoryHelper();
 		$i=0;
 		foreach( $categories as $cat)
 		{
@@ -16,7 +24,18 @@ switch($template)
 			$mCategory->setId($cat->id);
 			if($i==1)// first category
 			{
-				JRequest::setVar('limit',5,'post');// set default limit is 5 items
+				JRequest::setVar('limit',1,'post');// set default limit is 5 items
+				$dcomFilter=array();
+				$dcomFilter[] ='com_filter_alpha';
+				$dcomFilter[] ='com_filter_t_nhomdieutri';
+				$dcomFilter[] ='com_filter_t_dangbaoche';
+				$xemTheo=array();
+				foreach($dcomFilter as $dc)
+				{
+					$xemTheo[$dc]=getFilter($dc);
+				}				
+				$this->assign('xemtheo',$xemTheo);
+				
 			}
 			else
 			{

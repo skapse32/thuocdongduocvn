@@ -14,6 +14,8 @@ function getFilter($option)
 	$results = $db->loadObjectList();
 	return $results;
 }
+$menus	= &JSite::getMenu();
+$menu	= $menus->getActive();
 
 $cparams =& JComponentHelper::getParams('com_media');
 $dispatcher	=& JDispatcher::getInstance();
@@ -57,7 +59,7 @@ switch(strtolower($filter))
 }
 include_once dirname(__FILE__).DS.'helper'.DS.'section.php';
 $mSection = new ContentModelSectionHelper();
-JRequest::setVar('limit',10);
+JRequest::setVar('limit',15);
 $limit=JRequest::getVar("limit",0);
 $limitstart=JRequest::getVar("limitstart",0);
 $items =$mSection->getData();
@@ -98,20 +100,29 @@ foreach($items as $item)
 <div class="mdl-cnt">
     <div class="title">
 		<div class="fl-right">
+		<form name="frm_filter" method="GET" action="index.php">
             <label>Xem theo:</label>
-            <select name="viewby">
+            <select name="viewby" onchange='this.form.submit()'>
 				<option value="">Tất cả</option>
                 <?php foreach($xemTheo as $xt):?>
-					<option value="<?php echo strtolower($xt->title);?>"><?php echo ucfirst($xt->title);?></option>
+					<option value="<?php echo base64_encode($xt->title);?>" <?php echo JRequest::getVar('viewby','')==base64_encode($xt->title)? "selected":"";?>><?php echo ucfirst($xt->title);?></option>
                 <?php endforeach;?>
             </select>			
+        <input type="hidden" name="option" value="<?php echo JRequest::getVar('option','');?>"/>
+        <input type="hidden" name="view" value="<?php echo JRequest::getVar('view','');?>"/>
+        <input type="hidden" name="layout" value="<?php echo JRequest::getVar('layout','');?>"/>
+        <input type="hidden" name="filter" value="<?php echo JRequest::getVar('filter','');?>"/>
+        <input type="hidden" name="Itemid" value="<?php echo JRequest::getVar('Itemid','');?>"/>
+        <input type="hidden" name="id" value="<?php echo JRequest::getVar('id','');?>"/>
+        </form>
         </div>
         <h2>
-            <?php echo $section->title;?></h2>
+            <?php echo $menu->name; //echo $this->params->get('page_title');?></h2>
         <img src="<?php echo $templateUrl;?>/images/news&event_107.png" />
     </div>
     <div class="cnt">
 		<!--list box-->
+		<?php if(count($items)>0):?>
 		<?php foreach ($items as &$item) : ?>
 			
 			
@@ -142,12 +153,17 @@ foreach($items as $item)
 					<?php if(!empty($item->imgLink)):?>
 					<img src="<?php echo $item->imgLink;?>" alt="Loading" class="img2" />
 					<?php endif;?>
-					</a> <a href="#<?php echo JRoute::_(ContentHelperRoute::getArticleRoute($item->slug, $item->catslug, $item->sectionid));?>" class="link_title">
+					</a> <a href="<?php echo JRoute::_(ContentHelperRoute::getArticleRoute($item->slug, $item->catslug, $item->sectionid));?>" class="link_title">
 						<?php echo $item->title;?></a>
 				<p>
 					<?php echo $item->introtext;?></p>
 			</div>
-		<?php endforeach;?>        
+		<?php endforeach;?> 
+		<?php else:?>
+			<center>
+			<p>Không có bài viết nào</p>
+			</center>
+		<?php endif;?>       
         <!--end list box-->
         <center>
             <p>
