@@ -135,12 +135,12 @@ class LPluginContentView extends JObject
 	<tbody>
 		<tr>
 			<td>
-				<label for="bt_tkh">
+				<label for="bt_tcdy">
 					Tính chất đông y
 				</label>
 			</td>
 			<td>
-				<input type="text" value="<?php echo $this->articleParams->get('bt_tkh',''); ?>" maxlength="255" size="60" id="bt_tkh" name="params[bt_tkh]" class="inputbox">
+				<input type="text" value="<?php echo $this->articleParams->get('bt_tcdy',''); ?>" maxlength="255" size="60" id="bt_tcdy" name="params[bt_tcdy]" class="inputbox">
 				<?php echo $this->selectBoxs["com_filter_bt_phanloaitheotinhchatdongy"];?>
 			</td>						
 		</tr>	
