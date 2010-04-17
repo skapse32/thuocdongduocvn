@@ -68,9 +68,11 @@ for($i=0;$i<count($categories);$i++)
         <?php $firstArticle = $cat->articles[0];?>
         <div class="list-box1">
 			<?php if(!empty($firstArticle->imgTag)):?>			
+			<a href="<?php echo JRoute::_(ContentHelperRoute::getArticleRoute($firstArticle->slug, $firstArticle->catslug, $firstArticle->sectionid));?>">
 			<img src="<?php echo $firstArticle->imgLink;?>" class="img" />
+			</a>
 			<?php else:?>
-            <img src="<?php echo $templateUrl;?>/images/news&event_58.png" class="img" />
+            <!--<img src="<?php echo $templateUrl;?>/images/news&event_58.png" class="img" />-->
             <?php endif;?>
             <h4>
 				<a href="<?php echo JRoute::_(ContentHelperRoute::getArticleRoute($firstArticle->slug, $firstArticle->catslug, $firstArticle->sectionid));?>">

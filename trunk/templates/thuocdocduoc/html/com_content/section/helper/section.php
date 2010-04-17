@@ -522,7 +522,7 @@ class ContentModelSectionHelper extends JModel
 		$viewby = base64_decode(JRequest::getString('viewby',''));							
 		if(!empty($viewby))
 		{
-			if($filter=='tvn')
+			if($filter=='tvn'||empty($filter))
 				$where .= ' AND a.title LIKE '.$this->_db->Quote("$viewby%").' ';
 			elseif(strlen($viewby)==1)
 				$where .= ' AND '.$oo.' LIKE '.$this->_db->Quote("$viewby%").' ';
