@@ -453,7 +453,7 @@ class ContentView
 		$i = 0;
 		foreach ($sectioncategories as $k=>$items) {
 			foreach ($items as $v) {
-				echo "sectioncategories[".$i++."] = new Array( '$k','".addslashes( $v->id )."','".addslashes( $v->title )."' );\n\t\t";
+				echo "sectioncategories[".$i++."] = new Array( '$k','".addslashes( $v->id )."','".html_entity_decode(addslashes( $v->title ), ENT_NOQUOTES, 'UTF-8')."' );\n\t\t";
 			}
 		}
 		?>

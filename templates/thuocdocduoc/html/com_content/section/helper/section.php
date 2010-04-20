@@ -593,5 +593,97 @@ class ContentModelSectionHelper extends JModel
 		}
 		return $where;
 	}
+	function getStores($secid,&$pagination)
+	{
+		global $mainframe;
+		
+		$db			=& JFactory::getDBO();
+		$user		=& JFactory::getUser();
+		//$secid		= trim($params->get('secid'));		
+		$show_front	= 1;
+		$aid		= $user->get('aid', 0);
+		
+		$contentConfig = &JComponentHelper::getParams( 'com_content' );
+		$access		= !$contentConfig->get('show_noauth');
+		$nullDate	= $db->getNullDate();
+		$date =& JFactory::getDate();
+		$now  = $date->toMySQL();
+		
+		if (1==1) {			
+			if(empty($secid))
+				$secid=0;
+			$catCondition = ' AND (cc.id IN( SELECT id FROM #__categories ccc WHERE ccc.parent_id=0 AND ccc.section IN ('.$db->Quote($secid).')))';
+		}
+		if ($secid) {
+			$ids = explode( ',', $secid );
+			JArrayHelper::toInteger( $ids );
+			$secCondition = ' AND (s.id=' . implode( ' OR s.id=', $ids ) . ')';
+		}
+		
+		//Content Items only
+		$query = 'SELECT a.*,' .
+			' CASE WHEN CHAR_LENGTH(a.alias) THEN CONCAT_WS(":", a.id, a.alias) ELSE a.id END as slug,'.
+			' CASE WHEN CHAR_LENGTH(cc.alias) THEN CONCAT_WS(":", cc.id, cc.alias) ELSE cc.id END as catslug'.
+			' FROM #__content AS a' .
+			' LEFT JOIN #__content_frontpage AS f ON f.content_id = a.id' .
+			' INNER JOIN #__categories AS cc ON cc.id = a.catid' .
+			' INNER JOIN #__sections AS s ON s.id = a.sectionid' .
+			' WHERE ( a.state = 1 AND s.id > 0 )' .
+			' AND ( a.publish_up = '.$db->Quote($nullDate).' OR a.publish_up <= '.$db->Quote($now).' )' .
+			' AND ( a.publish_down = '.$db->Quote($nullDate).' OR a.publish_down >= '.$db->Quote($now).' )'.
+			($access ? ' AND a.access <= ' .(int) $aid. ' AND cc.access <= ' .(int) $aid. ' AND s.access <= ' .(int) $aid : '').
+			(1==1 ? $catCondition : '').
+			($secid ? $secCondition : '').
+			($show_front == '0' ? ' AND f.content_id IS NULL' : '').
+			' AND s.published = 1' .
+			' AND cc.published = 1' .
+			' ORDER BY a.hits DESC';
+		$queryTotal = 'SELECT count(*) '.
+			' FROM #__content AS a' .
+			' LEFT JOIN #__content_frontpage AS f ON f.content_id = a.id' .
+			' INNER JOIN #__categories AS cc ON cc.id = a.catid' .
+			' INNER JOIN #__sections AS s ON s.id = a.sectionid' .
+			' WHERE ( a.state = 1 AND s.id > 0 )' .
+			' AND ( a.publish_up = '.$db->Quote($nullDate).' OR a.publish_up <= '.$db->Quote($now).' )' .
+			' AND ( a.publish_down = '.$db->Quote($nullDate).' OR a.publish_down >= '.$db->Quote($now).' )'.
+			($access ? ' AND a.access <= ' .(int) $aid. ' AND cc.access <= ' .(int) $aid. ' AND s.access <= ' .(int) $aid : '').
+			(1==1 ? $catCondition : '').
+			($secid ? $secCondition : '').
+			($show_front == '0' ? ' AND f.content_id IS NULL' : '').
+			' AND s.published = 1' .
+			' AND cc.published = 1' .
+			' ORDER BY a.hits DESC';			
+		//pagination 
+		$limit = $this->getState('limit',0);
+		$limitstart =$this->getState('limitstart',0);
+		if($limit)
+		{
+			jimport('joomla.html.pagination');
+			$db->setQuery($queryTotal);		
+			$total= $db->loadResult();			
+			$pagination= new JPagination($total,$limitstart,$limit);
+			$db->setQuery($query, $limitstart, $limit);
+		}
+		else
+		{
+			$db->setQuery($query);
+		}		
+		$rows = $db->loadObjectList();
+		$i		= 0;
+		$lists	= array();
+		foreach ( $rows as $row )
+		{
+			$lists[$i]= $row;
+			if($row->access <= $aid)
+			{
+				$lists[$i]->link = JRoute::_(ContentHelperRoute::getArticleRoute($row->slug, $row->catslug, $row->sectionid));
+			} else {
+				$lists[$i]->link = JRoute::_('index.php?option=com_user&view=login');
+			}
+			$lists[$i]->text = htmlspecialchars( $row->title );
+			$i++;
+		}		
+		return $lists;
+	}
 }
 ?>

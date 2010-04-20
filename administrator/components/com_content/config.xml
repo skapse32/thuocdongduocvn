@@ -78,6 +78,10 @@
 			<option value="0">Hide</option>
 			<option value="1">Show</option>
 		</param>
+		<param name="show_edit_icon" type="radio" default="1" label="Edit Icon" description="Show/Hide the Edit button">
+			<option value="0">Hide</option>
+			<option value="1">Show</option>
+		</param>
 		<param name="show_hits" type="radio" default="1" label="Hits" description="TIPIFSETTOSHOWHITS">
 			<option value="0">Hide</option>
 			<option value="1">Show</option>

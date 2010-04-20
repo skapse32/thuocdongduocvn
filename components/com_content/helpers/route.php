@@ -48,7 +48,12 @@ class ContentHelperRoute
 
 		if($item = ContentHelperRoute::_findItem($needles)) {
 			$link .= '&Itemid='.$item->id;
-		};
+		}
+		else
+		{
+			$Itemid= JRequest::getVar('Itemid');
+			$link .= '&Itemid='.$Itemid;
+		}
 
 		return $link;
 	}
@@ -96,7 +101,7 @@ class ContentHelperRoute
 	{
 		$component =& JComponentHelper::getComponent('com_content');
 
-		$menus	= &JApplication::getMenu('site', array());
+		$menus	= &JApplication::getMenu('site', array());		
 		$items	= $menus->getItems('componentid', $component->id);
 
 		$match = null;

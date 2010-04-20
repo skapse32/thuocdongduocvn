@@ -9,9 +9,42 @@
 		<name>Standard Category Layout</name>
 		<description>STANDARD CATEGORY LAYOUT DESC</description>
 		<url>
-			<param name="id" type="category" label="Category" description="Choose a category..." />
+			<param name="id" type="subcategory" label="Category" description="Choose a category..." />
 		</url>
 		<params>
+			<param name="show_subcategories" type="radio" default="0" label="SubCategories" description="Show/Hide SubCategories">
+				<option value="0">Hide</option>
+				<option value="1">Show</option>
+			</param>
+			<param name="show_articles" type="radio" default="1" label="Articles" description="Show/Hide Articles">
+				<option value="0">Hide</option>
+				<option value="1">Show</option>
+				<option value="2">Only Last Category</option>
+			</param>
+			<param name="@spacer" type="spacer" default="" label="" description="" />
+	 		<param name="show_description" type="radio" default="1" label="Description" description="Show/Hide the Category Description">
+	 			<option value="0">Hide</option>
+	 			<option value="1">Show</option>
+	 		</param>
+			<param name="show_description_image" type="radio" default="0" label="Description Image" description="Show/Hide the Category Image">
+	 			<option value="0">Hide</option>
+	 			<option value="1">Show</option>
+	 		</param>
+			<param name="@spacer" type="spacer" default="" label="" description="" />
+			<param name="show_empty_categories" type="radio" default="0" label="Empty Categories" description="Show/Hide empty(no items) Categories">
+				<option value="0">Hide</option>
+				<option value="1">Show</option>
+			</param>
+			<param name="show_cat_num_articles" type="radio" default="1" label="Num Category Items" description="PARAMCATITEMS">
+				<option value="0">Hide</option>
+				<option value="1">Show</option>
+			</param>
+			<param name="show_category_description" type="radio" default="1" label="Category Description" description="PARAMSHOWHIDE">
+				<option value="0">Hide</option>
+				<option value="1">Show</option>
+			</param>
+		</params>		
+		<advanced>
 			<param name="display_num" type="list" default="10" label="Num Links" description="Number of Items to display as links.">
 				<option value="5">NUMBER 5</option>
 				<option value="10">NUMBER 10</option>
@@ -43,8 +76,7 @@
 				<option value="author">Author</option>
 				<option value="hits">Hits</option>
 			</param>
-		</params>
-		<advanced>
+			<param name="@spacer" type="spacer" default="" label="" description="" />
 			<param name="orderby_sec" type="list" default="" label="Primary Order" description="Order that the items will be displayed in.">
 				<option value="">Default</option>
 				<option value="date">Oldest first</option>

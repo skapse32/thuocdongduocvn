@@ -1,0 +1,130 @@
+<?xml version="1.0" encoding="utf-8"?>
+<metadata>
+	<layout title="Catalog Blog Layout">
+		<message>
+			<![CDATA[This layout displays SubCategories as a Catalog, and Articles as a Blog.]]>
+		</message>
+	</layout>
+	<state>
+		<name>Catalog Blog Layout</name>
+		<description>This layout displays SubCategories as a Catalog, and Articles as a Blog.</description>
+		<url>
+			<param name="id" type="subcategory" label="Category" description="Choose a category..." />
+		</url>
+		<params>
+			<param name="show_subcategories" type="radio" default="1" label="SubCategories" description="Show/Hide SubCategories">
+				<option value="0">Hide</option>
+				<option value="1">Show</option>
+			</param>
+			<param name="show_articles" type="radio" default="1" label="Articles" description="Show/Hide Articles">
+				<option value="0">Hide</option>
+				<option value="1">Show</option>
+				<option value="2">Only Last Category</option>
+			</param>
+			<param name="@spacer" type="spacer" default="" label="" description="" />
+	 		<param name="show_description" type="radio" default="1" label="Description" description="Show/Hide the Category Description">
+	 			<option value="0">Hide</option>
+	 			<option value="1">Show</option>
+	 		</param>
+			<param name="show_description_image" type="radio" default="0" label="Description Image" description="Show/Hide the Category Image">
+	 			<option value="0">Hide</option>
+	 			<option value="1">Show</option>
+	 		</param>
+			<param name="@spacer" type="spacer" default="" label="" description="" />
+			<param name="show_empty_categories" type="radio" default="0" label="Empty SubCategories" description="Show/Hide empty(no items) SubCategories">
+				<option value="0">Hide</option>
+				<option value="1">Show</option>
+			</param>
+			<param name="show_cat_num_articles" type="radio" default="1" label="Num. SubCategory Items" description="Show/Hide the number of items in each SubCategory">
+				<option value="0">Hide</option>
+				<option value="1">Show</option>
+			</param>
+			<param name="show_cat_num_position" type="radio" default="right" label="Num. Items Position" description="Position of the number of Items in each SubCategory">
+				<option value="top">Top</option>
+				<option value="right">Right</option>
+				<option value="bottom">Bottom</option>
+				<option value="left">Left</option>
+			</param>
+			<param name="show_category_title" type="radio" default="1" label="SubCategory Title" description="Show/Hide the SubCategory Title">
+				<option value="0">Hide</option>
+				<option value="1">Show</option>
+			</param>
+			<param name="show_category_link" type="radio" default="1" label="SubCategory Title Link" description="Make the SubCategory Title a link to the actual SubCategory page">
+				<option value="0">Hide</option>
+				<option value="1">Show</option>
+			</param>
+			<param name="show_category_description" type="radio" default="1" label="SubCategory Description" description="Show/Hide the SubCategory Description">
+				<option value="0">Hide</option>
+				<option value="1">Show</option>
+			</param>
+			<param name="show_category_description_image" type="radio" default="0" label="SubCategory Image" description="Show/Hide the SubCategory Image">
+				<option value="0">Hide</option>
+				<option value="1">Show</option>
+			</param>
+			<param name="show_category_description_image_link" type="radio" default="0" label="SubCategory Image Link" description="Make the SubCategory Image a link to the actual SubCategory page">
+				<option value="0">Hide</option>
+				<option value="1">Show</option>
+			</param>
+			<param name="@spacer" type="spacer" default="" label="" description="" />
+			<param name="num_leading_categories" type="text" size="3" default="1" label="Num Leading" description="Number of SubCategories to display as a leading (full width) SubCategory. 0 will mean that no SubCategories will be displayed as leading." />
+			<param name="num_intro_categories" type="text" size="3" default="4" label="Num Intro" description="Number of SubCategories to display." />
+			<param name="num_columns_categories" type="text" size="3" default="2" label="Columns" description="When displaying SubCategories, set how many colums to use per row." />
+			<param name="num_links_categories" type="text" size="3" default="4" label="Num Links" description="Number of SubCategories to display as 
+			Links." />
+			<param name="orderby_categories" type="list" default="" label="SubCategory Order" description="Order SubCategories by Category">
+				<option value="">Default</option>
+				<option value="alpha">Title Alphabetical</option>
+				<option value="ralpha">Title Reverse-Alphabetical</option>
+				<option value="order">Ordering</option>
+			</param>
+			<param name="multi_column_order_categories" type="radio" default="0" label="Multi Column Order" description="Order SubCategories down or across colums.">
+				<option value="0">Down</option>
+				<option value="1">Across</option>
+			</param>
+		</params>		
+		<advanced>
+			<param name="num_leading_articles" type="text" size="3" default="1" label="Num Leading" description="PARAMLEADING" />
+			<param name="num_intro_articles" type="text" size="3" default="4" label="Num Intro" description="PARAMINTRO" />
+			<param name="num_columns" type="text" size="3" default="2" label="Columns" description="PARAMCOLUMNS" />
+			<param name="num_links" type="text" size="3" default="4" label="Num Links" description="Number of Items to display as Links." />
+			<param name="@spacer" type="spacer" default="" label="" description="" />
+			<param name="orderby_pri" type="list" default="" label="Category Order" description="Order items by category">
+				<option value="">No, order by Primary Order only</option>
+				<option value="alpha">Title Alphabetical</option>
+				<option value="ralpha">Title Reverse-Alphabetical</option>
+				<option value="order">Ordering</option>
+			</param>
+			<param name="orderby_sec" type="list" default="" label="Primary Order" description="Order that the items will be displayed in.">
+				<option value="">Default</option>
+				<option value="date">Oldest first</option>
+				<option value="rdate">Most recent first</option>
+				<option value="alpha">Title Alphabetical</option>
+				<option value="ralpha">Title Reverse-Alphabetical</option>
+				<option value="author">Author Alphabetical</option>
+				<option value="rauthor">Author Reverse-Alphabetical</option>
+				<option value="hits">Most Hits</option>
+				<option value="rhits">Least Hits</option>
+				<option value="order">Ordering</option>
+			</param>
+			<param name="multi_column_order" type="radio" default="0" label="Multi Column Order" description="PARAMDOWNORACROSS">
+				<option value="0">Down</option>
+				<option value="1">Across</option>
+			</param>
+
+			<param name="@spacer" type="spacer" default="" label="" description="" />
+			<param name="show_pagination" type="list" default="2" label="Pagination" description="Show/Hide Pagination support">
+				<option value="0">Hide</option>
+				<option value="1">Show</option>
+				<option value="2">Auto</option>
+			</param>
+			<param name="show_pagination_results" type="radio" default="1" label="Pagination Results" description="PARAMPAGINATIONRESULTS">
+				<option value="0">Hide</option>
+				<option value="1">Show</option>
+			</param>
+			<param name="show_feed_link" type="radio" default="1" label="Show a feed link" description="PARAMSHOWFEEDLINK">
+				<option value="0">Hide</option>
+				<option value="1">Show</option>
+			</param>
+		</advanced>
+	</state>
+</metadata>

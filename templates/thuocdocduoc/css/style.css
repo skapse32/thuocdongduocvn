@@ -2,7 +2,7 @@
 /* CSS Document by vietnt_vn 0988 005 774*/
 
 html {margin-bottom:1px; height:100%;}
-body {margin:0px; padding:0px; background:#f0faf1; font-family: Arial, Helvetica, sans-serif; font-size: 11px; color:#727272;}
+body {margin:0px; padding:0px; background:#f0faf1; font-family: Arial, Helvetica, sans-serif; font-size: 11px; color:#454545;}
 
 /**/
 .full {width:100%;}
@@ -54,7 +54,7 @@ body {margin:0px; padding:0px; background:#f0faf1; font-family: Arial, Helvetica
 .cols2 {float:left; width:558px; margin:0 12px; overflow:hidden; #padding-bottom:10px;}
 
 /*list-box1*/
-.list-box1 {clear:both; color:#727272; margin: 0 2%; _margin: 0; float:left; line-height:15px;}
+.list-box1 {clear:both; color:#454545; margin: 0 2%; _margin: 0; float:left; line-height:15px;}
 .list-box1 h4{font-size:11px; color:#00476b; padding-bottom:5px;}
 .list-box1 img{float:none;}
 .list-box1 a{color:#032b3f; text-decoration:underline;}
@@ -65,7 +65,7 @@ body {margin:0px; padding:0px; background:#f0faf1; font-family: Arial, Helvetica
 .list-box1 h4 a{color:#032b3f; text-decoration:none;}
 
 /*list-box2*/
-.list-box2 {color:#727272; margin: 0 2%; width:96%; padding: 2% 0; width:96%; float:left; line-height:15px; border-bottom:1px dashed #c2c5c3;}
+.list-box2 {color:#454545; margin: 0 2%; width:96%; padding: 2% 0; width:96%; float:left; line-height:15px; border-bottom:1px dashed #c2c5c3;}
 .list-box2 h4{font-size:11px; color:#00476b; padding-bottom:5px;}
 .list-box2 img{float:none;}
 .list-box2 a{color:#032b3f; text-decoration:underline;}
@@ -77,7 +77,7 @@ body {margin:0px; padding:0px; background:#f0faf1; font-family: Arial, Helvetica
 .list-box2 h4 a{color:#032b3f; text-decoration:none;}
 
 /*detail1*/
-.detail {color:#727272; margin: 0 2%; width:96%; padding: 2% 0; width:96%; float:left; line-height:16px;}
+.detail {color:#454545; margin: 0 2%; width:96%; padding: 2% 0; width:96%; float:left; line-height:16px;}
 .detail h1{font-size:14px; color:#00476b; padding-bottom:5px; text-transform:uppercase;}
 .detail img{float:none;}
 .detail a{color:#032b3f; text-decoration:underline;}
@@ -168,7 +168,7 @@ div.mdl-b .img img{float:none; width:170px; border:1px solid #96aab5; padding:2p
 /*link-view*/
 .pad-view1 {padding:20px 10px;}
 .pad-view2 {padding:0 10px;}
-.view-detal {font-weight:bold; color:#727272;}
+.view-detal {font-weight:bold; color:#454545;}
 .view-all-1 {background:url(../images/news&event_82.png) no-repeat right 4px; color:#954660; padding-right:10px;}
 .view-all-2 {background:url(../images/news&event_76.png) no-repeat right 4px; color:#9cb0b2; padding-right:10px;}
 .link-back {font-weight:bold; color:#575d10; text-align:right; line-height:25px; vertical-align:middle;}

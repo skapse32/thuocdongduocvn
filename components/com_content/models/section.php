@@ -299,7 +299,11 @@ class ContentModelSection extends JModel
 				$access_check = ' AND a.access <= '.(int) $gid;
 				//$access_check .= ' AND b.access <= '.(int) $gid;
 			}
-
+			
+			// SubCategories
+			$sub_show	=	$params->get('show_subcategories', 0);
+			$sub_where	=	( $sub_show == 1) ? ' AND a.parent_id = 0 ' : '';
+			
 			// Query of categories within section
 			$query = 'SELECT a.*, COUNT( b.id ) AS numitems,' .
 					' CASE WHEN CHAR_LENGTH(a.alias) THEN CONCAT_WS(\':\', a.id, a.alias) ELSE a.id END as slug'.
@@ -307,6 +311,7 @@ class ContentModelSection extends JModel
 					' LEFT JOIN #__content AS b ON b.catid = a.id'.
 					$xwhere2 .
 					' WHERE a.section = '.(int) $this->_id.
+					$sub_where.	// SubCategories
 					$xwhere.
 					$access_check .
 					' GROUP BY a.id'.$empty.$empty_sec .

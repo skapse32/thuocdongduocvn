@@ -203,7 +203,7 @@ function editNewsFeed($edit)
 		$lists['ordering'] 			= JHTML::_('list.specificordering',  $row, '', $query );
 
 	// build list of categories
-	$lists['category'] 			= JHTML::_('list.category',  'catid', $option, intval( $row->catid ) );
+	$lists['category'] 			= JHTML::_('list.subcategory',  'catid', $option, intval( $row->catid ) );
 	// build the html select list
 	$lists['published'] 		= JHTML::_('select.booleanlist',  'published', 'class="inputbox"', $row->published );
 		$rtl[] = JHTML::_('select.option',  '0', JText::_( 'Site Language Direction' ) );

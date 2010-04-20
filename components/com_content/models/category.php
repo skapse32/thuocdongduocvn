@@ -175,6 +175,107 @@ class ContentModelCategory extends JModel
 	}
 
 	/**
+	 * Method to get subcategories data for the current category
+	 *
+	 * @since 1.5
+	 */
+	function getCategories()
+	{
+		// Initialize some variables
+		$user	=& JFactory::getUser();
+
+		// Load the Category data
+		if ($this->_loadCategories())
+		{
+			// Make sure the category is published
+			if (!$this->_category->published) {
+				JError::raiseError(404, JText::_("Resource Not Found"));
+				return false;
+			}
+
+			// check whether category access level allows access
+			if ($this->_category->access > $user->get('aid', 0)) {
+				JError::raiseError(403, JText::_("ALERTNOTAUTH"));
+				return false;
+			}
+		}
+		return $this->_categories;
+	}
+	
+	/**
+	 * Method to load subcategories data if it doesn't exist.
+	 *
+	 * @access	private
+	 * @return	boolean	True on success
+	 */
+	function _loadCategories()
+	{
+		global $mainframe;
+		// Lets load the siblings if they don't already exist
+		if (empty($this->_categories))
+		{
+			$user	=& JFactory::getUser();
+
+			// Get the page/component configuration
+			$params = &$mainframe->getParams();
+
+			$noauth	= !$params->get('show_noauth');
+			$gid		= $user->get('aid', 0);
+			$now		= $mainframe->get('requestTime');
+			$nullDate	= $this->_db->getNullDate();
+
+			// Ordering control
+			$orderby = $params->get('orderby_categories', '');
+			$orderby = ContentHelperQuery::orderbySecondary($orderby);
+
+			// Handle the access permissions part of the main database query
+			if ($user->authorize('com_content', 'edit', 'content', 'all')) {
+				$xwhere = '';
+				$xwhere2 = ' AND b.state >= 0';
+			} else {
+				$xwhere = ' AND a.published = 1';
+				$xwhere2 = ' AND b.state = 1' .
+						' AND ( b.publish_up = '.$this->_db->Quote($nullDate).' OR b.publish_up <= '.$this->_db->Quote($now).' )' .
+						' AND ( b.publish_down = '.$this->_db->Quote($nullDate).' OR b.publish_down >= '.$this->_db->Quote($now).' )';
+				if ($noauth) {
+					$xwhere2 .= ' AND b.access <= '.(int) $gid;
+				}
+ 			}
+
+			// Determine whether to show/hide the empty categories and sections
+			$empty = null;
+			$empty_sec = null;
+
+			// show/hide empty categories in section
+			if (!$params->get('show_empty_categories')) {
+				$empty_sec = ' HAVING numitems > 0';
+			}
+
+			// Handle the access permissions
+			$access_check = null;
+			if ($noauth) {
+				$access_check = ' AND a.access <= '.(int) $gid;
+				//$access_check .= ' AND b.access <= '.(int) $gid;
+			}
+			
+			// Query of categories within section
+			$query = 'SELECT a.*, COUNT( b.id ) AS numitems,' .
+					' CASE WHEN CHAR_LENGTH(a.alias) THEN CONCAT_WS(\':\', a.id, a.alias) ELSE a.id END as slug'.
+					' FROM #__categories AS a' .
+					' LEFT JOIN #__content AS b ON b.catid = a.id'.
+					$xwhere2 .
+					' WHERE a.parent_id = '.(int) $this->_id.
+					$xwhere.
+					$access_check .
+					' GROUP BY a.id'.$empty.$empty_sec .
+					' ORDER BY '. $orderby;
+			$this->_db->setQuery($query);
+			$this->_categories = $this->_db->loadObjectList();
+		}
+		return true;
+	}
+
+	/**
 	 * Method to get sibling category data for the current category
 	 *
 	 * @since 1.5
@@ -329,7 +430,8 @@ class ContentModelCategory extends JModel
 			$limitstart	= JRequest::getVar('limitstart', 0, '', 'int');
 
 			$query = $this->_buildQuery();
-			$Arows = $this->_getList($query, $limitstart, $limit);			
+			$Arows = $this->_getList($query, $limitstart, $limit);
+
 			// special handling required as Uncategorized content does not have a section / category id linkage
 			$i = $limitstart;
 			$rows = array();
