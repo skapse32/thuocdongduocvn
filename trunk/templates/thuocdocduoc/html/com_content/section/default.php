@@ -11,7 +11,12 @@ include_once JPATH_BASE.DS.'components'.DS.'com_content'.DS.'models'.DS.'categor
 $section = &$this->section;
 $categories =&$this->categories;
 $sectionParams = new JParameter($section->params);
+$this->sectionParams=$sectionParams;
+global $mainframe;
+$templateUrl = JURI::root().'templates/'.$mainframe->getTemplate();
 $template=$sectionParams->get("tpl");
+$this->template=$template;
+$dispatcher	=& JDispatcher::getInstance();
 switch($template)
 {
 	case "thuoc_dong_duoc":		
@@ -123,46 +128,87 @@ switch($template)
 		}		
 		JRequest::setVar('filter',$filter);		
 		$this->assign('groups',$groups);
-		
-		
-		
-		
-		
-		/*$mCategory = new ContentModelCategory();	
-		$sortfor = JRequest::getVar('sortfor');	
-		$limitfor = JRequest::getVar('limitfor');		
-		$limitstart = JRequest::getVar('limitstart',0);		
-		$filter_order= JRequest::getVar('sortfor'.$sortfor,'');
-		for($i=0;$i<count($categories);$i++)
-		{
-			$cat = &$categories[$i];
-			$mCategory->setId($cat->id);			
-			if($sortfor!=$cat->id)
-			{
-				JRequest::setVar("filter_order","title");				
-			}
-			else
-			{
-				JRequest::setVar("filter_order",$filter_order);				
-			}
-			if(strtolower(JRequest::getVar("filter_order","title"))=='title')
-				JRequest::setVar("filter_order_Dir","ASC");
-			else
-				JRequest::setVar("filter_order_Dir","DESC");
-			
-			if($limitfor!=$cat->id)			
-				JRequest::setVar('limitstart',0);			
-			else
-				JRequest::setVar('limitstart',$limitstart);			
-			
-			$cat->items= $mCategory->getData();
-			$cat->total = $mCategory->getTotal();
-			$cat->pagination = new JPagination($cat->total,JRequest::getVar('limitstart',0),JRequest::getVar('limit',5));
-		}	
-		JRequest::setVar('limitstart',$limitstart);	*/		
+		echo $this->loadTemplate($template);
+		return;
+	break;
+	case "gian_hang":
+		include_once dirname(__FILE__).DS.'helper'.DS."section.php";
+		$mSection = new ContentModelSectionHelper();
+		jimport('joomla.html.pagination');
+		//$pagination= new JPagination();
+		$mSection->setState('limit',3);
+		$mSection->setState('limitstart',JRequest::getVar('limitstart',0));				
+		$this->items=$mSection->getStores(JRequest::getVar('id',0),$this->pagination);
 		echo $this->loadTemplate($template);
 		return;
 	break;
 }
 ?>
-Error Loading Template.Click <a href="javascript:history.go(-1);">here</a> to return
+<!--mdl-3-->
+<div class="mdl-cnt">
+    <div class="title">
+        <h2>
+            <?php echo $section->title; ?></h2>
+        <img src="<?php echo $templateUrl;?>/images/news&event_107.png" />
+    </div>
+    <div class="cnt">
+        <!--list box-->        
+        <?php $pagination=$this->pagination; ?>
+        <?php for($i=$pagination->get('limitstart',0);$i<($pagination->get('limit')+$pagination->get('limitstart',0)>$pagination->get('total')?$pagination->get('total'):$pagination->get('limit')+$pagination->get('limitstart',0));$i++):?>
+        <?php // get thumbnail  for items;
+				$item = $this->items[$i];
+				$item->text = $item->introtext;
+	
+				// Get the page/component configuration and article parameters
+				$item->params = clone($this->params);
+				$aparams = new JParameter($item->attribs);
+				
+				// Merge article parameters into the page configuration
+				$item->params->merge($aparams);
+				
+				// Process the content preparation plugins
+				
+				$results = $dispatcher->trigger('onPrepareContent', array (& $item, & $item->params, 0));
+				
+				
+				$plg_matches=array();
+				$have_images = preg_match_all("|<[\s\v]*img[\s\v][^>]*>|Ui", $item->text, $plg_matches, PREG_PATTERN_ORDER) > 0;
+				if($have_images)
+				{
+					$item->imgTag= $plg_matches[0][0];
+					preg_match_all("/src=\"(.+?)\"/i", $item->imgTag, $m);
+					$item->imgLink= $m[1][0];
+				}
+				// create item links
+				$item->link =ContentHelperRoute::getArticleRoute($item->slug, $item->catslug, $item->sectionid);
+				if($template=='gian_hang')
+				{
+					$uri = new JURI($item->link);
+					//$uri->setQuery();
+					$uri->setVar('Itemid',$sectionParams->get('Itemid'));
+					$item->link = JRoute::_("index.php?".$uri->getQuery());
+				}
+				
+				
+			?>	
+        <div class="list-box2">
+						<?php if(is_array(@getimagesize($item->imgLink))):?>
+                             <a href="<?php echo $item->link;?>">
+                                <img class="img2" src="<?php echo $item->imgLink;?>"></a>
+                        <?php endif;?>
+                         <a class="link_title" href="<?php echo $item->link;?>">
+									<?php echo $item->title;?></a><p>
+                                        <?php echo $item->introtext;?>
+                                        </p>
+                                        <p>
+                                        <a href="<?php echo $item->link;?>">Xem chi tiết</a></p>
+                        </div>
+        <?php endfor;?>        
+        <!--end list box-->
+        <center>
+            <?php echo $this->pagination->getPagesLinks();?>
+        </center>
+    </div>
+    <img src="<?php echo $templateUrl;?>/images/news&event_73.png" class="img-rounded" />
+</div>
+<!--end-mdl-3-->

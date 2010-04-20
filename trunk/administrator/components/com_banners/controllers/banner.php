@@ -167,7 +167,7 @@ class BannerControllerBanner extends JController
 		$lists['imageurl']	= JHTML::_('list.images',  'imageurl', $row->imageurl, $javascript, $directory, "bmp|gif|jpg|png|swf"  );
 
 		// build list of categories
-		$lists['catid']		= JHTML::_('list.category',  'catid', 'com_banner', intval( $row->catid ) );
+		$lists['catid']		= JHTML::_('list.subcategory',  'catid', 'com_banner', intval( $row->catid ) );
 
 		// sticky
 		$lists['sticky']	= JHTML::_('select.booleanlist',  'sticky', 'class="inputbox"', $row->sticky );

@@ -12,6 +12,11 @@
 			<param name="id" type="section" label="Section" description="Choose a section..." />
 		</url>
 		<params>
+			<param name="show_subcategories" type="radio" default="0" label="SubCategories" description="Show/Hide SubCategories">
+	 			<option value="0">Hide</option>
+	 			<option value="1">Show</option>
+			</param>
+			<param name="@spacer" type="spacer" default="" label="" description="" />
 	 		<param name="show_description" type="radio" default="0" label="Description" description="Show/Hide the Category Description">
 	 			<option value="0">Hide</option>
 	 			<option value="1">Show</option>

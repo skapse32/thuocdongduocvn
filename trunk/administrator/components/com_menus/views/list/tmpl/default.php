@@ -73,12 +73,15 @@
 		?>
 		<tr class="<?php echo "row$k"; ?>">
 			<td>
+            	<!-- This is the # Column -->
 				<?php echo $i + 1 + $this->pagination->limitstart;?>
 			</td>
 			<td>
+            	<!-- This is the checkbox Column -->
 				<?php echo $checked; ?>
 			</td>
 			<td nowrap="nowrap">
+            	<!-- This is the menu item Column -->
 				<?php if (  JTable::isCheckedOut($this->user->get('id'), $row->checked_out ) ) : ?>
 				<?php echo $row->treename; ?>
 				<?php else : ?>
@@ -97,8 +100,80 @@
 				<?php echo $published;?>
 			</td>
 			<td class="order" nowrap="nowrap">
-				<span><?php echo $this->pagination->orderUpIcon( $i, $row->parent == 0 || $row->parent == @$rows[$i-1]->parent, 'orderup', 'Move Up', $this->ordering); ?></span>
-				<span><?php echo $this->pagination->orderDownIcon( $i, $n, $row->parent == 0 || $row->parent == @$rows[$i+1]->parent, 'orderdown', 'Move Down', $this->ordering ); ?></span>
+                	<?php
+						$top_level_menuitem 	= ($row->parent == 0);
+						$previous_parent_same	= ($row->parent == @$rows[$i-1]->parent);
+						$next_parent_same		= ($row->parent == @$rows[$i+1]->parent);
+						$only_child				= ($row->siblings == 1);
+						$last_child				= ($row->siblings == $row->ordering);
+						// The variables above and the if statement below were added so
+						// that the component would correctly show the move up/down icons.
+					?>
+                    <?php if ((!$previous_parent_same and !$next_parent_same and !$only_child and !$top_level_menuitem)): ?>
+                    
+                    	<span><?php echo $this->pagination->orderUpIcon( $i, TRUE, 'orderup', 'Move Up', $this->ordering ); ?></span>
+                        <span>&nbsp;</span>
+                    
+                    <?php elseif ((!$previous_parent_same and !$next_parent_same and !$only_child) and $top_level_menuitem and $last_child): ?>
+                    
+                    	<span><?php echo $this->pagination->orderUpIcon( $i, TRUE, 'orderup', 'Move Up', $this->ordering ); ?></span>
+                        <span>&nbsp;</span>
+                   
+                   <?php elseif ($previous_parent_same and (!$next_parent_same and !$only_child) and $top_level_menuitem and $last_child): ?>
+                    
+                    	<span><?php echo $this->pagination->orderUpIcon( $i, TRUE, 'orderup', 'Move Up', $this->ordering ); ?></span>
+                        <span>&nbsp;</span>
+                    
+                    <?php elseif ($row->siblings == 1): ?>
+                    	
+                        <span>&nbsp;</span>
+                        <span>&nbsp;</span>
+                    
+                    <?php elseif (!($top_level_menuitem || $previous_parent_same)): ?>
+  
+                      	<?php if ($row->siblings && $row->ordering == 1): ?>
+                        
+                        	<span>&nbsp;</span>
+	                    	<span><?php echo $this->pagination->orderDownIcon( $i, $n, TRUE, 'orderdown', 'Move Down', $this->ordering ); ?></span>
+                            
+    					<?php elseif ($row->siblings && ($row->siblings - $row->ordering)): ?>
+                            
+                            <span><?php echo $this->pagination->orderUpIcon( $i, TRUE, 'orderup', 'Move Up', $this->ordering ); ?></span>
+                            <span><?php echo $this->pagination->orderDownIcon( $i, $n, TRUE, 'orderdown', 'Move Down', $this->ordering ); ?></span>
+                            
+						<?php elseif (!($row->siblings - $row->ordering)): ?>
+                        
+                        	<span><?php echo $this->pagination->orderUpIcon( $i, TRUE, 'orderup', 'Move Up', $this->ordering ); ?></span>
+                        	<span>&nbsp;</span>
+                        
+                        <?php endif; ?>
+                    
+                  	 <?php elseif (!($top_level_menuitem || $next_parent_same)): ?>
+  
+                      	<?php if ($row->siblings && $row->ordering == 1): ?>
+                        
+                        	<span>&nbsp;</span>
+	                    	<span><?php echo $this->pagination->orderDownIcon( $i, $n, TRUE, 'orderdown', 'Move Down', $this->ordering ); ?></span>
+    					<?php elseif ($row->siblings && ($row->siblings - $row->ordering)): ?>
+                            
+                            <span><?php echo $this->pagination->orderUpIcon( $i, TRUE, 'orderup', 'Move Up', $this->ordering ); ?></span>
+                            <span><?php echo $this->pagination->orderDownIcon( $i, $n, TRUE, 'orderdown', 'Move Down', $this->ordering ); ?></span>
+                            
+						<?php elseif (!($row->siblings - $row->ordering)): ?>
+                        
+                        	<span><?php echo $this->pagination->orderUpIcon( $i, TRUE, 'orderup', 'Move Up', $this->ordering ); ?></span>
+                        	<span>&nbsp;</span>
+                        
+                        <?php endif; ?> 
+                                       
+                        	                
+                    <?php else: ?>
+
+                    	<span><?php echo $this->pagination->orderUpIcon( $i, ($top_level_menuitem || $previous_parent_same), 'orderup', 'Move Up', $this->ordering ); ?></span>
+						<span><?php echo $this->pagination->orderDownIcon( $i, $n, ($top_level_menuitem || $next_parent_same), 'orderdown', 'Move Down', $this->ordering ); ?></span>
+                    
+                    <?php endif; ?>            
+            
 				<?php $disabled = $this->ordering ?  '' : 'disabled="disabled"'; ?>
 				<input type="text" name="order[]" size="5" value="<?php echo $row->ordering; ?>" <?php echo $disabled ?> class="text_area" style="text-align: center" />
 			</td>

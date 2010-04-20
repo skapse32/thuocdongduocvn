@@ -112,12 +112,13 @@ function showCategories( $section, $option )
 	$filter_order		= $mainframe->getUserStateFromRequest( $option.'.filter_order',					'filter_order',		'c.ordering',	'cmd' );
 	$filter_order_Dir	= $mainframe->getUserStateFromRequest( $option.'.filter_order_Dir',				'filter_order_Dir',	'',				'word' );
 	$filter_state		= $mainframe->getUserStateFromRequest( $option.'.'.$section.'.filter_state',	'filter_state',		'',				'word' );
+	$limit				= $mainframe->getUserStateFromRequest( 'global.list.limit', 'limit', $mainframe->getCfg('list_limit'), 'int' );
+	$limitstart			= $mainframe->getUserStateFromRequest( $option.'.limitstart', 'limitstart', 0, 'int' );
 	$sectionid			= $mainframe->getUserStateFromRequest( $option.'.'.$section.'.sectionid',		'sectionid',		0,				'int' );
+	// OMAR: Added to allow $levellimit to show
+	$levellimit			= $mainframe->getUserStateFromRequest( $option.'.'.$section.'.levellimit',		'levellimit',		10,				'int' );
 	$search				= $mainframe->getUserStateFromRequest( $option.'.search',						'search',			'',				'string' );
 	$search				= JString::strtolower( $search );
-
-	$limit		= $mainframe->getUserStateFromRequest( 'global.list.limit', 'limit', $mainframe->getCfg('list_limit'), 'int' );
-	$limitstart	= $mainframe->getUserStateFromRequest( $option.'.limitstart', 'limitstart', 0, 'int' );
 
 	$section_name 	= '';
 	$content_add 	= '';
@@ -212,7 +213,11 @@ function showCategories( $section, $option )
 		}
 	}
 	if ($search) {
-		$filter .= ' AND LOWER(c.title) LIKE '.$db->Quote( '%'.$db->getEscaped( $search, true ).'%', false );
+		$query = 'SELECT c.id' .
+		' FROM #__categories AS c' .
+		' WHERE LOWER(c.title) LIKE '.$db->Quote( '%'.$db->getEscaped( $search, true ).'%', false );
+		$db->setQuery( $query );
+		$search_rows = $db->loadResultArray();
 	}
 
 	jimport('joomla.html.pagination');
@@ -267,9 +272,60 @@ function showCategories( $section, $option )
 		$rows[$i]->trash = $trash;
 	}
 
+	// establish the hierarchy of the menu
+	$children = array();
+	// first pass - collect children
+	foreach ($rows as $v )
+	{
+		$pt = $v->parent_id;
+		$list = @$children[$pt] ? $children[$pt] : array();
+		array_push( $list, $v );
+		$children[$pt] = $list;
+	}
+	// second pass - get an indent list of the items
+	$list = JHTML::_('menu.categorytreerecurse', 0, '', array(), $children, max( 0, $levellimit-1 ) );
+	// eventually only pick out the searched items.
+	if ($search) {
+		$list1 = array();
+
+		foreach ($search_rows as $sid )
+		{
+			foreach ($list as $item)
+			{
+				if ($item->id == $sid) {
+					$list1[] = $item;
+				}
+			}
+		}
+		// replace full list with found items
+		$list = $list1;
+	}
+
+	$total = count( $list );
+
+	jimport('joomla.html.pagination');
+	$pagination = new JPagination( $total, $limitstart, $limit );
+
+	// slice out elements based on limits
+	$list = array_slice( $list, $pagination->limitstart, $pagination->limit );
+	
+	$rows = $list;
+	
+	// Ensure ampersands and double quotes are encoded in item titles
+	foreach ($rows as $i => $row) {
+		$treename = $row->treename;
+		$treename = JFilterOutput::ampReplace($treename);
+		$treename = str_replace('"', '&quot;', $treename);
+		$rows[$i]->treename = $treename;
+	}
+	
 	// get list of sections for dropdown filter
 	$javascript = 'onchange="document.adminForm.submit();"';
-	$lists['sectionid']	= JHTML::_('list.section',  'sectionid', $sectionid, $javascript, 'ordering', false );
+	
+	// level limit filter
+	$lists['levellist'] = JHTML::_('select.integerlist',    1, 20, 1, 'levellimit', 'size="1" onchange="document.adminForm.submit();"', $levellimit );
+	
+	$lists['sectionid']	= JHTML::_('list.section',  'sectionid', $sectionid, $javascript );
 
 	// state filter
 	$lists['state']	= JHTML::_('grid.state',  $filter_state );
@@ -303,8 +359,11 @@ function editCategory($edit )
 	$redirect	= JRequest::getCmd( 'section', 'com_content' );
 	$section	= JRequest::getCmd( 'section', 'com_content' );
 	$cid		= JRequest::getVar( 'cid', array(0), '', 'array' );
+    $contentSection    = '';
+    $sectionid        = 0;
 
 	JArrayHelper::toInteger($cid, array(0));
+    $id = $cid[0];
 
 	// check for existance of any sections
 	$query = 'SELECT COUNT( id )'
@@ -325,6 +384,7 @@ function editCategory($edit )
 	// load the row from the db table
 	if ($edit)
 		$row->load( $cid[0] );
+        $sectionid = $row->section;
 
 	// fail if checked out not by 'me'
 	if ( JTable::isCheckedOut($user->get ('id'), $row->checked_out )) {
@@ -364,8 +424,11 @@ function editCategory($edit )
 		. ' ORDER BY s.ordering'
 		;
 		$db->setQuery( $query );
-		$sections = $db->loadObjectList();
-		$lists['section'] = JHTML::_('select.genericlist',   $sections, 'section', 'class="inputbox" size="1"', 'value', 'text', $row->section );
+		$sections	=	array();
+        $sections[] = JHTML::_('select.option', '-1', '- '.JText::_('Select Section').' -', 'value', 'text');
+        $sections	= array_merge($sections, $db->loadObjectList());
+		$javascript = "onchange=\"changeDynaList( 'parent_id', sectioncategories, document.adminForm.section.options[document.adminForm.section.selectedIndex].value, 0, 0);\"";
+		$lists['section'] = JHTML::_('select.genericlist',   $sections, 'section', 'class="inputbox" size="1" '.$javascript, 'value', 'text', $row->section );
 	} else {
 		if ( $type == 'other' ) {
 			$section_name = JText::_( 'N/A' );
@@ -383,6 +446,7 @@ function editCategory($edit )
 	$query = 'SELECT ordering AS value, title AS text'
 	. ' FROM #__categories'
 	. ' WHERE section = '.$db->Quote($row->section)
+	. ' AND parent_id = '.(int) $row->parent_id
 	. ' ORDER BY ordering'
 	;
 	if ($edit) {
@@ -401,8 +465,158 @@ function editCategory($edit )
 	// build the html radio buttons for published
 	$published = ($row->id) ? $row->published : 1;
 	$lists['published'] 		= JHTML::_('select.booleanlist',  'published', 'class="inputbox"', $published );
+	
+    $section_list = array();
+    if (is_array($sections))
+    {
+        foreach ($sections as $section)
+        {
+            $section_list[] = (int) $section->value;
+            // get the type name - which is a special category
+            if ($row->section) {
+                if ($section->value == $row->section) {
+                    $contentSection = $section->text;
+                }
+            } else {
+                if ($section->value == $sectionid) {
+                    $contentSection = $section->text;
+                }
+            }
+        }
+    }
+    
+    $sectioncategories = array();
+    $sectioncategories[-1] = array();
+    // The select option below seems to be unneccessary but I'm leaving it in
+    $sectioncategories[-1][] = JHTML::_('select.option', '-1', JText::_( 'Select Category' ), 'id', 'title');
+    $section_list = implode('\', \'', $section_list);
 
- 	categories_html::edit( $row, $lists, $redirect );
+    $and_parent_exclude = '';
+    if ($id != 0)
+    {
+        $and_parent_exclude = ' AND parent_id != ' . $id ;
+    }
+    $query = 'SELECT id, parent_id, title, section' .
+            ' FROM #__categories' .
+            ' WHERE section IN ( \''.$section_list.'\' )' .
+            ' AND id != ' . $id . 
+            $and_parent_exclude .
+            ' ORDER BY ordering';
+    $db->setQuery($query);
+    $cat_list = $db->loadObjectList();
+
+    /**
+     * BEGIN: Pulled from admin.categories.php
+     */
+    // establish the hierarchy of the menu
+    $children = array();
+    // first pass - collect children
+    foreach ($cat_list as $cat )
+    {
+        $pt = $cat->parent_id;
+        $list = @$children[$pt] ? $children[$pt] : array();
+        array_push( $list, $cat );
+        $children[$pt] = $list;
+    }
+    // second pass - get an indent list of the items
+    $cat_list = JHTML::_('menu.categorytreerecurse', 0, '', array(), $children, 9999, 0, 0 );
+    /**
+     * END: Pulled from admin.categories.php
+     */
+
+    if ($sectionid == 0 && isset($sectionid))
+    {
+        $sectionid = $sections[0]->value;
+    }
+    if (is_array($sections))
+    {
+        foreach ($sections as $section)
+        {
+            $sectioncategories[$section->value] = array ();
+            $rows2 = array ();
+            foreach ($cat_list as $cat)
+            {
+                if ($cat->section == $section->value) {
+                    $rows2[] = $cat;
+                }
+            }
+            $sectioncategories[$section->value][] = JHTML::_('select.option',  '0', JText::_( 'Top' ), 'id', 'title' );
+            foreach ($rows2 as $row2) {
+                $sectioncategories[$section->value][] = JHTML::_('select.option', $row2->id, '&nbsp;&nbsp;&nbsp;' . $row2->treename, 'id', 'title');
+            }
+        }
+    }
+    
+	// build the select list for the Parent Categories
+	$lists['parent_id'] = selectParentCategory($row, $sectionid);
+
+ 	categories_html::edit( $row, $lists, $redirect, $sectioncategories );
+}
+
+/**
+ * Build the select list for choosing a Parent Category
+ */
+function selectParentCategory ( &$row, $sectionid = 0 )
+{
+	$db =& JFactory::getDBO();
+
+	// If a not a new item, lets set the menu item id
+	if ( $row->id ) {
+		$id = ' AND id != '.(int) $row->id;
+	} else {
+		$id = null;
+	}
+
+	// In case the parent was null
+	if (!$row->parent_id) {
+		$row->parent_id = 0;
+	}
+
+    if ($row->section)
+    {
+        $sectionid = $row->section;
+    }
+    
+	// get a list of the Section's Categories
+	// excluding the current menu item and its child elements
+	$query = 'SELECT c.*' .
+			' FROM #__categories c' .
+			' WHERE section = '.$db->Quote($sectionid) .
+			' AND published != -2' .
+			$id .
+			' ORDER BY parent_id, ordering';
+	$db->setQuery( $query );
+	$categories = $db->loadObjectList();
+
+	// establish the hierarchy of the menu
+	$children = array();
+
+	if ( $categories )
+	{
+		// first pass - collect children
+		foreach ( $categories as $v )
+		{
+			$pt 	= $v->parent_id;
+			$list 	= @$children[$pt] ? $children[$pt] : array();
+			array_push( $list, $v );
+			$children[$pt] = $list;
+		}
+	}
+
+	// second pass - get an indent list of the items
+	$list = JHTML::_('menu.categorytreerecurse', 0, '', array(), $children, 9999, 0, 0 );
+
+	// assemble menu items to the array
+	$mitems 	= array();
+	$mitems[] 	= JHTML::_('select.option',  '0', JText::_( 'Top' ) );
+
+	foreach ( $list as $item ) {
+		$mitems[] = JHTML::_('select.option',  $item->id, '&nbsp;&nbsp;&nbsp;'. $item->treename );
+	}
+
+	$output = JHTML::_('select.genericlist',   $mitems, 'parent_id', 'class="inputbox" size="10"', 'value', 'text', $row->parent_id );
+
+	return $output;
 }
 
 /**
@@ -417,11 +631,12 @@ function saveCategory()
 	JRequest::checkToken() or jexit( 'Invalid Token' );
 
 	// Initialize variables
-	$db		 =& JFactory::getDBO();
+	$db		 	=& JFactory::getDBO();
 	$menu 		= JRequest::getCmd( 'menu', 'mainmenu', 'post' );
 	$menuid		= JRequest::getVar( 'menuid', 0, 'post', 'int' );
 	$redirect 	= JRequest::getCmd( 'redirect', '', 'post' );
 	$oldtitle 	= JRequest::getString( 'oldtitle', '', 'post' );
+	$oldparent	= JRequest::getString( 'oldparent', '', 'post');
 	$post		= JRequest::get( 'post' );
 
 	// fix up special html fields
@@ -436,7 +651,16 @@ function saveCategory()
 	}
 	// if new item order last in appropriate group
 	if (!$row->id) {
-		$where = "section = " . $db->Quote($row->section);
+		$where  = 'section = ' . $db->Quote($row->section);
+		$where .= ' AND parent_id = '. $db->Quote($row->parent_id); // Added this line to correctly order subcategories
+		$row->reorder( $where );
+		$row->ordering = $row->getNextOrder( $where );
+	}
+	// If parent_id has changed order last under new parent
+	if ($row->parent_id != $oldparent) {
+		$where  = 'section = ' . $db->Quote($row->section);
+		$where .= ' AND parent_id = '. $db->Quote($row->parent_id); // Added this line to correctly order subcategories
+		$row->reorder( $where );
 		$row->ordering = $row->getNextOrder( $where );
 	}
 
@@ -523,6 +747,12 @@ function removeCategories( $section, $cid )
 	if (count( $cid ) < 1) {
 		JError::raiseError(500, JText::_( 'Select a category to delete', true ));
 	}
+	
+	// Add all child categories to the list
+	foreach ($cid as $id)
+	{
+		addChildren($id, $cid);
+	} 
 
 	$cids = implode( ',', $cid );
 
@@ -554,12 +784,20 @@ function removeCategories( $section, $cid )
 
 	$err = array();
 	$cid = array();
+	$titles = array();
 	foreach ($rows as $row) {
 		if ($row->numcat == 0) {
 			$cid[] = (int) $row->id;
+			$titles[] = $row->title;
 		} else {
 			$err[] = $row->title;
 		}
+	}
+
+	if (count( $err )) {
+		$cids = implode( ", ", $err );
+		$msg = JText::sprintf( 'WARNNOTREMOVEDRECORDS', $cids );
+		$mainframe->redirect( 'index.php?option=com_categories&section='. $section, $msg );
 	}
 
 	if (count( $cid )) {
@@ -573,14 +811,10 @@ function removeCategories( $section, $cid )
 			return false;
 		}
 	}
-
-	if (count( $err )) {
-		$cids = implode( ", ", $err );
-		$msg = JText::sprintf( 'WARNNOTREMOVEDRECORDS', $cids );
-		$mainframe->redirect( 'index.php?option=com_categories&section='. $section, $msg );
-	}
-
-	$mainframe->redirect( 'index.php?option=com_categories&section='. $section );
+	
+	$titles = implode ( ', ', $titles);
+	$msg = JText::sprintf( 'REMOVEDRECORDS', $titles );
+	$mainframe->redirect( 'index.php?option=com_categories&section='. $section, $msg );
 }
 
 /**
@@ -669,7 +903,9 @@ function orderCategory( $uid, $inc )
 	$db		=& JFactory::getDBO();
 	$row	=& JTable::getInstance('category' );
 	$row->load( $uid );
-	$row->move( $inc, 'section = '.$db->Quote($row->section) );
+	$where  = 'section = ' . $db->Quote($row->section);
+	$where .= ' AND parent_id = '. $db->Quote($row->parent_id); // Added this line to correctly order subcategories
+	$row->move( $inc, $where );
 	$section = JRequest::getCmd('section');
 	if($section) {
 		$section = '&section='. $section;
@@ -743,7 +979,7 @@ function moveCategorySave( $cid, $sectionOld )
 	$db =& JFactory::getDBO();
 	$sectionMove = JRequest::getCmd( 'sectionmove' );
 
-	//Check to see of a section was selected to copy the items too
+	//Check to see if a section was selected to copy the items too
 	if (!$sectionMove)
 	{
 		$msg = JText::_('Please select a section from the list');
@@ -757,7 +993,7 @@ function moveCategorySave( $cid, $sectionOld )
 	$sectionNew =& JTable::getInstance('section');
     $sectionNew->load( $sectionMove );
 
-    //Remove the categories was in destination section
+    //Remove the categories already in destination section
 	$cids = implode( ',', $cid );
 
 	$query = 'SELECT id, title'
@@ -774,6 +1010,13 @@ function moveCategorySave( $cid, $sectionOld )
 
     //
 	if ( !empty($cid) ) {
+		
+		// Add all children to the list
+		foreach ($cid as $id)
+		{
+			addChildren($id, $cid);
+		} 
+		
 	    $cids = implode( ',', $cid );
 	    $total = count( $cid );
 
@@ -793,6 +1036,44 @@ function moveCategorySave( $cid, $sectionOld )
 	    if ( !$db->query() ) {
 	    	JError::raiseError(500, $db->getErrorMsg());
 	    }
+		
+		// Make sure if parent_id is not 0 to reset it back to 0
+		$ordering = 1000000;
+		$firstroot = 0;
+		$category = JTable::getInstance('category');
+		
+		foreach ($cid as $id) {
+			$category->load( $id );
+
+			// is it moved together with his parent?
+			$found = false;
+			if ($category->parent_id != 0) {
+				foreach ($cid as $idx)
+				{
+					if ($idx == $category->parent_id) {
+						$found = true;
+						break;
+					} // if
+				}
+			}
+			if (!$found) {
+				$category->parent_id = 0;
+				$category->ordering = $ordering++;
+				if (!$firstroot) $firstroot = $category->id;
+			} // if
+
+			$category->section = $sectionMove;
+			if ( !$category->store() ) {
+				JError::raiseError(500, $category->getError());
+				return false;
+			} // if
+		} // foreach 
+
+		if ($firstroot) {
+			$category->load( $firstroot );
+			$where = 'section = '.$db->Quote($category->section).' AND parent_id = '.(int) $category->parent_id;
+			$category->reorder( $where );
+		} // if 
 
 		$msg = JText::sprintf( 'Categories moved to', $sectionNew->title );
 		$mainframe->enqueueMessage($msg);
@@ -877,7 +1158,7 @@ function copyCategorySave( $cid, $sectionOld )
 
 	$sectionMove 	= JRequest::getInt( 'sectionmove' );
 
-	//Check to see of a section was selected to copy the items too
+	//Check to see if a section was selected to copy the items too
 	if (!$sectionMove)
 	{
 		$msg = JText::_('Please select a section from the list');
@@ -886,52 +1167,56 @@ function copyCategorySave( $cid, $sectionOld )
 		return;
 	}
 
+	/*
 	$contentid 		= JRequest::getVar( 'item', null, '', 'array' );
 	JArrayHelper::toInteger($contentid);
+	*/
 
 	$category =& JTable::getInstance('category');
+	// Starts new code added
+	$ordering = 1000000;
+	$itemref = array();
 
-	foreach( $cid as $id )
+	foreach ($cid as $id)
 	{
 		$category->load( $id );
 		$category->id 		= NULL;
-		$category->title 	= JText::sprintf( 'Copy of', $category->title );
-		$category->name 	= JText::sprintf( 'Copy of', $category->name );
+		// Commenting the two lines below out because adding the
+		// text in front of the Title is more of an annoyance than anything IMHO.
+		//$category->title 	= JText::sprintf( 'Copy of', $category->title );
+		//$category->name 	= JText::sprintf( 'Copy of', $category->name );
 		$category->section 	= $sectionMove;
-		if (!$category->check()) {
-			JError::raiseError(500, $category->getError());
-		}
-
 		if (!$category->store()) {
 			JError::raiseError(500, $category->getError());
 		}
-		$category->checkin();
-		// stores original catid
-		$newcatids[]["old"] = $id;
-		// pulls new catid
-		$newcatids[]["new"] = $category->id;
+		// After the store command above the $category->id below will have a real value.
+		$itemref[] = array($id, $category->id);
 	}
-
-	$content =& JTable::getInstance('content');
-	foreach( $contentid as $id) {
-		$content->load( $id );
-		$content->id 		= NULL;
-		$content->sectionid = $sectionMove;
-		$content->hits 		= 0;
-		foreach( $newcatids as $newcatid ) {
-			if ( $content->catid == $newcatid["old"] ) {
-				$content->catid = $newcatid["new"];
+	foreach ($itemref as $ref)
+	{
+		$category->load( $ref[1] );
+		if ($category->parent_id!=0) {
+			$found = false;
+			foreach ( $itemref as $ref2 )
+			{
+				if ($category->parent_id == $ref2[0]) {
+					$category->parent_id = $ref2[1];
+					$found = true;
+					break;
+				} // if
 			}
+			if (!$found && $category->section!=$sectionMove) {
+				$category->parent_id = 0;
+				$category->ordering = $ordering++;
+			}
+		} // if
+		$category->section = $sectionMove;
+		if (!$category->store()) {
+			JError::raiseError(500, $category->getError());
 		}
-		if (!$content->check()) {
-			JError::raiseError(500, $content->getError());
-		}
-
-		if (!$content->store()) {
-			JError::raiseError(500, $content->getError());
-		}
-		$content->checkin();
-	}
+		$where = 'section = '.$db->Quote($category->section).' AND parent_id = '.(int) $category->parent_id;
+		$category->reorder( $where );
+	} // foreach
 
 	$sectionNew =& JTable::getInstance('section');
 	$sectionNew->load( $sectionMove );
@@ -939,6 +1224,45 @@ function copyCategorySave( $cid, $sectionOld )
 	$msg = JText::sprintf( 'Categories copied to', count($cid), $sectionNew->title );
 	$mainframe->redirect( 'index.php?option=com_categories&section='. $sectionOld, $msg );
 }
+
+	function addChildren($id, &$list)
+	{
+		// Initialize variables
+		$return = true;
+
+		// Get all rows with parent of $id
+		$db =& JFactory::getDBO();
+		$query = 'SELECT id' .
+				' FROM #__categories' .
+				' WHERE parent_id = '.(int) $id;
+		$db->setQuery( $query );
+		$rows = $db->loadObjectList();
+
+		// Make sure there aren't any errors
+		if ($db->getErrorNum()) {
+			JError::raiseError(500, $db->getErrorMsg());
+			return false;
+		}
+
+		// Recursively iterate through all children... kinda messy
+		// TODO: Cleanup this method
+		foreach ($rows as $row)
+		{
+			$found = false;
+			foreach ($list as $idx)
+			{
+				if ($idx == $row->id) {
+					$found = true;
+					break;
+				}
+			}
+			if (!$found) {
+				$list[] = $row->id;
+			}
+			$return = addChildren($row->id, $list);
+		}
+		return $return;
+	}
 
 /**
 * changes the access level of a record
@@ -987,8 +1311,10 @@ function saveOrder( &$cid, $section )
 	// update ordering values
 	for( $i=0; $i < $total; $i++ ) {
 		$row->load( (int) $cid[$i] );
-		// track sections
-		$groupings[] = $row->section;
+	// Modified the section below and the updateoOrder after to 
+	// correctly save subcategory ordering
+		// track parents
+		$parents[] = $row->parent_id;
 		if ($row->ordering != $order[$i]) {
 			$row->ordering = $order[$i];
 			if (!$row->store()) {
@@ -998,9 +1324,10 @@ function saveOrder( &$cid, $section )
 	}
 
 	// execute updateOrder for each parent group
-	$groupings = array_unique( $groupings );
-	foreach ($groupings as $group){
-		$row->reorder('section = '.$db->Quote($group));
+	$parents = array_unique( $parents );
+	foreach ($parents as $parent){
+		$where = 'section = '.$db->Quote($section).' AND parent_id = '.(int) $parent.' AND published >=0';
+		$row->reorder( $where );
 	}
 
 	$msg 	= JText::_( 'New ordering saved' );

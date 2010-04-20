@@ -109,7 +109,6 @@ class ContentViewArticle extends ContentView
 		// Get the menu item object
 		$menus = &JSite::getMenu();
 		$menu  = $menus->getActive();
-		
 
 		if (is_object( $menu ) && isset($menu->query['view']) && $menu->query['view'] == 'article' && isset($menu->query['id']) && $menu->query['id'] == $article->id) {
 			$menu_params = new JParameter( $menu->params );
@@ -321,18 +320,39 @@ class ContentViewArticle extends ContentView
 		$sectioncategories[-1][] = JHTML::_('select.option', '-1', JText::_( 'Select Category' ), 'id', 'title');
 		$section_list = implode('\', \'', $section_list);
 
-		$query = 'SELECT id, title, section' .
+		$query = 'SELECT id, title, parent_id, section' .
 				' FROM #__categories' .
 				' WHERE section IN ( \''.$section_list.'\' )' .
 				' ORDER BY ordering';
 		$db->setQuery($query);
 		$cat_list = $db->loadObjectList();
 
+		/**
+         * BEGIN: Pulled from admin.categories.php
+         */
+        // establish the hierarchy of the menu
+        $children = array();
+        // first pass - collect children
+        foreach ($cat_list as $cat )
+        {
+            $pt = $cat->parent_id;
+            $list = @$children[$pt] ? $children[$pt] : array();
+            array_push( $list, $cat );
+            $children[$pt] = $list;
+        }
+        // second pass - get an indent list of the items
+        $cat_list = JHTML::_('menu.categorytreerecurse', 0, '', array(), $children, 9999, 0, 0 );
+        /**
+         * END: Pulled from admin.categories.php
+         */
+
 		// Uncategorized category mapped to uncategorized section
 		$uncat = new stdClass();
 		$uncat->id = 0;
+		$uncat->parent_id = 0;
 		$uncat->title = JText::_('Uncategorized');
 		$uncat->section = 0;
+		$uncat->treename = JText::_('Uncategorized');
 		$cat_list[] = $uncat;
 		foreach ($sections as $section)
 		{
@@ -345,17 +365,19 @@ class ContentViewArticle extends ContentView
 				}
 			}
 			foreach ($rows2 as $row2) {
-				$sectioncategories[$section->id][] = JHTML::_('select.option', $row2->id, $row2->title, 'id', 'title');
+				$sectioncategories[$section->id][] = JHTML::_('select.option', $row2->id, $row2->treename, 'id', 'title');
 			}
 		}
 
-		$categories = array();
-		foreach ($cat_list as $cat) {
-			if($cat->section == $article->sectionid)
-				$categories[] = $cat;
-		}
+		 // The select option below is for when "Select Section" is selected.
+        $sectioncategories['-1'][] = JHTML::_('select.option', '-1', JText::_( 'Select Category' ), 'id', 'title');
 
-		$categories[] = JHTML::_('select.option', '-1', JText::_( 'Select Category' ), 'id', 'title');
+		$categories = array();
+        foreach ($sectioncategories[$article->sectionid] as $cat) {
+            $categories[] = $cat;
+        }
+
+		//$categories[] = JHTML::_('select.option', '-1', JText::_( 'Select Category' ), 'id', 'title');
 		$lists['sectioncategories'] = $sectioncategories;
 		$lists['catid'] = JHTML::_('select.genericlist',  $categories, 'catid', 'class="inputbox" size="1"', 'id', 'title', intval($article->catid));
 
@@ -391,4 +413,3 @@ class ContentViewArticle extends ContentView
 		parent::display($tpl);
 	}
 }
-

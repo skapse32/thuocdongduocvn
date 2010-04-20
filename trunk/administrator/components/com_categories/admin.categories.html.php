@@ -49,6 +49,10 @@ class categories_html
 				</td>
 				<td nowrap="nowrap">
 					<?php
+					
+					echo JText::_( 'Max Levels' );
+					echo $lists['levellist'];
+					
 					if ( $section == 'com_content') {
 						echo $lists['sectionid'];
 					}
@@ -122,7 +126,7 @@ class categories_html
 		for ($i=0, $n=count( $rows ); $i < $n; $i++) {
 			$row 	= &$rows[$i];
 
-			JFilterOutput::objectHtmlSafe($row);
+			JFilterOutput::objectHtmlSafe($row, ENT_QUOTES, 'treename');
 
 			$row->sect_link = JRoute::_( 'index.php?option=com_sections&task=edit&cid[]='. $row->section );
 
@@ -140,14 +144,14 @@ class categories_html
 					<?php echo $checked; ?>
 				</td>
 				<td>
-					<span class="editlinktip hasTip" title="<?php echo JText::_( 'Title' );?>::<?php echo $row->title; ?>">
+					<span class="editlinktip hasTip" title="<?php echo JText::_( 'EDIT CATEGORY' );?>::<?php echo $row->treename; ?>">
 					<?php
 					if (  JTable::isCheckedOut($user->get ('id'), $row->checked_out )  ) {
-						echo $row->title;
+						echo $row->treename;
 					} else {
 						?>
 						<a href="<?php echo JRoute::_( $link ); ?>">
-							<?php echo $row->title; ?></a>
+							<?php echo $row->treename; ?></a>
 						<?php
 					}
 					?></span>
@@ -156,8 +160,91 @@ class categories_html
 					<?php echo $published;?>
 				</td>
 				<td class="order">
-					<span><?php echo $page->orderUpIcon( $i, ($row->section == @$rows[$i-1]->section), 'orderup', 'Move Up', $ordering ); ?></span>
-					<span><?php echo $page->orderDownIcon( $i, $n, ($row->section == @$rows[$i+1]->section), 'orderdown', 'Move Down', $ordering ); ?></span>
+                	<?php
+						$previous_section_same 	= ($row->section == @$rows[$i-1]->section);
+						$next_section_same		= ($row->section == @$rows[$i+1]->section);
+						$top_level_category 	= ($row->parent_id == 0);
+						$previous_parent_same	= ($row->parent_id == @$rows[$i-1]->parent_id);
+						$next_parent_same		= ($row->parent_id == @$rows[$i+1]->parent_id);
+						$only_child				= ($row->siblings == 1);
+						$last_child				= ($row->siblings == $row->ordering);
+						// The variables above and the if statement below were added so
+						// that the component would correctly show the move up/down icons.
+					?>
+                    <?php if ($previous_section_same and (!$next_section_same and !$previous_parent_same and !$next_parent_same and !$only_child and !$top_level_category)): ?>
+                    
+                    	<span><?php echo $page->orderUpIcon( $i, TRUE, 'orderup', 'Move Up', $ordering ); ?></span>
+                        <span>&nbsp;</span>
+                    
+                    <?php elseif ($previous_section_same and $next_section_same and (!$previous_parent_same and !$next_parent_same and !$only_child) and $top_level_category and $last_child): ?>
+                    
+                    	<span><?php echo $page->orderUpIcon( $i, TRUE, 'orderup', 'Move Up', $ordering ); ?></span>
+                        <span>&nbsp;</span>
+                   
+                   <?php elseif ($previous_section_same and $next_section_same and $previous_parent_same and (!$next_parent_same and !$only_child) and $top_level_category and $last_child): ?>
+                    
+                    	<span><?php echo $page->orderUpIcon( $i, TRUE, 'orderup', 'Move Up', $ordering ); ?></span>
+                        <span>&nbsp;</span>
+                    
+                    <?php elseif (($previous_section_same) and !($next_section_same)): ?>
+                    
+                    	<span><?php echo $page->orderUpIcon( $i, ($top_level_category || $previous_parent_same), 'orderup', 'Move Up', $ordering ); ?></span>
+                        <span>&nbsp;</span>
+                        
+                    <?php elseif (!($previous_section_same) and ($next_section_same)): ?>
+                    
+                    	<span>&nbsp;</span>
+                    	<span><?php echo $page->orderDownIcon( $i, $n, ($top_level_category || $next_parent_same), 'orderdown', 'Move Down', $ordering ); ?></span>
+                    
+                    <?php elseif ($row->siblings == 1): ?>
+                    	
+                        <span>&nbsp;</span>
+                        <span>&nbsp;</span>
+                    
+                    <?php elseif (!($top_level_category || $previous_parent_same)): ?>
+  
+                      	<?php if ($row->siblings && $row->ordering == 1): ?>
+                        
+                        	<span>&nbsp;</span>
+	                    	<span><?php echo $page->orderDownIcon( $i, $n, TRUE, 'orderdown', 'Move Down', $ordering ); ?></span>
+    					<?php elseif ($row->siblings && ($row->siblings - $row->ordering)): ?>
+                            
+                            <span><?php echo $page->orderUpIcon( $i, TRUE, 'orderup', 'Move Up', $ordering ); ?></span>
+                            <span><?php echo $page->orderDownIcon( $i, $n, TRUE, 'orderdown', 'Move Down', $ordering ); ?></span>
+                            
+						<?php elseif (!($row->siblings - $row->ordering)): ?>
+                        
+                        	<span><?php echo $page->orderUpIcon( $i, TRUE, 'orderup', 'Move Up', $ordering ); ?></span>
+                        	<span>&nbsp;</span>
+                        
+                        <?php endif; ?>
+                    
+                  	 <?php elseif (!($top_level_category || $next_parent_same)): ?>
+  
+                      	<?php if ($row->siblings && $row->ordering == 1): ?>
+                        
+                        	<span>&nbsp;</span>
+	                    	<span><?php echo $page->orderDownIcon( $i, $n, TRUE, 'orderdown', 'Move Down', $ordering ); ?></span>
+    					<?php elseif ($row->siblings && ($row->siblings - $row->ordering)): ?>
+                            
+                            <span><?php echo $page->orderUpIcon( $i, TRUE, 'orderup', 'Move Up', $ordering ); ?></span>
+                            <span><?php echo $page->orderDownIcon( $i, $n, TRUE, 'orderdown', 'Move Down', $ordering ); ?></span>
+                            
+						<?php elseif (!($row->siblings - $row->ordering)): ?>
+                        
+                        	<span><?php echo $page->orderUpIcon( $i, TRUE, 'orderup', 'Move Up', $ordering ); ?></span>
+                        	<span>&nbsp;</span>
+                        
+                        <?php endif; ?> 
+                                       
+                        	                
+                    <?php else: ?>
+
+                    	<span><?php echo $page->orderUpIcon( $i, ($top_level_category || $previous_parent_same), 'orderup', 'Move Up', $ordering ); ?></span>
+						<span><?php echo $page->orderDownIcon( $i, $n, ($top_level_category || $next_parent_same), 'orderdown', 'Move Down', $ordering ); ?></span>
+                    
+                    <?php endif; ?>
+					
 					<?php $disabled = $ordering ?  '' : 'disabled="disabled"'; ?>
 					<input type="text" name="order[]" size="5" value="<?php echo $row->ordering; ?>" <?php echo $disabled ?> class="text_area" style="text-align: center" />
 				</td>
@@ -228,7 +315,7 @@ class categories_html
 	* @param string
 	* @param array
 	*/
-	function edit( &$row, &$lists, $redirect )
+	function edit( &$row, &$lists, $redirect, $sectioncategories )
 	{
 		JRequest::setVar( 'hidemainmenu', 1 );
 
@@ -251,6 +338,16 @@ class categories_html
 		$cparams = JComponentHelper::getParams ('com_media');
 		?>
 		<script language="javascript" type="text/javascript">
+		<!--
+		var sectioncategories = new Array;
+		<?php
+		$i = 0;
+		foreach ($sectioncategories as $k=>$items) {
+			foreach ($items as $v) {
+				echo "sectioncategories[".$i++."] = new Array( '$k','".addslashes( $v->id )."','".html_entity_decode(addslashes( $v->title ), ENT_NOQUOTES, 'UTF-8')."' );\n\t\t";
+			}
+		}
+		?>
 		function submitbutton(pressbutton, section) {
 			var form = document.adminForm;
 			if (pressbutton == 'cancel') {
@@ -273,12 +370,15 @@ class categories_html
 
 			if ( form.title.value == "" ) {
 				alert("<?php echo JText::_( 'Category must have a title', true ); ?>");
+			} else if (form.section.value == "-1"){
+				alert("<?php echo JText::_( 'You must select a Section', true ); ?>");
 			} else {
 				<?php
 				echo $editor->save( 'description' ) ; ?>
 				submitform(pressbutton);
 			}
 		}
+		//-->
 		</script>
 
 		<form action="index.php" method="post" name="adminForm">
@@ -324,6 +424,17 @@ class categories_html
 						</td>
 						<td colspan="2">
 							<?php echo $lists['section']; ?>
+						</td>
+					</tr>
+                    <tr>
+						<td class="key">
+							<label for="parent">
+								<?php echo JText::_( 'Parent Category' ); ?>:
+							</label>
+						</td>
+						<td colspan="2">
+                        	<!--<input class="text_area" type="text" name="parent_id" id="parent_id" value="<?php echo $row->parent_id; ?>" size="50" maxlength="50" title="<?php echo JText::_( 'Parent Item' ); ?>" /> -->
+                            <?php echo $lists['parent_id']; ?>
 						</td>
 					</tr>
 					<tr>
@@ -404,6 +515,7 @@ class categories_html
 		<input type="hidden" name="oldtitle" value="<?php echo $row->title ; ?>" />
 		<input type="hidden" name="id" value="<?php echo $row->id; ?>" />
 		<input type="hidden" name="sectionid" value="<?php echo $row->section; ?>" />
+        <input type="hidden" name="oldparent" value="<?php echo $row->parent_id; ?>" />
 		<input type="hidden" name="task" value="" />
 		<input type="hidden" name="redirect" value="<?php echo $redirect; ?>" />
 		<?php echo JHTML::_( 'form.token' ); ?>

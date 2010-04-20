@@ -222,7 +222,7 @@ function editContact($edit )
 	// build list of users
 	$lists['user_id'] 			= JHTML::_('list.users',  'user_id', $row->user_id, 1, NULL, 'name', 0 );
 	// build list of categories
-	$lists['catid'] 			= JHTML::_('list.category',  'catid', 'com_contact_details', intval( $row->catid ) );
+	$lists['catid'] 			= JHTML::_('list.subcategory',  'catid', 'com_contact_details', intval( $row->catid ) );
 	// build the html select list for images
 	$lists['image'] 			= JHTML::_('list.images',  'image', $row->image );
 	// build the html select list for the group access

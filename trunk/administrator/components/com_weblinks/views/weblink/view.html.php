@@ -92,7 +92,7 @@ class WeblinksViewWeblink extends JView
 		$lists['ordering'] 			= JHTML::_('list.specificordering',  $weblink, $weblink->id, $query );
 
 		// build list of categories
-		$lists['catid'] 			= JHTML::_('list.category',  'catid', $option, intval( $weblink->catid ) );
+		$lists['catid'] 			= JHTML::_('list.subcategory',  'catid', $option, intval( $weblink->catid ) );
 		// build the html select list
 		$lists['published'] 		= JHTML::_('select.booleanlist',  'published', 'class="inputbox"', $weblink->published );
 

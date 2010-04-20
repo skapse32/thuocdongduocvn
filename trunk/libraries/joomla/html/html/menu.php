@@ -128,7 +128,7 @@ class JHTMLMenu
 			foreach ($children[$id] as $v)
 			{
 				$id = $v->id;
-
+				
 				if ( $type ) {
 					$pre 	= '<sup>|_</sup>&nbsp;';
 					$spacer = '.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
@@ -146,7 +146,63 @@ class JHTMLMenu
 				$list[$id] = $v;
 				$list[$id]->treename = "$indent$txt";
 				$list[$id]->children = count( @$children[$id] );
+				$siblings = count( @$children[$pt] );
+				$list[$id]->siblings = $siblings;
 				$list = JHTMLMenu::TreeRecurse( $id, $indent . $spacer, $list, $children, $maxlevel, $level+1, $type );
+			}
+		}
+		return $list;
+	}
+	
+	function categorytreerecurse( $id, $indent, $list, &$children, $maxlevel=9999, $level=0, $type=1 )
+	{
+		$db	=& JFactory::getDBO();
+		if (@$children[$id] && $level <= $maxlevel)
+		{
+			foreach ($children[$id] as $v)
+			{
+				$id 		= $v->id;
+				
+				if ( $type ) {
+					$pre 	= '<sup>|_</sup>&nbsp;';
+					$spacer = '.&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;';
+				} else {
+					$pre 	= '- ';
+					$spacer = '&nbsp;&nbsp;';
+				}
+
+				if ( $v->parent_id == 0 ) {
+					$txt 	= $v->title;
+				} else {
+					$txt 	= $pre . $v->title;
+				}
+				$pt = $v->parent_id;
+                if (isset($v->section))
+                {
+                    $s    = $v->section;
+                }
+				$list[$id] = $v;
+				$list[$id]->treename = "$indent$txt";
+				$list[$id]->children = count( @$children[$id] );
+				// Added check for $pt = 0 so that siblings
+				// would be correct when viewing all sections
+				if ($pt == 0){
+					$count = 0;
+                    if (isset($s))
+                    {
+                        foreach ($children[$pt] as $top) 
+                        {
+                            if ($s == $top->section){
+                                $count++;
+                            }
+                        }
+                    }
+					$siblings = $count;
+				} else {
+					$siblings = count( @$children[$pt] );
+				}
+				$list[$id]->siblings = $siblings;
+				$list = JHTMLMenu::CategoryTreeRecurse( $id, $indent . $spacer, $list, $children, $maxlevel, $level+1, $type );
 			}
 		}
 		return $list;

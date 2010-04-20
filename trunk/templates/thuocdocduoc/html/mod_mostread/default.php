@@ -49,4 +49,4 @@ if($params->get('secid')==4)
 <?php if($scrollable):?>
 </marquee>
 <?php endif;?>
-<a class="view-all-1" href="<?php echo ContentHelperRoute::getSectionRoute(trim($params->get('secid'))); ?>">Xem tất cả</a>
+<a class="view-all-1" href="<?php echo JRoute::_("index.php?option=com_content&view=section&id=".trim($params->get('secid'))."&Itemid=".JRequest::getVar('Itemid')); ?>">Xem tất cả</a>

@@ -207,30 +207,145 @@ class JHTMLList
 		return $category;
 	}
 
-	/**
-	* Select list of active sections
-	*/
+	  /**
+    * Select list of active sections
+    */
 	function section( $name, $active = NULL, $javascript = NULL, $order = 'ordering', $uncategorized = true, $scope = 'content' )
-	{
-		$db =& JFactory::getDBO();
+    {
+        $db =& JFactory::getDBO();
 
-		$categories[] = JHTML::_('select.option',  '-1', '- '. JText::_( 'Select Section' ) .' -' );
+        $categories[] = JHTML::_('select.option',  '-1', '- '. JText::_( 'Select Section' ) .' -' );
 
-		if ($uncategorized) {
-			$categories[] = JHTML::_('select.option',  '0', JText::_( 'Uncategorized' ) );
-		}
+        if ($uncategorized) {
+            $categories[] = JHTML::_('select.option',  '0', JText::_( 'Uncategorized' ) );
+        }
 
-		$query = 'SELECT id AS value, title AS text'
-		. ' FROM #__sections'
-		. ' WHERE published = 1'
+        $query = 'SELECT id AS value, title AS text'
+        . ' FROM #__sections'
+        . ' WHERE published = 1'
 		. ' AND scope = ' . $db->Quote($scope)
-		. ' ORDER BY ' . $order
-		;
-		$db->setQuery( $query );
-		$sections = array_merge( $categories, $db->loadObjectList() );
+        . ' ORDER BY ' . $order
+        ;
+        $db->setQuery( $query );
+        $sections = array_merge( $categories, $db->loadObjectList() );
 
-		$category = JHTML::_('select.genericlist',   $sections, $name, 'class="inputbox" size="1" '. $javascript, 'value', 'text', $active );
+        $category = JHTML::_('select.genericlist',   $sections, $name, 'class="inputbox" size="1" '. $javascript, 'value', 'text', $active );
 
-		return $category;
-	}
+        return $category;
+    }
+	
+	
+	/**
+    * Select list of active categories for components with subcategories indented
+    */
+    function subcategory( $name, $section, $active = NULL, $javascript = NULL, $order = 'ordering', $size = 1, $sel_cat = 1 )
+    {
+        $db =& JFactory::getDBO();
+
+        if ($section == -1)
+        {
+            $and = '';
+            $query = 'SELECT s.id, s.title' .
+                ' FROM #__sections AS s' .
+                ' WHERE s.published = 1' .
+                ' AND s.scope = '.$db->Quote('content').
+                ' ORDER BY s.title';
+            
+            $db->setQuery($query);
+            $section_options = $db->loadObjectList();
+            
+            $section_list = array();
+            foreach($section_options as $section_option)
+            {
+                $section_list[] = $section_option->id;    
+            }
+            $section_list = implode('\', \'', $section_list);
+        } 
+        else
+        {
+            $and = ' AND section = '.$db->Quote($section);
+        }
+        $query = 'SELECT id, title, parent_id, section'
+        . ' FROM #__categories'
+        . ' WHERE published = 1 '
+        . $and
+        . ' ORDER BY '. $order
+        ;
+        
+        $db->setQuery($query);
+        $cat_list = $db->loadObjectList();
+        
+        /**
+         * BEGIN: Pulled from admin.categories.php
+         */
+        // establish the hierarchy of the menu
+        $children = array();
+        // first pass - collect children
+        foreach ($cat_list as $cat )
+        {
+            $pt = $cat->parent_id;
+            $list = @$children[$pt] ? $children[$pt] : array();
+            array_push( $list, $cat );
+            $children[$pt] = $list;
+        }
+        // second pass - get an indent list of the items
+        $cat_list = JHTML::_('menu.categorytreerecurse', 0, '', array(), $children, 9999, 0, 0 );
+        /**
+         * END: Pulled from admin.categories.php
+         */
+         
+         if  ($section == -1)
+         {
+              $category_options = array();
+              foreach($cat_list as $cat_item)
+              {   
+                  if (!isset($category_options[$cat_item->section]) || !is_array($category_options[$cat_item->section]))
+                  {
+                     $category_options[$cat_item->section] = array();
+                  }
+                  $category_options[$cat_item->section][$cat_item->id] = new stdClass();
+                  $category_options[$cat_item->section][$cat_item->id]->id = $cat_item->id;
+                  $category_options[$cat_item->section][$cat_item->id]->title = $cat_item->treename;
+              }
+             
+             $options = array();
+             if ( $sel_cat ) {
+             $options[] = JHTML::_('select.option', '0', '- '.JText::_('Select Category').' -', 'id', 'title'); 
+             }
+             
+             foreach ($section_options as $section_option)
+             {
+                 $options[] = JHTML::_('select.optgroup', $section_option->title, 'id', 'title');
+                 foreach($category_options[$section_option->id] as $category_option)
+                 {
+                     $options[] = JHTML::_('select.option', $category_option->id, $category_option->title, 'id', 'title');
+                 }
+             }
+
+             return JHTML::_('select.genericlist',  $options, $name, 'class="inputbox" size="'. $size .'" '. $javascript, 'id', 'title', $active );
+         }
+         else 
+         {
+             $category_options = array();
+             foreach($cat_list as $cat_item)
+             {
+                 $category_options[$cat_item->id] = new stdClass();
+                 $category_options[$cat_item->id]->id = $cat_item->id;
+                 $category_options[$cat_item->id]->title = $cat_item->treename;
+             }
+            
+            $categories = array();
+            if ( $sel_cat ) {
+                $categories[] = JHTML::_('select.option',  '0', '- '. JText::_( 'Select a Category' ) .' -', 'id', 'title' );
+            }
+            
+            foreach($category_options as $category_option)
+            {
+                $categories[] = JHTML::_('select.option', $category_option->id, $category_option->title, 'id', 'title');
+            }
+
+            $category = JHTML::_('select.genericlist', $categories, $name, 'class="inputbox" size="'. $size .'" '. $javascript, 'id', 'title', $active );
+            return $category;
+         } 
+    }
 }

@@ -166,19 +166,13 @@ function viewFrontPage( $option )
 		return false;
 	}
 
-	// get list of categories for dropdown filter
-	$query = 'SELECT cc.id AS value, cc.title AS text, section'
-	. ' FROM #__categories AS cc'
-	. ' INNER JOIN #__sections AS s ON s.id = cc.section '
-	. ' ORDER BY s.ordering, cc.ordering'
-	;
-	$db->setQuery( $query );
-	$categories[] 	= JHTML::_('select.option',  '-1', '- '. JText::_( 'Select Category' ) .' -' );
-	$categories 	= array_merge( $categories, $db->loadObjectList() );
-	$lists['catid'] = JHTML::_('select.genericlist',   $categories, 'catid', 'class="inputbox" size="1" onchange="document.adminForm.submit( );"', 'value', 'text', $catid );
+    // Onchange JavaScript
+    $javascript = 'onchange="document.adminForm.submit();"';
+    
+    // get list of categories for dropdown filter
+    $lists['catid'] = JHTML::_('list.subcategory', 'catid', $filter_sectionid, $catid, 'class="inputbox" size="1" '. $javascript);
 
 	// get list of sections for dropdown filter
-	$javascript			= 'onchange="document.adminForm.submit();"';
 	$lists['sectionid']	= JHTML::_('list.section',  'filter_sectionid', $filter_sectionid, $javascript );
 
 	// get list of Authors for dropdown filter

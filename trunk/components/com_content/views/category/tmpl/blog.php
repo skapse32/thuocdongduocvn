@@ -12,16 +12,44 @@ $cparams =& JComponentHelper::getParams('com_media');
 <tr>
 	<td valign="top">
 	<?php if ($this->params->get('show_description_image') && $this->category->image) : ?>
-		<img src="<?php echo $this->baseurl . '/' . $cparams->get('image_path') . '/'. $this->category->image;?>" align="<?php echo $this->category->image_position;?>" hspace="6" alt="" />
+		<img style="margin-bottom: 12px;" src="<?php echo $this->baseurl . '/' . $cparams->get('image_path') . '/'. $this->category->image;?>" align="<?php echo $this->category->image_position;?>" hspace="6" alt="<?php echo $this->category->image;?>" />
 	<?php endif; ?>
 	<?php if ($this->params->get('show_description') && $this->category->description) : ?>
 		<?php echo $this->category->description; ?>
 	<?php endif; ?>
-		<br />
-		<br />
+		<?php if (! $this->params->get('show_subcategories', 0)) { ?> <br /> <?php } ?>
 	</td>
 </tr>
 <?php endif; ?>
+<?php if ($this->params->get('show_subcategories', 0)) : ?>
+<tr>
+	<td>
+	<ul>
+	<?php foreach ($this->categories as $category) : ?>
+		<?php if (!$this->params->get('show_empty_categories') && !$category->numitems) continue; ?>
+		<li>
+			<a href="<?php echo $category->link; ?>" class="category">
+				<?php echo $this->escape($category->title);?></a>
+			<?php if ($this->params->get('show_cat_num_articles')) : ?>
+			&nbsp;
+			<span class="small">
+				( <?php if ($category->numitems==1) {
+				echo $category->numitems ." ". JText::_( 'item' );}
+				else {
+				echo $category->numitems ." ". JText::_( 'items' );} ?> )
+			</span>
+			<?php endif; ?>
+			<?php if ($this->params->def('show_category_description', 1) && $category->description) : ?>
+			<br />
+			<?php echo $category->description; ?>
+			<?php endif; ?>
+		</li>
+	<?php endforeach; ?>
+	</ul>
+	</td>
+</tr>
+<?php endif; ?>
+<?php if ($this->params->get('show_articles', 1)) : ?>
 <?php if ($this->params->get('num_leading_articles')) : ?>
 <tr>
 	<td valign="top">
@@ -116,5 +144,6 @@ if (($numIntroArticles != $startIntroArticles) && ($i < $this->total)) : ?>
 		<?php echo $this->pagination->getPagesCounter(); ?>
 	</td>
 </tr>
+<?php endif; ?>
 <?php endif; ?>
 </table>
