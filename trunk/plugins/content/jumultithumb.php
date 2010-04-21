@@ -403,7 +403,12 @@ function JUMultithumbReplacer ( &$matches )
 			$b_newheight      = $pluginParams->get('b_height');
 			$b_newcropzoom    = $pluginParams->get('b_cropzoom');
 		}
-		
+		if($view=='section'&&JRequest::getVar('layout')=='thuvien')
+		{
+			$b_newwidth       = 130;
+			$b_newheight      = 150;
+			$b_newcropzoom    = $pluginParams->get('b_cropzoomnew10');
+		}
 		$imgsrc    = '../../../' . $imgsource . '&amp;w='. $b_newwidth .'&amp;h='. $b_newheight .'&amp;q='.$pluginParams->get('quality') . ( $b_newcropzoom == '1' ? '&amp;zc=1' : '' );
 		
 		$imgsrc = base64_encode($imgsrc);

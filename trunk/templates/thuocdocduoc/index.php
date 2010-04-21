@@ -49,6 +49,7 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
             <img src="<?php echo $this->baseurl ?>/templates/<?php echo $this->template ?>/images/news&event_15.png" />
             <div class="menu">
                 <jdoc:include type="modules" name="user3" />
+                <jdoc:include type="message" />
             </div>
         </div>
         <!--end-menu-bar-->
