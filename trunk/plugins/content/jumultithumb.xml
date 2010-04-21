@@ -1,0 +1,575 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<install version="1.5" type="plugin" group="content" method="upgrade">
+	<name>JUMultithumb</name>
+	<author>Denys Nosov</author>
+	<creationDate>07.10.2009</creationDate>
+	<copyright>(C) 2009 Denys Nosov. All rights reserved.</copyright>
+	<license>http://creativecommons.org/licenses/by-nc-nd/3.0/ Creative Commons Attribution-Noncommercial-No Derivative Works 3.0 License</license>
+	<authorEmail>denys@joomla-ua.org</authorEmail>
+	<authorUrl>www.joomla-ua.org</authorUrl>
+	<version>2.5</version>
+	<description>Multipurpose plugin for creating thumbnails of images, using LightBox libraries. Developer: Denys Nosov (http://www.joomla-ua.org). Demo: http://denys.org.ua</description>
+	<files>
+		<filename plugin="jumultithumb">jumultithumb.php</filename>
+     	<filename>jumultithumb/.htaccess</filename>
+     	<filename>jumultithumb/img.php</filename>
+     	<filename>jumultithumb/index.html</filename>
+     	<filename>jumultithumb/elements/multisection.php</filename>
+     	<filename>jumultithumb/elements/multicategory.php</filename>
+     	<filename>jumultithumb/elements/index.html</filename>
+     	<filename>jumultithumb/elements/jutabssliders.php</filename>
+     	<filename>jumultithumb/elements/about.php</filename>
+     	<filename>jumultithumb/assets/multilist.js</filename>
+     	<filename>jumultithumb/assets/index.html</filename>
+     	<filename>jumultithumb/phpthumb.bmp.php</filename>
+     	<filename>jumultithumb/phpthumb.class.php</filename>
+     	<filename>jumultithumb/phpThumb.config.php</filename>
+     	<filename>jumultithumb/phpthumb.filters.php</filename>
+     	<filename>jumultithumb/phpthumb.functions.php</filename>
+     	<filename>jumultithumb/phpthumb.gif.php</filename>
+     	<filename>jumultithumb/phpthumb.ico.php</filename>
+     	<filename>jumultithumb/phpthumb.unsharp.php</filename>
+     	<filename>jumultithumb/watermark.png</filename>
+     	<filename>jumultithumb/error/error.png</filename>
+     	<filename>jumultithumb/error/index.html</filename>
+        <filename>jumultithumb/media/index.html</filename>
+        <filename>jumultithumb/media/shadowbox/index.html</filename>
+        <filename>jumultithumb/media/shadowbox/src/shadowbox.js</filename>
+        <filename>jumultithumb/media/shadowbox/src/index.html</filename>
+        <filename>jumultithumb/media/shadowbox/src/adapter/shadowbox-mootools.js</filename>
+        <filename>jumultithumb/media/shadowbox/src/adapter/index.html</filename>
+        <filename>jumultithumb/media/shadowbox/src/lang/index.html</filename>
+        <filename>jumultithumb/media/shadowbox/src/lang/shadowbox-ar-DZ.js</filename>
+        <filename>jumultithumb/media/shadowbox/src/lang/shadowbox-ca-ES.js</filename>
+        <filename>jumultithumb/media/shadowbox/src/lang/shadowbox-cs-CZ.js</filename>
+        <filename>jumultithumb/media/shadowbox/src/lang/shadowbox-de-CH.js</filename>
+        <filename>jumultithumb/media/shadowbox/src/lang/shadowbox-de-DE.js</filename>
+        <filename>jumultithumb/media/shadowbox/src/lang/shadowbox-en-GB.js</filename>
+        <filename>jumultithumb/media/shadowbox/src/lang/shadowbox-es-ES.js</filename>
+        <filename>jumultithumb/media/shadowbox/src/lang/shadowbox-fi-FI.js</filename>
+        <filename>jumultithumb/media/shadowbox/src/lang/shadowbox-is-IS.js</filename>
+        <filename>jumultithumb/media/shadowbox/src/lang/shadowbox-it-IT.js</filename>
+        <filename>jumultithumb/media/shadowbox/src/lang/shadowbox-nl-NL.js</filename>
+        <filename>jumultithumb/media/shadowbox/src/lang/shadowbox-pl-PL.js</filename>
+        <filename>jumultithumb/media/shadowbox/src/lang/shadowbox-pt-BR.js</filename>
+        <filename>jumultithumb/media/shadowbox/src/lang/shadowbox-pt-PT.js</filename>
+        <filename>jumultithumb/media/shadowbox/src/lang/shadowbox-ro-RO.js</filename>
+        <filename>jumultithumb/media/shadowbox/src/lang/shadowbox-ru-RU.js</filename>
+        <filename>jumultithumb/media/shadowbox/src/lang/shadowbox-sk-SK.js</filename>
+        <filename>jumultithumb/media/shadowbox/src/lang/shadowbox-sv-SE.js</filename>
+        <filename>jumultithumb/media/shadowbox/src/lang/shadowbox-tr-TR.js</filename>
+        <filename>jumultithumb/media/shadowbox/src/lang/shadowbox-uk-UA.js</filename>
+        <filename>jumultithumb/media/shadowbox/src/lang/shadowbox-zh-CN.js</filename>
+        <filename>jumultithumb/media/shadowbox/src/lang/shadowbox-zh-TW.js</filename>
+        <filename>jumultithumb/media/shadowbox/src/player/index.html</filename>
+        <filename>jumultithumb/media/shadowbox/src/player/shadowbox-img.js</filename>
+        <filename>jumultithumb/media/shadowbox/src/skin/index.html</filename>
+        <filename>jumultithumb/media/shadowbox/src/skin/classic/index.html</filename>
+        <filename>jumultithumb/media/shadowbox/src/skin/classic/loading.gif</filename>
+        <filename>jumultithumb/media/shadowbox/src/skin/classic/skin.css</filename>
+        <filename>jumultithumb/media/shadowbox/src/skin/classic/skin.js</filename>
+        <filename>jumultithumb/media/shadowbox/src/skin/classic/icons/close.png</filename>
+        <filename>jumultithumb/media/shadowbox/src/skin/classic/icons/next.png</filename>
+        <filename>jumultithumb/media/shadowbox/src/skin/classic/icons/pause.png</filename>
+        <filename>jumultithumb/media/shadowbox/src/skin/classic/icons/play.png</filename>
+        <filename>jumultithumb/media/shadowbox/src/skin/classic/icons/previous.png</filename>
+        <filename>jumultithumb/media/shadowbox/src/skin/denys/index.html</filename>
+        <filename>jumultithumb/media/shadowbox/src/skin/denys/loading.gif</filename>
+        <filename>jumultithumb/media/shadowbox/src/skin/denys/skin.css</filename>
+        <filename>jumultithumb/media/shadowbox/src/skin/denys/skin.js</filename>
+        <filename>jumultithumb/media/shadowbox/src/skin/denys/icons/close.png</filename>
+        <filename>jumultithumb/media/shadowbox/src/skin/denys/icons/next.png</filename>
+        <filename>jumultithumb/media/shadowbox/src/skin/denys/icons/pause.png</filename>
+        <filename>jumultithumb/media/shadowbox/src/skin/denys/icons/play.png</filename>
+        <filename>jumultithumb/media/shadowbox/src/skin/denys/icons/previous.png</filename>
+        <filename>jumultithumb/media/slimbox/index.html</filename>
+        <filename>jumultithumb/media/slimbox/js/slimbox_en-GB.js</filename>
+        <filename>jumultithumb/media/slimbox/js/slimbox_ru-RU.js</filename>
+        <filename>jumultithumb/media/slimbox/js/slimbox_uk-UA.js</filename>
+        <filename>jumultithumb/media/slimbox/js/slimbox_fr-FR.js</filename>
+        <filename>jumultithumb/media/slimbox/js/slimbox_es-ES.js</filename>
+        <filename>jumultithumb/media/slimbox/js/slimbox_it-IT.js</filename>
+        <filename>jumultithumb/media/slimbox/css/slimbox.css</filename>
+        <filename>jumultithumb/media/slimbox/css/close_small.png</filename>
+        <filename>jumultithumb/media/slimbox/css/loading.gif</filename>
+        <filename>jumultithumb/media/slimbox/css/next.png</filename>
+        <filename>jumultithumb/media/slimbox/css/prev.png</filename>
+        <filename>jumultithumb/media/jqlightbox/index.html</filename>
+        <filename>jumultithumb/media/jqlightbox/css/lightbox.css</filename>
+        <filename>jumultithumb/media/jqlightbox/images/lightbox-blank.gif</filename>
+        <filename>jumultithumb/media/jqlightbox/images/lightbox-btn-close.gif</filename>
+        <filename>jumultithumb/media/jqlightbox/images/lightbox-btn-next.gif</filename>
+        <filename>jumultithumb/media/jqlightbox/images/lightbox-btn-prev.gif</filename>
+        <filename>jumultithumb/media/jqlightbox/images/lightbox-ico-loading.gif</filename>
+        <filename>jumultithumb/media/jqlightbox/js/lightbox.js</filename>
+        <filename>jumultithumb/media/jqlightbox/js/jquery.js</filename>
+    </files>
+
+    <params addpath="/plugins/content/jumultithumb/elements/">
+<param name="menus_hide" type="hidden" />
+       		<param name="resall" type="radio" default="1" label="Thumbnails All Images" description="">
+            	<option value="0">no</option>
+            	<option value="1">yes</option>
+        	</param>
+
+            <param name="" type="spacer" default="NOTICE: 1) If YES: Thumbnails all images in content. If you need some image to keep the original (as is, without creating a thumbnails), use it for class 'nothumbnail' or 'noimage'; 2) If NO: thumbnail only image with class 'juimage'." label="" description="" />
+
+       		<param name="secimg" type="radio" default="1" label="Security image (work only with Apache module 'mod_rewright')" description="">
+            	<option value="0">no</option>
+            	<option value="1">yes</option>
+        	</param>
+    		<param name="quality" type="text" default="90" size="2" label="Quality" description="Set quality of the thumbnail images." />
+
+
+        <param name="" type="jutabssliders" description="FrontPage" />
+
+            <param name="f_width" type="text" default="120" size="2" label="Width" description="Max Width of the thumbnail images." />
+    		<param name="f_height" type="text" default="120" size="2" label="Height" description="Max Height of the thumbnail images." />
+       		<param name="f_cropzoom" type="radio" default="1" label="Crop image" description="">
+            	<option value="0">no</option>
+            	<option value="1">yes</option>
+        	</param>
+
+
+        <param name="" type="jutabssliders" description="Blog" />
+
+            <param name="b_width" type="text" default="100" size="2" label="Width" description="Max Width of the thumbnail images." />
+    		<param name="b_height" type="text" default="100" size="2" label="Height" description="Max Height of the thumbnail images." />
+       		<param name="b_cropzoom" type="radio" default="1" label="Crop image" description="">
+            	<option value="0">no</option>
+            	<option value="1">yes</option>
+        	</param>
+
+
+        <param name="" type="jutabssliders" description="Article" />
+
+       		<param name="noresize" type="radio" default="0" label="Don't create thumbnails for the Article" description="Thumbnails will be created only for the Front Page and Blog.">
+            	<option value="0">no</option>
+            	<option value="1">yes</option>
+        	</param>
+
+            <param name="width" type="text" default="160" size="2" label="Width" description="Max Width of the thumbnail images." />
+    		<param name="height" type="text" default="160" size="2" label="Height" description="Max Height of the thumbnail images." />
+       		<param name="cropzoom" type="radio" default="0" label="Crop image" description="">
+            	<option value="0">no</option>
+            	<option value="1">yes</option>
+        	</param>
+
+       		<param name="maxsize_orig" type="radio" default="0" label="Max size for image" description="">
+            	<option value="0">no</option>
+            	<option value="1">yes</option>
+        	</param>
+
+            <param name="maxwidth" type="text" default="800" size="2" label="Max Width for original image" description="" />
+    		<param name="maxheight" type="text" default="500" size="2" label="Max Height for original image" description="" />
+
+
+        <param name="" type="jutabssliders" description="Menu Item to Setting image" />
+
+            <param name="" type="spacer" default="1. Menu Item to Setting image" label="" description="" />
+            <param name="menu_item1" type="menuitem" state="1" disable="menulink, separator" label="Menu Item" description="Menu Item to link" />
+
+            <param name="" type="spacer" default="Article" label="" description="" />
+
+       		<param name="noresizenew1" type="radio" default="0" label="Don't create thumbnails for the Article" description="Thumbnails will be created only for the Front Page and Blog.">
+            	<option value="0">no</option>
+            	<option value="1">yes</option>
+        	</param>
+
+            <param name="widthnew1" type="text" default="160" size="2" label="Width" description="Max Width of the thumbnail images." />
+    		<param name="heightnew1" type="text" default="160" size="2" label="Height" description="Max Height of the thumbnail images." />
+       		<param name="cropzoomnew1" type="radio" default="0" label="Crop image" description="">
+            	<option value="0">no</option>
+            	<option value="1">yes</option>
+        	</param>
+       		<param name="maxsize_orignew1" type="radio" default="0" label="Max size for image" description="">
+            	<option value="0">no</option>
+            	<option value="1">yes</option>
+        	</param>
+            <param name="maxwidthnew1" type="text" default="800" size="2" label="Max Width for original image" description="" />
+    		<param name="maxheightnew1" type="text" default="500" size="2" label="Max Height for original image" description="" />
+
+            <param name="" type="spacer" default="Blog" label="" description="" />
+
+            <param name="b_widthnew1" type="text" default="160" size="2" label="Width" description="Max Width of the thumbnail images." />
+    		<param name="b_heightnew1" type="text" default="160" size="2" label="Height" description="Max Height of the thumbnail images." />
+       		<param name="b_cropzoomnew1" type="radio" default="0" label="Crop image" description="">
+            	<option value="0">no</option>
+            	<option value="1">yes</option>
+        	</param>
+
+
+            <param name="" type="spacer" default="" label="" description="" />
+            <param name="" type="spacer" default="2. Menu Item to Setting image" label="" description="" />
+            <param name="menu_item2" type="menuitem" state="1" disable="menulink, separator" label="Menu Item" description="Menu Item to link" />
+
+            <param name="" type="spacer" default="Article" label="" description="" />
+
+       		<param name="noresizenew2" type="radio" default="0" label="Don't create thumbnails for the Article" description="Thumbnails will be created only for the Front Page and Blog.">
+            	<option value="0">no</option>
+            	<option value="1">yes</option>
+        	</param>
+
+            <param name="widthnew2" type="text" default="160" size="2" label="Width" description="Max Width of the thumbnail images." />
+    		<param name="heightnew2" type="text" default="160" size="2" label="Height" description="Max Height of the thumbnail images." />
+       		<param name="cropzoomnew2" type="radio" default="0" label="Crop image" description="">
+            	<option value="0">no</option>
+            	<option value="1">yes</option>
+        	</param>
+       		<param name="maxsize_orignew2" type="radio" default="0" label="Max size for image" description="">
+            	<option value="0">no</option>
+            	<option value="1">yes</option>
+        	</param>
+            <param name="maxwidthnew2" type="text" default="800" size="2" label="Max Width for original image" description="" />
+    		<param name="maxheightnew2" type="text" default="500" size="2" label="Max Height for original image" description="" />
+
+            <param name="" type="spacer" default="Blog" label="" description="" />
+
+            <param name="b_widthnew2" type="text" default="160" size="2" label="Width" description="Max Width of the thumbnail images." />
+    		<param name="b_heightnew2" type="text" default="160" size="2" label="Height" description="Max Height of the thumbnail images." />
+       		<param name="b_cropzoomnew2" type="radio" default="0" label="Crop image" description="">
+            	<option value="0">no</option>
+            	<option value="1">yes</option>
+        	</param>
+
+
+            <param name="" type="spacer" default="" label="" description="" />
+            <param name="" type="spacer" default="3. Menu Item to Setting image" label="" description="" />
+            <param name="menu_item3" type="menuitem" state="1" disable="menulink, separator" label="Menu Item" description="Menu Item to link" />
+
+            <param name="" type="spacer" default="Article" label="" description="" />
+
+       		<param name="noresizenew3" type="radio" default="0" label="Don't create thumbnails for the Article" description="Thumbnails will be created only for the Front Page and Blog.">
+            	<option value="0">no</option>
+            	<option value="1">yes</option>
+        	</param>
+
+            <param name="widthnew3" type="text" default="160" size="2" label="Width" description="Max Width of the thumbnail images." />
+    		<param name="heightnew3" type="text" default="160" size="2" label="Height" description="Max Height of the thumbnail images." />
+       		<param name="cropzoomnew3" type="radio" default="0" label="Crop image" description="">
+            	<option value="0">no</option>
+            	<option value="1">yes</option>
+        	</param>
+       		<param name="maxsize_orignew3" type="radio" default="0" label="Max size for image" description="">
+            	<option value="0">no</option>
+            	<option value="1">yes</option>
+        	</param>
+            <param name="maxwidthnew3" type="text" default="800" size="2" label="Max Width for original image" description="" />
+    		<param name="maxheightnew3" type="text" default="500" size="2" label="Max Height for original image" description="" />
+
+            <param name="" type="spacer" default="Blog" label="" description="" />
+
+            <param name="b_widthnew3" type="text" default="160" size="2" label="Width" description="Max Width of the thumbnail images." />
+    		<param name="b_heightnew3" type="text" default="160" size="2" label="Height" description="Max Height of the thumbnail images." />
+       		<param name="b_cropzoomnew3" type="radio" default="0" label="Crop image" description="">
+            	<option value="0">no</option>
+            	<option value="1">yes</option>
+        	</param>
+
+
+            <param name="" type="spacer" default="" label="" description="" />
+            <param name="" type="spacer" default="4. Menu Item to Setting image" label="" description="" />
+            <param name="menu_item4" type="menuitem" state="1" disable="menulink, separator" label="Menu Item" description="Menu Item to link" />
+
+            <param name="" type="spacer" default="Article" label="" description="" />
+
+       		<param name="noresizenew4" type="radio" default="0" label="Don't create thumbnails for the Article" description="Thumbnails will be created only for the Front Page and Blog.">
+            	<option value="0">no</option>
+            	<option value="1">yes</option>
+        	</param>
+
+            <param name="widthnew4" type="text" default="160" size="2" label="Width" description="Max Width of the thumbnail images." />
+    		<param name="heightnew4" type="text" default="160" size="2" label="Height" description="Max Height of the thumbnail images." />
+       		<param name="cropzoomnew4" type="radio" default="0" label="Crop image" description="">
+            	<option value="0">no</option>
+            	<option value="1">yes</option>
+        	</param>
+       		<param name="maxsize_orignew4" type="radio" default="0" label="Max size for image" description="">
+            	<option value="0">no</option>
+            	<option value="1">yes</option>
+        	</param>
+            <param name="maxwidthnew4" type="text" default="800" size="2" label="Max Width for original image" description="" />
+    		<param name="maxheightnew4" type="text" default="500" size="2" label="Max Height for original image" description="" />
+
+
+            <param name="" type="spacer" default="Blog" label="" description="" />
+
+            <param name="b_widthnew4" type="text" default="160" size="2" label="Width" description="Max Width of the thumbnail images." />
+    		<param name="b_heightnew4" type="text" default="160" size="2" label="Height" description="Max Height of the thumbnail images." />
+       		<param name="b_cropzoomnew4" type="radio" default="0" label="Crop image" description="">
+            	<option value="0">no</option>
+            	<option value="1">yes</option>
+        	</param>
+
+
+            <param name="" type="spacer" default="" label="" description="" />
+            <param name="" type="spacer" default="5. Menu Item to Setting image" label="" description="" />
+            <param name="menu_item5" type="menuitem" state="1" disable="menulink, separator" label="Menu Item" description="Menu Item to link" />
+
+            <param name="" type="spacer" default="Article" label="" description="" />
+
+       		<param name="noresizenew5" type="radio" default="0" label="Don't create thumbnails for the Article" description="Thumbnails will be created only for the Front Page and Blog.">
+            	<option value="0">no</option>
+            	<option value="1">yes</option>
+        	</param>
+
+            <param name="widthnew5" type="text" default="160" size="2" label="Width" description="Max Width of the thumbnail images." />
+    		<param name="heightnew5" type="text" default="160" size="2" label="Height" description="Max Height of the thumbnail images." />
+       		<param name="cropzoomnew5" type="radio" default="0" label="Crop image" description="">
+            	<option value="0">no</option>
+            	<option value="1">yes</option>
+        	</param>
+       		<param name="maxsize_orignew5" type="radio" default="0" label="Max size for image" description="">
+            	<option value="0">no</option>
+            	<option value="1">yes</option>
+        	</param>
+            <param name="maxwidthnew5" type="text" default="800" size="2" label="Max Width for original image" description="" />
+    		<param name="maxheightnew5" type="text" default="500" size="2" label="Max Height for original image" description="" />
+
+
+            <param name="" type="spacer" default="Blog" label="" description="" />
+
+            <param name="b_widthnew5" type="text" default="160" size="2" label="Width" description="Max Width of the thumbnail images." />
+    		<param name="b_heightnew5" type="text" default="160" size="2" label="Height" description="Max Height of the thumbnail images." />
+       		<param name="b_cropzoomnew5" type="radio" default="0" label="Crop image" description="">
+            	<option value="0">no</option>
+            	<option value="1">yes</option>
+        	</param>
+
+
+            <param name="" type="spacer" default="" label="" description="" />
+            <param name="" type="spacer" default="6. Menu Item to Setting image" label="" description="" />
+            <param name="menu_item6" type="menuitem" state="1" disable="menulink, separator" label="Menu Item" description="Menu Item to link" />
+
+            <param name="" type="spacer" default="Article" label="" description="" />
+
+       		<param name="noresizenew6" type="radio" default="0" label="Don't create thumbnails for the Article" description="Thumbnails will be created only for the Front Page and Blog.">
+            	<option value="0">no</option>
+            	<option value="1">yes</option>
+        	</param>
+
+            <param name="widthnew6" type="text" default="160" size="2" label="Width" description="Max Width of the thumbnail images." />
+    		<param name="heightnew6" type="text" default="160" size="2" label="Height" description="Max Height of the thumbnail images." />
+       		<param name="cropzoomnew6" type="radio" default="0" label="Crop image" description="">
+            	<option value="0">no</option>
+            	<option value="1">yes</option>
+        	</param>
+       		<param name="maxsize_orignew6" type="radio" default="0" label="Max size for image" description="">
+            	<option value="0">no</option>
+            	<option value="1">yes</option>
+        	</param>
+            <param name="maxwidthnew6" type="text" default="800" size="2" label="Max Width for original image" description="" />
+    		<param name="maxheightnew6" type="text" default="500" size="2" label="Max Height for original image" description="" />
+
+            <param name="" type="spacer" default="Blog" label="" description="" />
+
+            <param name="b_widthnew6" type="text" default="160" size="2" label="Width" description="Max Width of the thumbnail images." />
+    		<param name="b_heightnew6" type="text" default="160" size="2" label="Height" description="Max Height of the thumbnail images." />
+       		<param name="b_cropzoomnew6" type="radio" default="0" label="Crop image" description="">
+            	<option value="0">no</option>
+            	<option value="1">yes</option>
+        	</param>
+
+
+            <param name="" type="spacer" default="" label="" description="" />
+            <param name="" type="spacer" default="7. Menu Item to Setting image" label="" description="" />
+            <param name="menu_item7" type="menuitem" state="1" disable="menulink, separator" label="Menu Item" description="Menu Item to link" />
+
+            <param name="" type="spacer" default="Article" label="" description="" />
+
+       		<param name="noresizenew7" type="radio" default="0" label="Don't create thumbnails for the Article" description="Thumbnails will be created only for the Front Page and Blog.">
+            	<option value="0">no</option>
+            	<option value="1">yes</option>
+        	</param>
+
+            <param name="widthnew7" type="text" default="160" size="2" label="Width" description="Max Width of the thumbnail images." />
+    		<param name="heightnew7" type="text" default="160" size="2" label="Height" description="Max Height of the thumbnail images." />
+       		<param name="cropzoomnew7" type="radio" default="0" label="Crop image" description="">
+            	<option value="0">no</option>
+            	<option value="1">yes</option>
+        	</param>
+       		<param name="maxsize_orignew7" type="radio" default="0" label="Max size for image" description="">
+            	<option value="0">no</option>
+            	<option value="1">yes</option>
+        	</param>
+            <param name="maxwidthnew7" type="text" default="800" size="2" label="Max Width for original image" description="" />
+    		<param name="maxheightnew7" type="text" default="500" size="2" label="Max Height for original image" description="" />
+
+            <param name="" type="spacer" default="Blog" label="" description="" />
+
+            <param name="b_widthnew7" type="text" default="160" size="2" label="Width" description="Max Width of the thumbnail images." />
+    		<param name="b_heightnew7" type="text" default="160" size="2" label="Height" description="Max Height of the thumbnail images." />
+       		<param name="b_cropzoomnew7" type="radio" default="0" label="Crop image" description="">
+            	<option value="0">no</option>
+            	<option value="1">yes</option>
+        	</param>
+
+
+            <param name="" type="spacer" default="" label="" description="" />
+            <param name="" type="spacer" default="8. Menu Item to Setting image" label="" description="" />
+            <param name="menu_item8" type="menuitem" state="1" disable="menulink, separator" label="Menu Item" description="Menu Item to link" />
+
+            <param name="" type="spacer" default="Article" label="" description="" />
+
+       		<param name="noresizenew8" type="radio" default="0" label="Don't create thumbnails for the Article" description="Thumbnails will be created only for the Front Page and Blog.">
+            	<option value="0">no</option>
+            	<option value="1">yes</option>
+        	</param>
+
+            <param name="widthnew8" type="text" default="160" size="2" label="Width" description="Max Width of the thumbnail images." />
+    		<param name="heightnew8" type="text" default="160" size="2" label="Height" description="Max Height of the thumbnail images." />
+       		<param name="cropzoomnew8" type="radio" default="0" label="Crop image" description="">
+            	<option value="0">no</option>
+            	<option value="1">yes</option>
+        	</param>
+       		<param name="maxsize_orignew8" type="radio" default="0" label="Max size for image" description="">
+            	<option value="0">no</option>
+            	<option value="1">yes</option>
+        	</param>
+            <param name="maxwidthnew8" type="text" default="800" size="2" label="Max Width for original image" description="" />
+    		<param name="maxheightnew8" type="text" default="500" size="2" label="Max Height for original image" description="" />
+
+            <param name="" type="spacer" default="Blog" label="" description="" />
+
+            <param name="b_widthnew8" type="text" default="160" size="2" label="Width" description="Max Width of the thumbnail images." />
+    		<param name="b_heightnew8" type="text" default="160" size="2" label="Height" description="Max Height of the thumbnail images." />
+       		<param name="b_cropzoomnew8" type="radio" default="0" label="Crop image" description="">
+            	<option value="0">no</option>
+            	<option value="1">yes</option>
+        	</param>
+
+
+            <param name="" type="spacer" default="" label="" description="" />
+            <param name="" type="spacer" default="9. Menu Item to Setting image" label="" description="" />
+            <param name="menu_item9" type="menuitem" state="1" disable="menulink, separator" label="Menu Item" description="Menu Item to link" />
+
+            <param name="" type="spacer" default="Article" label="" description="" />
+
+       		<param name="noresizenew9" type="radio" default="0" label="Don't create thumbnails for the Article" description="Thumbnails will be created only for the Front Page and Blog.">
+            	<option value="0">no</option>
+            	<option value="1">yes</option>
+        	</param>
+
+            <param name="widthnew9" type="text" default="160" size="2" label="Width" description="Max Width of the thumbnail images." />
+    		<param name="heightnew9" type="text" default="160" size="2" label="Height" description="Max Height of the thumbnail images." />
+       		<param name="cropzoomnew9" type="radio" default="0" label="Crop image" description="">
+            	<option value="0">no</option>
+            	<option value="1">yes</option>
+        	</param>
+       		<param name="maxsize_orignew9" type="radio" default="0" label="Max size for image" description="">
+            	<option value="0">no</option>
+            	<option value="1">yes</option>
+        	</param>
+            <param name="maxwidthnew9" type="text" default="800" size="2" label="Max Width for original image" description="" />
+    		<param name="maxheightnew9" type="text" default="500" size="2" label="Max Height for original image" description="" />
+
+            <param name="" type="spacer" default="Blog" label="" description="" />
+
+            <param name="b_widthnew9" type="text" default="160" size="2" label="Width" description="Max Width of the thumbnail images." />
+    		<param name="b_heightnew9" type="text" default="160" size="2" label="Height" description="Max Height of the thumbnail images." />
+       		<param name="b_cropzoomnew9" type="radio" default="0" label="Crop image" description="">
+            	<option value="0">no</option>
+            	<option value="1">yes</option>
+        	</param>
+
+
+            <param name="" type="spacer" default="" label="" description="" />
+            <param name="" type="spacer" default="10. Menu Item to Setting image" label="" description="" />
+            <param name="menu_item10" type="menuitem" state="1" disable="menulink, separator" label="Menu Item" description="Menu Item to link" />
+
+            <param name="" type="spacer" default="Article" label="" description="" />
+
+       		<param name="noresizenew10" type="radio" default="0" label="Don't create thumbnails for the Article" description="Thumbnails will be created only for the Front Page and Blog.">
+            	<option value="0">no</option>
+            	<option value="1">yes</option>
+        	</param>
+
+            <param name="widthnew10" type="text" default="160" size="2" label="Width" description="Max Width of the thumbnail images." />
+    		<param name="heightnew10" type="text" default="160" size="2" label="Height" description="Max Height of the thumbnail images." />
+       		<param name="cropzoomnew10" type="radio" default="0" label="Crop image" description="">
+            	<option value="0">no</option>
+            	<option value="1">yes</option>
+        	</param>
+       		<param name="maxsize_orignew10" type="radio" default="0" label="Max size for image" description="">
+            	<option value="0">no</option>
+            	<option value="1">yes</option>
+        	</param>
+            <param name="maxwidthnew10" type="text" default="800" size="2" label="Max Width for original image" description="" />
+    		<param name="maxheightnew10" type="text" default="500" size="2" label="Max Height for original image" description="" />
+
+            <param name="" type="spacer" default="Blog" label="" description="" />
+
+            <param name="b_widthnew10" type="text" default="160" size="2" label="Width" description="Max Width of the thumbnail images." />
+    		<param name="b_heightnew10" type="text" default="160" size="2" label="Height" description="Max Height of the thumbnail images." />
+       		<param name="b_cropzoomnew10" type="radio" default="0" label="Crop image" description="">
+            	<option value="0">no</option>
+            	<option value="1">yes</option>
+        	</param>
+
+
+        <param name="" type="jutabssliders" description="Watermark" />
+
+       		<param name="a_watermark" type="radio" default="0" label="Use watermark for thumbnail image" description="Replace your watermark image (watermark.png) in folder 'plugins/content/jumultithumb/'">
+            	<option value="0">no</option>
+            	<option value="1">yes</option>
+        	</param>
+
+       		<param name="wmposition" type="list" default="bottomright" label="Watermark position" description="">
+            	<option value="top">top</option>
+            	<option value="bottom">bottom</option>
+            	<option value="left">left</option>
+            	<option value="right">right</option>
+            	<option value="center">center</option>
+            	<option value="topleft">top left</option>
+            	<option value="topright">top right</option>
+            	<option value="bottomleft">bottom left</option>
+            	<option value="bottomright">bottom right</option>
+        	</param>
+
+
+        <param name="" type="jutabssliders" description="LightBox for Image" />
+
+       		<param name="uselightbox" type="radio" default="1" label="Use LightBox libraries for images" description="">
+            	<option value="0">no</option>
+            	<option value="1">yes</option>
+        	</param>
+
+       		<param name="jujq" type="radio" default="0" label="Do you use JQuery on the site?" description="Option for LightBox libraries: JQuery Lightbox ">
+            	<option value="0">no</option>
+            	<option value="1">yes</option>
+        	</param>
+
+       		<param name="selectlightbox" type="list" default="slimbox" label="Select LightBox libraries for images" description="">
+            	<option value="slimbox">Slimbox</option>
+            	<option value="jqlightbox">JQuery Lightbox</option>
+            	<option value="shadowbox">Shadowbox</option>
+        	</param>
+
+
+        <param name="" type="jutabssliders" description="Lightbox libraries setting" />
+
+            <param name="" type="spacer" default="Param for Shadowbox" label="" description="" />
+
+       		<param name="skinshadowbox" type="list" default="denys" label="Skin for Shadowbox library" description="">
+            	<option value="denys">default</option>
+            	<option value="classic">Classic</option>
+        	</param>
+
+            <param name="" type="spacer" default="Param for JQuery Lightbox" label="" description="" />
+
+       		<param name="jqlightboxparam" type="radio" default="0" label="Use more parameters" description="">
+            	<option value="0">no</option>
+            	<option value="1">yes</option>
+        	</param>
+            <param name="overlayBgColor" type="text" default="#fff" size="2" label="Overlay BgColor" description="" />
+            <param name="overlayOpacity" type="text" default="0.6" size="2" label="Overlay Opacity" description="" />
+            <param name="imageLoading" type="text" default="" label="Path for Image Loading" description="" />
+            <param name="imageBtnClose" type="text" default="" label="Path for Image button Close" description="" />
+            <param name="imageBtnPrev" type="text" default="" label="Path for Image button Prev" description="" />
+            <param name="imageBtnNext" type="text" default="" label="Path for Image button Next" description="" />
+            <param name="containerResizeSpeed" type="text" default="350" size="4" label="Container Resize Speed" description="" />
+            <param name="txtImage" type="text" default="Image" label="Your language translate for text 'Image'" description="" />
+            <param name="txtOf" type="text" default="of" label="Your language translate for text 'of'" description="" />
+
+	</params>
+</install>

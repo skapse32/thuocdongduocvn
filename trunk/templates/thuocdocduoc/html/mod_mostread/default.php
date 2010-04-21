@@ -10,9 +10,28 @@ $scrollable=false;
 if($params->get('secid')==4)
 	$scrollable=true;
 ?>
-<?php if($scrollable):?>
-<marquee onmouseout="this.start()" onmouseover="this.stop()" direction="up" scrollamount="1" behavior="scroll">
+<?php if($scrollable&&count($list)>=5):?>
+<script language="javascript" type="text/javascript" src="<?php echo JURI::root().'templates/thuocdocduoc/html/mod_mostread/jcarousellite_1.0.1.min.js'?>"></script>
+
+<script language="javascript">
+jQuery.noConflict();
+jQuery('document').ready(function(){
+
+	//alert(jQuery("#xxx").size());
+	//jQuery("#xxx").scrollable({size:2}).autoscroll();
+	jQuery(".newsticker-jcarousellite").jCarouselLite({  
+        vertical: true,  
+        visible: 5,  
+        auto:500,  
+        speed:5000  
+    });  
+    jQuery('.newsticker-jcarousellite').find('li:first').css('height','90px');
+ 
+});
+</script>
+<!--<marquee onmouseout="this.start()" onmouseover="this.stop()" direction="up" scrollamount="1" behavior="scroll">-->
 <?php endif;?>
+<div class="newsticker-jcarousellite">
 <ul class="list3">
 <?php foreach ($list as $item) : ?>
 <?php
@@ -46,7 +65,8 @@ if($params->get('secid')==4)
 	</li>
 <?php endforeach; ?>
 </ul>
+</div>
 <?php if($scrollable):?>
-</marquee>
+<!--</marquee>-->
 <?php endif;?>
 <a class="view-all-1" href="<?php echo JRoute::_("index.php?option=com_content&view=section&id=".trim($params->get('secid'))."&Itemid=".JRequest::getVar('Itemid')); ?>">Xem tất cả</a>

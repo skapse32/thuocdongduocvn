@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<install version="1.5" type="plugin" group="content">
+	<name>Content - Image Resize</name>
+	<author>Daniel Beck, James Frank</author>
+	<creationDate>June 2008</creationDate>
+	<version>0.5</version>
+	<copyright></copyright>
+	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+	<authorEmail>james@jamesfrank.info</authorEmail>
+	<authorUrl>http://jamesfrank.info</authorUrl>
+	<description>Dynamically resizes image in articles. ImageMagick must be installed for this to work.</description>
+	<files>
+		<filename plugin="imageresize">imageresize.php</filename>
+	</files>
+	<params/>
+</install>
