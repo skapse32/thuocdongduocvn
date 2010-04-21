@@ -57,7 +57,7 @@ foreach($sectionIds as $secId)// get Articles in sections
 <div class="mdl-cnt">
     <div class="title">
         <div class="fl-right">
-            <a href="#" class="view-all-2">Xem tất cả</a>
+            <a href="<?php echo JRoute::_(ContentHelperRoute::getSectionRoute($section->id));?>" class="view-all-2">Xem tất cả</a>
         </div>
         <h2>
             <?php echo $section->title;?></h2>
