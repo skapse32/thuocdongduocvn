@@ -104,7 +104,13 @@
 			<option value="3">JomComment</option>
 			<option value="4">Use define!</option>
 		</param>		
-		<param name="user_define" type="text" default="" size="50" label="Use define" description="Use define replacement for Comment or something else!!!" />		
+		<param name="user_define" type="text" default="" size="50" label="Use define" description="Use define replacement for Comment or something else!!!" />
+        <param name="@spacer" type="spacer" default="" label="Tooltip Settings" description="Setting for display showing view by date" />
+        <param name="show_view_date" type="radio" default="0" label="Enable View by Datetime" description="Enable/Disable view article by date">
+            <option value="0">No</option>
+            <option value="1">Yes</option>
+        </param>
+        <param name="view_by_date_sections" type="text" default="" label="Effect Sections" description="List sections was effected"/>
 	</params>
 
 </install>

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<install version="1.5" type="plugin" group="content">
+    <name>Content - View news by dates</name>
+    <author>Long K</author>
+    <creationDate>2010</creationDate>
+    <copyright>(C) 2010</copyright>
+    <license>http://www.gnu.org/copyleft/gpl.html GPLv2.0</license>
+    <authorEmail>long.lh@catsoft.com.vn</authorEmail>
+    <authorUrl>catsoft.com.vn</authorUrl>
+    <version>1.0</version>
+    <description>Content - View new by dates</description>
+    <files>
+        <filename plugin="viewnewsbydate">viewnewsbydate.php</filename>
+        <filename plugin="viewnewsbydate">viewnewsbydate.xml</filename>
+    </files>
+    <params>       
+        <param name="sectionid_list" type="text" size="6" default="" label="Section id List" description="List of section ids that this plugin is included. Each id is separated by ','&lt;br/&gt; for example 2,3,8 &lt;br/&gt; 'x' means no choosed sections" />        
+    </params>   
+</install>

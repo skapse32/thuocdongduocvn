@@ -7,7 +7,7 @@ include_once JPATH_ROOT.DS.'components'.DS.'com_content'.DS.'helpers'.DS.'route.
 $list = modMostReadHelperExtended::getList($params);
 // scroll down to up
 $scrollable=false;
-if($params->get('secid')==4)
+if($params->get('secid')==9)
 	$scrollable=true;
 ?>
 <?php if($scrollable&&count($list)>=5):?>
@@ -69,4 +69,6 @@ jQuery('document').ready(function(){
 <?php if($scrollable):?>
 <!--</marquee>-->
 <?php endif;?>
+<?php if(count($list)>=5):?>
 <a class="view-all-1" href="<?php echo JRoute::_("index.php?option=com_content&view=section&id=".trim($params->get('secid'))."&Itemid=".JRequest::getVar('Itemid')); ?>">Xem tất cả</a>
+<?php endif;?>

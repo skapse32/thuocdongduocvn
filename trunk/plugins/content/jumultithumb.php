@@ -423,8 +423,11 @@ function JUMultithumbReplacer ( &$matches )
 		
 		$limage = '<img src="'. $image .'"'. ( $imgalt ? ' alt="'.$imgalt.'"' : ' alt=""' ) . ( $imgtitle ? ' title="'. $imgtitle .'"' : '' ) .( $imgstyle ? ' style="'. $imgstyle .'"' : '' ) .' class="juimage'. $img_class .'" />';
 	}
-	
-	return $limage;
+	if(eregi('^(f|ht)tps?://', $imgsource))
+	{
+		$limage= "<img src=\"$imgsource\" alt='' class='juimage' />";
+	}
+	return $limage.'xxx';
 }
 
 function JUMultithumbHead(&$article, &$params)

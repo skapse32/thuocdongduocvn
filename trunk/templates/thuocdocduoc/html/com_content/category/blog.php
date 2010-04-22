@@ -5,7 +5,9 @@ $dispatcher	=& JDispatcher::getInstance();
 JPluginHelper::importPlugin('content');
 $templateUrl = JURI::root().'templates/'.$mainframe->getTemplate();
 $cat = &$this->category;
-$mCategory = new ContentModelCategory();
+//inlcude class
+require_once dirname(__FILE__).DS.'helper'.DS.'category.php';
+$mCategory = new ContentModelCategoryHelper();
 $mCategory->setId($cat->id);
 JRequest::setVar("limit",10);
 $limitstart	= JRequest::getVar('limitstart', 0, '', 'int');
@@ -74,8 +76,13 @@ $pagination = new JPagination($total,$limitstart,$limit);
                 &nbsp;<br />
                 &nbsp;</p>
             <?php echo $pagination->getPagesLinks();?>
+            <?php if(isset($_GET['day'])&&isset($_GET['month'])&&isset($_GET['year'])):?>
+    <?php require_once dirname(__FILE__).DS.'helper'.DS.'viewdate.php';?>
+    <?php echo JviewbyDate::HTMLrender(JRequest::getInt('id'));?>
+    <?php endif;?>
         </center>
-    </div>
+        
+    </div>    
     <img src="<?php echo $templateUrl;?>/images/news&event_73.png" class="img-rounded" />
 </div>
 <!--end-mdl-3-->
