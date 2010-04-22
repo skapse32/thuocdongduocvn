@@ -32,10 +32,10 @@ $menu  = $menus->getActive();
 				<?php echo $this->article->introtext; ?>
 				<br/><br/>
             <?php echo $this->article->text; ?>
+            <?php echo $this->article->event->afterDisplayContent; ?>
           <!--  <p class="link-back">
                 <a href="javascript:history.go(-1)" class="color5">&laquo; Back</a></p>
-            <br />-->
-            <h3 class="color5 viewdate">Xem theo ngày: <select name=""><option>Ngày</option></select> <select name=""><option>Tháng</option></select> <select name=""><option>Năm</option></select> <input type="button" value="Xem" name=""></h3>
+            <br />-->            
             <!--list news-->
             <div id="related-items">
 				<!---Auto load content from module related-items using jQuery-->

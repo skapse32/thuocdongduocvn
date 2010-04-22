@@ -7,9 +7,10 @@ global $mainframe;
 $templateUrl = JURI::root()."templates/".$mainframe->getTemplate();
 // get all sections
 //C:\Working\thuocdongduoc.vn\components\com_content\models\section.php
-require_once JPATH_ROOT.DS.'components'.DS.'com_content'.DS.'models'.DS.'section.php';
+//require_once JPATH_ROOT.DS.'components'.DS.'com_content'.DS.'models'.DS.'frontpage.php';
+require_once dirname(__FILE__).DS.'helper'.DS.'section.php';
 require_once JPATH_ROOT.DS.'components'.DS.'com_content'.DS.'helpers'.DS.'route.php';
-$mSection = new ContentModelSection();
+$mSection = new ContentModelSectionFrontPageHelper();
 $sections =array();
 foreach($sectionIds as $secId)// get Articles in sections
 {

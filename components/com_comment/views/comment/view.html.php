@@ -5,8 +5,7 @@ jimport( 'joomla.application.component.view');
 class CommentViewComment extends JView 
 { 
     function display($tpl = null) 
-    { 
-    echo 'ac';
+    {     
     	$models=&$this->getModel();
     	
         $comment = & $models->getData();
