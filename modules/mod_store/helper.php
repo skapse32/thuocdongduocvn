@@ -51,7 +51,7 @@ class modMostReadStoreHelper
 		}
 
 		//Content Items only
-		$query = 'SELECT a.*,' .
+		$query = 'SELECT rand() as o_number, a.*,' .
 			' CASE WHEN CHAR_LENGTH(a.alias) THEN CONCAT_WS(":", a.id, a.alias) ELSE a.id END as slug,'.
 			' CASE WHEN CHAR_LENGTH(cc.alias) THEN CONCAT_WS(":", cc.id, cc.alias) ELSE cc.id END as catslug'.
 			' FROM #__content AS a' .
@@ -67,7 +67,7 @@ class modMostReadStoreHelper
 			($show_front == '0' ? ' AND f.content_id IS NULL' : '').
 			' AND s.published = 1' .
 			' AND cc.published = 1' .
-			' ORDER BY a.hits DESC';
+			' ORDER BY o_number, a.hits DESC';
 		$queryTotal = 'SELECT count(*) '.
 			' FROM #__content AS a' .
 			' LEFT JOIN #__content_frontpage AS f ON f.content_id = a.id' .

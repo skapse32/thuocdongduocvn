@@ -34,6 +34,7 @@ switch(strtolower($filter))
 	case "thv"://ten han viet
 	case "htvvn":// ho thuc vat viet nam
 	case "htvkh":// ho thuc vat khoa hoc
+		$showSpectialTitle =true;
 	case "kvlt":// khoang vat lam thuoc
 		$dcomFilter ='com_filter_alpha';
 	break;
@@ -154,7 +155,7 @@ foreach($items as $item)
 					<img src="<?php echo $item->imgLink;?>" alt="Loading" class="img2" />
 					<?php endif;?>
 					</a> <a href="<?php echo JRoute::_(ContentHelperRoute::getArticleRoute($item->slug, $item->catslug, $item->sectionid));?>" class="link_title">
-						<?php echo $item->title;?></a>
+						<?php echo $showSpectialTitle? $item->oo: $item->title;?></a>
 				<p>
 					<?php echo $item->introtext;?></p>
 			</div>
