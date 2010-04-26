@@ -37,9 +37,13 @@ if ( ! defined('modMainMenuXMLCallbackDefined') )
 		if (($node->name() == 'li') && isset($node->ul)) {
 			$node->addAttribute('class', 'parent');
 		}
-		/*	if (($node->name() == 'a') && $args['end']) {			
-				$node->addAttribute('class', 'reset-mn');
-			}*/
+			if (($node->name() == 'a') ) {			
+				$filter = JRequest::getVar('filter','','GET');
+				if(strpos($node->_attributes['href'],'filter='.$filter)&&!empty($filter))
+				{
+					$node->addAttribute('class', 'text-underline');
+				}
+			}
 		
 		if (isset($path) && (in_array($node->attributes('id'), $path) || in_array($node->attributes('rel'), $path)))
 		{
@@ -112,12 +116,12 @@ echo "<script>
 		jQuery('div.menu ul li.active ul').attr('style','');
 		});
 		//float right menu
-		jQuery('div.menu ul.menu >li:gt(3) >ul').addClass('right_side');
+		//jQuery('div.menu ul.menu >li:gt(3) >ul').addClass('right_side');
 		//alert(jQuery('div.menu ul.menu >li:gt(3) >ul >li:first').size());
-		jQuery('div.menu ul.menu >li:gt(3) ul li').removeClass('reset-bg');
-		jQuery('div.menu ul.menu >li:gt(3) ul').each(function(){
-		jQuery(this).find('li:first').addClass('reset-bg');
-		});
+		//jQuery('div.menu ul.menu >li:gt(3) ul li').removeClass('reset-bg');
+		//jQuery('div.menu ul.menu >li:gt(3) ul').each(function(){
+		//jQuery(this).find('li:first').addClass('reset-bg');
+		//});
 		// datetime and slogen
 		jQuery('div.menu >ul.menu >li:first > ul > li').html(\"".$html."\");
 });

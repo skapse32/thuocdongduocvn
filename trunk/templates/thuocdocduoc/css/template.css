@@ -77,3 +77,29 @@ div.module-b .img img{float:none; width:170px; border:1px solid #96aab5; padding
 .module-d .form {padding:21px 0;}
 .invalid{color:#85193D!important;}
 .list-box1 h4 a:hover{color:#032b3f; text-decoration:underline;}
+.menu li li p {
+display:block;
+float:left;
+height:18px;
+line-height:18px;
+vertical-align:middle;
+width:120px!important;
+}
+.menu li li marquee {
+display:block;
+float:left;
+height:18px;
+line-height:18px;
+vertical-align:middle;
+width:850px!important;
+}
+.menu ul li:hover a {color:#fff; font-weight:inherit!important;}
+.menu ul li.active:hover a{font-weight:bold!important;}
+.menu1 li {
+background:url("../images/news&event_48.png") no-repeat scroll 0 7px transparent!important;
+font-size:12px;
+margin:5px 0;
+padding:4px 0 4px 20px;
+font-size:12px;
+}
+a.text-underline{text-decoration:underline;}
