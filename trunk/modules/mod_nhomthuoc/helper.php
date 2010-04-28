@@ -16,6 +16,14 @@ class modNhomThuocHelper
 	function getSubCategories($catid)
 	{
 		$db = JFactory::getDBO();
+		if(strpos($catid,':'))
+		{
+			$catid=explode(':',$catid);
+			if($catid[0]>0&&is_numeric($catid[0]))
+			{
+				$catid=$catid[0];
+			}
+		}
 		$query = "SELECT parent_id FROM #__categories WHERE id='$catid' AND published=1";
 		$db->setQuery($query);
 		$parent_id = $db->loadResult();

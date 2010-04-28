@@ -345,7 +345,7 @@ class ContentModelSectionFrontPageHelper extends JModel
 			
 			$query = $this->_buildQuery();
 			$Arows = $this->_getList($query, $limitstart, $limit);
-			
+			//var_dump($Arows);
 			// special handling required as Uncategorized content does not have a section / category id linkage
 			$i = $limitstart;
 			$rows = array();
