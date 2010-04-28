@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<parameters>
+<parameter name="backgroundColor">0xF0FAF1</parameter>
+<parameter name="loops">0</parameter>
+<parameter name="wait">3000</parameter>
+<parameter name="effectTime">1</parameter>
+<parameter name="includeEffects"></parameter>
+<parameter name="excludeEffects"></parameter>
+<parameter name="stopOnMouseOver">yes</parameter>
+<parameter name="enableLinks">no</parameter>
+<parameter name="link"></parameter>
+<parameter name="linkTarget">_blank</parameter>
+<parameter name="path">images/slideshow_home/</parameter>
+<parameter name="order">forward</parameter>
+<parameter name="slides">0</parameter>
+<parameter name="borderStyle">none</parameter>
+<parameter name="borderColor">0x000000</parameter>
+<parameter name="borderThickness">1</parameter>
+<parameter name="borderAlpha">1</parameter>
+<parameter name="captionStyle">none</parameter>
+<parameter name="captionType">text</parameter>
+<parameter name="captionBackgroundColor">0x000000</parameter>
+<parameter name="captionColor">0xFFFFFF</parameter>
+<parameter name="captionText"></parameter>
+<parameter name="captionTextRightMargin">0</parameter>
+<parameter name="captionTextLeftMargin">0</parameter>
+<parameter name="captionTextBottomMargin">5</parameter>
+<parameter name="captionTextFont">Times New Roman</parameter>
+<parameter name="captionTextFontSize">12</parameter>
+<parameter name="captionBackgroundAlpha">1.0</parameter>
+<parameter name="captionPosition">top</parameter>
+<parameter name="captionHorizontalOffset">0</parameter>
+<parameter name="captionVerticalOffset">0</parameter>
+<parameter name="captionImage"></parameter>
+</parameters>

@@ -136,7 +136,7 @@ switch($template)
 		$mSection = new ContentModelSectionHelper();
 		jimport('joomla.html.pagination');
 		//$pagination= new JPagination();
-		$mSection->setState('limit',3);
+		$mSection->setState('limit',15);
 		$mSection->setState('limitstart',JRequest::getVar('limitstart',0));				
 		$this->items=$mSection->getStores(JRequest::getVar('id',0),$this->pagination);
 		echo $this->loadTemplate($template);
