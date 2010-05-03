@@ -719,6 +719,7 @@ class adsmanager_html {
 				</script>');
 				break;
 			case 'lightbox':
+				 $mainframe->addCustomHeadTag('<script type="text/javascript" src="'.$mosConfig_live_site.'/components/'.$option.'/lightbox/js/jquery.scrollable.min.js"></script>');
 				$mainframe->addCustomHeadTag('<script type="text/javascript" src="'.$mosConfig_live_site.'/components/'.$option.'/lightbox/js/prototype.js"></script>');
 				$mainframe->addCustomHeadTag('<script type="text/javascript" src="'.$mosConfig_live_site.'/components/'.$option.'/lightbox/js/scriptaculous.js?load=effects"></script>');
 				$mainframe->addCustomHeadTag('<script type="text/javascript" src="'.$mosConfig_live_site.'/components/'.$option.'/lightbox/js/lightbox.js"></script>');
@@ -735,12 +736,13 @@ class adsmanager_html {
 			default:
 				break;
 		}
+		
 	}
 	
 	function show_html_ad($row,$show_contact,$option,$itemid,$positions,$fDisplay,$field_values,$conf,$unique,$update_possible)
 	{	
 		global $mosConfig_live_site,$mosConfig_absolute_path,$my,$mainframe;
-		
+		$templateUrl = JURI::root().'templates/'.$mainframe->getTemplate();
 		if ($unique == 1) {
 			adsmanager_html::loadScriptImage($conf->image_display,$option);
 		}
@@ -763,20 +765,122 @@ class adsmanager_html {
 			</ul>
 			<?php //return;?>
 		<?php elseif(strtolower(JRequest::getVar('page',''))=='show_ad'):?>
-		<div class='mdl-cnt'>
-			<div class='cnt' style="border-top:1px solid #B3B3B3;border-bottom:1px solid #B3B3B3;background-color:#FFF!important;">
-				<div style='margin:10px;'>
-				<span style='color:black;font-size:13pt;font-weight:bold;padding:0'><?php echo $row->ad_headline;?></span>
-				<hr/>
-					<table style='width:100%' border='0' cellspacing='0' cellpadding='0'>
-						<tr>
-							<td></td>
-							<td></td>
-						</tr>
-					</Table>
-				</div>
-			</div>
-		</div>
+				<?php
+					$image_found =0;
+					for($i=1;$i < $conf->nb_images + 1;$i++)
+					{
+						$ext_name = chr(ord('a')+$i-1);
+						$pic = $mosConfig_absolute_path."/images/$option/ads/".$row->id.$ext_name."_t.jpg";
+						$piclink 	= $mosConfig_live_site."/images/$option/ads/".$row->id.$ext_name.".jpg";
+						if (file_exists($pic)) 
+						{
+						    switch($conf->image_display)
+						    {
+								case 'popup':
+									$imageLinks[]= "<a href=\"javascript:popup('$piclink');\"><img class='img4' src='".$mosConfig_live_site."/images/$option/ads/".$row->id.$ext_name."_t.jpg' alt='".htmlspecialchars(stripslashes($row->ad_headline),ENT_QUOTES)."' /></a>";
+									break;
+								case 'lightbox':
+									$imageLinks[]= "<a title='' href='".$piclink."' rel='lightbox[roadtrip$row->id]'><img class='img4' src='".$mosConfig_live_site."/images/$option/ads/".$row->id.$ext_name."_t.jpg' alt='".htmlspecialchars(stripslashes($row->ad_headline),ENT_QUOTES)."' /></a>";
+									break;
+								case 'lytebox':
+									$imageLinks[]= "<a href='".$piclink."' rel='lytebox[roadtrip$row->id]'><img class='img4' src='".$mosConfig_live_site."/images/$option/ads/".$row->id.$ext_name."_t.jpg' alt='".htmlspecialchars(stripslashes($row->ad_headline),ENT_QUOTES)."' /></a>"; 
+									break;
+								case 'highslide':
+									$imageLinks[]= "<a id='thumb".$row->id."' class='highslide' onclick='return hs.expand (this)' href='".$piclink."'><img class='img4' src='".$mosConfig_live_site."/images/$option/ads/".$row->id.$ext_name."_t.jpg' alt='".htmlspecialchars(stripslashes($row->ad_headline),ENT_QUOTES)."' /></a>";
+									break;
+								case 'default':	
+								default:
+									$imageLinks[]= "<a href='".$piclink."' target='_blank'><img class='img4' src='".$mosConfig_live_site."/images/$option/ads/".$row->id.$ext_name."_t.jpg' alt='".htmlspecialchars(stripslashes($row->ad_headline),ENT_QUOTES)."' /></a>";
+									break;
+							}
+							$image_found = 1;
+						}   
+					}
+					/*if (($image_found == 0)&&($conf->nb_images >  0))
+					{
+						if ((ADSMANAGER_NOPIC != "")&&(file_exists($mosConfig_absolute_path."/components/$option/images/".ADSMANAGER_NOPIC)))
+							echo '<img align="center" src="'.$mosConfig_live_site.'/components/'.$option.'/images/'.ADSMANAGER_NOPIC.'" alt="nopic" /></a>'; 
+						else
+							echo '<img align="center" src="'.$mosConfig_live_site.'/components/'.$option.'/images/nopic.gif" alt="nopic" />'; 
+					}*/
+				
+					?>
+		<!-- show an ad-->
+		 <!--mdl-3-->
+                <div class="mdl-cnt">
+                    <div class="title">
+                        <h2>
+                            <?php echo $row->ad_headline;?></h2>
+                        <img src="<?php echo $templateUrl;?>/images/news&amp;event_107.png" />
+                    </div>
+                    <div class="cnt">
+                        <!--list box-->
+                        <div class="detail">
+                            <table width="100%" border="0" class="prd">
+                                <tr>
+                                    <td width="48%" align="center">
+										<?php if ($image_found):?>										
+										<?php echo $imageLinks[0];?>
+                                        <h4>
+                                            Hình ảnh mô tả</h4>
+                                        <?php endif;?>
+                                        
+                                        <div class="company" style='text-align:left'>
+                                        <?php if($show_contact):?>                                        
+                                        <h3> Đang cập nhật<?php?></h3>
+                                        <?php else:?>
+											<h3>Đăng nhập để xem chi tiết liên hệ</h3>
+                                        <?php endif;?>
+                                        </div>
+                                    </td>
+                                    <td width="52%">
+                                        <h4>
+                                            Mô tả sản phẩm</h4>
+                                        <p><?php  echo $row->ad_text;?></p>                                        
+                                        <p class="bold">
+                                            &nbsp;</p>
+                                        <p class="bold">
+                                            Giá bán: <?php echo $row->ad_price;?> VNĐ</p>
+                                        <br />
+                                    </td>
+                                </tr>
+                            </table>
+                            <br />
+                            <p class="color6" align="center">
+                            <?php
+                            jimport('joomla.utilities.date');                            
+                            $date_created = new JDate($row->date_created);
+                            $date_created->setOffset($mainframe->getCfg("offset",0));
+                            
+                            ?>
+                                Bài đăng ngày: <?php echo $date_created->toFormat("%d/%m/%Y");?> - <?php echo $row->views;?> Lượt xem</p>
+                            <div class="img-show">
+                            <?php if(count($imageLinks)>4):?>
+                                <a href="javascript:void(0)" class='prev'>
+                                    <img src="<?php echo $templateUrl;?>/images/news&event_121.png" class="btn prev" /></a>
+                            <?php endif;?>
+                                <div class='items'>
+                                    <?php echo str_replace("class='img4'",'', implode(' ',$imageLinks));?>
+                                </div>
+                                <?php if(count($imageLinks)>4):?>
+                                <a href="javascript:void(0)" class='next'>
+                                    <img src="<?php echo $templateUrl;?>/images/news&event_122.png" class="btn next" /></a>
+                                <?php endif;?>
+                            </div>
+                        </div>
+                        <!--end list box-->
+                        <script>
+                        jQuery('document').ready(function(){
+							//jQuery("div.img-show").scrollable({vertical:false});
+                        });
+                        </script>
+                    </div>
+                    <img src="<?php echo $templateUrl;?>/images/news&amp;event_73.png" class="img-rounded" />
+                </div>
+                <!--end-mdl-3-->                
+		<!-- end show an ad-->
+		<!-- show links bottom-->
+			<?php adsmanager_html::showGeneralLink($option,$itemid,0,$conf->comprofiler); ?>
 		<?php else:?>
 		<div class="adsmanager_ads" align="left">
 			<div class="adsmanager_top_ads">	
@@ -1860,6 +1964,8 @@ class adsmanager_html {
 	
 	function showGeneralLink($option,$itemid,$catid,$comprofiler)
 	{
+		if(!$itemid)
+			$itemid= JRequest::getVar("Itemid");
 	?>
 		<div class="adsmanager_innermenu">
 		<?php 
@@ -1887,10 +1993,10 @@ class adsmanager_html {
 			$link_show_rules = sefRelToAbs("index.php?option=$option&amp;page=show_rules&amp;Itemid=$itemid");
 			$link_show_all = sefRelToAbs("index.php?option=$option&amp;page=show_all&amp;Itemid=$itemid");
 			echo '<a href="'.$link_write_ad.'">'.ADSMANAGER_MENU_WRITE.'</a> | ';
-			echo '<a href="'.$link_show_all.'">'.ADSMANAGER_MENU_ALL_ADS.'</a> | ';
+			//echo '<a href="'.$link_show_all.'">'.ADSMANAGER_MENU_ALL_ADS.'</a> | ';
 			echo '<a href="'.$link_show_profile.'">'.ADSMANAGER_MENU_PROFILE.'</a> | ';
-			echo '<a href="'.$link_show_user.'">'.ADSMANAGER_MENU_USER_ADS.'</a> | ';
-			echo '<a href="'.$link_show_rules.'">'.ADSMANAGER_MENU_RULES.'</a>';
+			echo '<a href="'.$link_show_user.'">'.ADSMANAGER_MENU_USER_ADS.'</a> ';//.'| ';
+			//echo '<a href="'.$link_show_rules.'">'.ADSMANAGER_MENU_RULES.'</a>';
 			
 		?>
 		</br>

@@ -11,14 +11,14 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="<?php echo $this->language; ?>" lang="<?php echo $this->language; ?>" >
 <head>
+<script language="javascript" src="<?php echo $this->baseurl ?>/templates/thuocdocduoc/js/jquery-1.4.2.min.js" ></script>
 <jdoc:include type="head" />
-
 <link rel="stylesheet" href="<?php echo $this->baseurl ?>/templates/system/css/system.css" type="text/css" />
 <link rel="stylesheet" href="<?php echo $this->baseurl ?>/templates/system/css/general.css" type="text/css" />
 <link rel="stylesheet" href="<?php echo $this->baseurl ?>/templates/thuocdocduoc/css/reset.css" type="text/css" />
 <link rel="stylesheet" href="<?php echo $this->baseurl ?>/templates/thuocdocduoc/css/style.css" type="text/css" />
 <link rel="stylesheet" href="<?php echo $this->baseurl ?>/templates/thuocdocduoc/css/template.css" type="text/css" />
-<script language="javascript" src="<?php echo $this->baseurl ?>/templates/thuocdocduoc/js/jquery-1.4.2.min.js" ></script>
+
 <!--[if lte IE 6]>
 <link href="<?php echo $this->baseurl ?>/templates/<?php echo $this->template ?>/css/ie6.css" rel="stylesheet" type="text/css" />
 <![endif]-->
