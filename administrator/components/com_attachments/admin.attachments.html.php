@@ -358,8 +358,14 @@ class HTML_attachments
                        <input id="article_id" name="article_id" value="-1" type="hidden">
                     </p>
                 <?php endif; ?>
-                <p><label for="upload"><b><?php echo JText::_('ATTACH FILE COLON'); ?></b></label>
-                   <input type="file" name="upload" id="upload" size="68" maxlength="512" /></p>
+                <p>
+					<table style="display:inline" cellpadding="0" cellspacing="0" border="0"><tr><td><label for="upload"><b><?php echo JText::_('ATTACH FILE COLON'); ?></b></label></td>
+					<td> <input type="file" name="upload" id="upload" size="68" maxlength="512" /></td></tr></table>                                  					
+		(Case 1)
+                   </p>                  
+                <p><label for="upload_url"><b><?php echo JText::_('Attach URL:'); ?></b></label>
+					<input type="text" name="upload_url" id="upload_url" size="68" maxlength="512" /> (Case 2)					
+                   </p>
                 <p><label for="display_filename"
                           title="<?php echo JText::_('DISPLAY FILENAME TOOLTIP'); ?>"
                           ><b><?php echo JText::_('DISPLAY FILENAME COLON'); ?></b></label> 

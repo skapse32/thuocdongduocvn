@@ -89,8 +89,15 @@ switch($template)
 			$groups[$dc]->xemtheo=getFilter($dc);
 			//get items
 			if($dc=="com_filter_alpha")
-			{				
-				JRequest::setVar('limit',2,'post');// set default limit is 5 items								
+			{	
+				if(!empty($filter))
+				{
+					JRequest::setVar('limit',5,'post');// set default limit is 5 items								
+				}
+				else
+				{
+					JRequest::setVar('limit',15,'post');
+				}
 				JRequest::setVar('filter','','post');
 				JRequest::setVar('viewby',@$viewby[$i]);
 				JRequest::setVar('limitstart',@$limitstart[$i]);
@@ -102,7 +109,14 @@ switch($template)
 			}
 			elseif($dc=="com_filter_bt_phanloaitheotinhchatdongy")
 			{				
-				JRequest::setVar('limit',1,'post');// set default limit is 5 items								
+				if(!empty($filter))
+				{
+					JRequest::setVar('limit',5,'post');// set default limit is 5 items								
+				}
+				else
+				{
+					JRequest::setVar('limit',15,'post');
+				}
 				JRequest::setVar('filter','bt_tcdy');
 				JRequest::setVar('viewby',@$viewby[$i]);
 				JRequest::setVar('limitstart',@$limitstart[$i]);
@@ -114,7 +128,14 @@ switch($template)
 			}
 			elseif($dc=="com_filter_bt_phanloaitheobenh")
 			{
-				JRequest::setVar('limit',1,'post');// set default limit is 5 items								
+				if(!empty($filter))
+				{
+					JRequest::setVar('limit',5,'post');// set default limit is 5 items								
+				}
+				else
+				{
+					JRequest::setVar('limit',15,'post');
+				}
 				JRequest::setVar('filter','bt_pltb');
 				JRequest::setVar('viewby',@$viewby[$i]);
 				JRequest::setVar('limitstart',@$limitstart[$i]);
