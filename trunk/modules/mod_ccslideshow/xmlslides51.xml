@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <images>
 <image>
+<itemName>cangua.jpg</itemName>
+<itemCaption></itemCaption>
+<itemLink></itemLink>
+</image>
+<image>
 <itemName>herbalsupplements-01.jpg</itemName>
 <itemCaption></itemCaption>
 <itemLink></itemLink>
 </image>
 <image>
 <itemName>naturalwesternmedicine.jpg</itemName>
-<itemCaption></itemCaption>
-<itemLink></itemLink>
-</image>
-<image>
-<itemName>cangua.jpg</itemName>
 <itemCaption></itemCaption>
 <itemLink></itemLink>
 </image>

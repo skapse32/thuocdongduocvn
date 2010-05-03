@@ -96,13 +96,13 @@ $now->setOffset($mainframe->getCfg('offset',0));
 $thu =$now->toFormat("%w");
 $thu++;
 if($thu<2)
-	$thu="Chu nhat";
+	$thu="Chủ nhật";
 else
-	$thu="Thu ".$thu;
+	$thu="Thứ ".$thu;
 $timeStr = $thu.": ".$now->toFormat("%d/%m/%Y");
 
-$html="<p>".htmlentities($timeStr)."</p>";
-$html.="<marquee behavior='scroll' scrollamount='1' direction='left' onmouseover='this.stop()' onmouseout='this.start()'>Chào Mừng Quý Khách đến với website thuốc Đông Dược</marquee>";
+$html="<p>".$timeStr."</p>";
+$html.="<marquee behavior='scroll' scrollamount='1' direction='left' onmouseover='this.stop()' onmouseout='this.start()'>Chào Mừng Quý Khách đến với website Thuốc Đông Dược</marquee>";
 echo "<script>
 		jQuery('document').ready(function(){
 		jQuery('div.menu ul li:last-child a').addClass('reset-bg');

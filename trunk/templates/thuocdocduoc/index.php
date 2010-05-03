@@ -30,11 +30,15 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
             <a href="#" class="logo">logo</a> <a href="#">
                 <!-- banner top-->
                 <span class="adv" style="display:block">
+                <div style='float: left; margin: 0px 10px; border: 1px solid #CBCBCB;'>
 					<?php if($this->countModules('top')) : ?>
 					<jdoc:include type="modules" name="top" />
 					<?php else:?>
+					
 					<img class="adv" src="<?php echo $this->baseurl ?>/templates/<?php echo $this->template ?>/images/news&event_03.png"  />
+					
 					<?php endif;?>
+				</div>
                 </span>
 			</a>
              

@@ -349,7 +349,7 @@ class adsmanager_html {
 			
 		/* Display Title */
 		?>
-		<br />
+		<br />	<!--	
 		<h1 class="contentheading">
 		<?php
 			if (($catid == 0)||(!file_exists($mosConfig_absolute_path.'/images/'.$option.'/categories/'.$catid.'cat_t.jpg')))
@@ -363,7 +363,7 @@ class adsmanager_html {
 				echo '<a href="'.$linkrss.'" target="_blank"><img align="right" class="imgheading" src="'.$mosConfig_live_site.'/components/'.$option.'/images/rss.png" alt="rss" /></a>';
 			}
 		?>
-		</h1>
+		</h1>-->
 		<div class="adsmanager_description">
 		<?php echo $cat_description; ?>
 		</div>
@@ -387,9 +387,10 @@ class adsmanager_html {
 		}		
 		//-->
 		</script>
+		<!--
 		<div class="adsmanager_search_box">
 		<div class="adsmanager_inner_box">
-			<?php echo '<div align="left">'.$pagenav->writePagesCounter().'</div>'; ?>
+			<?php// echo '<div align="left">'.$pagenav->writePagesCounter().'</div>'; ?>
 			<form action="index.php" method="get">
 			<input type="hidden" name="option" value="<?php echo $option; ?>" />
 			<input type="hidden" name="page" value="<?php echo $page;?>" />
@@ -426,8 +427,8 @@ class adsmanager_html {
 			<?php } ?>			  
 		</div>
 		</div>
+		-->		
 		
-		<?php adsmanager_html::showGeneralLink($option,$itemid,$catid,$conf->comprofiler); ?>
 		<br />
 		<?php
 		if ($pagenav->total != 0 ) 
@@ -573,11 +574,11 @@ class adsmanager_html {
 			
 			if ($expand == 1) {
 				?>
-				<div class="back_button">
+				<!--<div class="back_button">
 				<a href='javascript:history.go(-1)'>
 				<?php echo ADSMANAGER_BACK_TEXT; ?>
 				</a>
-				</div>
+				</div>-->
 				<br />
 				<br />
 				<?php
@@ -592,7 +593,7 @@ class adsmanager_html {
 		else
 		{
 			echo ADSMANAGER_NOENTRIES; 
-		}
+		}		
 	}
 	
 	function show_rules($text)
@@ -615,9 +616,9 @@ class adsmanager_html {
 				$pathway .= '<a href="'.$paths[$i]->link.'">'.$paths[$i]->text.'</a>';
 				$filenamearrow = $mosConfig_absolute_path."/templates/$cur_template/images/arrow.png";
 				if (file_exists($filenamearrow))
-					$pathway .= ' <img src="'.$mosConfig_live_site.'/templates/'.$cur_template.'/images/arrow.png" alt="arrow" /> ';
+					$pathway .= ' <img src="'.$mosConfig_live_site.'/templates/'.$cur_template.'/images/arrow.png" alt="arrow" style="float:none" /> ';
 				else
-					$pathway .= ' <img src="'.$mosConfig_live_site.'/components/'.$option.'/images/arrow.png" alt="arrow" /> ';
+					$pathway .= ' <img src="'.$mosConfig_live_site.'/components/'.$option.'/images/arrow.png" alt="arrow" style="float:none" /> ';
 			}
 			$pathway .= '<a href="'.$paths[0]->link.'">'.$paths[0]->text.'</a>';
 		
@@ -738,12 +739,45 @@ class adsmanager_html {
 	
 	function show_html_ad($row,$show_contact,$option,$itemid,$positions,$fDisplay,$field_values,$conf,$unique,$update_possible)
 	{	
-		global $mosConfig_live_site,$mosConfig_absolute_path,$my;
+		global $mosConfig_live_site,$mosConfig_absolute_path,$my,$mainframe;
 		
 		if ($unique == 1) {
 			adsmanager_html::loadScriptImage($conf->image_display,$option);
 		}
-		?>
+		?>	
+		<?php if(strtolower(JRequest::getVar('page',''))=='show_category'):?>
+		<?php	
+		// formated date
+			if(!empty($row->date_created))
+			{
+				jimport('joomla.utilities.date');
+				$dformatted = new JDate($row->date_created,$mainframe->getCfg('offset',0));
+				$dformatted = "<span style='color:red'>(".$dformatted->toFormat("%d/%m/%Y %Hh%M'").")</span>";
+				$user = &JFactory::getUser($row->userid);
+			}
+			?>
+			<ul class='list_ads'>
+			<li><a href='<?php echo JRoute::_("index.php?option=$option&page=show_ad&adid=$row->id&catid=$cat->id&Itemid=$itemid");?>'><?php echo $row->ad_headline;?></a><?php echo $dformatted;?>
+			- <a style='color:#0600F6' href="<?php echo JRoute::_("index.php?option=com_adsmanager&page=show_user&userid=$user->id&Itemid=$itemid");?>"><?php echo $user->name; ?></a>
+			</li>
+			</ul>
+			<?php //return;?>
+		<?php elseif(strtolower(JRequest::getVar('page',''))=='show_ad'):?>
+		<div class='mdl-cnt'>
+			<div class='cnt' style="border-top:1px solid #B3B3B3;border-bottom:1px solid #B3B3B3;background-color:#FFF!important;">
+				<div style='margin:10px;'>
+				<span style='color:black;font-size:13pt;font-weight:bold;padding:0'><?php echo $row->ad_headline;?></span>
+				<hr/>
+					<table style='width:100%' border='0' cellspacing='0' cellpadding='0'>
+						<tr>
+							<td></td>
+							<td></td>
+						</tr>
+					</Table>
+				</div>
+			</div>
+		</div>
+		<?php else:?>
 		<div class="adsmanager_ads" align="left">
 			<div class="adsmanager_top_ads">	
 				<h2 class="adsmanager_ads_title">	
@@ -905,15 +939,16 @@ class adsmanager_html {
 				<div class="adsmanager_spacer"></div>
 			</div>
 		</div>
+		<?php endif;?>
 		<?php if ($unique == 1) { ?>
-			<div class="back_button">
+			<!--<div class="back_button">
 			<a href='javascript:history.go(-1)'>
 			<?php echo ADSMANAGER_BACK_TEXT; ?>
 			</a>
-			</div>
+			</div>-->
 		<?php 
 		} else {
-			echo "<br />";
+			//echo "<br />";
 		}
 		?>
 	<?php
@@ -1941,14 +1976,17 @@ class adsmanager_html {
 			{
 				jimport('joomla.utilities.date');
 				$dformatted = new JDate($item->date_created,$mainframe->getCfg('offset',0));
-				$dformatted = "<span>(".$dformatted->toFormat("%d/%m/%Y %Hh%M'").")</span>";
+				$dformatted = "<span style='color:red'>(".$dformatted->toFormat("%d/%m/%Y %Hh%M'").")</span>";
+				$user = &JFactory::getUser($item->userid);
 			}
 			?>
-			<li><a href='<?php echo JRoute::_("index.php?option=$option&page=show_ad&adid=$item->id&catid=$cat->id&Itemid=$itemid");?>'><?php echo $item->ad_headline;?></a><?php echo $dformatted;?></li>
+			<li><a href='<?php echo JRoute::_("index.php?option=$option&page=show_ad&adid=$item->id&catid=$cat->id&Itemid=$itemid");?>'><?php echo $item->ad_headline;?></a><?php echo $dformatted;?>
+			- <a style='color:#0600F6' href="<?php echo JRoute::_("index.php?option=com_adsmanager&page=show_user&userid=$user->id&Itemid=$itemid");?>"><?php echo $user->name; ?></a>
+			</li>
 			<?php endforeach;?>
 			</ul>
 			<center>Hiện có <strong><?php echo $cat->totalAds;?></strong> tin rao vặt <strong><?php echo $cat->name;?></strong>
-			<?php if ($cat->totalAds>5):?>
+			<?php if ($cat->totalAds>1):?>
 			- <a href='<?php echo sefRelToAbs("index.php?option=$option&amp;page=show_category&amp;catid=".$cat->id."&amp;order=0&amp;expand=0&amp;Itemid=".$itemid);?>' style='color:#9B193C;font-weight:bold'>Xem tất cả >></a>
 			<?php endif;?>
 			 </center>

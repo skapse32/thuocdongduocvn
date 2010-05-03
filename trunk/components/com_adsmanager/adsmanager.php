@@ -167,6 +167,7 @@ switch ($page) {
 
 if ($task != 'rss') {
 	adsmanager_html::show_footer();
+	adsmanager_html::showGeneralLink($option,$itemid,$catid,$conf->comprofiler);
 }
 
 /**
@@ -286,7 +287,7 @@ function adsList($text,$description,$url,$page,$search,$text_search,$expand,$ord
 		return false;
 	}
 	$limit = $conf->ads_per_page;
-	
+	//$limit=1;
 	if ($conf->display_expand == 0)
 		$expand = 0;
 	else if ($conf->display_expand == 2)
@@ -694,7 +695,7 @@ function show_category($catid,$option,$expand,$text_search,$order,$limitstart)
 	if (isset($text_search))
 		$url_text_search = "&amp;text_search=".$text_search;
 	$url ="index.php?option=$option&amp;page=show_category&amp;catid=".$catid.$url_text_search."&amp;order=".$order;
-	adsList($cat_name,$cat_description,$url,"show_category",$search,$text_search,$expand,$order,$catid,$option,$limitstart);
+	adsList($cat_name,$cat_description,$url,"show_category",$search,$text_search,$expand,$order,$catid,$option,$limitstart);	
 }
 
 function show_message_form($option,$adid,$mode)
@@ -770,7 +771,7 @@ function send_message($option,$mode)
 
 function show_ad($adid,$option)
 {
-	global $database,$my,$mainframe;
+	global $database,$my,$mainframe,$task;
 	
 	$itemid          = intval( mosGetParam( $_GET, 'Itemid', 0 ));
 	
@@ -804,14 +805,14 @@ function show_ad($adid,$option)
 	$mainframe->SetPageTitle( ADSMANAGER_PAGE_TITLE . $ad->cat . " - ". $ad->ad_headline );
 	
 	//PathWay
-	$database->setQuery( "SELECT c.* FROM #__adsmanager_categories as c ".
+	/*$database->setQuery( "SELECT c.* FROM #__adsmanager_categories as c ".
 			"WHERE c.published = 1 ORDER BY c.parent,c.ordering");
 	$listcats = $database->loadObjectList();
 	getPathList($listcats,$ad->category,$ad->cat,$paths,$itemid,$option,0,0);
 	$nb =count($paths);
 	$paths[$nb]->text =ADSMANAGER_ROOT_TITLE;
 	$paths[$nb]->link = sefRelToAbs('index.php?option='.$option.'&amp;page=show_all&amp;Itemid='.$itemid);
-	echo adsmanager_html::show_pathway($paths,$option);
+	echo adsmanager_html::show_pathway($paths,$option);*/
 	
 	//Show Ad
 	if (($conf->show_contact == 1)&&($my->id == "0"))
@@ -869,7 +870,7 @@ function show_ad($adid,$option)
 		}
 	}			
 	adsmanager_html::show_html_ad($ad,$show_contact,$option,$itemid,$positions,$fDisplay,$field_values,$conf,1,0);
-	
+	$task='rss';
 	return $ad->id;
 }
 

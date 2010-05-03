@@ -245,7 +245,7 @@ class AttachmentsController extends JController
 
              $errmsg = JText::_('ERROR MUST SELECT ARTICLE');
              echo "<script> alert('$errmsg'); window.history.go(-1); </script>\n";
-//            exit();
+           exit();
             }
             
         // Make sure this user has permission to upload (should never fail with admin?)
