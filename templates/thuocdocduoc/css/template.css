@@ -108,7 +108,7 @@ a.text-underline{text-decoration:underline;}
     font-size:11pt;
     line-height:20px;
 }
-.cols2 h3 {background:url(../images/news&event_32.png) repeat-x right bottom;}
+/*.cols2 h3 {background:url(../images/news&event_32.png) repeat-x right bottom;}*/
 .form {color:#454568;}
 .mdl-cnt h2 a{color:#85193C;}
 
@@ -120,3 +120,17 @@ a.text-underline{text-decoration:underline;}
 
 .adsmanager_innermenu a{line-height:18px;color:#006080;text-decoration:none;font-size:9pt;}
 .adsmanager_innermenu a:hover{text-decoration:underline;}
+.detail .img4 {
+border:1px solid #96AAB5;
+float:left;
+height:170px!important;
+margin:0 10px 10px 0;
+padding:2px;
+width:240px!important;
+}
+.img-show div img {
+float:none;
+padding:10px 2px;
+width:105px;
+height:90px!important;
+}

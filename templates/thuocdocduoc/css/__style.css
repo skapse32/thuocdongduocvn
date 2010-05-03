@@ -26,7 +26,7 @@ body {margin:0px; padding:0px; background:#f0faf1; font-family: Arial, Helvetica
 /*linked*/
 .linked {margin:20px 0; width:180px; #font-size:11px;}
 
-.cols2 .mdl-cnt,.cols2 .mdl-cnt2 {margin-left:2px;}
+.cols2 .mdl-cnt {margin-left:2px;}
 .cols2 .slide-show {width:554px; height:203; margin-left:2px; float:left; margin-bottom:12px;}
 
 /*title-rows*/
@@ -155,7 +155,7 @@ div.mdl-b .img img{float:none; width:170px; border:1px solid #96aab5; padding:2p
 .mdl-2 h2{color:#85193c; text-transform:uppercase; background:url(../images/news&event_32.png) repeat-x; line-height:29px; vertical-align:middle;}
 .mdl-2 span{padding-left:15px;}
 
-/*mdl cnt*/
+/*mdl 3*/
 .mdl-cnt {float:left; background:#FFFFFF; width:552px; float:left;  border-left:1px solid #b3b3b3; border-right:1px solid #b3b3b3; margin-bottom:12px;}
 .mdl-cnt .title{float:left; background:url(../images/news&event_53.png) no-repeat; width:554px; height:44px; margin-left:-1px;}
 .mdl-cnt .title .fl-right{padding-top:4px;}
@@ -246,35 +246,7 @@ a.link_title:hover,a.link_title:active{ text-decoration: underline; font-size: i
 .viewdate {padding-top:10px;}
 .viewdate input,.viewdate select {font-weight:normal; vertical-align:middle; margin-left:10px;}
 
-/*update 020510*/
-.prd td{vertical-align:top;}
-.prd img{float:none !important;}
-.prd .img4{width:auto !important;}
-.prd h4{color:#85193C; font-size:12px;}
-.company{border:2px solid #CCCCCC; padding:3px; text-align:center; margin-top:20px; background:#FFFFFF; margin-right:10px;}
-.company h3{font-size:12px;}
-
-.img-show {float:left; clear:both; width:100%; background:#FFFFFF; border:1px solid #CCCCCC; vertical-align:middle;}
-.img-show img{vertical-align:middle; padding:10px 5px; float:left;}
-.img-show .btn{margin-top:20px;}
-.img-show div{ width:450px; float:left; text-align:center; overflow:hidden;}
-.img-show div img{width:105px; float:none; padding:10px 2px;}
 
 
-/*mdl cnt2*/
-.mdl-cnt2 {float:left; background:#FFFFFF; width:272px; float:left;  border-left:1px solid #b3b3b3; border-right:1px solid #b3b3b3; margin-bottom:12px;}
-.mdl-cnt2 .title{float:left; background:url(../images/news&event_53b.png) no-repeat; width:274px; height:44px; margin-left:-1px;}
-.mdl-cnt2 .title .fl-right{padding-top:4px;}
-.mdl-cnt2 .cnt{background:url(../images/news&event_60.png) repeat-x #e4eef3; float:left; width:270px; border-left:1px solid #FFFFFF; border-right:1px solid #FFFFFF;}
-.mdl-cnt2 .img-rounded{margin-left:-1px;}
-.mdl-cnt2 select{#font-size:11px;}
-.mdl-cnt2 h2{color:#85193c; background:#FFFFFF; text-transform:uppercase; line-height:29px; vertical-align:middle; float:left; margin-left:35px; border-top:1px solid #b3b3b3; padding-right:20px;}
-.mdl-cnt2 span{padding-left:5px;}
 
-/*list5*/
-.list5 {clear:both; display:block; width:100%; height:100%;}
-.list5 li{margin:5px 0px; border-bottom:1px dotted #b3b3b3; padding:5px 0; line-height:14px; min-height:70px; clear:both; width:100%;}
-.list5 a{color:#00517a;}
-.list5 img{width:90px; height:60px; border:1px solid #96aab5; padding:2px; margin-right:5px; float:left;}
-.list5 .price{color:#85193C; padding:5px 0; font-weight:bold;}
-.list5 h3{padding-bottom:5px;}
+
