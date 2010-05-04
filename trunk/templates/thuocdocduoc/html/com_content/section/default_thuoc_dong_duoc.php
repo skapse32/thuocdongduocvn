@@ -93,7 +93,8 @@ $viewby=JRequest::getVar('viewby',array(),'default','array');
     <div class="cnt">
         <!--list box-->
         <?php if($cat->total):?>
-			<?php if($i==1):?><!--first categories with images, filters, pagination-->
+        <!--modified for requesting-->
+			<?php if($i==1||1==1):?><!--first categories with images, filters, pagination-->
 			<?php foreach ($cat->items as $item):?>
 			<?php // get thumbnail  for items;
 				$item->text = $item->introtext;
