@@ -70,6 +70,22 @@ $templateUrl = JURI::root().'templates/'.$mainframe->getTemplate();
 									<input class="input" style='width:350px' type="text" name="title" id="title"   value="<?php echo JRequest::getVar('title','','post');?>" />
 								</td>
 							</tr>
+							<tr valign="top">
+								<td width="100" align="center">
+									<label for="title">
+										<?php echo JText::_( 'Loại câu hỏi' ); ?>:
+									</label>
+								</td>
+								<td>	
+								
+									<select name="catid">
+									
+									<?php foreach($this->cats as $cat):?>
+										<option  value="<?php echo $cat->id;?>"><?php echo $cat->name;?></option>
+									<?php endforeach;?>
+									</select>
+								</td>
+							</tr>
 							<tr valign='top'><td></td><td class="invalid"><?php echo JRequest::getVar('errortitle','','post');?></td></tr>
 							<tr valign="top">
 								<td width="100" align="center">
@@ -94,6 +110,7 @@ $templateUrl = JURI::root().'templates/'.$mainframe->getTemplate();
 					<input type="hidden" name="id" value="<?php echo $this->comment->id; ?>" />
 					<input type="hidden" name="view" value="comment" />
 					<input type="hidden" name="task" value="save" />  
+					<input type="hidden" name="Itemid" value="<?php echo JRequest::getVar("Itemtid");?>" />  
 					</form>
             <!--End Form-->
         </div>
