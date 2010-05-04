@@ -54,14 +54,14 @@ class CommentsModelComments extends JModel
     	
     	$where =array();
         if(strtolower($v)=='replied')
-        	$where[]="answer_content!=''";
+        	$where[]="a.answer_content!=''";
         else
-        	$where[]="answer_content=''";
+        	$where[]="a.answer_content=''";
         if(count($where))
         	$w_str = " WHERE ".implode('AND',$where);
                 
         	
-        $query = 'select * from #__comment '.$w_str." ORDER BY created DESC ";        
+        $query = 'select a.*, b.name as category from #__comment a INNER JOIN #__comment_category b ON a.catid=b.id  '.$w_str." ORDER BY created DESC ";        
         return $query;
     }
     // Get Softpin in DB

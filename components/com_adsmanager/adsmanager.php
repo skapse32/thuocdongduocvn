@@ -167,7 +167,9 @@ switch ($page) {
 
 if ($task != 'rss') {
 	adsmanager_html::show_footer();
-	adsmanager_html::showGeneralLink($option,$itemid,$catid,$conf->comprofiler);
+	if(!isset($itemid))
+		$itemid = JRequest::getVar("Itemid");
+	adsmanager_html::showGeneralLink($option,$itemid,$catid,@$conf->comprofiler);
 }
 
 /**
@@ -518,7 +520,7 @@ function show_search($catid,$option)
 	global $my,$database,$mosConfig_absolute_path,$mainframe;
 	
 	// Dynamic Page Title
-	$mainframe->SetPageTitle( ADSMANAGER_PAGE_TITLE . ADSMANAGER_ADVANCED_SEARCH );
+	$mainframe->SetPageTitle( ADSMANAGER_PAGE_TITLE .' - '. ADSMANAGER_ADVANCED_SEARCH );
 	
 	$database->setQuery( "SELECT f.* FROM #__adsmanager_fields AS f ".
 			"WHERE f.searchable = 1 AND f.published = 1 ORDER by f.ordering" );
@@ -567,7 +569,7 @@ function show_all($option,$expand,$text_search,$order,$limitstart)
 	$itemid          = intval( mosGetParam( $_GET, 'Itemid', 0 ));
 	
 	// Dynamic Page Title
-	$mainframe->SetPageTitle( ADSMANAGER_PAGE_TITLE . ADSMANAGER_LIST_TEXT );
+	$mainframe->SetPageTitle( ADSMANAGER_PAGE_TITLE .' - '. ADSMANAGER_LIST_TEXT );
 	
 	//Pathway
 	$database->setQuery( "SELECT c.id, c.name,c.parent ".
@@ -623,7 +625,7 @@ function show_user($userid,$option,$expand,$text_search,$order,$limitstart)
 			$user = new mosUser( $database );
 			$user->load( $userid );
 			$name_list = ADSMANAGER_LIST_USER_TEXT." ".$user->username;
-			$mainframe->SetPageTitle( ADSMANAGER_PAGE_TITLE . $name_list );
+			$mainframe->SetPageTitle( ADSMANAGER_PAGE_TITLE .' - '. $name_list );
 			
 			//List
 			if (isset($text_search))
@@ -669,7 +671,7 @@ function show_category($catid,$option,$expand,$text_search,$order,$limitstart)
 	$parent 	     = $category->parent;
 	
 	//Dynamic Page Title
-	$mainframe->SetPageTitle( ADSMANAGER_PAGE_TITLE . $cat_name );
+	$mainframe->SetPageTitle( ADSMANAGER_PAGE_TITLE .' - '. $cat_name );
 	
 	$linkTarget = sefRelToAbs("index.php?option=$option&amp;page=show_category&amp;catid=$catid&amp;Itemid=$itemid");
 	
@@ -1038,7 +1040,7 @@ function save_ad($option){
 		if ($nb >= $conf->nb_ads_by_user)
 		{
 			$redirect_text = sprintf(ADSMANAGER_MAX_NUM_ADS_REACHED,$conf->nb_ads_by_user);
-			mosRedirect(sefRelToAbs("index.php?option=$option&amp;Itemid=$itemid"),$redirect_text);
+			mosRedirect(sefRelToAbs("index.php?option=$option&amp;Itemid=$itemid"));//,$redirect_text);
 		}
 	}
 	
@@ -1274,11 +1276,11 @@ function save_ad($option){
 	}
 	
 	if ($conf->submission_type == 2)
-		mosRedirect(sefRelToAbs("index.php?option=$option&amp;page=show_all&amp;Itemid=$itemid"),$redirect_text);
+		mosRedirect(sefRelToAbs("index.php?option=$option&amp;page=show_all&amp;Itemid=$itemid"));//,$redirect_text);
 	else if ($conf->comprofiler == 2)
-		mosRedirect(sefRelToAbs("index.php?option=com_comprofiler&amp;task=userProfile&amp;tab=AdsManagerTab&amp;Itemid=$itemid"),$redirect_text);
+		mosRedirect(sefRelToAbs("index.php?option=com_comprofiler&amp;task=userProfile&amp;tab=AdsManagerTab&amp;Itemid=$itemid"));//,$redirect_text);
 	else
-		mosRedirect(sefRelToAbs("index.php?option=$option&amp;page=show_user&amp;Itemid=$itemid"),$redirect_text);
+		mosRedirect(sefRelToAbs("index.php?option=$option&amp;page=show_user&amp;Itemid=$itemid"));//,$redirect_text);
 }
 
 function sendAdEmail($isUpdateMode,$title,$body,$email)
@@ -1319,7 +1321,7 @@ function write_ad($adid,$catid,$option)
 		if ($nb >= $conf->nb_ads_by_user)
 		{
 			$redirect_text = sprintf(ADSMANAGER_MAX_NUM_ADS_REACHED,$conf->nb_ads_by_user);
-			mosRedirect(sefRelToAbs("index.php?option=$option&amp;Itemid=$itemid"),$redirect_text);
+			mosRedirect(sefRelToAbs("index.php?option=$option&amp;Itemid=$itemid"));//,$redirect_text);
 		}
 	}
 	

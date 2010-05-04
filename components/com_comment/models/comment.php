@@ -52,6 +52,13 @@ class CommentModelComment extends JModel
         }
         return $this->_data;
     }
+    function getCatList()
+    {
+		$db = &JFactory::getDBO();
+		$db->setQuery("SELECT * FROM #__comment_category");
+		$results = $db->loadObjectList();
+		return $results;
+	}
     /**
  * Method to store a record
  * @access    public

@@ -70,7 +70,7 @@ class CommentControllerComment extends JController
 			JRequest::setVar('created',$strDate);
 			if($mComment->store())	
 			{			
-				$link = 'index.php?option=com_comment&view=answer';
+				$link = 'index.php?option=com_comment&view=answer&Itemid='.JRequest::getVar('Itemid');
 			}        
 		}
 		else

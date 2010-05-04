@@ -28,6 +28,9 @@ defined('_JEXEC') or die('Restricted access');
                     <?php echo JText::_( 'Nội dung' ); ?>
                 </th>
                 <th>
+                    <?php echo JText::_( 'Loại câu hỏi' ); ?>
+                </th>
+                <th>
                     <?php echo JText::_( 'Ngày tạo' ); ?>
                 </th>
                 <th>
@@ -59,11 +62,18 @@ defined('_JEXEC') or die('Restricted access');
             <td>
                 <?php echo $row->email; ?>
             </td>
-            <td>
+            <td width="120">
                 <a href="<?php echo $link; ?>"><?php echo $row->title; ?></a>
             </td>
-            <td>
+            <td width="200">
+				<?php if(strlen($row->content)>200):?>
+				<?php echo substr($row->content,0,strpos($row->content,' ',200))."..."; ?>
+				<?php else:?>
                 <?php echo $row->content; ?>
+                <?php endif;?>
+            </td>
+            <td>
+                <?php echo $row->category; ?>
             </td>
             <td>
                 <?php echo $row->created; ?>

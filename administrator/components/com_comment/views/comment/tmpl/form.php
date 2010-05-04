@@ -86,6 +86,7 @@ defined( '_JEXEC' ) or die( 'Truy nhập không hợp lệ' );
 	</fieldset>
 	
 	<fieldset class="adminform">
+		<?php $my= &JFactory::getUser();?>
 		<legend><?php echo JText::_( 'Trả lời' ); ?></legend>
 		<table class="admintable">
 		<tr>
@@ -95,7 +96,7 @@ defined( '_JEXEC' ) or die( 'Truy nhập không hợp lệ' );
 				</label>
 			</td>
 			<td>
-				<input class="text_area" type="text" name="answer_username" id="answer_username" size="32" maxlength="250" value="<?php echo $this->comment->answer_username;?>" />
+				<input class="text_area" type="text" name="answer_username" id="answer_username" size="32" maxlength="250" value="<?php echo !empty($this->comment->answer_username)? $this->comment->answer_username: $my->username ;?>" />
 			</td>
 		</tr>
         <tr>
@@ -105,7 +106,7 @@ defined( '_JEXEC' ) or die( 'Truy nhập không hợp lệ' );
 				</label>
 			</td>
 			<td>
-				<input class="text_area" type="text" name="answer_email" id="answer_email" size="32" maxlength="250" value="<?php echo $this->comment->answer_email;?>" />
+				<input class="text_area" type="text" name="answer_email" id="answer_email" size="32" maxlength="250" value="<?php echo !empty($this->comment->answer_email)?$this->comment->answer_email: $my->email;?>" />
 			</td>
         </tr>
         
