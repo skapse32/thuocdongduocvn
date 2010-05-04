@@ -759,8 +759,9 @@ class adsmanager_html {
 			}
 			?>
 			<ul class='list_ads'>
-			<li><a href='<?php echo JRoute::_("index.php?option=$option&page=show_ad&adid=$row->id&catid=$cat->id&Itemid=$itemid");?>'><?php echo $row->ad_headline;?></a><?php echo $dformatted;?>
-			- <a style='color:#0600F6' href="<?php echo JRoute::_("index.php?option=com_adsmanager&page=show_user&userid=$user->id&Itemid=$itemid");?>"><?php echo $user->name; ?></a>
+			<li><a href='<?php echo JRoute::_("index.php?option=$option&page=show_ad&adid=$row->id&catid=$row->catid&Itemid=$itemid");?>'>
+			<?php echo $row->ad_headline;?></a><?php echo $dformatted;?>
+			- <a style='color:#0600F6' href="<?php echo JRoute::_("index.php?option=com_adsmanager&page=show_user&userid=$user->id&Itemid=$itemid");?>"><?php echo $user->username; ?></a>
 			</li>
 			</ul>
 			<?php //return;?>
@@ -796,14 +797,6 @@ class adsmanager_html {
 							$image_found = 1;
 						}   
 					}
-					/*if (($image_found == 0)&&($conf->nb_images >  0))
-					{
-						if ((ADSMANAGER_NOPIC != "")&&(file_exists($mosConfig_absolute_path."/components/$option/images/".ADSMANAGER_NOPIC)))
-							echo '<img align="center" src="'.$mosConfig_live_site.'/components/'.$option.'/images/'.ADSMANAGER_NOPIC.'" alt="nopic" /></a>'; 
-						else
-							echo '<img align="center" src="'.$mosConfig_live_site.'/components/'.$option.'/images/nopic.gif" alt="nopic" />'; 
-					}*/
-				
 					?>
 		<!-- show an ad-->
 		 <!--mdl-3-->
@@ -827,11 +820,40 @@ class adsmanager_html {
                                         
                                         <div class="company" style='text-align:left'>
                                         <?php if($show_contact):?>                                        
-                                        <h3> Đang cập nhật<?php?></h3>
+                                        <h3> 
+											<?php if(!empty($row->name)):?>
+											<?php echo $row->name;?>
+											<br/>
+											<?php endif;?>
+											<?php if(!empty($row->ad_city)):?>
+											Địa điểm: <?php foreach($field_values[3] as $item){
+												if($item->fieldvalue==$row->ad_city)
+												 echo $item->fieldtitle;}?>
+											<br/>
+											<?php endif;?>
+											<?php if(!empty($row->ad_phone)):?>
+											Số ĐT: <?php echo $row->ad_phone;?>
+											<br/>
+											<?php endif;?>											
+											<?php if(!empty($row->email)):?>
+											Email: <?php echo $row->email;?>
+											<br/>
+											<?php endif;?>
+                                        </h3>
                                         <?php else:?>
 											<h3>Đăng nhập để xem chi tiết liên hệ</h3>
                                         <?php endif;?>
+                                        </div>   
+                                        <?php if($my->id ==$row->userid):?>
+                                        <div class="company">
+                                       <?php $target = sefRelToAbs("index.php?option=$option&amp;Itemid=$itemid&amp;page=write_ad&amp;adid=$row->id"."&amp;Itemid=".$itemid);
+						echo "<a href='".$target."'>".ADSMANAGER_AD_EDIT."</a>";
+						echo "&nbsp;";
+						$target = sefRelToAbs("index.php?option=$option&amp;Itemid=$itemid&amp;page=delete_ad&amp;adid=$row->id"."&amp;Itemid=".$itemid);
+						echo "<a href='".$target."'>".ADSMANAGER_AD_DELETE."</a>";?>
                                         </div>
+                                        <?php endif;?>
+                                                                             
                                     </td>
                                     <td width="52%">
                                         <h4>
@@ -854,19 +876,21 @@ class adsmanager_html {
                             
                             ?>
                                 Bài đăng ngày: <?php echo $date_created->toFormat("%d/%m/%Y");?> - <?php echo $row->views;?> Lượt xem</p>
+                            <?php if(count(@$imageLinks)>0):?>
                             <div class="img-show">
-                            <?php if(count($imageLinks)>4):?>
+                            <?php if(count(@$imageLinks)>4):?>
                                 <a href="javascript:void(0)" class='prev'>
                                     <img src="<?php echo $templateUrl;?>/images/news&event_121.png" class="btn prev" /></a>
                             <?php endif;?>
                                 <div class='items'>
-                                    <?php echo str_replace("class='img4'",'', implode(' ',$imageLinks));?>
+                                    <?php echo str_replace("class='img4'",'', @implode(' ',$imageLinks));?>
                                 </div>
-                                <?php if(count($imageLinks)>4):?>
+                                <?php if(count(@$imageLinks)>4):?>
                                 <a href="javascript:void(0)" class='next'>
                                     <img src="<?php echo $templateUrl;?>/images/news&event_122.png" class="btn next" /></a>
                                 <?php endif;?>
                             </div>
+                            <?php endif;?>
                         </div>
                         <!--end list box-->
                         <script>
@@ -881,6 +905,26 @@ class adsmanager_html {
 		<!-- end show an ad-->
 		<!-- show links bottom-->
 			<?php adsmanager_html::showGeneralLink($option,$itemid,0,$conf->comprofiler); ?>
+			<?php elseif(strtolower(JRequest::getVar('page',''))=='show_user'):?>
+			<?php
+			//
+			if(!empty($row->date_created))
+			{
+				jimport('joomla.utilities.date');
+				$dformatted = new JDate($row->date_created,$mainframe->getCfg('offset',0));
+				$dformatted = "<span style='color:red'>(".$dformatted->toFormat("%d/%m/%Y %Hh%M'").")</span>";
+				$user = &JFactory::getUser($row->userid);
+			}
+			?>
+			<ul class='list_ads'>
+			<li>
+				[<a style='color:#006080;font-weight:bold' href='<?php echo JRoute::_("index.php?option=$option&page=show_category&catid=$row->catid&Itemid=$itemid");?>'>
+					<?php echo $row->cat;?>
+				</a>]
+			<a href='<?php echo JRoute::_("index.php?option=$option&page=show_ad&adid=$row->id&catid=$row->catid&Itemid=$itemid");?>'><?php echo $row->ad_headline;?></a><?php echo $dformatted;?>
+			- <a style='color:#0600F6' href="<?php echo JRoute::_("index.php?option=com_adsmanager&page=show_user&userid=$user->id&Itemid=$itemid");?>"><?php echo $user->username; ?></a>
+			</li>
+			</ul>
 		<?php else:?>
 		<div class="adsmanager_ads" align="left">
 			<div class="adsmanager_top_ads">	
@@ -1763,23 +1807,28 @@ class adsmanager_html {
 		<font color='#990000'>
 		<?php echo ADSMANAGER_CAUTION." <b>".$name."</b> ".ADSMANAGER_CAUTION_DELETE1."<b>".$adname."</b>".ADSMANAGER_CAUTION_DELETE2; ?>
 		</font>
-		<table class="adsmanager_header">
+		<br/>
+		<br/>
+		<Center>
+		<table class="adsmanager_header" style='background:transparent;padding:5px;' align='center'>
 		   <tr>
 			  <td><?php echo "&nbsp;"; ?></td>
-			  <td>
+			  <td width=120>
 				<?php 
 				   $target = sefRelToAbs("index.php?option=$option&amp;page=delete_ad&amp;adid=$adid&amp;mode=confirm&amp;Itemid=$itemid");
-				   echo "<a href='".$target."'>".ADSMANAGER_YES_DELETE."</a>"; ?>
+				   echo "<a style='color:#006080' href='".$target."'>".ADSMANAGER_YES_DELETE."</a>"; ?>
 			  </td>
 			  <td><?php echo "&nbsp;"; ?></td>
-			  <td>
+			  <td width=120>
 			  
 				<?php 
 					$target = sefRelToAbs("index.php?option=$option&amp;Itemid=$itemid");
-					echo "<a href='".$target."'>".ADSMANAGER_NO_DELETE."</a>"; ?>
+					echo "<a style='color:#006080' href='".$target."'>".ADSMANAGER_NO_DELETE."</a>"; ?>
 			  </td>
 		   </tr>
 	   </table>
+	   </center>
+	   <br/>
 	<?php
 	}	
 	
@@ -2087,7 +2136,7 @@ class adsmanager_html {
 			}
 			?>
 			<li><a href='<?php echo JRoute::_("index.php?option=$option&page=show_ad&adid=$item->id&catid=$cat->id&Itemid=$itemid");?>'><?php echo $item->ad_headline;?></a><?php echo $dformatted;?>
-			- <a style='color:#0600F6' href="<?php echo JRoute::_("index.php?option=com_adsmanager&page=show_user&userid=$user->id&Itemid=$itemid");?>"><?php echo $user->name; ?></a>
+			- <a style='color:#0600F6' href="<?php echo JRoute::_("index.php?option=com_adsmanager&page=show_user&userid=$user->id&Itemid=$itemid");?>"><?php echo $user->username; ?></a>
 			</li>
 			<?php endforeach;?>
 			</ul>

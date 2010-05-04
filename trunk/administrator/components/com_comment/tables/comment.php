@@ -15,6 +15,7 @@ class TableComment extends JTable
     var $answer_email=null;
     var $answer_content=null;
     var $status=null;
+	var $catid=null;
     /**
 	 * Constructor
 	 *
