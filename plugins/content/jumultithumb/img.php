@@ -62,7 +62,12 @@ $_GET['w']      = $widthmin;
 $_GET['h']      = $heightmin;
 $_GET['zc']     = $zc;
 $_GET['fltr'] = $fltr;
-
+if (eregi('^(f|ht)tps?://', $_GET['src'])) {
+	echo $_GET['src'];
+	/*if ($rawImageData = phpthumb_functions::SafeURLread($_GET['src'], $error, $phpThumb->config_http_fopen_timeout, $phpThumb->config_http_follow_redirect)) {
+		$md5s = md5($rawImageData);
+	}*/
+}
 // instantiate a new phpThumb() object
 ob_start();
 if (!include_once(dirname(__FILE__).'/phpthumb.class.php')) {
