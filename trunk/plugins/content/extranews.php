@@ -292,7 +292,7 @@ class plgContentExtranews extends JPlugin
 			// Content Items only
 			$where_ids_related = "";
 			$content = '<p class="link-back">
-					<a class="color5" href="javascript:history.go(-1)">« Back</a></p><br/>';
+					<a class="color5" href="javascript:history.go(-1)">« Quay lại</a></p><br/>';
 			$apre_next = '';
 			if (count( $likes ) && ($relateditemscount>0)) {
 				$query = 'SELECT a.*, a.id as key1,' .

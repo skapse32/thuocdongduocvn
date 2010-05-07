@@ -29,7 +29,7 @@ $list = $db->loadObjectList();
     </select>
     <input type="image" src="templates/thuocdocduoc/images/news&amp;event_52.png">
     	<input type="hidden" name="task"   value="search" />
-    <input type="hidden" name="searchphrase" value="all"/>
+    <input type="hidden" name="searchphrase" value="exact"/>
 	<input type="hidden" name="areas[]"   value="content" />
 	<input type="hidden" name="option" value="com_search" />
 	<input type="hidden" name="limit" value="20" />

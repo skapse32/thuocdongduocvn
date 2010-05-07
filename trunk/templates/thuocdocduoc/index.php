@@ -52,8 +52,7 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
             <img src="<?php echo $this->baseurl ?>/templates/<?php echo $this->template ?>/images/news&event_20.png" class="fl-right" />
             <img src="<?php echo $this->baseurl ?>/templates/<?php echo $this->template ?>/images/news&event_15.png" />
             <div class="menu">
-                <jdoc:include type="modules" name="user3" />
-                <jdoc:include type="message" />
+                <jdoc:include type="modules" name="user3" />                
             </div>
         </div>
         <!--end-menu-bar-->
@@ -78,6 +77,7 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
 				<?php endif;?>                
                 <div class="clear"></div>
                 <!--Component-->
+                <jdoc:include type="message" />
                 <jdoc:include type="component" />                
                 <jdoc:include type="modules" name="user2" style="xhtml" />
             </div>

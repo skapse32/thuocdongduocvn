@@ -16,7 +16,7 @@ $limit	= JRequest::getVar('limit', 0, '', 'int');
 $items = &$mCategory->getData();
 $total = &$mCategory->getTotal();
 
-
+//echo "xxxxx";die;
 $pagination = new JPagination($total,$limitstart,$limit);
 ?>
 <!--mdl-3-->
@@ -28,10 +28,9 @@ $pagination = new JPagination($total,$limitstart,$limit);
     </div>
     <div class="cnt">
 		<!--list box-->
-		<?php if(count($items)):?>
-		<?php foreach ($items as &$item) : ?>
-			
-			
+		<?php if(count($items)):?>				
+		<?php foreach ($items as $item) : ?>
+		
 			<?php
 			$item->text = $item->introtext;
 			
@@ -39,11 +38,11 @@ $pagination = new JPagination($total,$limitstart,$limit);
 			$item->params = clone($this->params);
 			$aparams = new JParameter($item->attribs);
 			
-			// Merge article parameters into the page configuration
+			//// Merge article parameters into the page configuration
 			$item->params->merge($aparams);
 			
 			// Process the content preparation plugins
-			
+			//echo $item->text;
 			$results = $dispatcher->trigger('onPrepareContent', array (& $item, & $item->params, 0));
 			$plg_matches=array();
 			$have_images = preg_match_all("|<[\s\v]*img[\s\v][^>]*>|Ui", $item->text, $plg_matches, PREG_PATTERN_ORDER) > 0;
@@ -56,7 +55,7 @@ $pagination = new JPagination($total,$limitstart,$limit);
 			?>
 			<div class="list-box2">
 				<a href="<?php echo JRoute::_(ContentHelperRoute::getArticleRoute($item->slug, $item->catslug, $item->sectionid));?>">
-					<?php if(!empty($item->imgLink)&&@GetImageSize($item->imgLink)):?>
+					<?php if(!empty($item->imgLink)):?>					
 					<img src="<?php echo $item->imgLink;?>" alt="Loading" class="img2" />
 					<?php endif;?>
 					</a> <a href="<?php echo JRoute::_(ContentHelperRoute::getArticleRoute($item->slug, $item->catslug, $item->sectionid));?>" class="link_title">

@@ -427,7 +427,7 @@ function JUMultithumbReplacer ( &$matches )
 	{
 		$limage= "<img src=\"$imgsource\" alt='' class='juimage' />";
 	}
-	return $limage.'xxx';
+	return $limage;
 }
 
 function JUMultithumbHead(&$article, &$params)

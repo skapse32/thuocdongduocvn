@@ -90,7 +90,7 @@ switch($template)
 			//get items
 			if($dc=="com_filter_alpha")
 			{	
-				if(!empty($filter))
+				if(empty($filter))
 				{
 					JRequest::setVar('limit',5,'post');// set default limit is 5 items								
 				}
@@ -109,7 +109,7 @@ switch($template)
 			}
 			elseif($dc=="com_filter_bt_phanloaitheotinhchatdongy")
 			{				
-				if(!empty($filter))
+				if(empty($filter))
 				{
 					JRequest::setVar('limit',5,'post');// set default limit is 5 items								
 				}
@@ -128,7 +128,7 @@ switch($template)
 			}
 			elseif($dc=="com_filter_bt_phanloaitheobenh")
 			{
-				if(!empty($filter))
+				if(empty($filter))
 				{
 					JRequest::setVar('limit',5,'post');// set default limit is 5 items								
 				}
@@ -213,7 +213,7 @@ switch($template)
 				
 			?>	
         <div class="list-box2">
-						<?php if(is_array(@getimagesize($item->imgLink))):?>
+						<?php if(!empty($item->imgLink)):?>
                              <a href="<?php echo $item->link;?>">
                                 <img class="img2" src="<?php echo $item->imgLink;?>"></a>
                         <?php endif;?>

@@ -15,7 +15,6 @@ $templateUrl = JURI::root().'templates/'.$mainframe->getTemplate();
 		$this->display('message');
 	}
 ?>
-<?php var_dump ($GLOBALS['_JERROR_STACK']);?>
 <div class="mdl-cnt">
 <form action="<?php echo JRoute::_( 'index.php?option=com_user' ); ?>" method="post" id="josForm" name="josForm" class="form-validate">
 
@@ -29,7 +28,8 @@ $templateUrl = JURI::root().'templates/'.$mainframe->getTemplate();
 </div>
 </div>
 <?php endif; ?>
- <div class="cnt" style="padding-left:5px;">
+ <div class="cnt">
+ <div  style="padding-left:5px;">
 <table cellpadding="0" cellspacing="0" border="0" width="100%" class="contentpane">
 <tr>
 	<td width="30%" height="40">
@@ -87,13 +87,16 @@ $templateUrl = JURI::root().'templates/'.$mainframe->getTemplate();
 	</td>
 </tr>
 </table>
+
 <button class="button validate" type="submit"><?php echo JText::_('Register'); ?></button>
 	<input type="hidden" name="task" value="register_save" />
 	<input type="hidden" name="id" value="0" />
 	<input type="hidden" name="gid" value="0" />
 	<?php echo JHTML::_( 'form.token' ); ?>
+	</div>
 </div>
 	
 </form>
+
 <img src="<?php echo $templateUrl;?>/images/news&event_73.png" class="img-rounded" />
 </div>
