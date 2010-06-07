@@ -542,7 +542,7 @@ class plgContentExtranews extends JPlugin
 							
 						} else {
 							$link   = JRoute::_(ContentHelperRoute::getArticleRoute($row->slug, $row->catslug, $row->sectionid.":testset"));
-							$apre_next = $apre_next . '<span class="extranews_nextpage"><a href="'. $link . '" title="'.$row->title.'">'.JText::_('LBL_NEXT_PAGE').'</a></span>';
+							$apre_next = $apre_next . '<span class="extranews_nextpage"><a class="color5" style="font-weight:bold" href="'. $link . '" title="'.$row->title.'">'.JText::_('LBL_NEXT_PAGE').'</a></span>';
 							break;
 						}
 					}//for each  

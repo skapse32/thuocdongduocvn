@@ -12,10 +12,9 @@ $mCategory->setId($cat->id);
 JRequest::setVar("limit",10);
 $limitstart	= JRequest::getVar('limitstart', 0, '', 'int');
 $limit	= JRequest::getVar('limit', 0, '', 'int');
-
 $items = &$mCategory->getData();
 $total = &$mCategory->getTotal();
-
+$sectionid = $items[0]->sectionid;
 //echo "xxxxx";die;
 $pagination = new JPagination($total,$limitstart,$limit);
 ?>
@@ -55,13 +54,15 @@ $pagination = new JPagination($total,$limitstart,$limit);
 			?>
 			<div class="list-box2">
 				<a href="<?php echo JRoute::_(ContentHelperRoute::getArticleRoute($item->slug, $item->catslug, $item->sectionid));?>">
-					<?php if(!empty($item->imgLink)):?>					
-					<img src="<?php echo $item->imgLink;?>" alt="Loading" class="img2" />
+					<?php if(!empty($item->imgLink)):?>	
+									
+					<img src="<?php echo $item->imgLink;?>" alt="Loading" class="<?php echo $sectionid==5? "img3":"img2";?>" />
 					<?php endif;?>
 					</a> <a href="<?php echo JRoute::_(ContentHelperRoute::getArticleRoute($item->slug, $item->catslug, $item->sectionid));?>" class="link_title">
 						<?php echo $item->title;?></a>
-				<p>
-					<?php echo $item->introtext;?></p>
+				<p>					
+					<?php  echo  strip_tags($item->introtext,"<p><a><br><br/>");?>
+					</p>
 			</div>
 		<?php endforeach;?>        
 		<?php else:?>

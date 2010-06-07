@@ -1,4 +1,4 @@
-﻿<?php
+<?php
   // no direct access
   defined('_JEXEC') or die('Restricted access');
   
@@ -40,7 +40,7 @@
   }
   </script>";
   $html=$script;
-  $html.= "<select class='linked' name='web-links' onchange=\"if(this.value!='') {window.target='_blank';window.location=this.value;}\">";
+$html.= "<div>	<div><div><h3>Liên kết website</h3><div class='form'><select class='linked' name='web-links' onchange=\"if(this.value!='') {window.target='_blank';window.location=this.value;}\">";
 $html.="<option value=''>------Liên Kết Website------</option>";
 //print_r($list);
   foreach ($list as $row) {
@@ -61,7 +61,7 @@ $html.="<option value=''>------Liên Kết Website------</option>";
     $URL=JRoute::_("index.php?option=com_weblinks&view=weblink&catid=".$row->catslug."&id=".$row->slug);    
 	$html.="<option value='$URL'>$title</option>";
   }
-$html.="</select>"; 
+$html.="</select><br/></div></div>		</div>		</div>"; 
 echo $html;
 //  $content="";
 

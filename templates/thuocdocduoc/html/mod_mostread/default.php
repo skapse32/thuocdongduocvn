@@ -1,7 +1,10 @@
 ﻿<?php // no direct access
 defined('_JEXEC') or die('Restricted access'); 
+
 $dispatcher	=& JDispatcher::getInstance();
 JPluginHelper::importPlugin('content');
+
+
 include_once dirname(__FILE__).DS.'helper.php';
 include_once JPATH_ROOT.DS.'components'.DS.'com_content'.DS.'helpers'.DS.'route.php';
 $list = modMostReadHelperExtended::getList($params);
@@ -47,6 +50,7 @@ jQuery('document').ready(function(){
 	// Process the content preparation plugins
 	
 	$results = $dispatcher->trigger('onPrepareContent', array (& $item, & $item->params, 0));
+	//$xx->jumultithumb(&$item);
 	
 	
 	$plg_matches=array();
@@ -59,7 +63,7 @@ jQuery('document').ready(function(){
 	}
 ?>
 	<li>
-		<a href="<?php echo $item->link; ?>"><img src="<?php echo $item->imgLink;?>" /></a>
+		<a href="<?php echo $item->link; ?>"><img <?php echo (strtolower(JRequest::getVar('layout'))=='thuvien' ||$item->sectionid==5 ?"style='width:45px'":""); ?> src="<?php echo $item->imgLink;?>" /></a>
 		<a href="<?php echo $item->link; ?>" class="mostread<?php echo $params->get('moduleclass_sfx'); ?>">
 			<?php echo $item->title; ?></a>
 	</li>
@@ -69,6 +73,6 @@ jQuery('document').ready(function(){
 <?php if($scrollable):?>
 <!--</marquee>-->
 <?php endif;?>
-<?php if(count($list)>=5):?>
-<a class="view-all-1" href="<?php echo JRoute::_("index.php?option=com_content&view=section&id=".trim($params->get('secid'))."&Itemid=".JRequest::getVar('Itemid')); ?>">Xem tất cả</a>
+<?php if(count($list)>=5||count($list)==$params->get('count')):?>
+<a class="view-all-1" href="<?php echo JRoute::_("index.php?option=com_content&view=section&id=".trim($params->get('secid'))."&Itemid=".JRequest::getVar('Itemid').(JRequest::getVar('layout')!=''?"&layout=".JRequest::getVar('layout'):"")); ?>">Xem tất cả</a>
 <?php endif;?>

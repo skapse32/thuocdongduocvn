@@ -45,7 +45,14 @@ $limitstart=$this->limitstart;
         </div>
         <?php endif;?>
         <h2>
-            <?php echo $cat->title;?></h2>
+			<?php if($k=="com_filter_alpha"):?>
+			<a href="<?php echo JRoute::_("index.php?option=com_content&view=section&id=3&filter=tvn&Itemid=21");?>">
+			<?php elseif($k=="com_filter_bt_phanloaitheotinhchatdongy"):?>
+			<a href="<?php echo JRoute::_("index.php?option=com_content&view=section&id=3&filter=bt_tcdy&Itemid=22");?>">			
+			<?php elseif($k=="com_filter_bt_phanloaitheobenh"):?>
+			<a href="<?php echo JRoute::_("index.php?option=com_content&view=section&id=3&filter=bt_pltb&Itemid=23");?>">			
+			<?php endif;?>
+            <?php echo $cat->title;?></a></h2>
         <img src="<?php echo $templateUrl;?>/images/news&event_107.png" />
     </div>
     <div class="cnt">
@@ -61,7 +68,7 @@ $limitstart=$this->limitstart;
             <a href="<?php echo JRoute::_(ContentHelperRoute::getArticleRoute($item->slug, $item->catslug, $item->sectionid));?>" class="link_title">
 				<?php echo $item->title;?></a><span>(<?php echo $item->created_formated;?>)</span>
             <p>
-                <?php echo $item->introtext;?></p>
+                <?php echo strip_tags($item->introtext,'<p><a><br>');?></p>
         </div>
         <?php endforeach;?>
         <!--end list box-->

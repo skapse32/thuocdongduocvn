@@ -87,7 +87,7 @@ foreach($items as $item)
 					</a> <a href="<?php echo JRoute::_(ContentHelperRoute::getArticleRoute($item->slug, $item->catslug, $item->sectionid));?>" class="link_title">
 						<?php echo $item->title;?></a>
 				<p>
-					<?php echo $item->introtext;?></p>
+					<?php echo strip_tags($item->introtext,'<p><br><a>');?></p>
 					<br/>
 					<?php if($item->readmore):?>
 					<a class="view-detal" href="<?php echo JRoute::_(ContentHelperRoute::getArticleRoute($item->slug, $item->catslug, $item->sectionid));?>">Xem chi tiết »</a>

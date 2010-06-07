@@ -54,7 +54,7 @@ $templateUrl = JURI::root().'templates/'.$mainframe->getTemplate();
                              <a href="<?php echo $item->link;?>">
                                 <img class="img2" src="<?php echo $item->imgLink;?>"></a> <a class="link_title" href="<?php echo $item->link;?>">
 									<?php echo $item->title;?></a><p>
-                                        <?php echo $item->introtext;?>
+                                        <?php echo strip_tags($item->introtext,'<p><br><a>');?>
                                         </p>
                                         <p>
                                         <a href="<?php echo $item->link;?>">Xem chi tiết</a></p>

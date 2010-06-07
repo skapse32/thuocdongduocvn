@@ -14,14 +14,14 @@ $list = $db->loadObjectList();
 <div>
 <div>
 	<h3 >Tìm kiếm</h3>
-<div class="form">
+<div class="form" style="padding-bottom:12px;">
 <form action="index.php" method="post">
     <label>
         Từ khóa</label>
     <input type="text" class="input" name="searchword" value="<?php echo JRequest::getVar('searchword');?>">
     <label>
         Loại tìm kiếm</label>
-    <select name="sectionid">
+    <select name="sectionid" style="margin-bottom:15px;">
 		<option value="<?php echo implode(',',$sections);?>">Tất cả</option>
         <?php foreach($list as $item):?>			
 			<option value="<?php echo $item->id;?>" <?php echo $item->id==JRequest::getVar('sectionid')?"selected":'';?>><?php echo ucfirst($item->title);?></option>

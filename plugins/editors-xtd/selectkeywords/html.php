@@ -61,7 +61,8 @@ class LPluginContentView extends JObject
 				</label>
 			</td>
 			<td>
-				<input type="text" value="<?php echo $this->articleParams->get('kvlt',''); ?>" maxlength="255" size="60" id="kvlt" name="params[kvlt]" class="inputbox">								
+		<input type="checkbox" value="1" <?php echo $this->articleParams->get('kvlt','0')>0?"checked":""; ?> maxlength="255" size="60" id="kvlt" name="params[kvlt]" class="inputbox">								
+				
 			</td>	
 			<td>
 			</td>		

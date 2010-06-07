@@ -6,18 +6,21 @@ defined('_JEXEC') or die('Restricted access'); ?>
 <h3>Đăng nhập</h3>
 <?php if($type == 'logout') : ?>
 <form action="index.php" method="post" name="login" id="form-login">
+<div style="padding:10px 0px 4px 0">
 <?php if ($params->get('greeting')) : ?>
-	<div>
-	<?php if ($params->get('name')) : {
-		echo JText::sprintf( 'HINAME', $user->get('name') );
-	} else : {
-		echo JText::sprintf( 'HINAME', $user->get('username') );
-	} endif; ?>
+	<div style='line-height:16px;text-align:center;'>
+		<?php if ($params->get('name')) : {
+			echo JText::sprintf( 'HINAME', $user->get('name') );
+		} else : {
+			echo JText::sprintf( 'HINAME', $user->get('username') );
+	} endif; ?><br/> <a style="color:#0093DD" href="javascript:void(0)" onclick="document.login.submit();return;"><?php echo JText::_( 'BUTTON_LOGOUT'); ?></a>
 	</div>
-<?php endif; ?>
-	<div align="center">
-		<input type="submit" name="Submit" class="button" value="<?php echo JText::_( 'BUTTON_LOGOUT'); ?>" />
-	</div>
+<?php endif; ?>	
+</div>
+
+
+
+
 
 	<input type="hidden" name="option" value="com_user" />
 	<input type="hidden" name="task" value="logout" />
@@ -35,7 +38,7 @@ defined('_JEXEC') or die('Restricted access'); ?>
 		$document->addScriptDeclaration( $langScript );
 		JHTML::_('script', 'openid.js');
 endif; ?>
-<div class="form">
+<div class="form" style='padding-bottom:12px'>
 <form action="<?php echo JRoute::_( 'index.php', true, $params->get('usesecure')); ?>" method="post" name="login" id="form-login" >
 	<?php echo $params->get('pretext'); ?>
     <label>
@@ -43,12 +46,12 @@ endif; ?>
     <input id="modlgn_username" type="text" name="username" class="input" alt="username"/>
     <label>
         Mật khẩu</label>    
-    <input id="modlgn_passwd" type="password" name="passwd" class="input" alt="password" />
+    <input id="modlgn_passwd" type="password" name="passwd" class="input" alt="password" style='margin-bottom:15px' />
     <input type="image" src="templates/thuocdocduoc/images/news&amp;event_113.png">
     <p class="color3 bold"><br>
-                            	<a class="color3 bold" href="<?php echo JRoute::_( 'index.php?option=com_user&view=register' ); ?>">Đăng ký</a> 
+                            	<a class="color3 bold" href="<?php echo JRoute::_( 'index.php?option=com_user&view=register&Itemid=77' ); ?>">Đăng ký</a> 
                             	|
-                            	<a class="color3 bold" href="<?php echo JRoute::_( 'index.php?option=com_user&view=reset' ); ?>">Quyên mật khẩu?</a>
+                            	<a class="color3 bold" href="<?php echo JRoute::_( 'index.php?option=com_user&view=reset&Itemid=78' ); ?>">Quyên mật khẩu?</a>
                             </p>
     	<?php echo $params->get('posttext'); ?>
 	<?php echo $params->get('posttext'); ?>

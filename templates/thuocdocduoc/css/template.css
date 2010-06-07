@@ -74,7 +74,18 @@ div.module-b .img img{float:none; width:170px; border:1px solid #96aab5; padding
 .module-d div div div div div{background:url(../images/news&event_120.png) no-repeat left bottom;}
 .module-d div div div div div div{padding: 8px 10px 10px 10px;}
 .module-d div div div div div div div{ background:transparent none repeat scroll 0 0; float:none; margin:0; padding:0;}
-.module-d .form {padding:21px 0;}
+.module-d .form {padding:20px 0px 15px 0px;}
+.module-e h3 { font-size:100%; margin:-8px -5px 0 23px;  line-height:29px; vertical-align:middle; text-transform:uppercase; color:#85193c; padding-left:5px;}
+.module-e {background:url(../images/news&event_117b.png) repeat-x #e8e8e8 0 22px; width:100%; padding:0; clear:both; margin:0 0 12px;}
+.module-e h3 {font-size:100%; line-height:29px; vertical-align:middle; text-transform:uppercase; color:#85193c; padding-left:5px;}
+.module-e div{border:1px solid #b8bab8;}
+.module-e div div{background:url(../images/news&event_31.png) no-repeat left top; border:none; margin:-1px -1px -1px -1px;}
+.module-e div div div{background:url(../images/news&event_35.png) no-repeat right top; margin:0;}
+.module-e div div div div{background:url(../images/news&event_119.png) no-repeat right bottom;}
+.module-e div div div div div{background:url(../images/news&event_120.png) no-repeat left bottom;}
+.module-e div div div div div div{padding: 8px 10px 10px 10px;}
+.module-e div div div div div div div{ background:transparent none repeat scroll 0 0; float:none; margin:0; padding:0;}
+.module-e .form {padding:21px 0;}
 .invalid{color:#85193D!important;}
 .list-box1 h4 a:hover{color:#032b3f; text-decoration:underline;}
 .menu li li p {
@@ -108,6 +119,14 @@ a.text-underline{text-decoration:underline;}
     font-size:11pt;
     line-height:20px;
 }
+.detail {
+font-size:11pt;
+line-height:20px;
+}
+.detail table
+{
+    font-size:11pt;   
+}
 /*.cols2 h3 {background:url(../images/news&event_32.png) repeat-x right bottom;}*/
 .form {color:#454568;}
 .mdl-cnt h2 a{color:#85193C;}
@@ -135,3 +154,27 @@ width:105px;
 height:90px!important;
 }
 span.highlight{color:black!important;font-weight:bold!important;font-style:normal!important;}
+div.mdl-cnt .cnt .list-box1
+{
+    width:97%!important;
+}
+.form .input, .form select
+{
+    color:#D2285F!important;
+}
+.contact_email
+{
+    line-height:20px;
+}
+.form-validate input,.form-validate textarea
+{
+border:1px solid #96AAB5;
+}
+.list-box2 .img3 {
+border:1px solid #96AAB5;
+float:left;
+height:148px;
+margin:0 10px 10px 0;
+padding:2px;
+width:118px!important;
+}

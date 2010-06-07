@@ -59,7 +59,8 @@ for($i=0;$i<count($categories);$i++)
             <a href="<?php echo JRoute::_(ContentHelperRoute::getCategoryRoute($cat->slug, $cat->section).'&layout=blog');?>" class="view-all-2">Xem tất cả</a>
         </div>
         <h2>
-            <?php echo $cat->title;?></h2>
+			<a href="<?php echo JRoute::_(ContentHelperRoute::getCategoryRoute($cat->slug, $cat->section).'&layout=blog');?>">
+            <?php echo $cat->title;?></a></h2>
         <img src="<?php echo $templateUrl;?>/images/news&event_107.png" />
     </div>
     <div class="cnt">
@@ -78,7 +79,9 @@ for($i=0;$i<count($categories);$i++)
 				<a href="<?php echo JRoute::_(ContentHelperRoute::getArticleRoute($firstArticle->slug, $firstArticle->catslug, $firstArticle->sectionid));?>">
                 <?php echo $firstArticle->title;?></a></h4>
             <p>
-                <?php  echo $firstArticle->introtext;?></p>
+                <?php  echo  strip_tags($firstArticle->introtext,"<p><a><br><br/>");?>
+                
+                </p>
             <?php if($firstArticle->readmore>0):?>
             <a href="<?php echo JRoute::_(ContentHelperRoute::getArticleRoute($firstArticle->slug, $firstArticle->catslug, $firstArticle->sectionid));?>">Xem chi tiết</a>
             <?php endif;?>

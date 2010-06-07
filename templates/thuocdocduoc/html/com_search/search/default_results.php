@@ -38,7 +38,7 @@ JPluginHelper::importPlugin('content');
 		
 		
 		$plg_matches=array();
-		$have_images = preg_match_all("|<[\s\v]*img[\s\v][^>]*>|Ui", $result->text, $plg_matches, PREG_PATTERN_ORDER) > 0;
+		$have_images = preg_match_all("|<[\s\v]*img[\s\v][^>]*>|Ui", $result->alltext, $plg_matches, PREG_PATTERN_ORDER) > 0;
 		if($have_images)
 		{
 		$result->imgTag= $plg_matches[0][0];

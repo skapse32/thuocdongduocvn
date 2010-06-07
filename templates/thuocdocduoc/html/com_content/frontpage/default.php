@@ -54,14 +54,83 @@ foreach($sectionIds as $secId)// get Articles in sections
 
 ?>
  <?php foreach( $sections as $section):?>
+ <?php
+	$defaultSectionLink =JRoute::_(ContentHelperRoute::getSectionRoute($section->id));
+	switch((int)$section->id)
+	{
+		case 2:
+				$defaultSectionLink=JRoute::_("index.php?option=com_content&view=section&layout=caythuoc_vithuoc&id=".$section->id."&Itemid=4");
+				$filter='';
+			$item = &$section->articles[0];
+			$item->params = new JParameter($item->attribs);
+			$showTitles =array('tvn','tkh','thv','htvvn','htvkh');
+			//unset($art);
+			$art= array();
+			if(in_array($filter,$showTitles))
+				if(strtolower($filter)=='htvvn'||strtolower($filter)=='htvkh')
+				{
+					$title="Họ ". $item->params->get($filter,'');
+				}elseif(strtolower($filter)=='' || strtolower($filter)=='tvn')
+				{
+					$title=$item->title;
+				}
+				else
+				{
+					$title=$item->params->get(strtolower($filter),'');
+				}	
+			
+			for($i=0;$i<count($showTitles);$i++)
+			{
+				if($showTitles[$i]!=$filter)
+				{
+					$tmp=$item->params->get($showTitles[$i],'');
+					switch(strtolower($showTitles[$i]))
+					{
+						case "tkh":	//ten khoa hoc	
+							if(!empty($tmp))
+								$art[]="Tên khoa học: ".	$item->params->get($showTitles[$i],'');
+							break;
+						case "thv"://ten han viet
+							if(!empty($tmp))
+								$art[]="Tên hán việt: ".	$item->params->get($showTitles[$i],'');
+							break;
+						case "htvvn":// ho thuc vat viet nam
+							if(!empty($tmp))
+								$art[]="Họ thực vật Việt Nam: ".	$item->params->get($showTitles[$i],'');
+							break;
+						case "htvkh":// ho thuc vat khoa hoc
+							if(!empty($tmp))
+								$art[]="Họ thực vật khoa học: ".	$item->params->get($showTitles[$i],'');
+							break;				
+						case "tvn":
+							if(!empty($tmp))
+								$art[]="Tên Việt Nam: ".	$item->title;
+							break;
+						default:
+							break;
+					}
+				}		
+			}
+			if(!empty($title))
+				$item->title=$title;
+			if(strpos(' '.$art[0],$item->title))
+				unset($art[0]);
+			$item->introtext=implode('<br/>',$art);
+		break;
+		case 5:				
+			$defaultSectionLink=JRoute::_("index.php?option=com_content&view=section&layout=thuvien&id=".$section->id."&Itemid=7");
+		break;
+	}
+ ?>
  <!--mdl-3--> 
 <div class="mdl-cnt">
     <div class="title">
         <div class="fl-right">
-            <a href="<?php echo JRoute::_(ContentHelperRoute::getSectionRoute($section->id));?>" class="view-all-2">Xem tất cả</a>
+            <a  href="<?php echo $defaultSectionLink ;?>" class="view-all-2">Xem tất cả</a>
         </div>
         <h2>
-            <?php echo $section->title;?></h2>
+			<a href="<?php echo $defaultSectionLink;?>">
+            <?php echo $section->title;?></a></h2>
         <img src="<?php echo $templateUrl;?>/images/news&event_107.png" />
     </div>
     <div class="cnt">
@@ -71,7 +140,7 @@ foreach($sectionIds as $secId)// get Articles in sections
         <div class="list-box1">
             <?php if(!empty($firstArticle->imgTag)):?>			
             <a href="<?php echo JRoute::_(ContentHelperRoute::getArticleRoute($firstArticle->slug, $firstArticle->catslug, $firstArticle->sectionid));?>">
-			<img src="<?php echo $firstArticle->imgLink;?>" class="img" />
+			<img src="<?php echo $firstArticle->imgLink;?>" class="img" <?php echo $firstArticle->sectionid==5? "style='width:128px;height:155px'":"";?> />
 			</a>
 			<?php else:?>
             <!--<img src="<?php echo $templateUrl;?>/images/news&event_58.png" class="img" />-->
@@ -80,7 +149,9 @@ foreach($sectionIds as $secId)// get Articles in sections
 				<a href="<?php echo JRoute::_(ContentHelperRoute::getArticleRoute($firstArticle->slug, $firstArticle->catslug, $firstArticle->sectionid));?>">
                 <?php echo $firstArticle->title;?></a></h4>
             <p>
-                <?php echo $firstArticle->introtext;?></p>
+                <?php echo strip_tags($firstArticle->introtext,'<p><br><a><br/>');?>
+                <?php// echo $firstArticle->introtext;?>
+                </p>
             <?php if($firstArticle->readmore>0):?>
             <a href="<?php echo JRoute::_(ContentHelperRoute::getArticleRoute($firstArticle->slug, $firstArticle->catslug, $firstArticle->sectionid));?>">Xem chi tiết</a>
             <?php endif;?>
