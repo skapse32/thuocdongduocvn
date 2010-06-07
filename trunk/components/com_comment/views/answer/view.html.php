@@ -16,7 +16,7 @@ class CommentViewAnswer extends JView
 		$greeting =& $this->get('Data');      
         $pagination =& $this->get('Pagination');
         
- 
+ //print_r($greeting);
         // push data into the template
         $this->assignRef('greeting', $greeting);     
         $this->assignRef('pagination', $pagination);

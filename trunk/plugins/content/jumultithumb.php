@@ -9,7 +9,7 @@
 */
 
 defined( '_JEXEC' ) or die( 'Restricted access' );
-
+$mainframe->registerEvent('onPrepareContent', 'JUMultithumb');
 error_reporting(0);
 
 class  plgContentJThumbs extends JPlugin

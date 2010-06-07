@@ -30,7 +30,7 @@ class CommentModelAnswer extends JModel
   	}
   	
 	
-	function _buildQuery()
+	function _buildQuery($catid=null)
 	{
 		$v=JRequest::getVar('v','');
 		$where=array();
@@ -45,16 +45,26 @@ class CommentModelAnswer extends JModel
         }
 		if(count($where))
         	$w_str = " WHERE ".implode('AND',$where);
-                
+		if($catid)
+			$catid=" AND catid='$catid' ";      
         	
-        $query = 'select * from #__comment '.$w_str."and del_flag=1"." ORDER BY created asc ";        
+        $query = 'select * from #__comment '.$w_str." and del_flag=1 $catid  ORDER BY created DESC ";        
         return $query;
 	}
 	function getData()
-	{        
+	{       
+	$db = &JFactory::getDBO(); 
         if (empty($this->_data)) {
-            $query = $this->_buildQuery();
-            $this->_data = $this->_getList($query, $this->getState('limitstart'), $this->getState('limit')); 
+			$query = "SELECT * FROM #__comment_category ORDER BY ordering";
+			$db->setQuery($query);
+			$cats = $db->loadObjectList();
+			for($i=0;$i<count($cats);$i++)
+			{
+				$query = $this->_buildQuery($cats[$i]->id);				
+				$cats[$i]->items =$this->_getList($query, $this->getState('limitstart'), $this->getState('limit')); 
+					
+			}
+			$this->_data = $cats;
         }
         return $this->_data;       
 	}

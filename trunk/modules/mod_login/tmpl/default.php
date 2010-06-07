@@ -2,19 +2,17 @@
 defined('_JEXEC') or die('Restricted access'); ?>
 <?php if($type == 'logout') : ?>
 <form action="index.php" method="post" name="login" id="form-login">
+<div style="padding:10px 0">
 <?php if ($params->get('greeting')) : ?>
 	<div>
 	<?php if ($params->get('name')) : {
 		echo JText::sprintf( 'HINAME', $user->get('name') );
-	} else : {
-		echo JText::sprintf( 'HINAME', $user->get('username') );
-	} endif; ?>
+		} else : {
+			echo JText::sprintf( 'HINAME', $user->get('username') );
+	} endif; ?>, <a href="document.login.submit();"><?php echo JText::_( 'BUTTON_LOGOUT'); ?></a>
 	</div>
-<?php endif; ?>
-	<div align="center">
-		<input type="submit" name="Submit" class="button" value="<?php echo JText::_( 'BUTTON_LOGOUT'); ?>" />
-	</div>
-
+<?php endif; ?>	
+</div>
 	<input type="hidden" name="option" value="com_user" />
 	<input type="hidden" name="task" value="logout" />
 	<input type="hidden" name="return" value="<?php echo $return; ?>" />

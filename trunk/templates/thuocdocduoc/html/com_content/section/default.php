@@ -19,7 +19,7 @@ $this->template=$template;
 $dispatcher	=& JDispatcher::getInstance();
 switch($template)
 {
-	case "thuoc_dong_duoc":		
+	case "thuoc_dong_duoc":				
 		include_once dirname(__FILE__).DS.'helper'.DS."category.php";
 		$mCategory = new ContentModelCategoryHelper();
 		$i=0;
@@ -47,7 +47,7 @@ switch($template)
 				JRequest::setVar('limit',3,'post');// set limit is 3 items for other categories
 			}
 			$cat->items= $mCategory->getData();
-			$cat->total = $mCategory->getTotal();
+			$cat->total = $mCategory->getTotal();			
 			$cat->pagination = new JPagination($cat->total,JRequest::getVar('limitstart',0),JRequest::getVar('limit',5));
 		}
 		echo $this->loadTemplate($template);
@@ -96,7 +96,7 @@ switch($template)
 				}
 				else
 				{
-					JRequest::setVar('limit',15,'post');
+					JRequest::setVar('limit',25,'post');
 				}
 				JRequest::setVar('filter','','post');
 				JRequest::setVar('viewby',@$viewby[$i]);
@@ -218,8 +218,8 @@ switch($template)
                                 <img class="img2" src="<?php echo $item->imgLink;?>"></a>
                         <?php endif;?>
                          <a class="link_title" href="<?php echo $item->link;?>">
-									<?php echo $item->title;?></a><p>
-                                        <?php echo $item->introtext;?>
+									<?php echo $item->title;?></a><p>                                        
+                                        <?php echo strip_tags($item->introtext,'<p><br><a>');?>
                                         </p>
                                         <p>
                                         <a href="<?php echo $item->link;?>">Xem chi tiết</a></p>

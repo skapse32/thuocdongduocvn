@@ -1,9 +1,14 @@
 <?php defined('_JEXEC') or die; ?>
 
-<div class="componentheading">
-	<?php echo JText::_('Confirm your Account'); ?>
-</div>
-
+<!--mdl-3-->
+<div class="mdl-cnt">
+    <div class="title">
+        <h2>
+          <?php echo JText::_('Confirm your Account'); ?></h2>
+        <img src="<?php echo $templateUrl;?>/images/news&event_107.png" />
+    </div>
+    <div class="cnt">
+       <div style="padding:10px;line-height:20px;">
 <form action="<?php echo JRoute::_( 'index.php?option=com_user&task=confirmreset' ); ?>" method="post" class="josForm form-validate">
 	<table cellpadding="0" cellspacing="0" border="0" width="100%" class="contentpane">
 		<tr>
@@ -24,3 +29,12 @@
 	<button type="submit" class="validate"><?php echo JText::_('Submit'); ?></button>
 	<?php echo JHTML::_( 'form.token' ); ?>
 </form>
+</div>
+        <p>
+            <br />
+            <br />
+        </p>
+    </div>
+    <img src="<?php echo $templateUrl;?>/images/news&event_73.png" class="img-rounded" />
+</div>
+<!--end-mdl-3-->

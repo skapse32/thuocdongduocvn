@@ -87,7 +87,8 @@ $viewby=JRequest::getVar('viewby',array(),'default','array');
         </div>
         <?php endif;?>
         <h2 style='min-width:60px'>
-            <?php echo $cat->title;?></h2>
+			<a href="<?php echo JRoute::_(ContentHelperRoute::getCategoryRoute($cat->slug, $cat->section).'&layout=blog');?>">
+            <?php echo $cat->title;?></a></h2>
         <img src="<?php echo $templateUrl;?>/images/news&event_107.png" />
     </div>
     <div class="cnt">
@@ -125,7 +126,7 @@ $viewby=JRequest::getVar('viewby',array(),'default','array');
 						<img src="<?php echo $item->imgLink;?>" class="img2" />
 						</a> <a href="<?php echo JRoute::_(ContentHelperRoute::getArticleRoute($item->slug, $item->catslug, $item->sectionid));?>" class="link_title">
 							<?php echo $item->title;?></a><p>
-								<?php echo $item->introtext;?></p>
+								<?php echo strip_tags($item->introtext,'<p><br><a>');?></p>
 				</div> 
 			<?php endforeach;?>                              
 			<?php elseif($i==2||$i==3):?><!-- two categories below with images-->

@@ -67,8 +67,65 @@ $items =$mSection->getData();
 $total = $mSection->getTotal();
 $pagination = new JPagination($total,$limitstart,$limit);
 $xemTheo = getFilter($dcomFilter);
-foreach($items as $item)
+if(empty($filter)) $filter='tvn';
+foreach($items as &$item)
 {	
+	//attrbs 	
+	$item->params = new JParameter($item->attribs);
+	$showTitles =array('tvn','tkh','thv','htvvn','htvkh');
+	//unset($art);
+	$art= array();
+	if(in_array($filter,$showTitles))
+	if(strtolower($filter)=='htvvn'||strtolower($filter)=='htvkh')
+	{
+		$title="Họ ". $item->params->get($filter,'');
+	}elseif(strtolower($filter)=='' || strtolower($filter)=='tvn')
+	{
+		$title=$item->title;
+	}
+	else
+	{
+		$title=$item->params->get(strtolower($filter),'');
+	}	
+	
+	for($i=0;$i<count($showTitles);$i++)
+	{
+		if($showTitles[$i]!=$filter)
+		{
+			$tmp=$item->params->get($showTitles[$i],'');
+			switch(strtolower($showTitles[$i]))
+			{
+				case "tkh":	//ten khoa hoc	
+					if(!empty($tmp))
+						$art[]="Tên khoa học: ".	$item->params->get($showTitles[$i],'');
+					break;
+				case "thv"://ten han viet
+					if(!empty($tmp))
+						$art[]="Tên hán việt: ".	$item->params->get($showTitles[$i],'');
+					break;
+				case "htvvn":// ho thuc vat viet nam
+					if(!empty($tmp))
+						$art[]="Họ thực vật Việt Nam: ".	$item->params->get($showTitles[$i],'');
+					break;
+				case "htvkh":// ho thuc vat khoa hoc
+					if(!empty($tmp))
+						$art[]="Họ thực vật khoa học: ".	$item->params->get($showTitles[$i],'');
+					break;				
+				case "tvn":
+					if(!empty($tmp))
+						$art[]="Tên Việt Nam: ".	$item->title;
+					break;
+				default:
+					break;
+			}
+		}		
+	}
+	if(!empty($title))
+		$item->title=$title;
+	if(strpos(' '.$art[0],$item->title))
+		unset($art[0]);
+	$item->art=$art;
+	//echo implode('<br/>',$art);
 	$item->created_formated = new JDate($item->created);
 	$item->created_formated->setOffset($mainframe->getCfg('offset'));
 	$item->created_formated= $item->created_formated->toFormat('%d/%m/%Y');
@@ -84,7 +141,7 @@ foreach($items as $item)
 	// Process the content preparation plugins
 	
 	$results = $dispatcher->trigger('onPrepareContent', array (& $item, & $item->params, 0));
-	
+	$item->introtext = strip_tags($item->introtext,'<p><a><br>');
 	
 	$plg_matches=array();
 	$have_images = preg_match_all("|<[\s\v]*img[\s\v][^>]*>|Ui", $item->text, $plg_matches, PREG_PATTERN_ORDER) > 0;
@@ -155,9 +212,16 @@ foreach($items as $item)
 					<img src="<?php echo $item->imgLink;?>" alt="Loading" class="img2" />
 					<?php endif;?>
 					</a> <a href="<?php echo JRoute::_(ContentHelperRoute::getArticleRoute($item->slug, $item->catslug, $item->sectionid));?>" class="link_title">
-						<?php echo $showSpectialTitle? $item->oo: $item->title;?></a>
+						<?php //echo $showSpectialTitle? $item->oo: $item->title;?>
+						<?php echo $item->title;//unset($art[0]);?>
+						</a>
 				<p>
-					<?php echo $item->introtext;?></p>
+					<?php //if(!empty($item->introtext)):?>
+					<?php //echo $item->introtext;?>
+					<?php //else:?>
+					<?php echo implode('<br/>',$item->art);?>
+					<?php // endif;?>
+					</p>
 			</div>
 		<?php endforeach;?> 
 		<?php else:?>

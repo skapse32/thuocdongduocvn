@@ -1,10 +1,13 @@
 ﻿<?php // no direct access
 defined('_JEXEC') or die('Restricted access'); 
+
 $dispatcher	=& JDispatcher::getInstance();
 JPluginHelper::importPlugin('content');
+
 //include_once dirname(__FILE__).DS.'helper.php';
 include_once JPATH_ROOT.DS.'components'.DS.'com_content'.DS.'helpers'.DS.'route.php';
 //$list = modMostReadHelperExtended::getList($params);
+
 ?>
 <ul class="list3">
 <?php foreach ($list as $item) : ?>
