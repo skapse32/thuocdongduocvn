@@ -74,5 +74,10 @@ jQuery('document').ready(function(){
 <!--</marquee>-->
 <?php endif;?>
 <?php if(count($list)>=5||count($list)==$params->get('count')):?>
-<a class="view-all-1" href="<?php echo JRoute::_("index.php?option=com_content&view=section&id=".trim($params->get('secid'))."&Itemid=".JRequest::getVar('Itemid').(JRequest::getVar('layout')!=''?"&layout=".JRequest::getVar('layout'):"")); ?>">Xem tất cả</a>
+<?php
+	$viewall =JRoute::_("index.php?option=com_content&view=section&id=".trim($params->get('secid'))."&Itemid=".JRequest::getVar('Itemid').(JRequest::getVar('layout')!=''?"&layout=".JRequest::getVar('layout'):""));
+	if($params->get('secid','')==9)
+		$viewall=JRoute::_("index.php?option=com_content&view=section&id=9&Itemid=2&layout=default");;
+?>
+<a class="view-all-1" href="<?php echo $viewall;?>">Xem tất cả</a>
 <?php endif;?>

@@ -61,7 +61,7 @@ for($i=0;$i<count($categories);$i++)
         <h2>
 			<a href="<?php echo JRoute::_(ContentHelperRoute::getCategoryRoute($cat->slug, $cat->section).'&layout=blog');?>">
             <?php echo $cat->title;?></a></h2>
-        <img src="<?php echo $templateUrl;?>/images/news&event_107.png" />
+        <img  src="<?php echo $templateUrl;?>/images/news&event_107.png" />
     </div>
     <div class="cnt">
 		<? if(count($cat->articles)):?><!--Hiển thị các bài viết trong section-->
@@ -70,7 +70,7 @@ for($i=0;$i<count($categories);$i++)
         <div class="list-box1">
 			<?php if(!empty($firstArticle->imgTag)):?>			
 			<a href="<?php echo JRoute::_(ContentHelperRoute::getArticleRoute($firstArticle->slug, $firstArticle->catslug, $firstArticle->sectionid));?>">
-			<img src="<?php echo $firstArticle->imgLink;?>" class="img" />
+			<img src="<?php echo $firstArticle->imgLink;?>" class="<?php echo (JRequest::getInt('id')==5)?"img3":"img";?>" />
 			</a>
 			<?php else:?>
             <!--<img src="<?php echo $templateUrl;?>/images/news&event_58.png" class="img" />-->
