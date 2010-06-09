@@ -76,19 +76,6 @@ body {margin:0px; padding:0px; background:#f0faf1; font-family: Arial, Helvetica
 .list-box2 .img3{width:128px; height:148px; float:left; padding:2px; border:1px solid #96aab5; margin:0 10px 10px 0;}
 .list-box2 h4 a{color:#032b3f; text-decoration:none;}
 
-/*list-box3*/
-.list-box3 {color:#454545; padding: 2% 0; width:100%; float:left; line-height:15px; border-bottom:1px dashed #c2c5c3;}
-.list-box3 h4{font-size:11px; color:#00476b; padding-bottom:5px;}
-.list-box3 img{float:none;}
-.list-box3 a{color:#032b3f; text-decoration:none !important;}
-.list-box3 a:hover{color:#032b3f; text-decoration:underline !important;}
-.list-box3 span{color:#7d7d7d; font-style:italic;}
-.list-box3 .img2{width:90px; height:69px; float:left; padding:2px; border:1px solid #96aab5; margin:0 10px 0px 0;}
-.list-box3 .img3{width:128px; height:148px; float:left; padding:2px; border:1px solid #96aab5; margin:0 10px 10px 0;}
-.list-box3 h4 a{color:#032b3f; text-decoration:none;}
-
-
-
 /*detail1*/
 .detail {color:#454545; margin: 0 2%; width:96%; padding: 2% 0; width:96%; float:left; line-height:18px;}
 .detail h1{font-size:14px; color:#00476b; padding-bottom:5px; text-transform:uppercase;}
@@ -291,9 +278,3 @@ a.link_title:hover,a.link_title:active{ text-decoration: underline; font-size: i
 .list5 img{width:90px; height:60px; border:1px solid #96aab5; padding:2px; margin-right:5px; float:left;}
 .list5 .price{color:#85193C; padding:5px 0; font-weight:bold;}
 .list5 h3{padding-bottom:5px;}
-
-/*update 310510*/
-.txt-sort {float:right; padding:7px 20px 0 0;}
-.txt-sort a{color:#0070a8; padding:0 10px 0 25px;}
-.txt-sort .up{background:url(../images/up.png) no-repeat right center; }
-.txt-sort .down{background:url(../images/down.png) no-repeat right center;}

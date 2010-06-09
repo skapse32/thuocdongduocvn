@@ -80,8 +80,9 @@ class JComponentHelper
 		static $instances;
 		if (!isset( $instances[$name] ))
 		{
-			$component = &JComponentHelper::getComponent( $name );
+			$component = &JComponentHelper::getComponent( $name );			
 			$instances[$name] = new JParameter($component->params);
+			//echo JUtility::dump($instances[$name]);		die();
 		}
 		return $instances[$name];
 	}

@@ -21,8 +21,8 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
 	$document =& JFactory::getDocument();
 	$document->addScriptDeclaration($script);
 ?>
-<div style="padding-left:5px;">
-<table>
+<div class="contact" style="padding-left:40px">
+<table align="center">
 <?php 
 	if(isset($this->error)) : ?>
 <tr>
@@ -38,25 +38,25 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
 				<?php echo JText::_( 'Enter your name' );?>:
 			</label>
 			<br />
-			<input type="text" name="name" id="contact_name" size="30" class="input" value="" />
+			<input type="text" name="name" id="contact_name" size="40" class="input" value="" style='width:180px' />
 			<br />
 			<label id="contact_emailmsg" for="contact_email">
 				<?php echo JText::_( 'Email address' );?>:
 			</label>
 			<br />
-			<input type="text" id="contact_email" name="email" size="30" value="" class="input required validate-email" maxlength="100" />
+			<input style='width:180px' type="text" id="contact_email" name="email" size="40" value="" class="input required validate-email" maxlength="100" />
 			<br />
 			<label for="contact_subject">
 				<?php echo JText::_( 'Message subject' );?>:
 			</label>
 			<br />
-			<input type="text" name="subject" id="contact_subject" size="30" class="input" value="" />
+			<input type="text" name="subject" id="contact_subject" size="80" class="input" value="" style='width:450px' />
 			<br /><br />
 			<label id="contact_textmsg" for="contact_text">
 				<?php echo JText::_( 'Enter your message' );?>:
 			</label>
 			<br />
-			<textarea cols="50" rows="10" name="text" id="contact_text" class="input required"></textarea>
+			<textarea cols="80" rows="10" name="text" id="contact_text" class="input required" style='width:450px'></textarea>
 			<?php if ($this->contact->params->get( 'show_email_copy' )) : ?>
 			<br />
 				<input type="checkbox" name="email_copy" id="contact_email_copy" value="1"  />

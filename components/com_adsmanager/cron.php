@@ -1,1 +1,1 @@
-<?php $last_cron_date=20100504;?>
+<?php $last_cron_date=20100608;?>
