@@ -44,25 +44,52 @@ $templateUrl =JURI::root()."templates/".$mainframe->getTemplate();
                 <table width="100%" border="0" cellspacing="0" cellpadding="0">
                     <tr>
                         <td width="20%" style="vertical-align: top">
-                            <a href="#">
+                            <a href="index.php?option=com_raovat&view=raovat&layout=detail&id=<?php echo $item->id;?>">
                                 <img src="<?php echo JURI::root().'/images/raovat/thumb/'.$item->image;?>" class="img2" /></a>
                         </td>
                         <td width="20%" style="vertical-align: top">
                             <strong><?php echo $item->city;?></strong><br />                            
-                            Giá: <?php echo $item->price;?>/<?php echo $item->unit;?><br />
+                            Giá: <?php echo number_format($item->price,'','',',').' '.$item->currency;?>/<?php echo $item->unit;?><br />
                             <?php echo JHTML::_('date',$item->created,'%d-%m-%Y');?><br />
                             Số lượng: <?php echo $item->amount;?> <?php echo $item->unit;?>
                         </td>
                         <td style="padding-left: 10px; vertical-align: top">
-                            <a href="#" class="color2"><strong><?php echo $item->title;?></strong></a><br />
+                            <a href="index.php?option=com_raovat&view=raovat&layout=detail&id=<?php echo $item->id;?>" class="color2"><strong><?php echo $item->title;?></strong></a><br />
                             Mô tả: <?php echo substr(strip_tags($item->desc),0,180).'...';?><br />
-                            <strong>Người bán:</strong> <a href="#">lucha123</a> - Trả lời: 5
+                           <?php $persional_info = &JTable::getInstance('raovat_profile');
+							$persional_info->load($item->user_id);
+							if($persional_info->user_id == NULL )
+							{
+								$user =&JFactory::getUser($_GET[$item->user_id]);
+							}
+			?>
+                            <strong>Người bán:</strong> 
+							<?php
+							 if($persional_info->persional_name!="")
+							 {
+							 	 echo $persional_info->persional_name;
+							 }
+							 else
+							 {
+							 	echo $user->username;
+							 }
+							 ?>
+                           
+                            - Trả lời: <?php
+                            	$db =& JFactory::getDBO();
+								$query = "SELECT count(*) FROM #__raovat_comment WHERE id_raovat  ='$item->id'";
+								$db->setQuery($query);
+								$result = $db->loadResult();
+								
+								echo $result;
+								?>
                         </td>
                     </tr>
                 </table>
             </div>
             <?php endforeach;?>           
-            <?php echo $this->canbanpage->getPagesLinks();?>
+            <?php //echo $this->canbanpage->getPagesLinks();?>
+            <center><a href="index.php?option=com_raovat&view=raovat&layout=canban" style="color:#666666; font-size:14px;">Xem tất cả</a></center>
         </div>
         <!--end list box-->
     </div>
@@ -110,25 +137,52 @@ $templateUrl =JURI::root()."templates/".$mainframe->getTemplate();
                 <table width="100%" border="0" cellspacing="0" cellpadding="0">
                     <tr>
                         <td width="20%" style="vertical-align: top">
-                            <a href="#">
+                            <a href="index.php?option=com_raovat&view=raovat&layout=detail&id=<?php echo $item->id;?>">
                                 <img src="<?php echo JURI::root().'/images/raovat/thumb/'.$item->image;?>" class="img2" /></a>
                         </td>
                         <td width="20%" style="vertical-align: top">
                             <strong><?php echo $item->city;?></strong><br />                            
-                            Giá: <?php echo $item->price;?>/<?php echo $item->unit;?><br />
+                            Giá: <?php echo number_format($item->price,'','',',').' '.$item->currency;?>/<?php echo $item->unit;?><br />
                             <?php echo JHTML::_('date',$item->created,'%d-%m-%Y');?><br />
                             Số lượng: <?php echo $item->amount;?> <?php echo $item->unit;?>
                         </td>
                         <td style="padding-left: 10px; vertical-align: top">
-                            <a href="#" class="color2"><strong><?php echo $item->title;?></strong></a><br />
+                            <a href="index.php?option=com_raovat&view=raovat&layout=detail&id=<?php echo $item->id;?>" class="color2"><strong><?php echo $item->title;?></strong></a><br />
                             Mô tả: <?php echo substr(strip_tags($item->desc),0,180).'...';?><br />
-                            <strong>Người bán:</strong> <a href="#">lucha123</a> - Trả lời: 5
+                            
+                            <?php $persional_info = &JTable::getInstance('raovat_profile');
+							$persional_info->load($item->user_id);
+							if($persional_info->user_id == NULL )
+							{
+								$user =&JFactory::getUser($_GET[$item->user_id]);
+							}
+			?>
+                            <strong>Người bán:</strong> 
+							<?php
+							 if($persional_info->persional_name!="")
+							 {
+							 	 echo $persional_info->persional_name;
+							 }
+							 else
+							 {
+							 	echo $user->username;
+							 }
+							 ?>
+                            - Trả lời: <?php
+                            	$db =& JFactory::getDBO();
+								$query = "SELECT count(*) FROM #__raovat_comment WHERE id_raovat  ='$item->id'";
+								$db->setQuery($query);
+								$result = $db->loadResult();
+								
+								echo $result;
+								?>
                         </td>
                     </tr>
                 </table>
             </div>
             <?php endforeach;?>           
-            <?php echo $this->canmuapage->getPagesLinks();?>
+            <?php //echo $this->canmuapage->getPagesLinks();?>
+            <center><a href="index.php?option=com_raovat&view=raovat&layout=canmua" style="color:#666666; font-size:14px;">Xem tất cả</a></center>
         </div>
         <!--end list box-->
     </div>

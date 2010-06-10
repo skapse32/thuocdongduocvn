@@ -1,7 +1,6 @@
 <?php
 defined("_JEXEC") or die("Cam vao");
 jimport('joomla.application.component.controller');
-JTable::addIncludePath(JPATH_COMPONENT_ADMINISTRATOR.DS.'tables');
 class RaoVatControllerPost extends JController
 {
 	function display()
