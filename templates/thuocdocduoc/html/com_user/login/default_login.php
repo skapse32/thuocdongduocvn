@@ -11,6 +11,15 @@
 		$document->addScriptDeclaration( $langScript );
 		JHTML::_('script', 'openid.js');
 endif; ?>
+
+<div class="mdl-cnt">
+    <div class="title">
+		<h2><a><?php echo JText::_('LOGIN') ?></a></h2>
+        <img src="templates/thuocdocduoc/images/news&event_107.png" />
+    </div>	
+	<div class="cnt">
+    	<div class="padding-left: 10px;">
+        <div class="form">
 <form action="<?php echo JRoute::_( 'index.php', true, $this->params->get('usesecure')); ?>" method="post" name="com-login" id="com-form-login">
 <table width="100%" border="0" align="center" cellpadding="4" cellspacing="0" class="contentpane<?php echo $this->escape($this->params->get('pageclass_sfx')); ?>">
 <tr>
@@ -29,46 +38,50 @@ endif; ?>
 		</div>
 	</td>
 </tr>
+<tr>
+	<td width="400px" align="center">
+    <br />
+    <table>
+    	<tbody>
+        	<tr>
+            	<td align="center">
+                	<?php echo JText::_('Username') ?><br>
+                </td>
+                <td align="center">
+                	<?php echo JText::_('Password') ?><br />
+                </td>
+                <td></td>
+            </tr>
+            <tr>
+            	<td align="center" valign="top">
+                	<input name="username" id="username" type="text" class="inputbox" alt="username" size="15" style="width:130px;" />
+                </td>
+                <td align="right" width="180px">
+                	<input type="password" id="passwd" name="passwd" class="inputbox" size="15" alt="password" style="width:130px;" />
+                </td>
+                <td align="center" width="300px">
+                	<!--<input type="submit" name="Submit" class="button" value="<?php echo JText::_('LOGIN') ?>" />-->
 
+                    <input type="image" src="templates/thuocdocduoc/images/news&event_113.png">
+
+                </td>
+            </tr>
+            <tr>
+            	<td align="center" colspan="3"><br /></td>
+                
+            </tr>
+        </tbody>
+    </table>	
+    </td>
+</tr>
 </table>
-<fieldset class="input">
-	<p id="com-form-login-username">
-		<label for="username"><?php echo JText::_('Username') ?></label><br />
-		<input name="username" id="username" type="text" class="inputbox" alt="username" size="18" />
-	</p>
-	<p id="com-form-login-password">
-		<label for="passwd"><?php echo JText::_('Password') ?></label><br />
-		<input type="password" id="passwd" name="passwd" class="inputbox" size="18" alt="password" />
-	</p>
-	<?php if(JPluginHelper::isEnabled('system', 'remember')) : ?>
-	<p id="com-form-login-remember">
-		<label for="remember"><?php echo JText::_('Remember me') ?></label>
-		<input type="checkbox" id="remember" name="remember" class="inputbox" value="yes" alt="Remember Me" />
-	</p>
-	<?php endif; ?>
-	<input type="submit" name="Submit" class="button" value="<?php echo JText::_('LOGIN') ?>" />
-</fieldset>
-<ul>
-	<li>
-		<a href="<?php echo JRoute::_( 'index.php?option=com_user&view=reset' ); ?>">
-		<?php echo JText::_('FORGOT_YOUR_PASSWORD'); ?></a>
-	</li>
-	<li>
-		<a href="<?php echo JRoute::_( 'index.php?option=com_user&view=remind' ); ?>">
-		<?php echo JText::_('FORGOT_YOUR_USERNAME'); ?></a>
-	</li>
-	<?php
-	$usersConfig = &JComponentHelper::getParams( 'com_users' );
-	if ($usersConfig->get('allowUserRegistration')) : ?>
-	<li>
-		<a href="<?php echo JRoute::_( 'index.php?option=com_user&view=register' ); ?>">
-			<?php echo JText::_('REGISTER'); ?></a>
-	</li>
-	<?php endif; ?>
-</ul>
-
 	<input type="hidden" name="option" value="com_user" />
 	<input type="hidden" name="task" value="login" />
 	<input type="hidden" name="return" value="<?php echo $this->return; ?>" />
 	<?php echo JHTML::_( 'form.token' ); ?>
 </form>
+    			</div>
+    		</div>
+    	</div>
+        <img class="img-rounded" src="templates/thuocdocduoc/images/news&event_73.png" />
+    </div>

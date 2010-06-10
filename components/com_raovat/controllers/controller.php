@@ -17,6 +17,9 @@ class RaoVatController extends JController
 			case "canmua":								
 				$this->canmua();				
 				break;
+			case "detail":
+				$this->detail();
+				break;
 			default:
 				parent::display();
 				break;
@@ -45,6 +48,15 @@ class RaoVatController extends JController
 		$view->assignRef('city',$city);		
 		$view->setModel($model);
 		$view->canban();
+	}
+	/*Canban_detail*/
+	function detail()
+	{					
+		$view = $this->getView('raovat','html');
+		$model = $this->getModel('raovat');
+		$model->raovathit();		
+		$view->setModel($model);
+		$view->canban_detail();
 	}
 	function canmua()
 	{	
@@ -87,6 +99,18 @@ class RaoVatController extends JController
 		$uri->setVar('city',$city);
 		//echo JUtility::dump($uri);die();
 		$mainframe->redirect(JRoute::_("index.php?".$uri->getQuery(),false));
+	}
+	function saveComment()
+	{
+		$model = $this->getModel('raovat');
+		$input->id_raovat = JRequest::getVar('id_raovat');
+		$input->name = JRequest::getVar('name');
+		$input->comment = JRequest::getVar('comment');
+		$jnow =& JFactory::getDate();
+		$now = $jnow->toMySQL();
+		$input->cdate = $now;
+		$model->insertComment($input);
+		$this->detail();		
 	}
 }
 ?>

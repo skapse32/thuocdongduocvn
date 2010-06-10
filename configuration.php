@@ -15,7 +15,7 @@ class JConfig {
 	var $gzip = '0';
 	var $error_reporting = '-1';
 	var $xmlrpc_server = '0';
-	var $log_path = 'C:\\Working\\thuocdongduoc.vn\\logs';
+	var $log_path = 'C:\\localhost\\thuocdongduoc.vn\\logs';
 	var $tmp_path = 'C:\\Working\\thuocdongduoc.vn\\tmp';
 	var $live_site = '';
 	var $force_ssl = '0';
@@ -33,7 +33,7 @@ class JConfig {
 	var $dbtype = 'mysql';
 	var $host = 'localhost';
 	var $user = 'root';
-	var $db = 'thuocdongduoc.vn';
+	var $db = 'thuocdongduoc';
 	var $dbprefix = 'jos_';
 	var $mailer = 'mail';
 	var $mailfrom = 'longdt@live.com';
@@ -49,7 +49,7 @@ class JConfig {
 	var $MetaTitle = '1';
 	var $lifetime = '1500';
 	var $session_handler = 'database';
-	var $password = '123456';
+	var $password = '';
 	var $sitename = 'Thuốc Đông Dược';
 	var $MetaDesc = 'Joomla! - the dynamic portal engine and content management system';
 	var $MetaKeys = 'joomla, Joomla';
