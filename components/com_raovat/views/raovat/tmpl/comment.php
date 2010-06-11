@@ -18,7 +18,7 @@
 		return true;
 	}
 </script>
-<span style="font-size:14px; font-weight:bold;">Ý kiến của bạn</span>
+<span style="font-size:13px; font-weight:bold;">Ý kiến của bạn</span>
 <form name="frmcomment" id="frmcomment"method="post" action="<?php echo JRequest::getURI();?>" onsubmit="return checkform();">
 <?php
 		$persional_info = &JTable::getInstance('raovat_profile');
@@ -51,7 +51,7 @@
 			//echo $editor->display('comment','','100%','400','30','25');
 			?> 
             Nội dung: <br /> 
-          <textarea name="comment" cols="80" rows="6" id="comment"></textarea>         
+          <textarea name="comment" cols="80" rows="6" id="comment" class="input" style="width:100%"></textarea>         
       </td>
     </tr>
     <tr>

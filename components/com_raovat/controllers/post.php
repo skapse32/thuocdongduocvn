@@ -62,10 +62,13 @@ class RaoVatControllerPost extends JController
 				$post->image=$imgHelper->filename;
 			$now = & JFactory::getDate();
 			$post->created = $now->toMySQL();
-			$post->user_id=$my->id;
+			$post->user_id=$my->id;			
+			//echo JUtility::dump($profile);die;
 			//save info
 			$post->store();
+			
 			$profile->user_id=$my->id;
+			
 			if($profile->exist())
 				$profile->store();
 			else

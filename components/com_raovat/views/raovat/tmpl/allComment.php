@@ -8,6 +8,7 @@
 </style>
 <?php
 	jimport("joomla.utilities.date");
+	
 	foreach($this->comment as $comment)
 	{
 		$datepost=new JDate($comment->cdate);
@@ -19,6 +20,8 @@
     </div>
 <?php
 	}
+	if(!count($this->comment))
+		echo "<center style='font-size:12px;'>Chưa có phản hồi nào</center>";
 ?>
 
 <?php echo $this->commentpage->getPagesLinks();?>
