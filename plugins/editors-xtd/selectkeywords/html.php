@@ -182,6 +182,47 @@ class LPluginContentView extends JObject
 				<?php echo $this->selectBoxs["com_filter_t_nhomdieutri"];?>
 			</td>						
 		</tr>	
+        <tr>
+			<td>
+				<label for="t_sdk">
+					Số đăng ký
+				</label>
+			</td>
+			<td>
+		<input type="text" value="<?php echo $this->articleParams->get('t_sdk',''); ?>" maxlength="255" size="60" id="t_sdk" name="params[t_sdk]" class="inputbox">
+			</td>						
+		</tr>	
+      
+         <tr>
+			<td>
+				<label for="t_qcdg">
+					Quy cách đóng gói
+				</label>
+			</td>
+			<td>
+		<input type="text" value="<?php echo $this->articleParams->get('t_qcdg',''); ?>" maxlength="255" size="60" id="t_qcdg" name="params[t_qcdg]" class="inputbox">
+			</td>						
+		</tr>
+         <tr>
+			<td>
+				<label for="t_nsx">
+					Nhà sản xuất
+				</label>
+			</td>
+			<td>
+		<input type="text" value="<?php echo $this->articleParams->get('t_nsx',''); ?>" maxlength="255" size="60" id="t_nsx" name="params[t_nsx]" class="inputbox">
+			</td>						
+		</tr>
+         <tr>
+			<td>
+				<label for="t_npp">
+					Nhà phân phối
+				</label>
+			</td>
+			<td>
+		<input type="text" value="<?php echo $this->articleParams->get('t_npp',''); ?>" maxlength="255" size="60" id="t_npp" name="params[t_npp]" class="inputbox">
+			</td>						
+		</tr>
 	</tbody>
 </table>
 </div>
