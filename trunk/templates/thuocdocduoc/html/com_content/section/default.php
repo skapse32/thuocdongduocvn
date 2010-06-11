@@ -23,6 +23,8 @@ switch($template)
 		include_once dirname(__FILE__).DS.'helper'.DS."category.php";
 		$mCategory = new ContentModelCategoryHelper();
 		$i=0;
+		$viewby=JRequest::getVar('viewby',array(),'default','array');				
+//		echo JUtility::dump($viewby);
 		foreach( $categories as $cat)
 		{
 			$i++;
@@ -45,11 +47,15 @@ switch($template)
 			else
 			{
 				JRequest::setVar('limit',3,'post');// set limit is 3 items for other categories
+
+				JRequest::setVar('viewby',array());
 			}
-			$cat->items= $mCategory->getData();
+			$cat->items= $mCategory->getData();			
 			$cat->total = $mCategory->getTotal();			
+
 			$cat->pagination = new JPagination($cat->total,JRequest::getVar('limitstart',0),JRequest::getVar('limit',5));
 		}
+			JRequest::setVar("viewby",$viewby);
 		echo $this->loadTemplate($template);
 		return;
 	break;

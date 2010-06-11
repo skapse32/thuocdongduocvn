@@ -60,7 +60,43 @@ $pagination = new JPagination($total,$limitstart,$limit);
 					<?php endif;?>
 					</a> <a href="<?php echo JRoute::_(ContentHelperRoute::getArticleRoute($item->slug, $item->catslug, $item->sectionid));?>" class="link_title">
 						<?php echo $item->title;?></a>
-				<p>					
+				<p>		
+                <?php 
+								if(strtolower($cat->title)=='thuốc')
+								{
+							?>
+                            <table width="380px">
+                            	<?php
+                                	if($aparams->get('t_dbc') !='')
+									{
+								?>
+                            	<tr>
+                                	<td width="131">Dạng bào chế:</td>
+                                  <td width="237"><?php echo $aparams->get('t_dbc');?></td>
+                              </tr>
+                              <?php }?>
+                              <?php if($aparams->get('t_qcdg') !=''){?>
+                              <tr>
+                                	<td>Quy cách đóng gói:</td>
+                                    <td><?php echo $aparams->get('t_qcdg');?></td>
+                              </tr>
+                              <?php } ?>
+                              <?php if($aparams->get('t_nxs')) { ?>
+                              <tr>
+                                	<td>Nhà sản xuất:</td>
+                                    <td><?php echo $aparams->get('t_nxs');?></td>
+                              </tr>
+                              <?php }?>
+                              <?php if($aparams->get('t_sdk')) {?>
+                                <tr>
+                                	<td>Số đăng ký:</td>
+                                    <td><?php echo $aparams->get('t_sdk');?></td>
+                                </tr>
+                               <?php }?> 
+                            </table>
+                           <?php
+                           }
+						   ?>			
 					<?php  echo  strip_tags($item->introtext,"<p><a><br><br/>");?>
 					</p>
 			</div>

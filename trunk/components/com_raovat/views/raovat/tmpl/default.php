@@ -89,7 +89,7 @@ $templateUrl =JURI::root()."templates/".$mainframe->getTemplate();
             </div>
             <?php endforeach;?>           
             <?php //echo $this->canbanpage->getPagesLinks();?>
-            <center><a href="index.php?option=com_raovat&view=raovat&layout=canban" style="color:#666666; font-size:14px;">Xem tất cả</a></center>
+            <center><a href="index.php?option=com_raovat&view=raovat&layout=canban" class="view-all-1">Xem tất cả</a></center>
         </div>
         <!--end list box-->
     </div>
@@ -182,7 +182,7 @@ $templateUrl =JURI::root()."templates/".$mainframe->getTemplate();
             </div>
             <?php endforeach;?>           
             <?php //echo $this->canmuapage->getPagesLinks();?>
-            <center><a href="index.php?option=com_raovat&view=raovat&layout=canmua" style="color:#666666; font-size:14px;">Xem tất cả</a></center>
+            <center><a href="index.php?option=com_raovat&view=raovat&layout=canmua" class="view-all-1">Xem tất cả</a></center>
         </div>
         <!--end list box-->
     </div>

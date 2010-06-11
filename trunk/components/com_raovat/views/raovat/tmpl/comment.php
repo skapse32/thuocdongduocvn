@@ -20,10 +20,28 @@
 </script>
 <span style="font-size:14px; font-weight:bold;">Ý kiến của bạn</span>
 <form name="frmcomment" id="frmcomment"method="post" action="<?php echo JRequest::getURI();?>" onsubmit="return checkform();">
+<?php
+		$persional_info = &JTable::getInstance('raovat_profile');
+		$persional_info->load($item->user_id);
+		if($persional_info->user_id == NULL )
+		{
+				$user =&JFactory::getUser($_GET[$item->user_id]);
+		}
+		?>
+		<?php
+			if($persional_info->persional_name!="")
+			{
+					$user_name =  $persional_info->persional_name;
+			}
+			else
+			{
+				$user_name = $user->username;
+			}
+		?>
 <table>
 	<tr>
     	<td width="40">Tên: </td>
-      <td width="354"><input type="text" name="name" id="name" size="30" class="input"></td>
+      <td width="354"><input type="text" name="name" id="name" size="30" class="input" value="<?php echo $user_name ;?>"></td>
     </tr>
     <tr>
     	
