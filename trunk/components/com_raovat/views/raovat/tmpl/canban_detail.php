@@ -4,9 +4,10 @@
 ?>
  <div class="mdl-cnt">
      <div class="title">
-        <h2>
+        <h2 style>
         <?php echo $this->item_canban->title;?>
         </h2>
+        <img src="<?php echo $templateUrl;?>/images/news&amp;event_107.png">
     </div>
 <div class="cnt">
 	<div class="detail raovat_form form">
@@ -19,7 +20,11 @@
             <b>Ngày đăng: </b><?php echo JHTML::_('date',$this->item_canban->created,'%d-%m-%Y');?><br />
             <b>Số lượng:</b> <?php echo $this->item_canban->amount;?> <?php echo $this->item_canban->unit;?><br>
             <b>Chất lượng: </b><?php echo $this->item_canban->quality;?><br>
-            <b>Links: </b><?php echo $this->item_canban->links;?><br>
+            <?php if(!empty($this->item_canban->link)):?>
+            <?php $uri = new JURI($this->item_canban->link);				
+             ?>
+            <b>Links: </b> <a href="<?php echo $this->item_canban->link;?>"><?php echo $uri->getHost();?></a> <br>
+            <?php endif;?>
             <?php $persional_info = &JTable::getInstance('raovat_profile');
                  $persional_info->load($this->item_canban->user_id);
                 if($persional_info->user_id == NULL )
@@ -56,14 +61,15 @@
             <b>Nơi rao:</b> <?php echo $this->item_canban->city;?><br>        
         </div>
     	<div style="clear:both;"></div>
-        <div><!--Mo ta chi tiet-->
+    	<br/>
+        <div style='font-size:11px'><!--Mo ta chi tiet-->
         
         <?php echo $this->item_canban->desc;?>        
         </div><!--end mo ta chi tiet-->
 		<br /><br />
         <hr />
         <div><!--comment-->
-       <span style="font-size:14px; font-weight:bold;"> Trả lời</span>
+       <span style="font-size:14px; font-weight:bold;text-decoration:underline"> Trả lời</span>
         <br />
         	<!--Ds comment-->
             <?php 

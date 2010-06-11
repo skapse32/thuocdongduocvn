@@ -39,9 +39,9 @@ class JTableRaovat_profile extends JTable
 		return $check;			
 	}
 	function exist()
-	{
+	{		
 		
-		$this->_db->setQuery("SELECT COUNT(*) FROM $this->_tbl WHERE $this->_tbl_key=$this->_user_id");
+		$this->_db->setQuery("SELECT COUNT(*) FROM $this->_tbl WHERE $this->_tbl_key=$this->user_id");
 		$e = $this->_db->loadResult();
 		return $e;
 	}

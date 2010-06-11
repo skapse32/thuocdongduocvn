@@ -47,7 +47,7 @@ $templateUrl =JURI::root()."templates/".$mainframe->getTemplate();
                             <a href="index.php?option=com_raovat&view=raovat&layout=detail&id=<?php echo $item->id;?>">
                                 <img src="<?php echo JURI::root().'/images/raovat/thumb/'.$item->image;?>" class="img2" /></a>
                         </td>
-                        <td width="20%" style="vertical-align: top">
+                        <td width="25%" style="vertical-align: top;line-height:19px;">
                             <strong><?php echo $item->city;?></strong><br />                            
                             Giá: <?php echo number_format($item->price,'','',',').' '.$item->currency;?>/<?php echo $item->unit;?><br />
                             <?php echo JHTML::_('date',$item->created,'%d-%m-%Y');?><br />
@@ -55,7 +55,7 @@ $templateUrl =JURI::root()."templates/".$mainframe->getTemplate();
                         </td>
                         <td style="padding-left: 10px; vertical-align: top">
                             <a href="index.php?option=com_raovat&view=raovat&layout=detail&id=<?php echo $item->id;?>" class="color2"><strong><?php echo $item->title;?></strong></a><br />
-                            Mô tả: <?php echo substr(strip_tags($item->desc),0,180).'...';?><br />
+                            <div style="min-height:45px" > Mô tả: <?php echo substr(strip_tags($item->desc),0,180).'...';?></div
                            <?php $persional_info = &JTable::getInstance('raovat_profile');
 							$persional_info->load($item->user_id);
 							if($persional_info->user_id == NULL )
@@ -89,7 +89,7 @@ $templateUrl =JURI::root()."templates/".$mainframe->getTemplate();
             </div>
             <?php endforeach;?>           
             <?php //echo $this->canbanpage->getPagesLinks();?>
-            <center><a href="index.php?option=com_raovat&view=raovat&layout=canban" class="view-all-1">Xem tất cả</a></center>
+            <a href="<?php echo JRoute::_("index.php?option=com_raovat&view=raovat&layout=canban");?>" class="fl-right" style="color:#0070A8;padding:2px 0">Xem tất cả</a>
         </div>
         <!--end list box-->
     </div>
@@ -140,7 +140,7 @@ $templateUrl =JURI::root()."templates/".$mainframe->getTemplate();
                             <a href="index.php?option=com_raovat&view=raovat&layout=detail&id=<?php echo $item->id;?>">
                                 <img src="<?php echo JURI::root().'/images/raovat/thumb/'.$item->image;?>" class="img2" /></a>
                         </td>
-                        <td width="20%" style="vertical-align: top">
+                        <td width="25%" style="vertical-align: top;line-height:19px;">
                             <strong><?php echo $item->city;?></strong><br />                            
                             Giá: <?php echo number_format($item->price,'','',',').' '.$item->currency;?>/<?php echo $item->unit;?><br />
                             <?php echo JHTML::_('date',$item->created,'%d-%m-%Y');?><br />
@@ -148,7 +148,7 @@ $templateUrl =JURI::root()."templates/".$mainframe->getTemplate();
                         </td>
                         <td style="padding-left: 10px; vertical-align: top">
                             <a href="index.php?option=com_raovat&view=raovat&layout=detail&id=<?php echo $item->id;?>" class="color2"><strong><?php echo $item->title;?></strong></a><br />
-                            Mô tả: <?php echo substr(strip_tags($item->desc),0,180).'...';?><br />
+                           <div style="min-height:45px" > Mô tả: <?php echo substr(strip_tags($item->desc),0,180).'...';?></div
                             
                             <?php $persional_info = &JTable::getInstance('raovat_profile');
 							$persional_info->load($item->user_id);
@@ -181,8 +181,8 @@ $templateUrl =JURI::root()."templates/".$mainframe->getTemplate();
                 </table>
             </div>
             <?php endforeach;?>           
-            <?php //echo $this->canmuapage->getPagesLinks();?>
-            <center><a href="index.php?option=com_raovat&view=raovat&layout=canmua" class="view-all-1">Xem tất cả</a></center>
+            <?php //echo $this->canmuapage->getPagesLinks();?>            
+            <a href="<?php echo JRoute::_("index.php?option=com_raovat&view=raovat&layout=canmua");?>" class="fl-right" style="color:#0070A8;padding:2px 0">Xem tất cả</a>
         </div>
         <!--end list box-->
     </div>
