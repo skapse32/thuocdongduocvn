@@ -33,13 +33,12 @@ class RaoVatController extends JController
 		$params= new JParameter($com->params);			
 		$citys =$params->get('citys','');		
 		$citys = explode('<br />',nl2br($params->get('citys','')));						
-		$order =trim(strtolower(JRequest::getVar("order",'created')));
-		if(empty($order))
-			$order='created';			
+		$order =trim(strtolower(JRequest::getVar("order",'')));				
 		
 		$city =base64_decode(JRequest::getVar("city",''));		
 		$view = $this->getView('raovat','html');
 		$model = $this->getModel('raovat');
+		if($order)
 		$model->setState('ordering',"$order DESC,");
 		if(!empty($city))
 			$model->setState('where',"AND city='".trim($city)."'");
@@ -65,13 +64,13 @@ class RaoVatController extends JController
 		$params= new JParameter($com->params);			
 		$citys =$params->get('citys','');		
 		$citys = explode('<br />',nl2br($params->get('citys','')));						
-		$order =trim(strtolower(JRequest::getVar("order",'created')));
-		if(empty($order))
-			$order='created';			
+		$order =trim(strtolower(JRequest::getVar("order",'')));
+				
 			
 		$city =base64_decode(JRequest::getVar("city",''));		
 		$view = $this->getView('raovat','html');
 		$model = $this->getModel('raovat');
+		if($order)
 		$model->setState('ordering',"$order DESC,");
 		if(!empty($city))
 			$model->setState('where',"AND city='".trim($city)."'");
