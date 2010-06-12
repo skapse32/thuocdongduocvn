@@ -23,12 +23,7 @@ class RaovatModelRaovat extends JModel
 				jimport('joomla.html.pagination');
 				$this->pagination= new JPagination($total,$limitstart,$limit);
 				$lm = " LIMIT $limitstart,$limit ";
-			}
-			$bool = $this->getState('bool',1);
-			if($bool==1)
-			{
-				$lm = " LIMIT 0,10";
-			}
+			}						
 			$db->setQuery($query.$where.$order.$lm);						
 			$this->data[$type]=$db->loadObjectList();
 		}		

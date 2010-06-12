@@ -8,13 +8,13 @@ class RaoVatViewRaoVat extends JView
 	{	
 		global $option;	
 		$model = $this->getModel();
-		//$model->setState('limit',4);
-		$model->setState('bool',1);
+		//$model->setState('limit',4);		
 		$com = &JComponentHelper::getComponent($option);		
 		$params= new JParameter($com->params);			
 		$citys =$params->get('citys','');		
 		$citys = explode('<br />',nl2br($params->get('citys','')));
 		$order =trim(strtolower(JRequest::getVar("order",'created')));
+		$model->setState('limit',5);
 		$this->assignRef('canban',$model->getData(0));
 		//$this->assignRef('canbanpage',$model->getPagination());
 		$this->assignRef('canmua',$model->getData(1));
@@ -28,7 +28,8 @@ class RaoVatViewRaoVat extends JView
 	{
 		$this->setLayout('canban');
 		$model = $this->getModel('raovat');		
-		$model->setState('limit',20);
+		$model->setState('limit',10);
+		$model->setState('limitstart',JRequest::getVar("limitstart",0));
 		$this->assignRef('canban',$model->getData(0));
 		$this->assignRef('canbanpage',$model->getPagination());
 		parent::display();
@@ -50,7 +51,8 @@ class RaoVatViewRaoVat extends JView
 	{				
 		$this->setLayout('canmua');
 		$model = $this->getModel('raovat');		
-		$model->setState('limit',20);
+		$model->setState('limit',10);
+		$model->setState('limitstart',JRequest::getVar("limitstart",0));
 		$this->assignRef('canmua',$model->getData(1));
 		$this->assignRef('canmuapage',$model->getPagination());
 		$this->assignRef('uri',$uri);
