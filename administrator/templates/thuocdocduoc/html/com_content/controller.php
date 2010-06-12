@@ -602,7 +602,7 @@ class ContentController extends JController
 		$menuid		= JRequest::getVar( 'menuid', 0, 'post', 'int' );
 		$nullDate	= $db->getNullDate();
 
-		$row = & JTable::getInstance('content');
+		$row = & JTable::getInstance('content');		
 		if (!$row->bind(JRequest::get('post'))) {
 			JError::raiseError( 500, $db->stderr() );
 			return false;

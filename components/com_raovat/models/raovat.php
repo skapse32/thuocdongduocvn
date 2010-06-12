@@ -10,9 +10,9 @@ class RaovatModelRaovat extends JModel
 		if(is_null($this->data[$type]))
 		{		
 			$db = $this->getDBO();
-			$query="SELECT * FROM #__raovat ";
+			$query="SELECT *, (SELECT c.cdate FROM #__raovat_comment c WHERE c.id_raovat= #__raovat.id ORDER BY c.cdate DESC LIMIT 1) as cdate FROM #__raovat";
 			$where =" WHERE type='$type' ".$this->getState('where');
-			$order=" ORDER BY ".$this->getState('ordering')." created DESC";
+			$order=" ORDER BY ".$this->getState('ordering')." CASE WHEN CHAR_LENGTH(cdate) THEN cdate ELSE created END DESC";
 			$limit =$this->getState('limit',0);						
 			$limitstart =(int)$this->getState('limitstart',0);			
 			
@@ -29,8 +29,7 @@ class RaovatModelRaovat extends JModel
 			{
 				$lm = " LIMIT 0,10";
 			}
-			$db->setQuery($query.$where.$order.$lm);			
-			//echo JUtility::dump($db);
+			$db->setQuery($query.$where.$order.$lm);						
 			$this->data[$type]=$db->loadObjectList();
 		}		
 		return $this->data[$type];		

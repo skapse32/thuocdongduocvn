@@ -26,8 +26,10 @@ class RaoVatControllerPost extends JController
 	{
 		global $mainframe;
 		$my = &JFactory::getUser();
-		$view=$this->getView('post','html');
-		$p= &JRequest::get("post");		
+		$view=$this->getView('post','html');		
+		
+		$p= &JRequest::get("post");	
+		$p['desc'] = JRequest::getVar('desc','','post','string',JREQUEST_ALLOWRAW);			
 		require_once(JPATH_COMPONENT.DS.'assets'.DS.'imagehelper.php');
 		$image = $_FILES['image'];
 		$imgHelper = new ImageHelper($image);

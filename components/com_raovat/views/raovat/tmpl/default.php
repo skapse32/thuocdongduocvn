@@ -55,7 +55,13 @@ $templateUrl =JURI::root()."templates/".$mainframe->getTemplate();
                         </td>
                         <td style="padding-left: 10px; vertical-align: top">
                             <a href="index.php?option=com_raovat&view=raovat&layout=detail&id=<?php echo $item->id;?>" class="color2"><strong><?php echo $item->title;?></strong></a><br />
-                            <div style="min-height:45px" > Mô tả: <?php echo substr(strip_tags($item->desc),0,180).'...';?></div
+                            <div style="min-height:45px" > Mô tả: 
+                            <?php if(strlen(strip_tags($item->desc))>135):?>
+                             <?php echo substr(strip_tags($item->desc),0,strpos(strip_tags($item->desc),' ',120)).'...';?>
+                             <?php else:?>
+							 <?php echo strip_tags($item->desc);?>
+                             <?php endif;?>
+                            </div
                            <?php $persional_info = &JTable::getInstance('raovat_profile');
 							$persional_info->load($item->user_id);
 							if($persional_info->user_id == NULL )
@@ -148,7 +154,13 @@ $templateUrl =JURI::root()."templates/".$mainframe->getTemplate();
                         </td>
                         <td style="padding-left: 10px; vertical-align: top">
                             <a href="index.php?option=com_raovat&view=raovat&layout=detail&id=<?php echo $item->id;?>" class="color2"><strong><?php echo $item->title;?></strong></a><br />
-                           <div style="min-height:45px" > Mô tả: <?php echo substr(strip_tags($item->desc),0,180).'...';?></div
+                            <div style="min-height:45px" > Mô tả: 
+                            <?php if(strlen(strip_tags($item->desc))>135):?>
+                             <?php echo substr(strip_tags($item->desc),0,strpos(strip_tags($item->desc),' ',120)).'...';?>
+                             <?php else:?>
+							 <?php echo strip_tags($item->desc);?>
+                             <?php endif;?>
+                            </div
                             
                             <?php $persional_info = &JTable::getInstance('raovat_profile');
 							$persional_info->load($item->user_id);
