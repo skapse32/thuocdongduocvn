@@ -22,7 +22,7 @@ $profile =$this->profile;
 				<tr>
 					<td class="key hasTip" title="<?php echo JText::_("RV_TITLE_TIP");?>"><?php echo JText::_("RV_TITLE");?>:					
 					</td>
-					<td><input value="<?php echo $post->title;?>" type="text" name="title" size='30' class='input' style='width:275px'/><span class="required">*</span></td>
+					<td><input maxlength='80' value="<?php echo $post->title;?>" type="text" name="title" size='30' class='input' style='width:275px'/><span class="required">*</span></td>
 				</tr>
 				<tr>
 					<td class="key hasTip" title="<?php echo JText::_("RV_TYPE_TITLE_TIP");?>"><?php echo JText::_("RV_TYPE_TITLE");?>:					
@@ -87,7 +87,7 @@ $profile =$this->profile;
 					<td class="key" colspan="2" style="text-align:left;"><?php echo JText::_("RV_DESC");?>					
 					<?php 
 						$editor = &JFactory::getEditor();																		
-						echo $editor->display('desc',$post->desc,'100%','400','30','25',false,array('mode'=>'advanced','skin'=>1));?>
+						echo $editor->display('desc',$post->desc,'100%','400','30','25',false,array('mode'=>'advanced','skin'=>1));?>						
 						<div class="clr">&nbsp;</div>
 					</td>
 					

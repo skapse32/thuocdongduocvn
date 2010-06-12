@@ -5,6 +5,7 @@ class TOOLBAR_raovat
 	function _default()
 	{
 		global $option;
-		JToolBarHelper::preferences($option,'500');
+		JToolBarHelper::deleteList();
+		JToolBarHelper::preferences($option,'500');		
 	}
 }

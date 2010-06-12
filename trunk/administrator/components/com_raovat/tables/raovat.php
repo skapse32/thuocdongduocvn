@@ -15,6 +15,8 @@ class JTableRaovat extends JTable
 	var $link		=null;
 	var $desc		=null;
 	var $created	=null;
+	var $isdelete	=0;
+	var $hit		=0;
 	function __construct(&$db)
 	{
 		parent::__construct('#__raovat','id',$db);

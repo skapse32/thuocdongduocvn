@@ -32,7 +32,11 @@
                         $user =&JFactory::getUser($_GET[$this->item_canban->user_id]);
                     }
                     ?>
+               <?php if(!$this->item_canban->type):?>
                <b> Người bán:</b>	
+               <?php else:?>
+               <b> Người mua:</b>	
+               <?php endif;?>
                     <?php
                             if($persional_info->persional_name!="")
                             {
@@ -62,7 +66,7 @@
         </div>
     	<div style="clear:both;"></div>
     	<br/>
-        <div style='font-size:11px'><!--Mo ta chi tiet-->
+        <div style='font-size:11px' class='raovat-chitiet'><!--Mo ta chi tiet-->
         
         <?php echo $this->item_canban->desc;?>        
         </div><!--end mo ta chi tiet-->
