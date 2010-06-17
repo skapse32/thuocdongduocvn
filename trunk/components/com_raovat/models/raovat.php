@@ -12,7 +12,7 @@ class RaovatModelRaovat extends JModel
 			$db = $this->getDBO();
 			//$category_rv = JRequest::getVar('category');
 			$query="SELECT *, (SELECT c.cdate FROM #__raovat_comment c WHERE c.id_raovat= #__raovat.id ORDER BY c.cdate DESC LIMIT 1) as cdate FROM #__raovat";
-			$where =" WHERE type='$type' ".$this->getState('where');
+			$where =" WHERE type='$type' AND isdelete = '0' ".$this->getState('where');
 			$order=" ORDER BY ".$this->getState('ordering')." CASE WHEN CHAR_LENGTH(cdate) THEN cdate ELSE created END DESC";
 			$limit =$this->getState('limit',0);						
 			$limitstart =(int)$this->getState('limitstart',0);			
