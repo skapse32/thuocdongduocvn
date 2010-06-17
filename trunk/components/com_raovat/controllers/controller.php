@@ -35,16 +35,29 @@ class RaoVatController extends JController
 		$citys = explode('<br />',nl2br($params->get('citys','')));						
 		$order =trim(strtolower(JRequest::getVar("order",'')));				
 		
-		$city =base64_decode(JRequest::getVar("city",''));		
+		$city =base64_decode(JRequest::getVar("city",''));	
+
+		$category = JRequest::getVar('category','');
+
 		$view = $this->getView('raovat','html');
 		$model = $this->getModel('raovat');
 		if($order)
 		$model->setState('ordering',"$order DESC,");
 		if(!empty($city))
 			$model->setState('where',"AND city='".trim($city)."'");
+		if(!empty($category))
+		{
+			$model->setState('where',"AND rv_category='".$category."'");
+		}
+		if(!empty($category) and !empty($city))
+		{
+			$model->setState('where',"AND rv_category='".$category."' AND city ='".trim($city)."'");
+		}
+		
 		$view->assignRef('order',$order);		
 		$view->assignRef('citys',$citys);		
-		$view->assignRef('city',$city);		
+		$view->assignRef('city',$city);	
+		$view->assignRef('category',$category);	
 		$view->setModel($model);
 		$view->canban();
 	}
@@ -65,7 +78,7 @@ class RaoVatController extends JController
 		$citys =$params->get('citys','');		
 		$citys = explode('<br />',nl2br($params->get('citys','')));						
 		$order =trim(strtolower(JRequest::getVar("order",'')));
-				
+		$category = JRequest::getVar('category','');		
 			
 		$city =base64_decode(JRequest::getVar("city",''));		
 		$view = $this->getView('raovat','html');
@@ -74,9 +87,18 @@ class RaoVatController extends JController
 		$model->setState('ordering',"$order DESC,");
 		if(!empty($city))
 			$model->setState('where',"AND city='".trim($city)."'");
+		if(!empty($category))
+		{
+			$model->setState('where',"AND rv_category='".$category."'");
+		}
+		if(!empty($category) and !empty($city))
+		{
+			$model->setState('where',"AND rv_category='".$category."' AND city ='".trim($city)."'");
+		}
 		$view->assignRef('order',$order);		
 		$view->assignRef('citys',$citys);		
-		$view->assignRef('city',$city);		
+		$view->assignRef('city',$city);	
+		$view->assignRef('category',$category);	
 		$view->setModel($model);
 		$view->canmua();
 	}
@@ -88,12 +110,15 @@ class RaoVatController extends JController
 		$layout=JRequest::getVar('layout','','post');
 		$order=JRequest::getVar("order",'newest');		
 		$city=JRequest::getVar("city",'');
+		$category = JRequest::getVar('category');
 		$uri = new JURI();
 		$uri->setVar('option',$option);
 		$uri->setVar('view',$view);
 		$uri->setVar('layout',$layout);		
 		$uri->setVar('order',$order);
 		$uri->setVar('Itemid',$itemid);
+		if(!empty($category))
+		$uri->setVar('category',$category);
 		if(!empty($city))
 		$uri->setVar('city',$city);
 		//echo JUtility::dump($uri);die();

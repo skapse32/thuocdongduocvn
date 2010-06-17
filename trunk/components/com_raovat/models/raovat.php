@@ -10,6 +10,7 @@ class RaovatModelRaovat extends JModel
 		if(is_null($this->data[$type]))
 		{		
 			$db = $this->getDBO();
+			//$category_rv = JRequest::getVar('category');
 			$query="SELECT *, (SELECT c.cdate FROM #__raovat_comment c WHERE c.id_raovat= #__raovat.id ORDER BY c.cdate DESC LIMIT 1) as cdate FROM #__raovat";
 			$where =" WHERE type='$type' ".$this->getState('where');
 			$order=" ORDER BY ".$this->getState('ordering')." CASE WHEN CHAR_LENGTH(cdate) THEN cdate ELSE created END DESC";
@@ -24,6 +25,7 @@ class RaovatModelRaovat extends JModel
 				$this->pagination= new JPagination($total,$limitstart,$limit);
 				$lm = " LIMIT $limitstart,$limit ";
 			}						
+			//var_dump($query.$where.$order.$lm);
 			$db->setQuery($query.$where.$order.$lm);						
 			$this->data[$type]=$db->loadObjectList();
 		}		
@@ -81,6 +83,13 @@ class RaovatModelRaovat extends JModel
 		$db = $this->getDBO();
 		$db->setQuery($query);
 		$db->query();
+	}
+	function getRaovat_category()
+	{
+		$db = $this->getDBO();
+		$query = "SELECT * FROM #__categories WHERE section = 'c_raovat'";
+		$db->setQuery($query);
+		return $db->loadObjectList();
 	}
 
 }

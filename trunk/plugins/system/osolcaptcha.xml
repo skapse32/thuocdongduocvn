@@ -97,6 +97,11 @@ in the HTML of the form where you want the captcha to show
 			<option value="Yes">Yes</option>
 			<option value="No">No</option>
 		</param>
+		
+		<param name="enableForComment" type="radio"  label="Auto add in (joomla default)Comment ?"  default="Yes">
+			<option value="Yes">Yes</option>
+			<option value="No">No</option>
+		</param>
 		<param type="spacer" />
 		<param name="botScoutProtection" type="list"  label="BotScout Protection" description="Block IPs that are reported to be spam in botscout.com "  default="Disable">
 			<option value="Disable">Disable</option>

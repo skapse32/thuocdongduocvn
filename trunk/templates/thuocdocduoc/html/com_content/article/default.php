@@ -25,6 +25,30 @@ $menu  = $menus->getActive();
 <!--            <img src="<?php echo $templateUrl;?>/images/news&amp;event_116.png" class="img4" />-->
             <h1 >
                <?php echo $this->escape($this->article->title); ?></h1>
+               <?php 
+			   	if($this->params->get('t_dbc')!=''):
+					echo "<strong>"."Dạng bào chế: "."</strong>".$this->params->get('t_dbc').'<br>';
+				endif;
+               ?>
+             
+               <?php 
+			   	if($this->params->get('t_qcdg')!=''):
+					echo "<strong>"."Quy cách đóng gói: "."</strong>".$this->params->get('t_qcdg').'<br>';
+				endif;
+               ?>
+               
+               <?php 
+			   	if($this->params->get('t_nxs')!=''):
+					echo "<strong>"."Nhà sản xuất: "."</strong>".$this->params->get('t_nxs').'<br>';
+				endif;
+               ?>
+               
+               <?php 
+			   	if($this->params->get('t_sdk')!=''):
+					echo "<strong>"."Số đăng ký: "."</strong>".$this->params->get('t_sdk');
+				endif;
+               ?> 
+               <br />                       
 				<?php  if (!$this->params->get('show_intro')) :
 					echo $this->article->event->afterDisplayTitle;
 				endif; ?>

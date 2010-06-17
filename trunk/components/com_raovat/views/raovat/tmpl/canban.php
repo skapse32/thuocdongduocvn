@@ -15,13 +15,24 @@ $templateUrl =JURI::root()."templates/".$mainframe->getTemplate();
 					<option value="<?php echo base64_encode($c);?>" <?php echo $this->city==$c?"selected='true'":"";?>><?php echo $c;?></option>
                 <?php endforeach;?>
             </select>
+            <?php 
+				//var_dump($this->category);
+			?>
+            
+           <select name="category">
+				<option value="">Tất cả danh mục</option>
+                <?php foreach($this->categorys as $category):?>
+					<option value="<?php echo $category->id;?>" <?php echo $this->category==$category->id?"selected='true'":"";?>><?php echo $category->title;?></option>
+                <?php endforeach;?>
+            </select>
         </div>
         <div class="txt-sort">
             <p>
                 <a href="javascript:void();" class="ordering <?php echo $this->order=='created'? "down":'';?>" datafld="created"   >Tin mới nhất</a> 
                 <!--<a href="javascript:void();" class="down">Theo ngày</a> -->
                 <a href="javascript:void();" class="ordering <?php echo $this->order=='hit'? "down":'';?>" datafld="hit" >
-                    Xem nhiều nhất</a></p>
+                    Xem nhiều nhất</a>
+                    </p>
         </div>
         <h2>
             cần bán</h2>
@@ -32,6 +43,7 @@ $templateUrl =JURI::root()."templates/".$mainframe->getTemplate();
     <input type="hidden" name="view" value="raovat"/>
     <input type="hidden" name="task" value="ordering"/>
     <input type="hidden" name="layout" value="canban"/>
+    <!--<input type="hidden" name="category" value="<?php echo $this->category;?>" />-->
     <input type="hidden" name="Itemid" value="<?php echo JRequest::getVar('Itemid');?>"/>
     <input type="hidden" name="order" value="<?php echo JRequest::getVar('order','');?>"/>
     </form>
@@ -61,7 +73,7 @@ $templateUrl =JURI::root()."templates/".$mainframe->getTemplate();
 							 <?php echo strip_tags($item->desc);?>
                              <?php endif;?>
                             </div
-                            <?php $persional_info = &JTable::getInstance('raovat_profile');
+                            ><?php $persional_info = &JTable::getInstance('raovat_profile');
 							$persional_info->load($item->user_id);
 							if($persional_info->user_id == NULL )
 							{
@@ -108,6 +120,10 @@ jQuery('document').ready(function(){
 		return false;
 	});
 	jQuery('select[name=city]').change(function(){
+		form = jQuery(this).parents('form');				
+		form.submit();		
+	});
+	jQuery('select[name=category]').change(function(){
 		form = jQuery(this).parents('form');				
 		form.submit();		
 	});

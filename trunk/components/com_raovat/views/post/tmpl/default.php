@@ -83,6 +83,27 @@ $profile =$this->profile;
 					</td>
 					<td><input value="<?php echo $post->link;?>" type="text" name="link" size='30' class='input' style='width:275px'/></td>
 				</tr>
+                <tr>
+					<td class="key"><?php echo JText::_("RV_CATEGORY");?>:					
+					</td>
+					<td>
+                    	<select name="rv_category" id="rv_category">
+                        <!--<option value=""><?php echo JText::_("RV_CATEGORY");?></option>-->
+						<?php
+							$db =&JFactory::getDBO();
+							$query = "SELECT * FROM #__categories WHERE section = 'c_raovat'";
+							$db->setQuery($query);
+							$rv_category = $db->loadObjectList(); 
+                            foreach($rv_category as $rv_category)
+                            {
+                        ?>
+                        	<option value="<?php echo $rv_category->id;?>"><?php echo $rv_category->title;?></option>
+                        <?php  
+                            }
+                        ?>
+                    	</select>
+                    </td>
+				</tr>
 				<tr>
 					<td class="key" colspan="2" style="text-align:left;"><?php echo JText::_("RV_DESC");?>					
 					<?php 

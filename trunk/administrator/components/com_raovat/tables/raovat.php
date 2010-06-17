@@ -17,6 +17,8 @@ class JTableRaovat extends JTable
 	var $created	=null;
 	var $isdelete	=0;
 	var $hit		=0;
+	var $rv_category = null;
+	
 	function __construct(&$db)
 	{
 		parent::__construct('#__raovat','id',$db);
@@ -47,6 +49,11 @@ class JTableRaovat extends JTable
 		if(trim($this->unit)=='')
 		{
 			$this->setError(JText::_("RV_ERR_EMPTY_UNIT"));		
+			$check=false;
+		}
+		if(trim($this->rv_category)=='')
+		{
+			$this->setError(JText::_("RV_ERR_EMPTY_CATEGORY"));		
 			$check=false;
 		}
 		return $check;			

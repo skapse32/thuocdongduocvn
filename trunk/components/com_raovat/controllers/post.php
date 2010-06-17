@@ -10,7 +10,7 @@ class RaoVatControllerPost extends JController
 	function post()
 	{
 		global $mainframe;
-		$my = &JFactory::getUser();
+		$my = &JFactory::getUser();	
 		if(!$my->id)
 		{
 			$url=base64_encode(JRequest::getURI());
@@ -19,7 +19,7 @@ class RaoVatControllerPost extends JController
 		else
 		{
 			
-		}
+		}	
 		parent::display();
 	}
 	function save()
@@ -27,7 +27,6 @@ class RaoVatControllerPost extends JController
 		global $mainframe;
 		$my = &JFactory::getUser();
 		$view=$this->getView('post','html');		
-		
 		$p= &JRequest::get("post");	
 		$p['desc'] = JRequest::getVar('desc','','post','string',JREQUEST_ALLOWRAW);			
 		require_once(JPATH_COMPONENT.DS.'assets'.DS.'imagehelper.php');

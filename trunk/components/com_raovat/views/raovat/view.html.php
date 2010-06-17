@@ -32,6 +32,8 @@ class RaoVatViewRaoVat extends JView
 		$model->setState('limitstart',JRequest::getVar("limitstart",0));
 		$this->assignRef('canban',$model->getData(0));
 		$this->assignRef('canbanpage',$model->getPagination());
+		$this->assignRef('categorys',$model->getRaovat_category());
+
 		parent::display();
 		
 	}
@@ -55,6 +57,7 @@ class RaoVatViewRaoVat extends JView
 		$model->setState('limitstart',JRequest::getVar("limitstart",0));
 		$this->assignRef('canmua',$model->getData(1));
 		$this->assignRef('canmuapage',$model->getPagination());
+		$this->assignRef('categorys',$model->getRaovat_category());
 		$this->assignRef('uri',$uri);
 		parent::display();
 		

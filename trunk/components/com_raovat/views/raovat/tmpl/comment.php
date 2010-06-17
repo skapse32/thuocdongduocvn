@@ -47,20 +47,21 @@
     	
    	  <td colspan="2">
         	<?php 
-			$editor = JFactory::getEditor();
+			//$editor = JFactory::getEditor();
 			//echo $editor->display('comment','','100%','400','30','25');
 			?> 
             Nội dung: <br /> 
           <textarea name="comment" cols="80" rows="6" id="comment" class="input" style="width:100%"></textarea>         
       </td>
     </tr>
-    <tr>
-    	<td colspan="2" align="center">
-        	
-        	<input type="submit" value="  Gửi  " />
-        </td>
-    </tr>
+  <tr>
+  	<td colspan="2">
+    	<input type="submit" value="<?php echo JTEXT::_('SEND_COMMENT');?>"/>
+    </td>
+  </tr>  
+   
 </table>
+
 <input type="hidden" name="id_raovat" id="id_raovat" value="<?php echo $this->item_canban->id;?>" />
 <input type="hidden" name="task" id="task" value="saveComment" />
 </form>
