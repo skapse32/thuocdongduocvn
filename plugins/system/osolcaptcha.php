@@ -353,7 +353,6 @@ class plgSystemOSOLCaptcha extends JPlugin
 			{
 				return $this->display();
 			}
-		
 			$return = false;
 			$osolCatchaTxt = JRequest::getVar('osolCatchaTxt','');
 			$osolCatchaTxtInst = JRequest::getVar('osolCatchaTxtInst','');
@@ -363,6 +362,7 @@ class plgSystemOSOLCaptcha extends JPlugin
 			if(!$return)*/
 			//if(isset($_REQUEST[JUtility::getToken()])&& !$this->confirm($osolCatchaTxt))
 			$option = JRequest::getVar('option');
+			$layout = JRequest::getVar('layout');
 			$task = JRequest::getVar('task');
 			//$this->mailBotScoutResult();
 			
@@ -390,13 +390,14 @@ class plgSystemOSOLCaptcha extends JPlugin
 				if(
 				   (
 					($option == 'com_contact' && $task=='submit')||
+					($option == 'com_raovat' && $task=='submit')||
 					($option == 'com_user' && isset($_REQUEST['task']) && $task != 'logout' )
 				   ) && 
 				   $this->params->get("enableSecondLevelSecurity") == 'Yes' && 
 				   ($osolCatchaTxtInst == '' || $osolCatchaTxt == '')
 				  )
 				{
-					
+									
 					//echo "HHH";;exit;
 					$isEnabledForForm = $this->getIsEnabledForForms();
 					
@@ -405,11 +406,20 @@ class plgSystemOSOLCaptcha extends JPlugin
 									"enableForRegistration"
 									"enableForReset" 
 									"enableForRemind" */
-									
+							
 					switch($option)
 					{
 						case 'com_contact':
 							if($isEnabledForForm["enableForContactUs"])
+							{
+								JRequest::setVar('task','');
+								$secondLevelPass = false;
+							}
+							
+							break;
+						case 'com_raovat':
+							
+							if(JRequest::getVar('layout')=='detail' && $isEnabledForForm["enableForComment"])
 							{
 								JRequest::setVar('task','');
 								$secondLevelPass = false;
@@ -456,7 +466,7 @@ class plgSystemOSOLCaptcha extends JPlugin
 			/*****************************************************************************************************************/
 			//echo $option;		exit;
 			//echo  $task;exit;
-			if(in_array($option,array('com_contact','com_user')) && (isset($_REQUEST['task'])&& $task != 'logout' ) && (isset($_REQUEST['osolCatchaTxt']) && !$this->confirm($osolCatchaTxt,$osolCatchaTxtInst)))//."$osolCatchaTxt,$osolCatchaTxtInst".JFactory::getSession()->get('securiy_code'.$osolCatchaTxtInst)
+			if(in_array($option,array('com_contact','com_user','com_raovat')) && (isset($_REQUEST['task'])&& $task != 'logout' ) && (isset($_REQUEST['osolCatchaTxt']) && !$this->confirm($osolCatchaTxt,$osolCatchaTxtInst)))//."$osolCatchaTxt,$osolCatchaTxtInst".JFactory::getSession()->get('securiy_code'.$osolCatchaTxtInst)
 			{
 				
 				//."$osolCatchaTxt,$osolCatchaTxtInst:".JFactory::getSession()->get('securiy_code'.$osolCatchaTxtInst)
@@ -467,6 +477,9 @@ class plgSystemOSOLCaptcha extends JPlugin
 					case 'com_contact':
 						JRequest::setVar('task','');
 						
+						break;
+					case 'com_raovat':
+						JRequest::setVar('task','');
 						break;
 					case 'com_user':
 						
@@ -586,6 +599,7 @@ class plgSystemOSOLCaptcha extends JPlugin
 									"enableForRegistration" => '<button class="button validate" type="submit">'.JTEXT::_('REGISTER').'</button>',
 									"enableForReset" => '<button type="submit" class="validate">'.JText::_('Submit').'</button>',
 									"enableForRemind" => '<button type="submit" class="validate">'.JText::_('Submit').'</button>',
+									"enableForComment" => '<input type="submit" value="'.JTEXT::_('SEND_COMMENT').'"/>'
 									);
 		}
 		function getIsEnabledForForms()
@@ -598,6 +612,7 @@ class plgSystemOSOLCaptcha extends JPlugin
 			{
 				//echo $paramName." = ".$this->params->get($paramName)."<br />";
 				$isEnabledForForm[$paramName] = ($this->params->get($paramName) == 'Yes');
+				
 			}
 			return $isEnabledForForm;
 		}
@@ -611,6 +626,7 @@ class plgSystemOSOLCaptcha extends JPlugin
 			$content = $document->getBuffer('component');
 			$option = JRequest::getVar('option');
 			$view = JRequest::getVar('view');
+			$layout = JRequest::getVar('layout');
 			$captchaHTML = $this->GetCapthcaHTML();
 
 
@@ -636,7 +652,7 @@ class plgSystemOSOLCaptcha extends JPlugin
 			$isEnabledForForm = $this->getIsEnabledForForms();
 			//echo "<pre>";print_r($isEnabledForForm);echo "</pre>";exit;
 			$newContent = "";
-			if(in_array($option,array('com_contact','com_user')))
+			if(in_array($option,array('com_contact','com_user','com_raovat')))
 			{
 				switch($option)
 				{
@@ -648,6 +664,20 @@ class plgSystemOSOLCaptcha extends JPlugin
 							
 						}
 						
+						break;
+					case 'com_raovat':
+					
+						switch($layout)
+						{
+							case 'detail':
+								if($isEnabledForForm["enableForComment"])
+								{
+									
+									$checkContent = $enabledForms["enableForComment"];
+									
+								}
+								break;
+						}
 						break;
 					case 'com_user':
 						switch($view)
@@ -688,7 +718,7 @@ class plgSystemOSOLCaptcha extends JPlugin
 						
 						break;
 				}
-				
+				//echo JUtility::dump($checkContent);die;
 				/*if(is_array($checkContent ))
 				{
 					//echo "<pre>";print_r($checkContent);echo "</pre>";exit;
@@ -703,6 +733,7 @@ class plgSystemOSOLCaptcha extends JPlugin
 					}
 				}*/
 				$newContent = str_replace($checkContent,$captchaHTML.$checkContent,$content);
+				//var_dump($captchaHTML.$checkContent);
 			}
 			if($newContent!="")
 			{

@@ -15,6 +15,13 @@ $templateUrl =JURI::root()."templates/".$mainframe->getTemplate();
 					<option value="<?php echo base64_encode($c);?>" <?php echo $this->city==$c?"selected='true'":"";?>><?php echo $c;?></option>
                 <?php endforeach;?>
             </select>
+            
+             <select name="category">
+				<option value="">Tất cả danh mục</option>
+                <?php foreach($this->categorys as $category):?>
+					<option value="<?php echo $category->id;?>" <?php echo $this->category==$category->id?"selected='true'":"";?>><?php echo $category->title;?></option>
+                <?php endforeach;?>
+            </select>
         </div>
         <div class="txt-sort">
             <p>
@@ -31,6 +38,7 @@ $templateUrl =JURI::root()."templates/".$mainframe->getTemplate();
     <input type="hidden" name="option" value="com_raovat"/>
     <input type="hidden" name="view" value="raovat"/>
     <input type="hidden" name="task" value="ordering"/>
+    <!--<input type="hidden" name="category" value="<?php echo $this->category;?>" />-->
     <input type="hidden" name="layout" value="canmua"/>
     <input type="hidden" name="Itemid" value="<?php echo JRequest::getVar('Itemid');?>"/>
     <input type="hidden" name="order" value="<?php echo JRequest::getVar('order','');?>"/>
@@ -63,7 +71,7 @@ $templateUrl =JURI::root()."templates/".$mainframe->getTemplate();
                              <?php endif;?>
                             </div
                        
-                            <strong>Người bán:</strong> 
+                            ><strong>Người bán:</strong> 
                             
 							<?php
 							 $persional_info = &JTable::getInstance('raovat_profile');
@@ -114,6 +122,10 @@ jQuery('document').ready(function(){
 		return false;
 	});
 	jQuery('select[name=city]').change(function(){
+		form = jQuery(this).parents('form');				
+		form.submit();		
+	});
+	jQuery('select[name=category]').change(function(){
 		form = jQuery(this).parents('form');				
 		form.submit();		
 	});

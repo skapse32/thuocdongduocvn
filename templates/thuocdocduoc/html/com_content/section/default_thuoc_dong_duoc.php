@@ -17,18 +17,20 @@ $viewby=JRequest::getVar('viewby',array(),'default','array');
 			document.getElementById('frm-sort').submit();
 		});
 		//click on select page
-		jQuery('div.pagination-js a').click(function(){
-			alert(jQuery(this).attr('datafld'));
+		/*
+		jQuery('div.pagination-js a').click(function(){	
+			//alert(jQuery(this).attr('datafld'));
 			jQuery('input[name=limitstart]').val(jQuery(this).attr('datafld'));
 			jQuery('input[name=limitfor]').val(jQuery(this).parents('.pagination-js').attr('datafld'));
 			document.getElementById('frm-sort').submit();
 			return false;
 		});
-		
+		*/
 	});
 	
 </script>
 <form id="frm-sort" action ="<?php echo JRequest::getURI();?>" method='GET'>
+
 <?php if(JRequest::getVar('limitstart')>0):?>
 <input type="hidden" name="limitstart" value="<?php echo JRequest::getVar('limitstart');?>"/>
 <?php endif;?>
@@ -55,21 +57,21 @@ $viewby=JRequest::getVar('viewby',array(),'default','array');
             <select name="viewby[alpha]" onchange='this.form.submit()' style="width:70px">
 				<option value="">Alpha Be</option>
                 <?php foreach($this->xemtheo['com_filter_alpha'] as &$xt):?>
-					<option value="<?php echo base64_encode($xt->title);?>" <?php echo @$viewby[alpha]==base64_encode($xt->title)? "selected":"";?>><?php echo ucfirst($xt->title);?></option>
+					<option value="<?php echo base64_encode($xt->title);?>" <?php echo @$viewby['alpha']==base64_encode($xt->title)? "selected":"";?>><?php echo ucfirst($xt->title);?></option>
                 <?php endforeach;?>
             </select>
             &nbsp;&nbsp;&nbsp;
             <select name="viewby[t_dbc]" onchange='this.form.submit()' style="width:90px">
 				<option value="">Dạng bào chế</option>
                 <?php foreach($this->xemtheo['com_filter_t_dangbaoche'] as &$xt):?>
-					<option value="<?php echo base64_encode($xt->title);?>" <?php echo @$viewby[t_dbc]==base64_encode($xt->title)? "selected":"";?>><?php echo ucfirst($xt->title);?></option>
+					<option value="<?php echo base64_encode($xt->title);?>" <?php echo @$viewby['t_dbc']==base64_encode($xt->title)? "selected":"";?>><?php echo ucfirst($xt->title);?></option>
                 <?php endforeach;?>
             </select>
             &nbsp;&nbsp;&nbsp;
             <select name="viewby[t_ndt]" onchange='this.form.submit()' style="width:90px">
 				<option value="">Nhóm điều trị</option>
                 <?php foreach($this->xemtheo['com_filter_t_nhomdieutri'] as &$xt):?>
-					<option value="<?php echo base64_encode($xt->title);?>" <?php echo @$viewby[t_ndt]==base64_encode($xt->title)? "selected":"";?>><?php echo ucfirst($xt->title);?></option>
+					<option value="<?php echo base64_encode($xt->title);?>" <?php echo @$viewby['t_ndt']==base64_encode($xt->title)? "selected":"";?>><?php echo ucfirst($xt->title);?></option>
                 <?php endforeach;?>
             </select>
         <input type="hidden" name="option" value="<?php echo JRequest::getVar('option','');?>"/>
@@ -127,7 +129,7 @@ $viewby=JRequest::getVar('viewby',array(),'default','array');
 						<img src="<?php echo $item->imgLink;?>" class="img2" />
 						</a> <a href="<?php echo JRoute::_(ContentHelperRoute::getArticleRoute($item->slug, $item->catslug, $item->sectionid));?>" class="link_title">
 							<?php echo $item->title;?></a>
-                            <p>
+                            <p style="text-align:justify;">
                             <?php 
 								if($i==1)
 								{
@@ -232,7 +234,7 @@ $viewby=JRequest::getVar('viewby',array(),'default','array');
 				<div class="list-box2">
 					<a href="<?php echo JRoute::_(ContentHelperRoute::getArticleRoute($item->slug, $item->catslug, $item->sectionid));?>" class="link_title">
 					<?php echo $item->title;?></a>
-					<p>
+					<p style="text-align:justify;">
 						<?php echo $item->introtext;?></p>
 				</div>
 			<?php endforeach;?>
@@ -241,6 +243,7 @@ $viewby=JRequest::getVar('viewby',array(),'default','array');
         <?php if($i==1):?><!--show pagination for first category-->
         <center>
 			<div class="pagination-js" datafld="<?php echo $cat->id;?>">
+            <?php //var_dump($cat->pagination);?>
 			<?php echo $cat->pagination->getPagesLinks();?>            
 			</div>
         </center>

@@ -311,6 +311,7 @@ class ContentModelSectionHelper extends JModel
 					$access_check .
 					' GROUP BY a.id'.$empty.$empty_sec .
 					' ORDER BY '. $orderby;
+					
 			$this->_db->setQuery($query);
 			$this->_categories = $this->_db->loadObjectList();
 		}
@@ -393,6 +394,7 @@ class ContentModelSectionHelper extends JModel
 				$and .
 				' AND a.access <= '.(int) $aid .
 				' ORDER BY a.catid, a.ordering, b.ordering';
+				
 			$this->_db->setQuery($query);
 			$this->_tree = $this->_db->loadObjectList();
 		}
@@ -435,7 +437,6 @@ class ContentModelSectionHelper extends JModel
 				$voting['join'].
 				$where.
 				$orderby;
-
 		return $query;
 	}
 
@@ -493,7 +494,6 @@ class ContentModelSectionHelper extends JModel
 
 		$noauth		= !$params->get('show_noauth');
 		$nullDate	= $this->_db->getNullDate();
-
 		// First thing we need to do is assert that the articles are in the current category
 		if ($noauth) {
 			$where = ' WHERE a.access <= '.(int) $aid;
@@ -530,9 +530,12 @@ class ContentModelSectionHelper extends JModel
 				$where .= ' AND '.$oo.' LIKE '.$this->_db->Quote("%$viewby%").' ';
 		}
 		// Regular Published Content
+		
 		switch ($state)
 		{
 			case 1:
+			/*edit*/
+			/*
 				if ($user->authorize('com_content', 'edit', 'content', 'all')) {
 					$where .= ' AND a.state >= 0';
 				} else {
@@ -540,6 +543,11 @@ class ContentModelSectionHelper extends JModel
 							' AND ( publish_up = '.$this->_db->Quote($nullDate).' OR publish_up <= '.$this->_db->Quote($now).' )' .
 							' AND ( publish_down = '.$this->_db->Quote($nullDate).' OR publish_down >= '.$this->_db->Quote($now).' )';
 				}
+				*/
+			/**/
+				$where .= ' AND a.state = 1' .
+								' AND ( publish_up = '.$this->_db->Quote($nullDate).' OR publish_up <= '.$this->_db->Quote($now).' )' .
+								' AND ( publish_down = '.$this->_db->Quote($nullDate).' OR publish_down >= '.$this->_db->Quote($now).' )';
 				break;
 
 			// Archive Content
@@ -591,6 +599,7 @@ class ContentModelSectionHelper extends JModel
 				}
 			}
 		}
+		//var_dump($where);
 		return $where;
 	}
 	function getStores($secid,&$pagination)

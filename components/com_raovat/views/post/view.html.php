@@ -1,5 +1,4 @@
 <?php
-
 defined("_JEXEC") or die("Cam vao");
 jimport('joomla.application.component.view');
 class RaoVatViewPost extends JView
@@ -29,10 +28,12 @@ class RaoVatViewPost extends JView
 			if(empty($profile->persional_email))
 				$profile->persional_email = $my->email;			
 			$this->assignRef('profile',$profile);		
-		}
+		}	
 		$this->assignRef('quality',$quality);			
 		$this->assignRef('currencys',$currencys);			
-		$this->assignRef('citys',$citys);	
+		$this->assignRef('citys',$citys);
+			
 		parent::display();
 	}
 }
+?>

@@ -23,7 +23,8 @@ switch($template)
 		include_once dirname(__FILE__).DS.'helper'.DS."category.php";
 		$mCategory = new ContentModelCategoryHelper();
 		$i=0;
-		$viewby=JRequest::getVar('viewby',array(),'default','array');				
+		$viewby=JRequest::getVar('viewby',array(),'default','array');	
+					
 //		echo JUtility::dump($viewby);
 		foreach( $categories as $cat)
 		{
@@ -31,6 +32,7 @@ switch($template)
 			$mCategory->setId($cat->id);
 			if($i==1)// first category
 			{
+				jimport('joomla.html.pagination');
 				JRequest::setVar('limit',5,'post');// set default limit is 5 items
 				$dcomFilter=array();
 				$dcomFilter[] ='com_filter_alpha';
@@ -42,17 +44,17 @@ switch($template)
 					$xemTheo[$dc]=getFilter($dc);
 				}				
 				$this->assign('xemtheo',$xemTheo);
-				
 			}
 			else
 			{
 				JRequest::setVar('limit',3,'post');// set limit is 3 items for other categories
 
 				JRequest::setVar('viewby',array());
+				JRequest::setVar('limitstart',0);
 			}
 			$cat->items= $mCategory->getData();			
 			$cat->total = $mCategory->getTotal();			
-
+			jimport('joomla.html.pagination');
 			$cat->pagination = new JPagination($cat->total,JRequest::getVar('limitstart',0),JRequest::getVar('limit',5));
 		}
 			JRequest::setVar("viewby",$viewby);
@@ -98,7 +100,7 @@ switch($template)
 			{	
 				if(empty($filter))
 				{
-					JRequest::setVar('limit',5,'post');// set default limit is 5 items								
+					JRequest::setVar('limit',8,'post');// set default limit is 5 items								
 				}
 				else
 				{
@@ -117,7 +119,7 @@ switch($template)
 			{				
 				if(empty($filter))
 				{
-					JRequest::setVar('limit',5,'post');// set default limit is 5 items								
+					JRequest::setVar('limit',8,'post');// set default limit is 5 items								
 				}
 				else
 				{
@@ -136,7 +138,7 @@ switch($template)
 			{
 				if(empty($filter))
 				{
-					JRequest::setVar('limit',5,'post');// set default limit is 5 items								
+					JRequest::setVar('limit',8,'post');// set default limit is 5 items								
 				}
 				else
 				{

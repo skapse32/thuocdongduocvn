@@ -294,6 +294,6 @@ a.link_title:hover,a.link_title:active{ text-decoration: underline; font-size: i
 
 /*update 310510*/
 .txt-sort {float:right; padding:7px 20px 0 0;}
-.txt-sort a{color:#0070a8; padding:0 10px 0 25px;}
+.txt-sort a{color:#0070a8; padding:0 10px 0 10px;}
 .txt-sort .up{background:url(../images/up.png) no-repeat right center; }
 .txt-sort .down{background:url(../images/down.png) no-repeat right center;}
