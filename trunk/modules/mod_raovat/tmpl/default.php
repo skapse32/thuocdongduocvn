@@ -3,7 +3,7 @@ defined('_JEXEC') or die('Restricted access');
 $layout = JRequest::getVar('layout');
 $city =JRequest::getVar("city",'');
 
-if($layout == '')
+if($layout == '' or $layout =='detail')
 {
 ?>
  				<div class="mdl-a">

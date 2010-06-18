@@ -117,6 +117,35 @@ foreach($sectionIds as $secId)// get Articles in sections
 				unset($art[0]);
 			$item->introtext=implode('<br/>',$art);
 		break;
+		case 4:
+			$item = &$section->articles[0];
+			$param = $item->params = new JParameter($item->attribs);
+
+			if($param->get('t_dbc') != '')
+			{
+				
+				$par[] = "Dạng bào chế:".$param->get('t_dbc');
+			}
+			if($param->get('t_qcdg') !='')
+			{
+				
+				$par[] = "Quy cách đóng gói:".$param->get('t_qcdg');
+			}
+			if($param->get('t_nsx')!='')
+			{
+				
+				$par[] = "Nhà sản xuất:".$param->get('t_nsx');
+			}
+			if($param->get('t_sdk')!='')
+			{
+				
+				$par[] = "Số đăng ký:".$param->get('t_sdk');
+			}
+			//$display .="</table>";
+			if(strpos(' '.$par[0],$item->title))
+				unset($par[0]);
+			$item->introtext=implode('<br/>',$par);
+		break;
 		case 5:				
 			$defaultSectionLink=JRoute::_("index.php?option=com_content&view=section&layout=thuvien&id=".$section->id."&Itemid=7");
 		break;
@@ -150,6 +179,7 @@ foreach($sectionIds as $secId)// get Articles in sections
                 <?php echo $firstArticle->title;?></a></h4>
             <p>
                 <?php echo strip_tags($firstArticle->introtext,'<p><br><a><br/>');?>
+               
                 <?php// echo $firstArticle->introtext;?>
                 </p>
             <?php if($firstArticle->readmore>0):?>
