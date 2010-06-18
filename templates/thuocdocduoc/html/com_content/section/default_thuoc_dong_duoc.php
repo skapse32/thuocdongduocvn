@@ -150,10 +150,10 @@ $viewby=JRequest::getVar('viewby',array(),'default','array');
                                     <td><?php echo $aparams->get('t_qcdg');?></td>
                               </tr>
                               <?php } ?>
-                              <?php if($aparams->get('t_nxs')) { ?>
+                              <?php if($aparams->get('t_nsx')) { ?>
                               <tr>
                                 	<td>Nhà sản xuất:</td>
-                                    <td><?php echo $aparams->get('t_nxs');?></td>
+                                    <td><?php echo $aparams->get('t_nsx');?></td>
                               </tr>
                               <?php }?>
                               <?php if($aparams->get('t_sdk')) {?>
