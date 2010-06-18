@@ -56,7 +56,9 @@
     </tr>
   <tr>
   	<td colspan="2">
-    	<input type="submit" value="<?php echo JTEXT::_('SEND_COMMENT');?>"/>
+    	<!--<input type="submit" value="<?php echo JTEXT::_('SEND_COMMENT');?>"/>-->
+      <input type="submit" name="Submit" class="button" value="<?php echo JTEXT::_('SEND_COMMENT')?>" />
+        
     </td>
   </tr>  
    
