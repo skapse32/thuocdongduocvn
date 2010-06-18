@@ -599,7 +599,8 @@ class plgSystemOSOLCaptcha extends JPlugin
 									"enableForRegistration" => '<button class="button validate" type="submit">'.JTEXT::_('REGISTER').'</button>',
 									"enableForReset" => '<button type="submit" class="validate">'.JText::_('Submit').'</button>',
 									"enableForRemind" => '<button type="submit" class="validate">'.JText::_('Submit').'</button>',
-									"enableForComment" => '<input type="submit" value="'.JTEXT::_('SEND_COMMENT').'"/>'
+									//"enableForComment" => '<input type="submit" value="'.JTEXT::_('SEND_COMMENT').'"/>'
+									"enableForComment" => '<input type="submit" name="Submit" class="button" value="'.JTEXT::_('SEND_COMMENT').'" />'
 									);
 		}
 		function getIsEnabledForForms()
@@ -614,6 +615,7 @@ class plgSystemOSOLCaptcha extends JPlugin
 				$isEnabledForForm[$paramName] = ($this->params->get($paramName) == 'Yes');
 				
 			}
+			//var_dump($isEnabledForForm);
 			return $isEnabledForForm;
 		}
         /**
@@ -627,6 +629,7 @@ class plgSystemOSOLCaptcha extends JPlugin
 			$option = JRequest::getVar('option');
 			$view = JRequest::getVar('view');
 			$layout = JRequest::getVar('layout');
+			//var_dump($layout);
 			$captchaHTML = $this->GetCapthcaHTML();
 
 
@@ -666,14 +669,15 @@ class plgSystemOSOLCaptcha extends JPlugin
 						
 						break;
 					case 'com_raovat':
-					
+						
 						switch($layout)
 						{
 							case 'detail':
-								if($isEnabledForForm["enableForComment"])
-								{
-									
+								//var_dump($isEnabledForForm["enableForComment"]);
+								if(!$isEnabledForForm["enableForComment"])
+								{									
 									$checkContent = $enabledForms["enableForComment"];
+									//var_dump($checkContent);
 									
 								}
 								break;
