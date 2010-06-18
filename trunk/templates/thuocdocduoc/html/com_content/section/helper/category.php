@@ -489,6 +489,7 @@ class ContentModelCategoryHelper extends JModel
 		switch ($state)
 		{
 			case 1:
+			/*
 				if ($user->authorize('com_content', 'edit', 'content', 'all'))
 				{
 					$where .= ' AND a.state >= 0';
@@ -498,7 +499,10 @@ class ContentModelCategoryHelper extends JModel
 					$where .= ' AND a.state = 1' .
 							' AND ( publish_up = '.$this->_db->Quote($nullDate).' OR publish_up <= '.$this->_db->Quote($now).' )' .
 							' AND ( publish_down = '.$this->_db->Quote($nullDate).' OR publish_down >= '.$this->_db->Quote($now).' )';
-				}
+				}*/
+				$where .= ' AND a.state = 1' .
+							' AND ( publish_up = '.$this->_db->Quote($nullDate).' OR publish_up <= '.$this->_db->Quote($now).' )' .
+							' AND ( publish_down = '.$this->_db->Quote($nullDate).' OR publish_down >= '.$this->_db->Quote($now).' )';
 				break;
 
 			// Archive Content
