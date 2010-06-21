@@ -6,7 +6,10 @@ $templateUrl =JURI::root()."templates/".$mainframe->getTemplate();
 ?>
  <div class="mdl-cnt">
     <form id="frmlist" action="index.php" method="post" name="frmlist<?php echo time();?>">
-    <div class="title">		
+    <div class="title">	
+    <?php 
+		if(JRequest::getVar('user_id') ==''):
+	?>	
         <div class="fl-right">
             <label>
                 Xem theo:</label>
@@ -24,6 +27,7 @@ $templateUrl =JURI::root()."templates/".$mainframe->getTemplate();
                 <a href="javascript:void();" class="ordering <?php echo $this->order=='hit'? "down":'';?>" datafld="hit" >
                     Xem nhiều nhất</a></p>
         </div>
+        <?php endif;?>
         <h2>
             cần bán</h2>
         <img src="<?php echo $templateUrl;?>/images/news&amp;event_107.png" />
@@ -62,7 +66,7 @@ $templateUrl =JURI::root()."templates/".$mainframe->getTemplate();
 							 <?php echo strip_tags($item->desc);?>
                              <?php endif;?>
                             </div
-                           <?php $persional_info = &JTable::getInstance('raovat_profile');
+                           ><?php $persional_info = &JTable::getInstance('raovat_profile');
 							$persional_info->load($item->user_id);
 							if($persional_info->user_id == NULL )
 							{
@@ -73,14 +77,14 @@ $templateUrl =JURI::root()."templates/".$mainframe->getTemplate();
 							<?php
 							 if($persional_info->persional_name!="")
 							 {
-							 	 echo $persional_info->persional_name;
+							 	 $user = $persional_info->persional_name;
 							 }
 							 else
 							 {
-							 	echo $user->username;
+							 	$user =  $user->username;
 							 }
 							 ?>
-                           
+                           <a href="<?php echo JRoute::_('index.php?option=com_raovat&view=raovat&user_id='.$item->user_id);?>"><?php echo $user;?></a>
                             - Trả lời: <?php
                             	$db =& JFactory::getDBO();
 								$query = "SELECT count(*) FROM #__raovat_comment WHERE id_raovat  ='$item->id'";
@@ -105,7 +109,10 @@ $templateUrl =JURI::root()."templates/".$mainframe->getTemplate();
 
  <div class="mdl-cnt">
     <form id="frmsecond" action="index.php" method="post" name="frmlist<?php echo time();?>">
-    <div class="title">		
+    <div class="title">	
+     <?php 
+		if(JRequest::getVar('user_id') ==''):
+	?>	
         <div class="fl-right">
             <label>
                 Xem theo:</label>
@@ -123,6 +130,9 @@ $templateUrl =JURI::root()."templates/".$mainframe->getTemplate();
                 <a href="javascript:void();" class="ordering <?php echo $this->order=='hit'? "down":'';?>" datafld="hit" >
                     Xem nhiều nhất</a></p>
         </div>
+      <?php
+      	endif;
+	  ?>
         <h2>
             cần mua</h2>
         <img src="<?php echo $templateUrl;?>/images/news&amp;event_107.png" />
@@ -162,7 +172,7 @@ $templateUrl =JURI::root()."templates/".$mainframe->getTemplate();
                              <?php endif;?>
                             </div
                             
-                            <?php $persional_info = &JTable::getInstance('raovat_profile');
+                            ><?php $persional_info = &JTable::getInstance('raovat_profile');
 							$persional_info->load($item->user_id);
 							if($persional_info->user_id == NULL )
 							{
@@ -173,13 +183,14 @@ $templateUrl =JURI::root()."templates/".$mainframe->getTemplate();
 							<?php
 							 if($persional_info->persional_name!="")
 							 {
-							 	 echo $persional_info->persional_name;
+							 	 $user = $persional_info->persional_name;
 							 }
 							 else
 							 {
-							 	echo $user->username;
+							 	$user = $user->username;
 							 }
 							 ?>
+                             <a href="<?php echo JRoute::_('index.php?option=com_raovat&view=raovat&user_id='.$item->user_id);?>"><?php echo $user;?></a>
                             - Trả lời: <?php
                             	$db =& JFactory::getDBO();
 								$query = "SELECT count(*) FROM #__raovat_comment WHERE id_raovat  ='$item->id'";
