@@ -172,7 +172,6 @@ class ContentViewCategory extends ContentView
 		$this->assignRef('sub_total',	$sub_total);
 		$this->assignRef('layout',		$layout);
 		$this->assignRef('itemId',		$itemId);
-
 		parent::display($tpl);
 	}
 
