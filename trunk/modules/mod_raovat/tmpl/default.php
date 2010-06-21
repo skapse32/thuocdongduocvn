@@ -10,7 +10,7 @@ if($layout == '' or $layout =='detail')
                     <div>
                         <div>
                             <div>
-                                <h3><?php echo JText::_('CANBAN');?></h3>
+                                <h3><a style="color:#85193C" href="<?php echo JRoute::_('index.php?option=com_raovat&view=raovat&layout=canban');?>"><?php echo JText::_('CANBAN');?></a></h3>
                                 <ul class="list1">
                                 <?php 
 									foreach($category_rv as $category_rv)
@@ -30,7 +30,7 @@ if($layout == '' or $layout =='detail')
                     <div>
                         <div>
                             <div>
-                                <h3><?php echo JText::_('CANMUA');?></h3>
+                                <h3><a style="color:#85193C" href="<?php echo JRoute::_('index.php?option=com_raovat&view=raovat&layout=canmua');?>"><?php echo JText::_('CANMUA');?></a></h3>
                                 <ul class="list1">
                                 <?php 
 									
@@ -55,7 +55,7 @@ elseif($layout =='canban')
                     <div>
                         <div>
                             <div>
-                                <h3><?php echo JText::_('CANBAN');?></h3>
+                                <h3><a style="color:#85193C" href="<?php echo JRoute::_('index.php?option=com_raovat&view=raovat&layout=canban');?>"><?php echo JText::_('CANBAN');?></a></h3>
                                 <ul class="list1">
                                 <?php 
 									foreach($category_rv as $category_rv)
@@ -79,7 +79,7 @@ elseif($layout =='canmua')
                     <div>
                         <div>
                             <div>
-                                <h3><?php echo JText::_('CANMUA');?></h3>
+                                <h3><a style="color:#85193C" href="<?php echo JRoute::_('index.php?option=com_raovat&view=raovat&layout=canmua');?>"><?php echo JText::_('CANMUA');?></a></h3>
                                 <ul class="list1">
                                 <?php 
 									foreach($category_rv as $category_rv)
