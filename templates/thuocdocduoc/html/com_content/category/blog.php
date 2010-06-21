@@ -1,10 +1,31 @@
 ﻿<?php // no direct access
 defined('_JEXEC') or die('Restricted access');
+$cat = &$this->category;
+if($cat->id == 15):
+function getFilter($option)
+{
+	$db = &JFactory::getDBO();
+	$db->setQuery("SELECT title,alias FROM #__categories WHERE section='$option' ORDER BY title");
+	$results = $db->loadObjectList();
+	return $results;
+}
+	$viewby=JRequest::getVar('viewby',array(),'default','array');	
+	$dcomFilter=array();
+	$dcomFilter[] ='com_filter_alpha';
+	$dcomFilter[] ='com_filter_t_nhomdieutri';
+	$dcomFilter[] ='com_filter_t_dangbaoche';
+	$xemTheo=array();
+	foreach($dcomFilter as $dc)
+	{
+			$xemTheo[$dc]=getFilter($dc);
+	}				
+	$this->assign('xemtheo',$xemTheo);
+endif;
 global $mainframe;
 $dispatcher	=& JDispatcher::getInstance();
 JPluginHelper::importPlugin('content');
 $templateUrl = JURI::root().'templates/'.$mainframe->getTemplate();
-$cat = &$this->category;
+
 //inlcude class
 require_once dirname(__FILE__).DS.'helper'.DS.'category.php';
 $mCategory = new ContentModelCategoryHelper();
@@ -19,8 +40,43 @@ $sectionid = $items[0]->sectionid;
 $pagination = new JPagination($total,$limitstart,$limit);
 ?>
 <!--mdl-3-->
+<form id="frm-sort" action ="<?php echo JRequest::getURI();?>" method='GET'>
 <div class="mdl-cnt">
     <div class="title">
+    	<?php if($cat->id == 15):?>
+          <div class="fl-right">       
+            <label>
+                Xem theo:</label>
+            <select name="viewby[alpha]" onchange='this.form.submit()' style="width:70px">
+				<option value="">Alpha Be</option>
+                <?php foreach($this->xemtheo['com_filter_alpha'] as &$xt):?>
+					<option value="<?php echo base64_encode($xt->title);?>" <?php echo @$viewby['alpha']==base64_encode($xt->title)? "selected":"";?>><?php echo ucfirst($xt->title);?></option>
+                <?php endforeach;?>
+            </select>
+            &nbsp;&nbsp;&nbsp;
+            <select name="viewby[t_dbc]" onchange='this.form.submit()' style="width:90px">
+				<option value="">Dạng bào chế</option>
+                <?php foreach($this->xemtheo['com_filter_t_dangbaoche'] as &$xt):?>
+					<option value="<?php echo base64_encode($xt->title);?>" <?php echo @$viewby['t_dbc']==base64_encode($xt->title)? "selected":"";?>><?php echo ucfirst($xt->title);?></option>
+                <?php endforeach;?>
+            </select>
+            &nbsp;&nbsp;&nbsp;
+            <select name="viewby[t_ndt]" onchange='this.form.submit()' style="width:90px">
+				<option value="">Nhóm điều trị</option>
+                <?php foreach($this->xemtheo['com_filter_t_nhomdieutri'] as &$xt):?>
+					<option value="<?php echo base64_encode($xt->title);?>" <?php echo @$viewby['t_ndt']==base64_encode($xt->title)? "selected":"";?>><?php echo ucfirst($xt->title);?></option>
+                <?php endforeach;?>
+            </select>
+        <input type="hidden" name="option" value="<?php echo JRequest::getVar('option','');?>"/>
+        <input type="hidden" name="view" value="<?php echo JRequest::getVar('view','');?>"/>
+        <?php if(JRequest::getVar('layout','')!=''):?>
+        <input type="hidden" name="layout" value="<?php echo JRequest::getVar('layout','');?>"/>
+        <?php endif;?>
+        <input type="hidden" name="filter" value="<?php echo JRequest::getVar('filter','');?>"/>
+        <input type="hidden" name="Itemid" value="<?php echo JRequest::getVar('Itemid','');?>"/>
+        <input type="hidden" name="id" value="<?php echo JRequest::getVar('id','');?>"/>        
+   </div>
+	<?php endif;?>
         <h2 style='min-width:50px'>
             <?php echo $cat->title;?></h2>
         <img src="<?php echo $templateUrl;?>/images/news&event_107.png" />
@@ -123,3 +179,4 @@ $pagination = new JPagination($total,$limitstart,$limit);
 </div>
 <!--end-mdl-3-->
 
+</form>

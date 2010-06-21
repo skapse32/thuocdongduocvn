@@ -544,6 +544,36 @@ class ContentModelCategoryHelper extends JModel
 			$where .= ' AND a.catid = '.(int) $this->_id;
 		}
 		
+				//VIEW BY
+		$viewby=JRequest::getVar('viewby',array(),'default','array');		
+		foreach($viewby as &$vb)
+		{
+			$vb=base64_decode($vb);					
+		}
+		if(!empty($viewby['alpha']))
+		{			
+			$where .= ' AND LOWER(a.title) LIKE '.$this->_db->Quote("{$viewby['alpha']}%").' ';
+		}
+		if(!empty($viewby['t_dbc']))
+		{			
+			// Phan loai
+			$filter = 't_dbc';
+			$filter.="=";					
+			$oo='SUBSTRING(a.attribs,LOCATE('.$this->_db->Quote($filter).', a.attribs )+CHAR_LENGTH('.$this->_db->Quote($filter).'),
+					LOCATE('.$this->_db->Quote("\n").', a.attribs,LOCATE('.$this->_db->Quote($filter).', a.attribs ) )- 
+					LOCATE('.$this->_db->Quote($filter).', a.attribs )-CHAR_LENGTH('.$this->_db->Quote($filter).'))';
+			$where .= ' AND '.$oo.' LIKE '.$this->_db->Quote("%{$viewby['t_dbc']}%").' ';						
+		}
+		if(!empty($viewby['t_ndt']))
+		{			
+			//phan loai
+			$filter = 't_ndt';
+			$filter.="=";					
+			$oo='SUBSTRING(a.attribs,LOCATE('.$this->_db->Quote($filter).', a.attribs )+CHAR_LENGTH('.$this->_db->Quote($filter).'),
+					LOCATE('.$this->_db->Quote("\n").', a.attribs,LOCATE('.$this->_db->Quote($filter).', a.attribs ) )- 
+					LOCATE('.$this->_db->Quote($filter).', a.attribs )-CHAR_LENGTH('.$this->_db->Quote($filter).'))';
+			$where .= ' AND '.$oo.' LIKE '.$this->_db->Quote("%{$viewby['t_ndt']}%").' ';						
+		}
 		// Regular Published Content
 		switch ($state)
 		{
