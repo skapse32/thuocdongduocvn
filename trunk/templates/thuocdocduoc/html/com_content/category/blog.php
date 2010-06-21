@@ -116,7 +116,7 @@ $pagination = new JPagination($total,$limitstart,$limit);
 					<?php endif;?>
 					</a> <a href="<?php echo JRoute::_(ContentHelperRoute::getArticleRoute($item->slug, $item->catslug, $item->sectionid));?>" class="link_title">
 						<?php echo $item->title;?></a>
-				<p>		
+				<p style="text-align:justify;">		
                 <?php 
 								if(strtolower($cat->title)=='thuốc')
 								{
