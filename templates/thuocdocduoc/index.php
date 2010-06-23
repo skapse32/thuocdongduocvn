@@ -27,7 +27,7 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
     <div class="wrapper" id="top">
         <!--header-->
         <div class="header">
-            <a href="#" class="logo">logo</a> <a href="#">
+            <a href="#" class="logo">logo</a> <a href="<?php echo JURI::root();?>">
                 <!-- banner top-->
                 <span class="adv" style="display:block">
                 <div style='float: left; margin: 0px 25px; border: 1px solid #CBCBCB;'>
