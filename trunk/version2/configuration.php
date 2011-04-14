@@ -1,0 +1,54 @@
+<?php
+class JConfig {
+	var $offline = '0';
+	var $editor = 'tinymce';
+	var $list_limit = '20';
+	var $helpurl = 'http://help.joomla.org';
+	var $debug = '0';
+	var $debug_lang = '0';
+	var $sef = '1';
+	var $sef_rewrite = '1';
+	var $sef_suffix = '1';
+	var $feed_limit = '10';
+	var $secret = 'qRRWta9c84Gy1pgB';
+	var $gzip = '1';
+	var $error_reporting = '-1';
+	var $xmlrpc_server = '0';
+	var $log_path = '/home/thuocdon/public_html/logs';
+	var $tmp_path = '/home/thuocdon/public_html/tmp';
+	var $live_site = '';
+	var $offset = '7';
+	var $caching = '1';
+	var $cachetime = '15';
+	var $cache_handler = 'file';
+	var $memcache_settings = array();
+	var $ftp_enable = '0';
+	var $ftp_host = '';
+	var $ftp_port = '21';
+	var $ftp_user = 'autoreply@thuocdongduoc.vn';
+	var $ftp_pass = 'nguyenhoangtuan';
+	var $ftp_root = '';
+	var $dbtype = 'mysql';
+	var $host = 'localhost';
+	var $user = 'root';
+	var $db = 'thuocdongduoc';
+	var $dbprefix = 'jos_';
+	var $mailer = 'smtp';
+	var $mailfrom = 'autoreply@thuocdongduoc.vn';
+	var $fromname = 'Thuoc Dong Duoc';
+	var $sendmail = '/usr/sbin/sendmail -t -i';
+	var $smtpauth = '1';
+	var $smtpuser = 'autoreply@thuocdongduoc.vn';
+	var $smtppass = 'nguyenhoangtuan';
+	var $smtphost = 'mb2d33.vdrs.net';
+	var $MetaAuthor = '1';
+	var $MetaTitle = '1';
+	var $lifetime = '150';
+	var $session_handler = 'database';
+	var $password = '';
+	var $sitename = 'Thuốc Đông Dược - Gìn giữ và phát triển tinh hoa Phương Đông';
+	var $MetaDesc = 'Thuoc dong duoc, thuoc biet duoc, dong duoc, thuoc dong duoc, thuocdongduoc, thuocdongduoc.vn, thuoc dong y, dong y, Thuốc đông dược, Thuốc đông y, đông y, dược liệu, cây thuốc, vị thuốc, bài thuốc';
+	var $MetaKeys = 'dong duoc,  biet duoc, cua hang dong duoc, duoc lieu, bai thuoc, dong y, thuoc, cho dong duoc, cho duoc lieu, cay thuoc, vi thuoc, đông dược, biệt dược, cửa hàng đông dược, dược liệu, bài thuốc, đông y, chợ đông dược, chợ dược liệu, cây thuốc, vị thuốc, thuốc đông y, thuoc dong y';
+	var $offline_message = 'This site is down for maintenance. Please check back again soon.';
+}
+?>
