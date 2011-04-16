@@ -1,0 +1,252 @@
+@charset "utf-8";
+/* CSS Document by vietnt_vn 0988 005 774*/
+
+html {margin-bottom:1px; height:100%;}
+body {margin:0px; padding:0px; background:#f0faf1; font-family: Arial, Helvetica, sans-serif; font-size: 11px; color:#454545;}
+
+/**/
+.full {width:100%;}
+.menu_top {background: url(../images/home_01.png) repeat-x; width: 100%; height: 33px; color: #FFFFFF;}
+.wrapper {width:980px; margin:0px auto; float:none;}
+
+
+/*header*/
+.header {padding:10px 0; width:100%; float:left;}
+.header .logo {background:url(../images/news&event_06.png) no-repeat 0 10px; width: 255px; padding:36px 0; float:left; text-indent:-999px;}
+.header .adv {margin:0 12px 0 20px;}
+.header .hotline {margin: 30px 0 0 0;}
+
+/*menu-bar*/
+.mn-bar {width:100%; float:left;}
+
+/*mdl-static*/
+.mdl-static {clear:both; display:block; width:100%; padding-top:87px; height:110px; background:url(../images/news&event_86.png) no-repeat;}
+.mdl-static li{line-height:43px;  color:#FFFFFF; font-weight:bold; text-align:center; font-size:14px;}
+
+/*linked*/
+.linked {margin:20px 0; width:180px; #font-size:11px;}
+
+.cols2 .mdl-cnt {margin-left:2px;}
+.cols2 .slide-show {width:554px; height:203; margin-left:2px; float:left; margin-bottom:12px;}
+
+/*title-rows*/
+.title-rows {color:#575d10; font-weight:bold; padding-bottom:1px;}
+.title-rows2 {color:#575d10; font-weight:bold; padding:4px 0;}
+
+/*bgbody*/
+.bg_body { background: url(../images/home_39.png) repeat-y; float:left; width:998px;}
+.bg_body_l { background: url(../images/home_38.png) no-repeat; width: 5px; color: #FFFFFF; float:left;}
+.bg_body_c { background: url(../images/home_23.png) repeat-x; width: 988px; float:left;}
+.bg_body_r { background: url(../images/home_41.png) no-repeat; width: 5px; color: #FFFFFF; float:left;}
+
+/*footer*/
+.footer { background: url(../images/news&event_98.png) repeat-x #006ca3; color: #f1f1f1; float:left; width:100%; min-height:115px;}
+.footer p{ text-align:center; line-height:16px; padding-top:50px;}
+.footer div {float:left; width:970px;}
+.footer div img{float:none; margin-top:6px; #margin-top:2px;}
+.footer ul{ display:block; width:100%; float:left; clear:both;}
+.footer ul li{ float:left; padding:0 20px; line-height:36px; vertical-align:middle; background:url(../images/news&event_109.png) no-repeat right; }
+.footer ul li a{ color: #ffffff; font-weight:bold;}
+
+
+/*element original*/
+.cols1 {float:left; width:199px; overflow:hidden; #padding-bottom:10px;}
+.cols2 {float:left; width:558px; margin:0 12px; overflow:hidden; #padding-bottom:10px;}
+
+/*list-box1*/
+.list-box1 {clear:both; color:#454545; margin: 0 2%; _margin: 0; float:left; line-height:15px;}
+.list-box1 h4{font-size:11px; color:#00476b; padding-bottom:5px;}
+.list-box1 img{float:none;}
+.list-box1 a{color:#032b3f; text-decoration:underline;}
+.list-box1 a:hover{color:#032b3f; text-decoration:none;}
+.list-box1 span{color:#7d7d7d; font-style:italic;}
+.list-box1 .img{width:128px; height:88px; float:left; padding:2px; border:1px solid #96aab5; margin:0 10px 10px 0;}
+.list-box2 .img3{width:128px; height:148px; float:left; padding:2px; border:1px solid #96aab5; margin:0 10px 10px 0;}
+.list-box1 h4 a{color:#032b3f; text-decoration:none;}
+
+/*list-box2*/
+.list-box2 {color:#454545; margin: 0 2%; width:96%; padding: 2% 0; width:96%; float:left; line-height:15px; border-bottom:1px dashed #c2c5c3;}
+.list-box2 h4{font-size:11px; color:#00476b; padding-bottom:5px;}
+.list-box2 img{float:none;}
+.list-box2 a{color:#032b3f; text-decoration:underline;}
+.list-box2 a:hover{color:#032b3f; text-decoration:none;}
+.list-box2 span{color:#7d7d7d; font-style:italic;}
+.list-box2 .img{width:128px; height:88px; float:left; padding:2px; border:1px solid #96aab5; margin:0 10px 10px 0;}
+.list-box2 .img2{width:128px; height:78px; float:left; padding:2px; border:1px solid #96aab5; margin:0 10px 10px 0;}
+.list-box2 .img3{width:128px; height:148px; float:left; padding:2px; border:1px solid #96aab5; margin:0 10px 10px 0;}
+.list-box2 h4 a{color:#032b3f; text-decoration:none;}
+
+/*detail1*/
+.detail {color:#454545; margin: 0 2%; width:96%; padding: 2% 0; width:96%; float:left; line-height:18px;}
+.detail h1{font-size:14px; color:#00476b; padding-bottom:5px; text-transform:uppercase;}
+.detail img{float:none;}
+.detail a{color:#032b3f; text-decoration:underline;}
+.detail a:hover{color:#032b3f; text-decoration:none;}
+.detail .img4{width:240px; height:170px; float:left; padding:2px; border:1px solid #96aab5; margin:0 10px 10px 0;}
+
+/*mdl joomla*/
+div.mdl-a,div.mdl-b,div.mdl-c {background:url(../images/news&event_111.png) repeat-y; float:left; width:100%; margin:0 0 12px; padding:0; clear:both;}
+
+.cols1 h3 {background:url(../images/news&event_32.png) repeat-x right bottom;}
+
+div.mdl-a h3,div.mdl-b h3,div.mdl-c h3,.mdl-d h3 { font-size:100%; margin:-8px -5px 0 23px;  line-height:29px; vertical-align:middle; text-transform:uppercase; color:#85193c; padding-left:5px;}
+
+div.mdl-a div,div.mdl-c div,div.mdl-b div {background:url(../images/news&event_66.png) no-repeat left bottom;}
+
+
+div.mdl-a div div,div.mdl-b div div,div.mdl-c div div {background:url(../images/news&event_35.png) no-repeat right top;}
+
+div.mdl-a div div div { background:url(../images/news&event_31.png) no-repeat left top;}
+div.mdl-b div div div { background:url(../images/news&event_74.png) no-repeat left top;}
+div.mdl-c div div div { background:url(../images/news&event_37.png) no-repeat left top;}
+
+div.mdl-a div div div,div.mdl-b div div div,div.mdl-c div div div { padding:8px 10px 5px;}
+
+
+div.mdl-a div div div div,div.mdl-b div div div div ,div.mdl-c div div div div  { background:transparent none repeat scroll 0 0; float:none; margin:0; padding:0;}
+
+
+.mdl-d {background:url(../images/news&event_117.png) repeat-x #e8e8e8 0 22px; width:100%; padding:0; clear:both; margin:0 0 12px;}
+.mdl-d h3 {font-size:100%; line-height:29px; vertical-align:middle; text-transform:uppercase; color:#85193c; padding-left:5px;}
+.mdl-d div{border:1px solid #b8bab8;}
+.mdl-d div div{background:url(../images/news&event_31.png) no-repeat left top; border:none; margin:-1px -1px -1px -1px;}
+.mdl-d div div div{background:url(../images/news&event_35.png) no-repeat right top; margin:0;}
+.mdl-d div div div div{background:url(../images/news&event_119.png) no-repeat right bottom;}
+.mdl-d div div div div div{background:url(../images/news&event_120.png) no-repeat left bottom;}
+.mdl-d div div div div div div{padding: 8px 10px 10px 10px;}
+.mdl-d div div div div div div div{ background:transparent none repeat scroll 0 0; float:none; margin:0; padding:0;}
+.mdl-d .form {padding:21px 0;}
+
+.mdl-e {background:url(../images/news&event_117.png) repeat-x #e8e8e8 0 22px; width:100%; padding:0; clear:both; margin:0 0 12px;}
+.mdl-e h3 {font-size:100%; line-height:29px; vertical-align:middle; text-transform:uppercase; color:#85193c; padding-left:5px; margin:-8px -5px 0 23px;}
+.mdl-e div{border:1px solid #b8bab8;}
+.mdl-e div div{background:url(../images/news&event_31.png) no-repeat left top; border:none; margin:-1px -1px -1px -1px;}
+.mdl-e div div div{background:url(../images/news&event_35.png) no-repeat right top; margin:0;}
+.mdl-e div div div div{background:url(../images/news&event_119.png) no-repeat right bottom;}
+.mdl-e div div div div div{background:url(../images/news&event_120.png) no-repeat left bottom;}
+.mdl-e div div div div div div{padding: 8px 10px 10px 10px;}
+.mdl-e div div div div div div div{ background:transparent none repeat scroll 0 0; float:none; margin:0; padding:0;}
+.mdl-e .form {padding:18px 0; #padding:8px 0 0 0;}
+
+
+div.mdl-b .img {padding:10px 0; text-align:center;}
+div.mdl-b .img img{float:none; width:170px; border:1px solid #96aab5; padding:2px; margin-bottom:10px;}
+
+
+/*form*/
+.form {color:#a4a4a4;}
+.form label{display:block; width:100%; line-height:18px;}
+.form .input,.form select{width:177px; border:1px solid #96aab5; margin:5px 0 10px; color:#a4a4a4;}
+
+.mdl-c .form,.mdl-a .form {padding:24px 0;}
+
+
+/*mdl 1*/
+.mdl-1 {background:#FFFFFF; float:left; width:197px; border-left:1px solid #b3b3b3; border-right:1px solid #b3b3b3; margin-bottom:12px;}
+.mdl-1 .img-rounded{margin-left:-1px;}
+.mdl-1 .fl-right{margin-right:-1px;}
+.mdl-1 h2{color:#85193c; text-transform:uppercase; background:url(../images/news&event_32.png) repeat-x; line-height:29px; vertical-align:middle;}
+.mdl-1 span{padding-left:15px;}
+
+/*mdl 2*/
+.mdl-2 {background:url(../images/news&event_45.png) repeat-x left 29px #e9e9e9; float:left; width:197px; border-left:1px solid #b3b3b3; border-right:1px solid #b3b3b3; margin-bottom:12px;}
+.mdl-2 .img-rounded{margin-left:-1px;}
+.mdl-2 .fl-right{margin-right:-1px;}
+.mdl-2 h2{color:#85193c; text-transform:uppercase; background:url(../images/news&event_32.png) repeat-x; line-height:29px; vertical-align:middle;}
+.mdl-2 span{padding-left:15px;}
+
+/*mdl 3*/
+.mdl-cnt {float:left; background:#FFFFFF; width:552px; float:left;  border-left:1px solid #b3b3b3; border-right:1px solid #b3b3b3; margin-bottom:12px;}
+.mdl-cnt .title{float:left; background:url(../images/news&event_53.png) no-repeat; width:554px; height:44px; margin-left:-1px;}
+.mdl-cnt .title .fl-right{padding-top:4px;}
+.mdl-cnt .cnt{background:url(../images/news&event_60.png) repeat-x #e4eef3; float:left; width:550px; border-left:1px solid #FFFFFF; border-right:1px solid #FFFFFF;}
+.mdl-cnt .img-rounded{margin-left:-1px;}
+.mdl-cnt select{#font-size:11px;}
+.mdl-cnt h2{color:#85193c; background:#FFFFFF; text-transform:uppercase; line-height:29px; vertical-align:middle; float:left; margin-left:35px; border-top:1px solid #b3b3b3; padding-right:20px;}
+.mdl-cnt span{padding-left:5px;}
+
+/*link-view*/
+.pad-view1 {padding:20px 10px;}
+.pad-view2 {padding:0 10px;}
+.view-detal {font-weight:bold; color:#454545;}
+.view-all-1 {background:url(../images/news&event_82.png) no-repeat right 4px; color:#954660; padding-right:10px;}
+.view-all-2 {background:url(../images/news&event_76.png) no-repeat right 4px; color:#9cb0b2; padding-right:10px;}
+.link-back {font-weight:bold; color:#575d10; text-align:right; line-height:25px; vertical-align:middle;}
+
+/*list1*/
+.list1 {clear:both; display:block; width:100%; height:100%;}
+.list1 li{background:url(../images/news&event_48.png) no-repeat 0 7px; padding:4px 0 4px 20px; margin:5px 0;}
+.list1 a{color:#00517a;  width:100%; display:inline-block; font-size:12px;}
+
+/*list2*/
+.list2 {clear:both; display:block; width:100%; height:100%;}
+.list2 li{background:url(../images/news&event_70.png) no-repeat 0 7px; padding:4px 0 4px 10px;  margin:5px 10px; #padding:2px 0 2px 10px; #background-position: 0 6px;}
+.list2 a{color:#032b3f; display:inline-block; height:100%; font-weight:bold;}
+.list2 span{color:#7d7d7d; font-style:italic;}
+
+/*list3*/
+.list3 {clear:both; display:block; width:100%; height:100%;}
+.list3 li{margin:5px 0px; border-bottom:1px dotted #b3b3b3; padding:5px 0; line-height:14px; min-height:55px; clear:both; width:100%;}
+.list3 a{color:#00517a;}
+.list3 img{width:70px; height:49px; border:1px solid #96aab5; padding:2px; margin-right:5px}
+
+/*list4*/
+.list4 {clear:both; display:block; width:100%; height:100%; line-height:16px;}
+.list4 li{list-style:disc; padding:2px 0 2px 0px;  margin:3px 20px; #padding:0px 0 0px 0px; #background-position: 0 6px;}
+.list4 a{color:#429bc7; display:inline-block; height:100%; text-decoration:none;}
+.list4 a:hover{color:#429bc7; display:inline-block; height:100%; text-decoration:underline;}
+
+
+/*paggin*/
+.paggin {text-align:left; line-height:25px; vertical-align:middle;}
+.paggin span{padding-right:20px; color:#961d44; font-weight:bold;}
+.paggin a{color:#00517a; padding:0 5px; font-weight:bold;}
+.paggin a.active{text-decoration:underline;}
+.paggin a.active:hover{text-decoration:none;}
+
+/* common styling */
+.menu {width:972px; height:55px; margin:0; margin:0 0 10px 4px; background:url(../images/news&event_16.png) repeat-x; position:relative;}
+.menu ul {padding:0; margin:0; list-style-type: none;}
+.menu ul li {float:left; padding-bottom:5px;}
+.menu li ul{margin-top:5px; }
+.menu ul li a, .menu ul li a:visited {display:block; text-decoration:none; padding:0 35px 0 15px; height:60px; line-height:32px; color:#ffffff;  background:url(../images/news&event_18.png) no-repeat right top;}
+.menu ul li a.reset-mn, .menu ul li a.reset-mn:visited {padding:0 0 0 13px; background:none;}
+.menu ul li ul {display: none;}
+
+
+/* specific to non IE browsers */
+.menu ul li:hover a {color:#e9e9e9;}
+.menu ul li:hover ul {display:block; position:absolute; width:972px; top:30px; left:0; background:#83d2fa; color:#fff;}
+.menu ul li.active ul {display:block; position:absolute; width:972px; top:30px; left:0; background:#83d2fa; color:#fff;}
+.menu ul li.active a{font-weight:bold;}
+.menu ul li:hover ul.right_side li {float:right; border:0;}
+.menu ul li:hover ul.left_side li {float:left; border:0; border-left:1px solid #eee;}
+.menu ul li:hover ul li a.hide {color:#032b3f;}
+.menu ul li:hover ul li:hover a.hide {background:#83d2fa; color:#032b3f;}
+.menu ul li:hover ul li ul {display: none;}
+.menu ul li:hover ul li a {display:block; background:##83d2fa; color:#032b3f; font-weight:normal;}
+.menu ul li:hover ul li a:hover {color:#032b3f; text-decoration:underline;}
+.menu ul li:hover ul li:hover ul {display:block; position:absolute; left:0; top:30px; color:#000;}
+.menu ul li:hover ul.right li {float:right;}
+.menu ul li:hover ul li:hover a.hide {background:#dfc184; color:#032b3f;}
+.menu ul li:hover ul li:hover ul li a {color:#032b3f;}
+.menu ul li:hover ul li:hover ul li a:hover {background:#bd8d5e; color:#032b3f;}
+.menu li li a{background:none; height:18px; line-height:18px; padding:0; margin:0 20px;}
+.menu li li {color:#032b3f; padding-bottom:0; background:url(../images/news&event_25.png) no-repeat right;}
+.menu li li p{display:block; float:left; width:100px; height:18px; line-height:18px; vertical-align:middle;}
+.menu li li marquee{display:block; float:left; width:870px; height:18px; line-height:18px; vertical-align:middle;}
+.reset-bg{background:none !important;}
+
+
+/*update 020410*/
+a.link_title:link,a.link_title:visited{ text-decoration: none; font-size: inherit; font-family: inherit; color:#00476b; font-weight:bold; line-height:22px;}	
+a.link_title:hover,a.link_title:active{ text-decoration: underline; font-size: inherit; font-family: inherit;}
+
+/*update 020410*/
+.viewdate {padding-top:10px;}
+.viewdate input,.viewdate select {font-weight:normal; vertical-align:middle; margin-left:10px;}
+
+
+
+
+
