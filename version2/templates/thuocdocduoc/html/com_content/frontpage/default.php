@@ -59,7 +59,7 @@ foreach($sectionIds as $secId)// get Articles in sections
 	switch((int)$section->id)
 	{
 		case 2:
-				$defaultSectionLink=JRoute::_("index.php?option=com_content&view=section&layout=caythuoc_vithuoc&id=".$section->id."&Itemid=4");
+				$defaultSectionLink=JRoute::_("index.php?option=com_content&view=section&layout=caythuocvithuoc&id=".$section->id."&Itemid=4");
 				$filter='';
 			$item = &$section->articles[0];
 			$item->params = new JParameter($item->attribs);

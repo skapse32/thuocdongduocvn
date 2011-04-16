@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<install type="module" version="1.5.0">
+	<name>Công báo</name>    
+    <author>LongK</author>
+    <creationDate>2010</creationDate>
+    <copyright>Copyright (C) 2010</copyright>
+    <license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+    <authorEmail>long.lh@catsoft.com.vn</authorEmail>
+    <authorUrl>catsoft.vn</authorUrl>
+    <version>1.0</version>
+    <description>Hiển thị thị 5-10 tin sự kiển mới nhất chạy từ phải sang trái</description>
+    <params>
+        <param name="count" type="text" default="10" label="Count" description="The number of items to display (default 5)" />
+        <param name="scrollnumber" type="text" default="3" label="Scroll Items" description="Scroll items"/>
+        <param name="catid" type="text" default="126" label="Category ID" description="List category id"/>
+        
+    </params>
+</install>

@@ -1,0 +1,48 @@
+.jcarousel-skin-hotnew .jcarousel-container {  
+    background: url(bg_md7.jpg) repeat-x;
+    height: 72px;
+}
+.jcarousel-skin-hotnew .jcarousel-container-horizontal {
+    width: 844x;
+    padding: 0px 0px;
+}
+.jcarousel-skin-hotnew .jcarousel-item {
+    width: 202px;
+    height: 72px;
+}
+.jcarousel-skin-hotnew .jcarousel-clip-horizontal {
+    width:  844px;
+    height: 72px;
+}
+.jcarousel-skin-hotnew .jcarousel-item-placeholder {
+    background: #fff;
+    color: #000;
+}
+.jcarousel-skin-hotnew .jcarousel-item-horizontal {
+    margin-right: 10px;
+}
+/**
+ *  Horizontal Buttons
+ */
+.jcarousel-skin-hotnew .jcarousel-next-horizontal {
+    position: absolute;
+    top: 0px;
+    right: 0px;
+    width: 15px;
+    height: 72px;
+    cursor: pointer;
+    background: transparent url(bor_right_md7.jpg) no-repeat 0 0;
+}
+.jcarousel-skin-hotnew .jcarousel-prev-horizontal {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 15px;
+    height: 72px;
+    cursor: pointer;
+    background: transparent url(bor_left_md7.jpg) no-repeat 0 0;
+}
+
+#moduel7_content{float:left; width:844px; margin:4px 4px 4px 4px; height:72px}
+#moduel7_content_slide1{ float:left; padding: 4px 0px 7px 0px; width:200px}
+#moduel7_content_slide{float:left; width:814px; background:url(/bg_md7.jpg) repeat-x; height:72px}

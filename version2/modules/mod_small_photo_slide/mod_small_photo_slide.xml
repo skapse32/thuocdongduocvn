@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<install type="module" version="1.5.15">
+	<name>Ảnh phóng sự small</name>
+	<author>Joomla! Project</author>
+	<creationDate>April 2010</creationDate>
+	<copyright>Copyright (C) 2005 - 20010 Open Source Matters. All rights reserved.</copyright>
+	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+	<authorEmail>chillychacha@gmail.com</authorEmail>
+	<authorUrl>www.catsoft.com.vn</authorUrl>
+	<version>1.0.0</version>
+	<description>Module hiển thị các ảnh trong các bài viết của mục phóng sự bằng cách nhập ID các bài viết phóng sự vào.</description>
+	<files>
+		<filename module="mod_small_photo_slide">mod_small_photo_slide.php</filename>
+		<filename module="mod_small_photo_slide">index.html</filename>
+		<filename module="mod_small_photo_slide">tmpl/default.php</filename>
+		<filename module="mod_small_photo_slide">tmpl/index.html</filename>
+		<filename module="mod_small_photo_slide">asset/compressed.js</filename>
+		<filename module="mod_small_photo_slide">asset/script.js</filename>
+		<filename module="mod_small_photo_slide">asset/style.css</filename>
+		<filename module="mod_small_photo_slide">asset/images/left.jpg</filename>
+		<filename module="mod_small_photo_slide">asset/images/link.gif</filename>
+		<filename module="mod_small_photo_slide">asset/images/right.jpg</filename>
+		<filename module="mod_small_photo_slide">asset/images/scroll-left.gif</filename>
+		<filename module="mod_small_photo_slide">asset/images/scroll-right.gif</filename>
+	</files>
+<params>
+		<param name="contentid" type="text" default="" label="ID bài viết" description="Mã id bài viết (Nhiều bài viết phân cách bằng dấu phẩy (,))" />
+		<param name="maxphoto" type="text" default="10" label="Tồi đa ảnh" description="Tối đa số lượng ảnh lấy ra trong một bài viết. Bỏ trồng để không giới hạn số lượng." />
+</params>
+</install>

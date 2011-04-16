@@ -1,0 +1,41 @@
+.jcarousel-skin-tango .jcarousel-container {
+    background: #DCDAD1;
+}
+
+.jcarousel-skin-tango .jcarousel-container-vertical {
+    height:407px;
+	width:127px;
+   }
+
+.jcarousel-skin-tango .jcarousel-clip-vertical {
+	height:407px;
+	width:127px;
+}
+
+.jcarousel-skin-tango .jcarousel-item {
+    width: 127px;  
+    height:135px;
+}
+
+
+
+/**
+ *  Vertical Buttons
+ */
+.jcarousel-skin-tango .jcarousel-next-vertical {
+    position: absolute;
+    width: 127px;
+    height: 15px;
+    cursor: pointer;
+    background: transparent url(bot_arrow.jpg) no-repeat 0 0;
+}
+
+.jcarousel-skin-tango .jcarousel-prev-vertical {
+    position: absolute;
+    top: 0px;
+    width: 127px;
+    height: 15px;
+    cursor: pointer;
+    background: transparent url(top_arrow.jpg) no-repeat 0 0;
+}
+#modulel2_slide_field{width:110px; float:left; margin:17px 0px 0px 8px; }
