@@ -24,6 +24,7 @@ $uri =& JURI::getInstance();
 
 $moduleclass_sfx 	= $params->get( 'moduleclass_sfx', '' );
 $yahooid 					= $params->get( 'yahooid', 'mp3global' );
+$skypeid 					= $params->get( 'skypeid', '' );
 $style 						= $params->get( 'style', "0" );
 $yahooimage 			= $params->get( 'yahooimage', "0" );
 $customimage 			= $params->get( 'customimage', "0" );
@@ -63,7 +64,14 @@ if(!$style || $style==0 || $style=="0") {
 		fclose($file);
 	}
 	ob_start();
-	echo '<div><div><div><h3>Hỗ trợ trực tuyến</h3><div class="" align="'.$align.'"><br/><a href="ymsgr:sendIM?'.$yahooid.'">';
+	echo '<div><div><div><h3>Hỗ trợ trực tuyến</h3><div class="" align="'.$align.'"><br/>';
+	if(!empty($skypeid)){
+		echo "<script type='text/javascript' src='http://download.skype.com/share/skypebuttons/js/skypeCheck.js'></script>";
+		echo "  <div><a href='skype:".$skypeid."?chat'>";
+		echo "  <img src='http://mystatus.skype.com/bigclassic/".$skypeid."' style='border: none;' width='182' height='44' alt='My status' /></a>";
+		echo '<br/><br/><br/><br/><br/><br/></div>';
+	}
+	echo '<a href="ymsgr:sendIM?'.$yahooid.'">';
 	if($style=="1") {
 		if($online) {
 			echo '<img class="rs-float" src="'.$uri->base().'/modules/mod_jodev_ymcustomimage/jodev_ymcustomimage/customonline'.$customimage.'.gif" border="0" />';
@@ -77,7 +85,9 @@ if(!$style || $style==0 || $style=="0") {
 			echo '<img class="rs-float" src="'.$image_offline.'" border="0" />';
 		}
 	}
-	echo '</a><br/><br/></div></div></div></div>';
+	echo '</a><br/><br/>';
+	
+	echo '</div></div></div></div>';
 	$html = ob_get_contents();
 	ob_end_clean();
 }

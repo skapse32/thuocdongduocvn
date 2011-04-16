@@ -84,8 +84,10 @@ jQuery('document').ready(function(){
 	 break;
 	case 1:
 		$viewall=JRoute::_("index.php?option=com_content&view=section&id=1&Itemid=9");
+		break;
 	case 5:
 		$viewall=JRoute::_("index.php?option=com_content&view=section&id=5&Itemid=7");
+		break;
 	}
 	
 ?>
