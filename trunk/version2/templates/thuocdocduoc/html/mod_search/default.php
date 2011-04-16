@@ -26,6 +26,7 @@ $list = $db->loadObjectList();
         <?php foreach($list as $item):?>			
 			<option value="<?php echo $item->id;?>" <?php echo $item->id==JRequest::getVar('sectionid')?"selected":'';?>><?php echo ucfirst($item->title);?></option>
         <?php endforeach;?>
+        <option value="google">Google</option>
     </select>
     <input type="image" src="templates/thuocdocduoc/images/news&amp;event_52.png">
     	<input type="hidden" name="task"   value="search" />
