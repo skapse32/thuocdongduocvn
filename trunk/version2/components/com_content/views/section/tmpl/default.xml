@@ -10,6 +10,12 @@
 		<description>STANDARD SECTION LAYOUT DESC</description>
 		<url>
 			<param name="id" type="section" label="Section" description="Choose a section..." />
+			<param name="filter" type="list" label="Filter" description="Choose a section...">
+				<option value="">Default</option>
+				<option value="tvn">Bài thuốc theo tên</option>
+				<option value="bt_tcdy">Theo tính chất đông y</option>
+				<option value="bt_pltb">Phân loại theo bệnh</option>				
+			</param>
 		</url>
 		<params>
 	 		<param name="show_description" type="radio" default="0" label="Description" description="Show/Hide the Category Description">

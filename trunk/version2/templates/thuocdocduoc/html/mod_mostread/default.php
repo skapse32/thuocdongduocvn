@@ -75,9 +75,19 @@ jQuery('document').ready(function(){
 <?php endif;?>
 <?php if(count($list)>=5||count($list)==$params->get('count')):?>
 <?php
-	$viewall =JRoute::_("index.php?option=com_content&view=section&id=".trim($params->get('secid'))."&Itemid=".JRequest::getVar('Itemid').(JRequest::getVar('layout')!=''?"&layout=".JRequest::getVar('layout'):""));
-	if($params->get('secid','')==9)
-		$viewall=JRoute::_("index.php?option=com_content&view=section&id=9&Itemid=2&layout=default");;
+	//$viewall =JRoute::_("index.php?option=com_content&view=section&id=".trim($params->get('secid'))."&Itemid=".JRequest::getVar('Itemid').(JRequest::getVar('layout')!=''?"&layout=".JRequest::getVar('layout'):""));
+	$viewall =JRoute::_("index.php?option=com_content&view=section&id=".trim($params->get('secid')));//."&Itemid=".JRequest::getVar('Itemid').(JRequest::getVar('layout')!=''?"&layout=".JRequest::getVar('layout'):""));
+	switch($params->get('secid',''))
+	{
+	 case 9:	
+		$viewall=JRoute::_("index.php?option=com_content&view=section&id=9&Itemid=82");
+	 break;
+	case 1:
+		$viewall=JRoute::_("index.php?option=com_content&view=section&id=1&Itemid=9");
+	case 5:
+		$viewall=JRoute::_("index.php?option=com_content&view=section&id=5&Itemid=7");
+	}
+	
 ?>
 <a class="view-all-1" href="<?php echo $viewall;?>">Xem tất cả</a>
 <?php endif;?>

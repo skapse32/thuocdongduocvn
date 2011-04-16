@@ -113,6 +113,9 @@ margin:5px 0;
 padding:4px 0 4px 20px;
 font-size:12px;
 }
+.menu1 li.active a {
+text-decoration:underline;
+}
 a.text-underline{text-decoration:underline;}
 .detail p
 {

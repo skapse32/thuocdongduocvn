@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<install type="module" version="1.5.0">
+	<name>Creative Clans Slide Show</name>
+	<author>Guido Tonnaer</author>
+	<creationDate>Dec 2008</creationDate>
+	<copyright>Copyright (C) Guido Tonnaer</copyright>
+	<license>GNU/GPL (The CCSlideShow.swf flash file contained in this module is released under a different license. If you want to use it outside of the Joomla module, please refer to http://www.creativeclans.nl for more info.)</license>
+	<authorEmail>info@creativeclans.nl</authorEmail>
+	<authorUrl>www.creativeclans.nl</authorUrl>
+	<version>1.1.1</version>
+	<description>Creative Clans Slide Show - Joomla 1.5 module</description>
+	<files>
+		<filename module="mod_ccslideshow">mod_ccslideshow.php</filename>
+		<filename>mod_ccslideshow_functions.php</filename>
+    <filename>index.html</filename>
+    <filename>CCSlideShow.swf</filename>
+	</files>
+	<params>
+		<param name="moduleclass_sfx" type="text" default="" label="Module Class Suffix" description="The suffix to be added to class of slideshow_s wrapper div. By default the slideshow wrapper div has class _ccslideshow_. You can add any suffix string to that class for CSS styling."/>
+		
+		<param type="spacer" default="&lt;hr /&gt;&lt;B&gt;Slide settings&lt;/B&gt;" />
+		<param name="path" type="text" default="" label="Path" description="Contains the absolute path to the slides folder, WITH the final slash." /> 
+		<param name="images" type="textarea" default="" label="Images" description="List of the image names, one image per line." cols="30" rows="8" /> 
+		<param name="captions" type="textarea" default="" label="Captions" description="List of the captions, one caption per line." cols="30" rows="8" /> 
+		<param name="links" type="textarea" default="" label="Links" description="List of links, one link per line." cols="30" rows="8" /> 
+
+		<param type="spacer" default="&lt;hr /&gt;&lt;B&gt;Several settings&lt;/B&gt;" />
+		<param name="width" type="text" default="400" label="Width (px)" description="The width of slideshow module specified in pixels."/>
+		<param name="height" type="text" default="300" label="Height (px)" description="The height of slideshow module specified in pixels."/>
+		<param name="backgroundColor" type="text" default="0xFFFFFF" label="Background color" description="The slideshow background color. The color value must be specified in the format 0xXXXXXX. For example: 0xFFFFFF (white)."/>
+		<param name="loops" type="text" default="0" label="Loops" description="You can specify how many times to loop your slide show. Value _0_ means infinite loops. Value has to be numeric."/>
+		<param name="wait" type="text" default="3000" label="Wait (ms)" description="Time the slide is shown (in milliseconds). Value has to be numeric."/>
+		<param name="effectTime" type="text" default="1" label="Effect time (s)" description="Duration of the transition effect between slides (in seconds). Value has to be numeric."/>
+		<param name="includeEffects" type="textarea" default="" label="Include effects" description="List of transition effects to be used (one effect per line). If you want to use all available effects, omit this parameter or leave it empty.	Possible values: see documentation (www.creativeclans.nl)." cols="30" rows="8" /> 
+		<param name="excludeEffects" type="textarea" default="" label="Exclude effects" description="List of transition effects not to be used (one effect per line). If you want to use all available effects, omit this parameter or leave it empty.	Possible values: see documentation (www.creativeclans.nl)." cols="30" rows="8" /> 
+		<param name="stopOnMouseOver" type="list" default="no" label="Stop on mouse over" description="If _yes_, the slide show is paused while the mouse hovers over the slideshow.">
+			<option value="yes">yes</option>
+			<option value="no">no</option>
+		</param>
+		<param name="enableLinks" type="list" default="no" label="Enable links" description="If _yes_, clicking on the slide will open the link defined in the _Link_ parameter, or, if that doesn't have a value, the link defined for each slide in _Links_.">
+			<option value="yes">yes</option>
+			<option value="no">no</option>
+		</param>
+		<param name="link" type="text" default="" label="Link" description="If used, it replaces the link of all slides." /> 
+		<param name="linkTarget" type="list" default="_blank" label="Link target" description="Specify the target of the link.">
+			<option value="_self">The current frame in the current window</option>
+			<option value="_blank">A new window</option>
+			<option value="_parent">The parent of the current frame</option>
+			<option value="_top">The top-level frame in the current window</option>
+		</param>
+		<param name="order" type="list" default="forward" label="Order" description="Order in which the slides are shown.">
+			<option value="forward">forward</option>
+			<option value="backward">backward</option>
+			<option value="random">random</option>
+		</param>
+		<param name="slides" type="text" default="0" label="Number of slides" description="You can specify how many of the images must be shown. Is used when _Order_ is _random_. Value _0_ means all images. Value has to be numeric."/>
+
+		<param type="spacer" default="&lt;hr /&gt;&lt;B&gt;Border settings&lt;/B&gt;" />
+		<param name="borderStyle" type="list" default="none" label="Style" description="Choose the border style.">
+			<option value="none">none</option>
+			<option value="solid">solid</option>
+			<option value="blurred">blurred</option>
+		</param>
+		<param name="borderColor" type="text" default="0x000000" label="Color" description="The border color is used when _Style_ is _solid_ or _blurred_. The color value must be specified in the format 0xXXXXXX. For example: 0x000000 (black)."/>
+		<param name="borderThickness" type="text" default="1" label="Thickness" description="The border thickness is used when _Style_ is _solid_ or _blurred_. Value has to be numeric."/>
+		<param name="borderAlpha" type="text" default="1.0" label="Transparancy" description="The border transparancy is used when _Style_ is _solid_ or _blurred_. Value has to be numeric from 0 to 1.0."/>
+
+		<param type="spacer" default="&lt;hr /&gt;&lt;B&gt;Caption settings&lt;/B&gt;" />
+		<param name="captionStyle" type="list" default="none" label="Style" description="Choose the caption style.">
+			<option value="none">none</option>
+			<option value="fixed">fixed</option>
+			<option value="hide">hide</option>
+		</param>
+		<param name="captionType" type="list" default="text" label="Type" description="The caption type is used when _Style_ is _fixed_ or _hide_.">
+			<option value="text">text</option>
+			<option value="image">image</option>
+		</param>
+		<param name="captionBackgroundColor" type="text" default="0x000000" label="Background color" description="The caption background color is used when _Style_ is _fixed_ or _hide_, and _Type_ is _text_. The color value must be specified in the format 0xXXXXXX. For example: 0x000000 (black)."/>
+		<param name="captionColor" type="text" default="0xFFFFFF" label="Color" description="The caption color is used when _Style_ is _fixed_ or _hide_, and _Type_ is _text_. The color value must be specified in the format 0xXXXXXX. For example: 0xFFFFFF (white)."/>
+		<param name="captionText" type="text" default="" label="Text" description="The caption text is used when _Style_ is _fixed_ or _hide_, and _Type_ is _text_. If used, it replaces the caption text of all slides."/>
+		<param name="captionTextRightMargin" type="text" default="0" label="Text right margin" description="The caption text right margin is used when _Style_ is _fixed_ or _hide_, and _Type_ is _text_. Has to be a numeric value."/>
+		<param name="captionTextLeftMargin" type="text" default="0" label="Text left margin" description="The caption text left margin is used when _Style_ is _fixed_ or _hide_, and _Type_ is _text_. Has to be a numeric value."/>
+		<param name="captionTextBottomMargin" type="text" default="5" label="Text bottom margin" description="The caption text bottom margin is used when _Style_ is _fixed_ or _hide_, and _Type_ is _text_. Has to be a numeric value."/>
+		<param name="captionTextFont" type="text" default="Times New Roman" label="Font" description="The caption text font is used when _Style_ is _fixed_ or _hide_, and _Type_ is _text_. If the font doesn't exist, the default flash font (Times New Roman) will be used."/>
+		<param name="captionTextFontSize" type="text" default="12" label="Font size" description="The caption text font size is used when _Style_ is _fixed_ or _hide_, and _Type_ is _text_. Has to be a numeric value."/>
+		<param name="captionBackgroundAlpha" type="text" default="1.0" label="Transparancy" description="The caption transparancy is used when _Style_ is _fixed_ or _hide_, and _Type_ is _text_. Value has to be numeric from 0 to 1.0."/>
+		<param name="captionPosition" type="list" default="top" label="Position" description="The caption position is used when _Style_ is _fixed_ or _hide_.">
+			<option value="top">top</option>
+			<option value="bottom">bottom</option>
+			<option value="offset">offset</option>
+		</param>
+		<param name="captionHorizontalOffset" type="text" default="0" label="Horizontal offset" description="The caption horizontal offset is used when _Position_ is _offset_. Has to be a numeric value."/>
+		<param name="captionVerticalOffset" type="text" default="0" label="Vertical offset" description="The caption vertical offset is used when _Position_ is _offset_. Has to be a numeric value."/>
+		<param name="captionImage" type="text" default="" label="Image" description="The caption image is used when _Style_ is _fixed_ or _hide_, and _Type_ is _image_. Has to contain the absolute path to the image to be used." /> 
+	</params>
+</install>

@@ -1,0 +1,58 @@
+.transparent_class {
+	filter:alpha(opacity=50);
+	-moz-opacity:0.5;
+	-khtml-opacity: 0.5;
+	opacity: 0.5;
+}
+#modulel1_pic_title{width:356px; height:30px; background: url(md1_pic_title.png); position:absolute; top:261px; line-height:30px}
+#modulel1_pic_title a{ color:#a80505; font-family:Tahoma; font-size:14px; font-weight:bold; padding-left:35px}
+
+.jcarousel-skin-main .jcarousel-container {
+    background: #FFFFFF;
+}
+
+.jcarousel-skin-main .jcarousel-container-horizontal {
+    width: 380px
+}
+
+
+.jcarousel-skin-main .jcarousel-clip-horizontal {
+    width:  380px;
+    height: 422px;
+}
+
+.jcarousel-skin-main .jcarousel-item {
+    width: 380px;
+    height: 422;
+}
+
+.jcarousel-skin-main .jcarousel-item-horizontal {
+    margin-right: 0px;
+}
+
+.jcarousel-skin-main .jcarousel-item-placeholder {
+    background: #fff;
+}
+
+/**
+ *  Horizontal Buttons
+ */
+.jcarousel-skin-main .jcarousel-next-horizontal {
+    position: absolute;
+    top: 302px;
+    right: 17px;
+    width: 15px;
+    height: 20px;
+    cursor: pointer;
+    background: transparent url(right_arrow.jpg) no-repeat 0 0;
+}
+.jcarousel-skin-main .jcarousel-prev-horizontal {
+    position: absolute;
+    top: 302px;
+    left: 330px;
+    width: 15px;
+    height: 20px;
+    cursor: pointer;
+    background: transparent url(left_arrow.jpg) no-repeat 0 0;
+}
+

@@ -34,13 +34,13 @@ include_once JPATH_ROOT.DS.'components'.DS.'com_content'.DS.'helpers'.DS.'route.
 		preg_match_all("/src=\"(.+?)\"/i", $item->imgTag, $m);
 		$item->imgLink= $m[1][0];
 	}
-	if($Itemid>0)
+	/*if($Itemid>0)
 	{
 		$item->link= $item->link."&Itemid=$Itemid";		
 		$uri = new JURI($item->link);
 		$uri->setVar('Itemid',$Itemid);
 		$item->link=JRoute::_("index.php?".$uri->getQuery());
-	}	
+	}	*/
 ?>
 	<li>
 		<a href="<?php echo $item->link; ?>"><img src="<?php echo $item->imgLink;?>" /></a>

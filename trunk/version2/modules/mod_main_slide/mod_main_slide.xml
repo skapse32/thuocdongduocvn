@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<install type="module" version="1.5.15">
+	<name>Main Slide</name>
+	<author>Joomla! Project</author>
+	<creationDate>April 2010</creationDate>
+	<copyright>Copyright (C) 2005 - 20010 Open Source Matters. All rights reserved.</copyright>
+	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+	<authorEmail>chillychacha@gmail.com</authorEmail>
+	<authorUrl>www.catsoft.com.vn</authorUrl>
+	<version>1.0.0</version>
+	<description>This module will display for main new slide</description>
+	<files>
+		<filename module="mod_main_slide">mod_main_slide.php</filename>
+		<filename module="mod_main_slide">index.html</filename>
+		<filename module="mod_main_slide">helper.php</filename>
+		<filename module="mod_main_slide">tmpl/default.php</filename>
+		<filename module="mod_main_slide">tmpl/index.html</filename>
+	</files>
+<params>
+		<param name="sectionid" type="text" default="" label="Sections" description="Tin mới nhất sẽ được lấy ra trong các section. (Phân cách bằng dấu phẩy (,))" />
+		<param name="maxnews" type="text" default="5" label="Max News" description="Tối đa số lượng tin bài cho slide" />
+</params>
+</install>

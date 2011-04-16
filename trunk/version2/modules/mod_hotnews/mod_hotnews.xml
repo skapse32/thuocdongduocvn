@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<install type="module" version="1.5.15">
+	<name>Hot news</name>
+	<author>Joomla! Project</author>
+	<creationDate>April 2010</creationDate>
+	<copyright>Copyright (C) 2005 - 20010 Open Source Matters. All rights reserved.</copyright>
+	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+	<authorEmail>chillychacha@gmail.com</authorEmail>
+	<authorUrl>www.catsoft.com.vn</authorUrl>
+	<version>1.0.0</version>
+	<description>This module will display for hot new slide</description>
+	<files>
+		<filename module="mod_hotnews">mod_hotnews.php</filename>
+		<filename module="mod_hotnews">index.html</filename>
+		<filename module="mod_hotnews">helper.php</filename>
+		<filename module="mod_hotnews">tmpl/default.php</filename>
+		<filename module="mod_hotnews">tmpl/index.html</filename>
+	</files>
+<params>
+		<param name="sectionid" type="text" default="" label="Sections" description="Tin mới nhất sẽ được lấy ra trong các section. (Phân cách bằng dấu phẩy (,))" />
+		<param name="maxnews" type="text" default="8" label="Max News" description="Tối đa số lượng tin bài cho slide" />
+</params>
+</install>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<install type="module" version="1.5.0">
+	<name>Sếp nói - Dân nói</name>    
+    <author>LongK</author>
+    <creationDate>2010</creationDate>
+    <copyright>Copyright (C) 2010</copyright>
+    <license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+    <authorEmail>long.lh@catsoft.com.vn</authorEmail>
+    <authorUrl>catsoft.vn</authorUrl>
+    <version>1.0</version>
+    <description>Hiển thị thị 3 tin cho mỗi chuyên mục</description>
+    <params>        
+        <param name="show_front" type="radio" default="1" label="Show Only FrontPage" description="Show only frontpage items">
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+        </param>
+        <param name="count" type="text" default="3" label="Count" description="The number of items to display (default 5)" />
+        <param name="catid1" type="category" label="Category 1" description="Choose a category..." />
+        <param name="catid2" type="category" label="Category 2" description="Choose a category..." />        
+    </params>
+</install>

@@ -10,7 +10,8 @@
 		<description>SECTION BLOG LAYOUT DESC</description>
 		<url>
 			<param name="id" type="section" label="Section" description="Choose a section..." default="2" />
-			<param name="filter" type="list" label="Section" description="Choose a section...">
+			<param name="filter" type="list" label="Filter" description="Choose a section...">
+				<option value="">Default</option>
 				<option value="tvn">Tên việt nam</option>
 				<option value="tkh">Tên khoa học</option>
 				<option value="htvvn">Họ thực vật Việt Nam</option>

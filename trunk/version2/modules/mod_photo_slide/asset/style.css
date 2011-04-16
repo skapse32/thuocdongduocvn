@@ -1,0 +1,22 @@
+#slideshow {list-style:none; color:#fff}
+#slideshow span {display:none}
+#wrapper {width:322px; margin:0px auto; display:none}
+#wrapper * {margin:0 auto; padding:0 auto}
+#fullsize {position:relative; width:322px; border:1px solid #ccc; background:#fff}
+#information {position:absolute; bottom:0; width:322px; height:0; background:#000; color:#fff; overflow:hidden; z-index:200; opacity:.6; filter:alpha(opacity=50)}
+#information h3 {padding:4px 8px 3px; font-size:12px}
+#information p {padding:0 8px 8px}
+#image {width:322px;height:224px;vertical-align:middle;}
+#image img {position:absolute; z-index:25; max-width:322px;height:224px;}
+.imgnav {position:absolute; width:15px; height:224px; cursor:pointer; z-index:150}
+#imgprev {top:96px;right:28px; background:url(images/left.jpg) right center no-repeat;z-index:9999}
+#imgnext {top:96px;right:10px; background:url(images/right.jpg) right center no-repeat;z-index:9999}
+#imglink {position:absolute; width:100%; z-index:100; opacity:.4; filter:alpha(opacity=40)}
+#thumbnails {margin-top:15px}
+#slideleft {float:left; width:20px; height:81px; background:url(images/scroll-left.gif) center center no-repeat; background-color:#222}
+#slideleft:hover {background-color:#333}
+#slideright {float:right; width:20px; height:81px; background:#222 url(images/scroll-right.gif) center center no-repeat}
+#slideright:hover {background-color:#333}
+#slidearea {float:left; position:relative; width:456px; margin-left:5px; height:81px; overflow:hidden}
+#slider {position:absolute; left:0; height:81px}
+#slider img {cursor:pointer; border:1px solid #666; padding:2px}

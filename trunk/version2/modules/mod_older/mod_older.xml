@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<install type="module" version="1.0.0">
+	<name>Older Conten</name>
+	<author>Joomla! Project</author>
+	<creationDate>2010</creationDate>
+	<copyright>P.Thao</copyright>
+	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+	<authorEmail>thao.tp@catsoft.com.vn</authorEmail>
+	<authorUrl>www.joomla.org</authorUrl>
+	<version>1.0.0</version>
+	<description>Older Conten</description>
+	<files>
+		<filename module="mod_whosonline">mod_older.php</filename>
+	</files>
+	<params>
+		
+	</params>
+</install>

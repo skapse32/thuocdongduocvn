@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<install type="module" version="1.5.0">
+	<name>13/9</name>    
+    <author>LongK</author>
+    <creationDate>2010</creationDate>
+    <copyright>Copyright (C) 2010</copyright>
+    <license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+    <authorEmail>long.lh@catsoft.com.vn</authorEmail>
+    <authorUrl>catsoft.vn</authorUrl>
+    <version>1.0</version>
+    <description>(13/9)</description>
+    <params>        
+        <param name="show_front" type="radio" default="1" label="Show Only FrontPage" description="Show only frontpage items">
+            <option value="1">Yes</option>
+            <option value="0">No</option>
+        </param>
+        <param name="count" type="text" default="9" label="Count" description="The number of items to display (default 9)" />
+        <param name="catid" type="category" label="Category" description="Choose a category..." />
+        
+    </params>
+</install>
