@@ -18,7 +18,7 @@ class JConfig {
 	var $tmp_path = '/home/thuocdon/public_html/tmp';
 	var $live_site = '';
 	var $offset = '7';
-	var $caching = '1';
+	var $caching = '0';
 	var $cachetime = '15';
 	var $cache_handler = 'file';
 	var $memcache_settings = array();

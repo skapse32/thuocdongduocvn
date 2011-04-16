@@ -14,7 +14,7 @@
 function ContentBuildRoute(&$query)
 {
 	$segments = array();
-
+	
 	// get a menu item based on Itemid or currently active
 	$menu = &JSite::getMenu();
 	if (empty($query['Itemid'])) {
@@ -25,7 +25,8 @@ function ContentBuildRoute(&$query)
 	$mView	= (empty($menuItem->query['view'])) ? null : $menuItem->query['view'];
 	$mCatid	= (empty($menuItem->query['catid'])) ? null : $menuItem->query['catid'];
 	$mId	= (empty($menuItem->query['id'])) ? null : $menuItem->query['id'];
-
+	// Modified  by LongLH
+	
 	if(isset($query['view']))
 	{
 		$view = $query['view'];
@@ -97,6 +98,7 @@ function ContentBuildRoute(&$query)
 
 	if(isset($query['layout']))
 	{
+		
 		if(!empty($query['Itemid']) && isset($menuItem->query['layout'])) {
 			if ($query['layout'] == $menuItem->query['layout']) {
 
@@ -106,9 +108,10 @@ function ContentBuildRoute(&$query)
 			if($query['layout'] == 'default') {
 				unset($query['layout']);
 			}
+			
 		}
 	};
-
+	
 	return $segments;
 }
 
@@ -130,8 +133,8 @@ function ContentParseRoute($segments)
 		$vars['id']    = $segments[$count - 1];
 		return $vars;
 	}
-
-	//Handle View and Identifier
+	
+	//Handle View and Identifier	
 	switch($item->query['view'])
 	{
 		case 'section' :
@@ -141,10 +144,7 @@ function ContentParseRoute($segments)
 
 				if(isset($item->query['layout']) && $item->query['layout'] == 'blog') {
 					$vars['layout'] = 'blog';
-				}
-				if(isset($item->query['layout']) && $item->query['layout'] == 'caythuoc_vithuoc') {
-					$vars['layout'] = 'caythuoc_vithuoc';
-				}
+				}				
 			}
 
 			if($count == 2) {
@@ -153,7 +153,18 @@ function ContentParseRoute($segments)
 			}
 
 			$vars['id']    = $segments[$count-1];
-
+			// Modified  by LongLH
+			/*switch($segments[1]){
+				case 'caythuoc_vithuoc':
+				case 'thuvien':
+					$vars['view'] = $item->query['view'];
+					$vars['layout'] = $segments[1];
+					$vars['id'] = $segments[2];
+					$vars['Itemid'] = $segments[3];				
+				break;
+			}
+			*/
+			
 		} break;
 
 		case 'category'   :

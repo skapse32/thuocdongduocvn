@@ -6,7 +6,7 @@
 		</message>
 	</layout>
 	<state>
-		<name>Standard Section Layout</name>
+		<name>Standard Section Layout.</name>
 		<description>STANDARD SECTION LAYOUT DESC</description>
 		<url>
 			<param name="id" type="section" label="Section" description="Choose a section..." />
