@@ -45,10 +45,11 @@ class ContentHelperRoute
 		if($catid) {
 			$link .= '&catid='.$catid;
 		}
-
-		if($item = ContentHelperRoute::_findItem($needles)) {
-			$link .= '&Itemid='.$item->id;
-		};
+		if(!isset($_GET['filter'])){
+			if($item = ContentHelperRoute::_findItem($needles)) {
+				$link .= '&Itemid='.$item->id;
+			};
+		}
 
 		return $link;
 	}
