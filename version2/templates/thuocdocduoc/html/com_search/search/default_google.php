@@ -14,7 +14,7 @@ JPluginHelper::importPlugin('content');
         <img src="<?php echo $templateUrl;?>/images/news&event_107.png" />
     </div>
     <div class="cnt">
-		<div id="cse" style="width: 100%;">Loading</div>
+		<div id="cse" style="width: 99%;">Loading</div>
 			<script src="//www.google.com/jsapi" type="text/javascript"></script>
 			<script type="text/javascript"> 
 			  google.load('search', '1', {language : 'vi'});

@@ -102,7 +102,7 @@ else
 $timeStr = $thu.": ".$now->toFormat("%d/%m/%Y");
 
 $html="<p>".$timeStr."</p>";
-$html.="<marquee behavior='scroll' scrollamount='1' direction='left' onmouseover='this.stop()' onmouseout='this.start()'>Chào Mừng Quý Khách đến với website Thuốc Đông Dược</marquee>";
+$html.="<marquee behavior='scroll' scrollamount='1' direction='left' onmouseover='this.stop()' onmouseout='this.start()'><span id='slogand'></span></marquee>";
 echo "<script>
 		jQuery('document').ready(function(){
 		jQuery('div.menu ul li:last-child a').addClass('reset-bg');
@@ -124,5 +124,8 @@ echo "<script>
 		//});
 		// datetime and slogen
 		jQuery('div.menu >ul.menu >li:first > ul > li').html(\"".$html."\");
+		jQuery('document').ready(function(){
+			jQuery('#slogand').html(jQuery('#slogand_temp').html());
+		});
 });
 </script>";
