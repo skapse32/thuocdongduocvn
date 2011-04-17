@@ -12,6 +12,9 @@ $objGoogle = new stdClass();
 $objGoogle->id ='google';
 $objGoogle->title ='Google';
 $list[] = $objGoogle;
+$selectedsecid = JRequest::getVar('sectionid');
+if(!isset($selectedsecid))
+	$selectedsecid = 'google';
 //var_dump($list);
 ?>
 <div>
@@ -28,9 +31,8 @@ $list[] = $objGoogle;
     <select name="sectionid" style="margin-bottom:15px;" id="select_sectionid">
 		<option value="<?php echo implode(',',$sections);?>">Tất cả</option>
         <?php foreach($list as $item):?>			
-			<option value="<?php echo $item->id;?>" <?php echo $item->id==JRequest::getVar('sectionid')?"selected":'';?>><?php echo ucfirst($item->title);?></option>
+			<option value="<?php echo $item->id;?>" <?php echo $item->id==$selectedsecid?"selected":'';?>><?php echo ucfirst($item->title);?></option>
         <?php endforeach;?>
-        <option value="google">Google</option>
     </select>
     <input type="image" src="templates/thuocdocduoc/images/news&amp;event_52.png">
     	<input type="hidden" name="task"   value="search" />
