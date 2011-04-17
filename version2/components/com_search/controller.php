@@ -40,6 +40,9 @@ class SearchController extends JController
 	function search()
 	{
 		$post['searchword'] = JRequest::getString('searchword', null, 'post');
+		$post['sectionid'] = JRequest::getString('sectionid', null, 'post');
+		//save sectionid for passing to search plugiin
+		$_SESSION['search.sectionid'] = $post['sectionid'];
 		$post['ordering']	= JRequest::getWord('ordering', null, 'post');
 		$post['searchphrase']	= JRequest::getWord('searchphrase', 'all', 'post');
 		$post['limit']  = JRequest::getInt('limit', null, 'post');
@@ -60,7 +63,8 @@ class SearchController extends JController
 		if(isset($items[0])) {
 			$post['Itemid'] = $items[0]->id;
 		}
-
+		unset($post['x']);
+		unset($post['y']);
 		unset($post['task']);
 		unset($post['submit']);
 
