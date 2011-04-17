@@ -17,5 +17,7 @@
 			<option value="1">Use global</option>
 			<option value="0">No caching</option>
 		</param>
+        <param name="hotline" type="text" default="Đường dây nóng: 0123.456.7899" label="Hotline" description="Enter hotline information here" size="65" />
+		<param name="footer_info" type="textarea" default="" label="Enter Footer information" description="You can put HTML code here" rows="10" cols="65" />
 	</params>
 </install>

@@ -27,7 +27,9 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
     <div class="wrapper" id="top">
         <!--header-->
         <div class="header">
-            <a href="<?php echo JURI::root();?>" class="logo">logo</a> <a href="<?php echo JURI::root();?>">
+            <a href="<?php echo JURI::root();?>"> <!-- class="logo"-->
+            <img src="<?php echo $this->params->get('logo'); ?>" width='255' height='73' style='margin-top:15px'/>
+            </a> <a href="<?php echo JURI::root();?>">
                 <!-- banner top-->
                 <span class="adv" style="display:block">
                 <div style='float: left; margin: 0px 0px 0px 25px;width:693 border: 1px solid #CBCBCB;'>
@@ -112,5 +114,6 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
   })();
 
 </script>
+<div style="display:none" id="slogand_temp"><?php echo $this->params->get('slogand'); ?></div>
 </body>
 </html>
