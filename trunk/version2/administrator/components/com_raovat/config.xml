@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<config>
+ <params>
+  <param name="currency" type="textarea" default="VNĐ" label="Hỗ trợ các loại tiền" description="Mỗi loại trên 1 dòng" rows="5" cols="10"></param>
+  <param name="citys" type="textarea" default="Hà Nội" label="Thành phố" description="Danh sách nơi rao vặt. Mỗi thành phố nhập trên một dòng" rows="5" cols="15"></param>
+  <param name="quality" type="textarea" default="Tốt" label="Chất lượng" description="Danh sách các loại chất lượng được phép" rows="5" cols="20"></param>
+  <param name="small_logo" type="text" default="" label="Logo nhỏ" description="Ảnh đại diện nhỏ" size="90"></param>
+  <param name="large_logo" type="text" default="" label="Logo lớn" description="Ảnh đại diện to" size="90"></param>
+ </params>
+</config>
+
