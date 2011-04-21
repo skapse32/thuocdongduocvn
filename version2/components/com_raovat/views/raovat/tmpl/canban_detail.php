@@ -11,10 +11,11 @@
     </div>
 <div class="cnt">
 	<div class="detail raovat_form form">
-        <div style="float:left; width:60%;">
+        <!--<div style="float:left; width:60%;">
             <img src="<?php echo $this->large_logo;//echo JURI::root().'images/raovat/'.$this->item_canban->image;?>" width="300"/>
         </div>
-        <div style="width:40%; float:right; font-size:11px;">
+        -->
+        <div style="width:40%; float:left; font-size:11px;"><!--Float:right-->
             <b>Giá:</b> <?php echo number_format($this->item_canban->price,'','',',').' '.$this->item_canban->currency;?>/<?php echo $this->item_canban->unit;?>
             <br>
             <b>Ngày đăng: </b><?php echo JHTML::_('date',$this->item_canban->created,'%d-%m-%Y');?><br />
@@ -82,7 +83,15 @@
 
             <!--post comment-->
             <?php 
-				include(JPATH_COMPONENT.DS.'views'.DS.'raovat'.DS.'tmpl'.DS.'comment.php');
+				$objU = JFactory::getUser();
+				if($objU->id)
+					include(JPATH_COMPONENT.DS.'views'.DS.'raovat'.DS.'tmpl'.DS.'comment.php');
+				else
+				{
+            		$url=base64_encode(JRequest::getURI());
+            		$url=JRoute::_("index.php?option=com_user&view=login&return=$url",false);
+					echo "<center style='align:center'><a href='$url'>Đăng nhập để gửi trả lời</a></center>";
+				}
 			?>
         </div>
 	</div>    
