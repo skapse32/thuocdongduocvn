@@ -61,7 +61,12 @@ $templateUrl =JURI::root()."templates/".$mainframe->getTemplate();
                     <tr>
                         <td width="20%" style="vertical-align: top">
                             <a href="index.php?option=com_raovat&view=raovat&layout=detail&id=<?php echo $item->id;?>">
-                                <img src="<?php echo $this->small_logo; //echo JURI::root().'/images/raovat/thumb/'.$item->image;?>" class="img2" /></a>
+								<?php if($item->image):?>
+									<img src="<?php echo JURI::root().'/images/raovat/thumb/'.$item->image;?>" class="img2" />
+                                <?php else:?>
+									<img src="<?php echo $this->small_logo;?>" class="img2" />
+                                <?php endif;?>
+                                </a>
                         </td>
                         <td width="25%" style="vertical-align: top;line-height:19px">
                             <strong><?php echo $item->city;?></strong><br />                            
