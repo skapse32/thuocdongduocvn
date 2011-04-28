@@ -17,6 +17,7 @@ class JTableRaovat extends JTable
 	var $created	=null;
 	var $isdelete	=0;
 	var $hit		=0;
+	var $isedit		=0;
 	var $rv_category = null;
 	
 	function __construct(&$db)

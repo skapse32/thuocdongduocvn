@@ -145,11 +145,12 @@ $profile =$this->profile;
 				</tr>
 				<tr>
 					<td class="key">&nbsp;</td>
-					<td><input type="submit" name="submit" value="<?php echo JText::_("RV_BTN_SUBMIT");?>" style='margin-left:50px'/></td>
+					<td><input type="submit" name="submit" value="<?php echo isset($this->post->id) ? "Cập nhật" : JText::_("RV_BTN_SUBMIT");?>" style='margin-left:50px'/></td>
 				</tr>
 				
             </table>
             <input type="hidden" name="task" value="save"/>
+            <input type="hidden" name="id" value="<?php echo $this->post->id;?>"/>
             <input type="hidden" name="Itemid" value="<?php echo JRequest::getVar('Itemid');?>"/>
          </form>
         </div>
