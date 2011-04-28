@@ -15,12 +15,20 @@ class RaoVatControllerPost extends JController
 		{
 			$url=base64_encode(JRequest::getURI());
 			$mainframe->redirect(JRoute::_("index.php?option=com_user&view=login&return=$url",false),"Đăng nhập trước khi post");			
+			return;
 		}
-		else
-		{
-			
+		$view = $this->getView('post','html');
+		if((JRequest::getVar('id'))>0){
+			$model = $this->getModel('raovat');
+			$item = $model->getItem();
+			if($item->isedit ==1){
+				$mainframe->redirect(JRoute::_("index.php?option=com_raovat&view=raovat&layout=detail&id={$item->id}",false),"Bài viết đã sửa trước đó.Bạn chỉ được sửa 1 lần duy nhất");
+				return;
+			}			
+			$view->assign('post',$item);
 		}
-		parent::display();
+		$view->display();
+	//	parent::display();
 	}
 	function save()
 	{
@@ -60,23 +68,35 @@ class RaoVatControllerPost extends JController
 		if(!$hasError)
 		{
 			//upload 
-			/*if($imgHelper->upload())
-				$post->image=$imgHelper->filename;*/
-			$now = & JFactory::getDate();
-			$post->created = $now->toMySQL();
-			$post->user_id=$my->id;			
-			//echo JUtility::dump($profile);die;
-			//save info
-			$post->store();
-			
-			$profile->user_id=$my->id;
-			
-			if($profile->exist())
-				$profile->store();
-			else
-				$profile->_db->insertObject($profile->_tbl,$profile,$profile->_tbl_key);
-			
-			$mainframe->redirect("index.php?option=com_raovat&Itemid=".JRequest::getVar("Itemid"),JText::_("RV_MES_POST_SUCCESS"));
+			if($imgHelper->upload())
+				$post->image=$imgHelper->filename;
+			if(empty($post->id)){
+				$now = & JFactory::getDate();
+				$post->created = $now->toMySQL();
+				$post->user_id=$my->id;			
+				//echo JUtility::dump($profile);die;
+				//save info
+				$post->store();
+				
+				$profile->user_id=$my->id;
+				
+				if($profile->exist())
+					$profile->store();
+				else
+					$profile->_db->insertObject($profile->_tbl,$profile,$profile->_tbl_key);
+				
+				$mainframe->redirect("index.php?option=com_raovat&Itemid=".JRequest::getVar("Itemid"),JText::_("RV_MES_POST_SUCCESS"));
+			}
+			else{
+				//Update
+				$post->isedit = 1;
+				$post->store();
+				if($profile->exist())
+					$profile->store();
+				else
+					$profile->_db->insertObject($profile->_tbl,$profile,$profile->_tbl_key);				
+				$mainframe->redirect("index.php?option=com_raovat&Itemid=".JRequest::getVar("Itemid"),"Cập nhật thành công");
+			}
 		}
 		else
 		{			

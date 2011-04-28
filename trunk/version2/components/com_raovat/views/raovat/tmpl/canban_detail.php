@@ -60,11 +60,18 @@
             }
             else
             {
+				$user = JFactory::getUser($persional_info->user_id);
                 echo $user->email;
             }
-            ?><br>
+            $user = JFactory::getUser();           
+            ?><br>            
             <b>Nơi rao:</b> <?php echo $this->item_canban->city;?><br>        
         </div>
+        <?php if($user->id ==$persional_info->user_id && $this->item_canban->isedit==0):?><!--Display edit link when the post is that user's asset.-->
+        <div style="float:right;">
+			<a href="<?php echo JRoute::_("index.php?option=com_raovat&view=post&id={$this->item_canban->id}");?>" title="Bạn có thể sửa tin 1 lần duy nhất">Sửa bài</a>
+        </div>
+        <?php endif;?>
     	<div style="clear:both;"></div>
     	<br/>
         <div style='font-size:11pt' class='raovat-chitiet'><!--Mo ta chi tiet-->

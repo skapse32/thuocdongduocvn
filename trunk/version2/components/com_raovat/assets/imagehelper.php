@@ -61,6 +61,8 @@ class ImageHelper extends JObject
 			$this->url.$newName;
 			$this->url_thumb.$newName;
 			$this->filename=$newName;
+			//Delete large image 
+			@unlink($this->dir);
 			return true;
 		}	
 		return false;	
