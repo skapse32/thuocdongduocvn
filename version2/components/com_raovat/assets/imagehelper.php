@@ -44,6 +44,8 @@ class ImageHelper extends JObject
 	}
 	function upload()
 	{
+		if(empty($this->image ))
+			return false;
 		include_once(dirname(__FILE__).DS.'imagelib.php');
 		$type =$this->image['type'];
 		$ext=cImageTypeToExt($type);
