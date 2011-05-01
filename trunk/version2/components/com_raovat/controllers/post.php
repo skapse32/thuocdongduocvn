@@ -68,8 +68,9 @@ class RaoVatControllerPost extends JController
 		if(!$hasError)
 		{
 			//upload 
-			if($imgHelper->upload())
-				$post->image=$imgHelper->filename;
+			if(!empty($image['name']))
+				if($imgHelper->upload())
+					$post->image=$imgHelper->filename;
 			if(empty($post->id)){
 				$now = & JFactory::getDate();
 				$post->created = $now->toMySQL();

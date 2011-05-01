@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<install version="1.5" type="plugin" group="editors-xtd">
+	<name>Content - Select Keywords for Filters</name>
+	<author>Long.K</author>
+	<creationDate>2010</creationDate>
+	<copyright>Copyright (C) 2010</copyright>
+	<license>catsoft.com.vn</license>
+	<authorEmail>long.lh@catsoft.com.vn</authorEmail>
+	<authorUrl>catsoft.com.vn</authorUrl>
+	<version>1.5</version>
+	<description>Able to select Keywords on New/Edit an Article</description>
+	<files>
+		<filename plugin="selectkeywords">selectkeywords.php</filename>
+	</files>
+    <params>
+        <param name="section_ctvt"
+         type="text" cols="50" rows="10" size="50" default="" label="Cây thuốc - Vị thuốc ID" description="ID của  Section Cây thuốc - Vị Thuốc" />
+        <param name="section_bt"
+    type="text" cols="50" rows="10" size="50" default="" label="Bài thuốc ID" description="ID của Section Bài thuốc" />
+        <param name="section_tdd"
+        type="text" cols="50" rows="10" size="50" default="" label="Thuốc đông dược ID" description="ID của Section Thuốc đông dược" />
+        <param name="category_tdd_t"
+        type="text" cols="50" rows="10" size="50" default="" label="Thuốc ID" description="ID của Category thuốc" />
+    </params>
+</install>

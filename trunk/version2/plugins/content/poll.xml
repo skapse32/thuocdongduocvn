@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<install version="1.5" type="plugin" group="content">
+	<name>Content - Showing poll</name>
+	<author>LongLH</author>
+	<creationDate>2010</creationDate>
+	<copyright>Copyright (C) 2010</copyright>
+	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+	<authorEmail>long.lh@catsoft.com.vn</authorEmail>
+	<authorUrl>catsoft.vn</authorUrl>
+	<version>1.0</version>
+	<description>Dispay poll on a article</description>
+	<files>
+		<filename plugin="poll">poll.php</filename>
+		<filename plugin="poll">poll.xml</filename>
+	</files>
+	<params/>
+</install>
