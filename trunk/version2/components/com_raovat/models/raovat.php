@@ -68,7 +68,7 @@ class RaovatModelRaovat extends JModel
 		$limitstart =(int)$this->getState('limitstart',0);						
 			if($limit>0)
 			{
-				$db->setQuery("SELECT COUNT(*) FROM #__raovat_comment WHERE id_raovat = '$id_raovat'");
+				$db->setQuery("SELECT COUNT(*) FROM #__raovat_comment WHERE id_raovat = '$id_raovat' AND published=1");
 				$total = $db->loadResult();
 				jimport('joomla.html.pagination');
 				$this->pagination= new JPagination($total,$limitstart,$limit);

@@ -1,6 +1,9 @@
 <?php defined('_JEXEC') or die('Restricted access'); ?>
 
 <?php JHTML::_('behavior.tooltip'); ?>
+<?php JHTML::_('behavior.modal'); ?>
+		
+
 <form action="index.php?option=com_raovat" method="post" name="adminForm">
 <table>
 	<tr>
@@ -95,7 +98,11 @@
 				<?php echo $row->hit; ?>
 			</td>
 			<td align="center">
+				<?php if($row->comment>0):?>
+				<?php echo $row->cmlink;?>
+				<?php else:?>
 				<?php echo $row->comment; ?>
+				<?php endif;?>
 			</td>
 			<td align="center">
 				<?php echo $row->id; ?>

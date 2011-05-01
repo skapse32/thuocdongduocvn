@@ -20,13 +20,27 @@ class RaoVatController extends JController
 				JRequest::setVar( 'layout', 'form'  );
 				JRequest::setVar( 'view', 'post'  );
 				JRequest::setVar( 'edit', true  );
-			} break;
-
-			/*case 'preview' :
-			{
-				JRequest::setVar( 'tmpl', 'component' );
-				JRequest::setVar( 'view', 'poll'  );
-			} break;*/
+			} 
+			break;
+			case 'mncomment':
+				JRequest::setVar( 'layout', 'mncomment'  );
+				JRequest::setVar( 'view', 'raovat'  );			 
+			break;
+			case "deletecm":
+				$cid = JRequest::getVar('cid',array(0),'array');
+				$id = JRequest::getVar('id');
+				$db = JFactory::getDBO();
+				if(isset($id)&&count($cid)>0&&is_array($cid)){
+					$query = "UPDATE #__raovat_comment set published=0 WHERE id_raovat = '$id' AND id in(".implode(',',$cid).")";
+					$db->setQuery($query);
+					$db->query();
+				}
+				$option = JRequest::getVar('option');
+				$mainframe =& JFactory::getApplication();
+				$mainframe->redirect("index.php?option=$option&tmpl=component&task=mncomment&rid=$id");
+				
+				return;
+			break;
 		}
 
 		//Set the default view, just in case
@@ -94,7 +108,7 @@ class RaoVatController extends JController
 		{			
 			$mainframe->redirect("index.php?option=com_raovat","Có lỗi");
 		}		
-	}
+	}	
 }
 
 ?>
