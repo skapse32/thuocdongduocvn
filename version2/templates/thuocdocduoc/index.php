@@ -29,7 +29,7 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
         <div class="header">
             <a href="<?php echo JURI::root();?>"> <!-- class="logo"-->
             <img src="<?php echo $this->params->get('logo'); ?>" width='255' height='73' style='margin-top:15px'/>
-            </a> <a href="<?php echo JURI::root();?>">
+            </a> <!--<a href="<?php echo JURI::root();?>">-->
                 <!-- banner top-->
                 <span class="adv" style="display:block">
                 <div style='float: left; margin: 0px 0px 0px 25px;width:693 border: 1px solid #CBCBCB;'>
@@ -42,7 +42,7 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
 					<?php endif;?>
 				</div>
                 </span>
-			</a>
+			<!--</a>-->
              
             <!--<img src="<?php echo $this->baseurl ?>/templates/<?php echo $this->template ?>/images/news&event_09.png" class="hotline" />-->
             

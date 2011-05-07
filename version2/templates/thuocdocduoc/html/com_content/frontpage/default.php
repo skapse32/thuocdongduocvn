@@ -168,14 +168,14 @@ foreach($sectionIds as $secId)// get Articles in sections
         <?php $firstArticle = $section->articles[0];?>
         <div class="list-box1">
             <?php if(!empty($firstArticle->imgTag)):?>			
-            <a href="<?php echo JRoute::_(ContentHelperRoute::getArticleRoute($firstArticle->slug, $firstArticle->catslug, $firstArticle->sectionid)).($firstArticle->sectionid==2?"&Itemid=4":""); ?>">
+            <a href="<?php echo JRoute::_(ContentHelperRoute::getArticleRoute($firstArticle->slug, $firstArticle->catslug, $firstArticle->sectionid));//.($firstArticle->sectionid==2?"&Itemid=4":""); ?>">
 			<img src="<?php echo $firstArticle->imgLink;?>" class="img" <?php echo $firstArticle->sectionid==5? "style='width:128px;height:155px'":"";?> />
 			</a>
 			<?php else:?>
             <!--<img src="<?php echo $templateUrl;?>/images/news&event_58.png" class="img" />-->
             <?php endif;?>
             <h4>
-				<a href="<?php echo JRoute::_(ContentHelperRoute::getArticleRoute($firstArticle->slug, $firstArticle->catslug, $firstArticle->sectionid)).($firstArticle->sectionid==2?"&Itemid=4":"");?>">
+				<a href="<?php echo JRoute::_(ContentHelperRoute::getArticleRoute($firstArticle->slug, $firstArticle->catslug, $firstArticle->sectionid));//.($firstArticle->sectionid==2?"&Itemid=4":"");?>">
                 <?php echo $firstArticle->title;?></a></h4>
             <p>
                 <?php echo strip_tags($firstArticle->introtext,'<p><br><a><br/>');?>
@@ -183,14 +183,14 @@ foreach($sectionIds as $secId)// get Articles in sections
                 <?php// echo $firstArticle->introtext;?>
                 </p>
             <?php if($firstArticle->readmore>0):?>
-            <a href="<?php echo JRoute::_(ContentHelperRoute::getArticleRoute($firstArticle->slug, $firstArticle->catslug, $firstArticle->sectionid)).($firstArticle->sectionid==2?"&Itemid=4":"");?>">Xem chi tiết</a>
+            <a href="<?php echo JRoute::_(ContentHelperRoute::getArticleRoute($firstArticle->slug, $firstArticle->catslug, $firstArticle->sectionid));//.($firstArticle->sectionid==2?"&Itemid=4":"");?>">Xem chi tiết</a>
             <?php endif;?>
         </div>
         <!--end list box-->
         <!--list news-->
         <ul class="list2">
 			<?php for($i=1;$i<3&&$i<count($section->articles);$i++):?>
-            <li><a href="<?php echo JRoute::_(ContentHelperRoute::getArticleRoute($section->articles[$i]->slug, $section->articles[$i]->catslug, $section->articles[$i]->sectionid)).($firstArticle->sectionid==2?"&Itemid=4":"");?>">
+            <li><a href="<?php echo JRoute::_(ContentHelperRoute::getArticleRoute($section->articles[$i]->slug, $section->articles[$i]->catslug, $section->articles[$i]->sectionid));//.($firstArticle->sectionid==2?"&Itemid=4":"");?>">
 				<?php echo $section->articles[$i]->title;?></a><span class="datepub">(<?php echo $section->articles[$i]->created_formated;?>)</span></li>
             <?php endfor;?>            
         </ul>

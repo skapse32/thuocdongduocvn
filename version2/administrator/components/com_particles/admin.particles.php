@@ -155,7 +155,7 @@ function ins_poll()
 			{
 				// Get the pagebreak title
 				var width= 300;
-				var height= 220;
+				var height= 120;
 				var alignment= document.getElementById("alignment").value;
 				if(alignment=='left')
 					alignment='float:left;';
