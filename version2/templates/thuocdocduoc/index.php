@@ -119,5 +119,17 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
 	<?php echo $this->params->get('slogand'); ?>
 	</a>
 </div>
+<div style="display:none" id="inside_article_temp">
+	<jdoc:include type="modules" name="inside_article" style="xhtml" />
+</div>
+<script language="javascript">
+	jQuery('document').ready(function(){
+	setTimeout("jQuery('#link-bank').html('');",3000);
+	
+	
+		if(jQuery('#inside_article').size()>0)
+			jQuery('#inside_article').html(jQuery('#inside_article_temp').html());
+	});
+</script>
 </body>
 </html>

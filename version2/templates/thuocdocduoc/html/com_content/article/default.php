@@ -66,7 +66,8 @@ $menu  = $menus->getActive();
 				<?php echo $this->article->event->beforeDisplayContent; ?>
 				<?php echo $this->article->introtext; ?>
 				<br/><br/>
-            <?php echo $this->article->text; ?>
+            <?php echo $this->article->text; ?>   
+            <div id="cc"         ></div>
             <?php echo $this->article->event->afterDisplayContent; ?>
           <!--  <p class="link-back">
                 <a href="javascript:history.go(-1)" class="color5">&laquo; Back</a></p>
