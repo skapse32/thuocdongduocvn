@@ -60,7 +60,7 @@ $templateUrl =JURI::root()."templates/".$mainframe->getTemplate();
                 <table width="100%" border="0" cellspacing="0" cellpadding="0">
                     <tr>
                         <td width="20%" style="vertical-align: top">
-                            <a href="index.php?option=com_raovat&view=raovat&layout=detail&id=<?php echo $item->id;?>">
+                            <a href="<?php echo JRoute::_("index.php?option=com_raovat&view=raovat&layout=detail&id=".$item->id);?>">
 								<?php if($item->image):?>
 									<img src="<?php echo JURI::root().'/images/raovat/thumb/'.$item->image;?>" class="img2" />
                                 <?php else:?>

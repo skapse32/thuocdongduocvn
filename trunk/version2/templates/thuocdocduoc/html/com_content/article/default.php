@@ -10,7 +10,18 @@ $menu  = $menus->getActive();
     <div class="title">
         <h2 style='min-width:50px;'>
 			<?php if ($this->params->get('link_category')) : ?>
-				<?php echo '<a style="color:#85193C" href="'.JRoute::_(ContentHelperRoute::getCategoryRoute($this->article->catslug, $this->article->sectionid)).'">'; ?>
+				<?php 
+					switch($this->article->sectionid){
+						case 2:
+						case 3:
+							echo '<a style="color:#85193C" href="'.JRoute::_(ContentHelperRoute::getSectionRoute($this->article->sectionid)).'">'; 
+						break;
+						default:
+							echo '<a style="color:#85193C" href="'.JRoute::_(ContentHelperRoute::getCategoryRoute($this->article->catslug, $this->article->sectionid)).'">'; 
+						break;
+					}
+					
+					?>
 			<?php endif; ?>
             <?php echo $this->escape($this->article->category); ?>
             <?php if ($this->params->get('link_category')) : ?>

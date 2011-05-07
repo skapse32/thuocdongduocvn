@@ -82,7 +82,7 @@ class plgContentPoll extends JPlugin
 				$module=JModuleHelper::getModule('mod_poll');				
 				$module->params ="id=$id";								
 			//	ob_start();
-				$html[$id]=JModuleHelper::renderModule($module,array('id'=>1));
+				$html[$id]=JModuleHelper::renderModule($module,array('id'=>1));				
 			//	$html= ob_get_contents();
 			//	ob_end_clean();
 			}
@@ -90,8 +90,14 @@ class plgContentPoll extends JPlugin
 			{
 				//echo strpos($article->text,$item->exp);die;
 				//die($item['inner']);
+				if(!empty($item['exp'])&&empty($html[$item['id']]))
+				{
+					$article->text = str_replace($item['exp'],$html[$item['id']],$article->text);
+					continue;
+				}
 				if(!empty($item['inner']))
 					$article->text = str_replace($item['inner'],$html[$item['id']],$article->text);
+				
 			}
 			//echo JUtility::dump($matchs);die;
 		}

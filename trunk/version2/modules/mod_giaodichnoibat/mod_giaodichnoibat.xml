@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<install type="module" version="1.5.0">
+	<name>Giao dịch nổi bật</name>
+	<author>LongLH</author>
+	<creationDate>2011</creationDate>
+	<copyright>2011</copyright>
+	<license>http://www.gnu.org/licenses/gpl-2.0.html GNU/GPL</license>
+	<authorEmail>longdt@live.com</authorEmail>
+	<authorUrl>www.joomla.org</authorUrl>
+	<version>1.5.0</version>
+	<description>Giao dịch nổi bật</description>
+	<files>
+		<filename module="mod_cauhoihay">mod_giaodichnoibat.php</filename>
+        <filename module="mod_cauhoihay">mod_giaodichnoibat.xml</filename>
+        <folder module="mod_cauhoihay">tmpl</folder>
+	</files>
+    <params>
+        <param name="moduleclass_sfx" type="text" default="" label="Module Class Suffix" description="PARAMMODULECLASSSUFFIX" />
+    </params>
+    <params group="advanced">
+        <param name="cache" type="list" default="1" label="Caching" description="Select whether to cache the content of this module">
+            <option value="1">Use global</option>
+            <option value="0">No caching</option>
+        </param>
+        <param name="cache_time" type="text" default="900" label="Cache Time" description="The time before the module is recached" />
+    </params>
+</install>

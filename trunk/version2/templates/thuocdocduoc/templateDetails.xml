@@ -37,5 +37,7 @@
 		</param>
         <param name="slogand" type="text" default="" label="Slogand" description="Enter the website's Slogand, that will be appear in the homepage below the main menu" size="90">
         </param>
+        <param name="slogand_url" type="text" default="" label="Slogand URL" description="Enter the URL" size="90">
+        </param>
 	</params>
 </install>
