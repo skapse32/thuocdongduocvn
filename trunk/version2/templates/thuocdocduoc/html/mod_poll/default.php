@@ -11,7 +11,7 @@ defined('_JEXEC') or die('Restricted access'); ?>
 	</tr>
 </thead>
 	<tr>
-		<td align="center">
+		<td align="left">
 			<table class="pollstableborder<?php echo $params->get('moduleclass_sfx'); ?>" cellspacing="0" cellpadding="0" border="0">
 			<?php for ($i = 0, $n = count($options); $i < $n; $i ++) : ?>
 				<tr>
