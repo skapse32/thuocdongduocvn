@@ -114,6 +114,10 @@ defined( '_JEXEC' ) or die( 'Restricted access' );
   })();
 
 </script>
-<div style="display:none" id="slogand_temp"><?php echo $this->params->get('slogand'); ?></div>
+<div style="display:none" id="slogand_temp">
+	<a style="font-weight:normal;color:#032B3F" href="<?php echo $this->params->get('slogand_url');?>">
+	<?php echo $this->params->get('slogand'); ?>
+	</a>
+</div>
 </body>
 </html>
